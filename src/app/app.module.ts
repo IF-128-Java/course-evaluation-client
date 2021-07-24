@@ -1,5 +1,5 @@
-import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
 import {RouterModule} from "@angular/router";
@@ -17,7 +17,6 @@ import {GroupsListComponent, NgbdModalContent} from './components/groups-list/gr
 import { AddCourseComponent } from './components/add-course/add-course.component';
 import { CourseDetailsComponent } from './components/course-details/course-details.component';
 import { CoursesListComponent } from './components/courses-list/courses-list.component';
-import {GroupsListComponent, NgbdModalContent} from "./components/groups-list/groups-list.component";
 
 @NgModule({
   declarations: [
@@ -42,7 +41,4 @@ import {GroupsListComponent, NgbdModalContent} from "./components/groups-list/gr
   providers: [httpInterceptorProviders,{ provide: JWT_OPTIONS, useValue: JWT_OPTIONS },JwtHelperService],
   bootstrap: [AppComponent]
 })
-
-
-export class AppModule {
-}
+export class AppModule { }
