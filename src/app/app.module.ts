@@ -26,8 +26,6 @@ import {GroupsListComponent, NgbdModalContent} from "./components/groups-list/gr
     LoginComponent,
     RegisterComponent,
     AdminComponent,
-    GroupsListComponent,
-    NgbdModalContent,
     AddCourseComponent,
     CourseDetailsComponent,
     CoursesListComponent,
@@ -44,4 +42,7 @@ import {GroupsListComponent, NgbdModalContent} from "./components/groups-list/gr
   providers: [httpInterceptorProviders,{ provide: JWT_OPTIONS, useValue: JWT_OPTIONS },JwtHelperService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+
+
+export class AppModule {
+}
