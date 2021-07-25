@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-<<<<<<< HEAD
+
 import {RouterModule, Routes} from '@angular/router';
 import {HomeComponent} from './components/home/home.component';
 import {LoginComponent} from './components/login/login.component';
@@ -8,12 +8,6 @@ import {RegisterComponent} from './components/register/register.component';
 import {AdminComponent} from './components/admin/admin.component';
 import {AuthGuardService} from './auth/auth-guard.service';
 import {GroupsListComponent} from './components/groups-list/groups-list.component';
-=======
-import {RouterModule, Routes} from "@angular/router";
-import {HomeComponent} from "./components/home/home.component";
-import {LoginComponent} from "./components/login/login.component";
-import {RegisterComponent} from "./components/register/register.component";
->>>>>>> created navbar
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
