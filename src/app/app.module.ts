@@ -41,5 +41,4 @@ import { CoursesListComponent } from './components/courses-list/courses-list.com
   providers: [httpInterceptorProviders,{ provide: JWT_OPTIONS, useValue: JWT_OPTIONS },JwtHelperService],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule { }
