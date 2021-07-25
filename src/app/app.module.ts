@@ -8,6 +8,8 @@ import {HomeComponent} from './components/home/home.component';
 import {LoginComponent} from './components/login/login.component';
 import {RegisterComponent} from './components/register/register.component';
 import {httpInterceptorProviders} from './auth/auth-interceptor';
+import { HttpClientModule } from '@angular/common/http';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -19,7 +21,7 @@ import {httpInterceptorProviders} from './auth/auth-interceptor';
   imports: [
     BrowserModule,
     RouterModule,
-    AppRoutingModule
+    AppRoutingModule, HttpClientModule, FormsModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
