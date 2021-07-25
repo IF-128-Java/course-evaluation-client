@@ -17,7 +17,7 @@ const httpOptions = {
 export class AuthService {
 
   private loginUrl = AppConfig.API_ENDPOINT + 'auth/login';
-  private signupUrl = AppConfig.API_ENDPOINT + 'auth/reg';
+  private signupUrl = AppConfig.API_ENDPOINT + 'auth/signup';
 
   constructor(private http: HttpClient, private jwtHelper: JwtHelperService, private tokenStorage: TokenStorageService) {
   }
