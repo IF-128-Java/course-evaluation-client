@@ -6,7 +6,7 @@ import {TokenStorageService} from "./auth/token-storage.service";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'course-evaluation-client';
   roles: string[] | undefined;
   username: string | undefined;
