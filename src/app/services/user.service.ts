@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import {AppConfig} from '../common/app-config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  private adminUrl = 'http://localhost:8080/api/v1/users';
+  private adminUrl = AppConfig.API_ENDPOINT+'users';
 
   constructor(private http: HttpClient) { }
 

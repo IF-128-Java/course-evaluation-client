@@ -3,8 +3,6 @@ import {AuthLoginInfo} from '../../auth/auth-login-info';
 import {AuthService} from '../../auth/auth.service';
 import {TokenStorageService} from '../../auth/token-storage.service';
 
-
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
