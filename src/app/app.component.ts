@@ -8,7 +8,8 @@ import {TokenStorageService} from "./auth/token-storage.service";
 })
 export class AppComponent implements OnInit {
   title = 'course-evaluation-client';
-   roles: string[] | undefined;
+  roles: string[] | undefined;
+  username: string | undefined;
 
   constructor(private tokenStorage: TokenStorageService) {
   }
@@ -16,7 +17,11 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     if (this.tokenStorage.getToken()) {
       this.roles = this.tokenStorage.getAuthorities();
-
+      this.username = this.tokenStorage.getUsername();
     }
+  }
+  logout() {
+    this.tokenStorage.signOut();
+    window.location.reload();
   }
 }
