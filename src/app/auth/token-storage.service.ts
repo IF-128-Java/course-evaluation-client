@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-
+import  jwt_decode from 'jwt-decode';
 const TOKEN_KEY = 'AuthToken';
 const USERNAME_KEY = 'AuthUsername';
 const AUTHORITIES_KEY = 'AuthAuthorities';
@@ -9,6 +9,7 @@ const AUTHORITIES_KEY = 'AuthAuthorities';
 })
 export class TokenStorageService {
   private roles: Array<any> = [];
+
   constructor() { }
 
   signOut() {
@@ -18,6 +19,8 @@ export class TokenStorageService {
   public saveToken(token: string) {
     window.sessionStorage.removeItem(TOKEN_KEY);
     window.sessionStorage.setItem(TOKEN_KEY, token);
+
+    console.log(JSON.parse(this.decodeToken(token)).role);
   }
 
   public getToken(): string {
@@ -33,20 +36,25 @@ export class TokenStorageService {
     return <string>sessionStorage.getItem(USERNAME_KEY);
   }
 
-  public saveAuthorities(authorities: string[]) {
+  public saveAuthorities(token: string) {
     window.sessionStorage.removeItem(AUTHORITIES_KEY);
-    window.sessionStorage.setItem(AUTHORITIES_KEY, JSON.stringify(authorities));
+    window.sessionStorage.setItem(AUTHORITIES_KEY,JSON.parse(this.decodeToken(token)).role );
   }
 
   public getAuthorities(): string[] {
     this.roles = [];
 
     if (sessionStorage.getItem(TOKEN_KEY)) {
-      JSON.parse(<string>sessionStorage.getItem(AUTHORITIES_KEY)).forEach((authority: { authority: any; }) => {
-        this.roles.push(authority.authority);
-      });
+
+        this.roles=JSON.parse(this.decodeToken(this.getToken())).role;
+
     }
 
     return this.roles;
   }
+
+  decodeToken(token: string | null): string {
+    return JSON.stringify(jwt_decode(<string>token));
+  }
+
 }
