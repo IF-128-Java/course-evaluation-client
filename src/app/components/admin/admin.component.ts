@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from '../../services/user.service';
+import {User} from '../../models/user.model';
 
 @Component({
   selector: 'app-admin',
@@ -8,7 +9,7 @@ import {UserService} from '../../services/user.service';
 })
 export class AdminComponent implements OnInit {
 
-  board: string | undefined;
+  users: User[] | undefined;
   errorMessage: string | undefined;
 
   constructor(private userService: UserService) { }
@@ -16,7 +17,7 @@ export class AdminComponent implements OnInit {
   ngOnInit() {
     this.userService.getAdminBoard().subscribe(
       data => {
-        this.board = data;
+        this.users = data;
       },
       error => {
         this.errorMessage = `${error.status}: ${JSON.parse(error.error).message}`;
