@@ -1,12 +1,18 @@
 <div id="app">
   <nav class="navbar navbar-expand navbar-dark bg-dark">
     <a href="#" class="navbar-brand">Course Evaluation</a>
+    <div class="collapse navbar-collapse show">
     <ul class="navbar-nav mr-auto" routerLinkActive="active">
       <li class="nav-item">
         <a href="/home" class="nav-link" routerLink="home">Home </a>
       </li>
-      <li class="nav-item">
-        <a href="/admin" class="nav-link">Admin Board</a>
+      <li *ngIf="roles && roles.includes('ROLE_ADMIN')" class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" role ="button" (click)="toggleNavbar()"  id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Admin Board
+        </a>
+        <ul [ngClass]="{ 'show': navbarOpen }" class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li><a class="dropdown-item" href="/admin" (click)="toggleNavbar()" routerLink="admin">Users list</a></li>
+        </ul>
       </li>
     </ul>
     <li class="nav-item">
@@ -17,22 +23,23 @@
     </li>
 
     <ul class="navbar-nav ms-auto">
-      <li class="nav-item">
+      <li *ngIf="!username" class="nav-item">
         <a href="/register" class="nav-link" routerLink="register">Sign Up</a>
       </li>
-      <li class="nav-item">
+      <li *ngIf="!roles" class="nav-item">
         <a href="/login" class="nav-link" routerLink="login">Login</a>
       </li>
     </ul>
 
-    <ul class="navbar-nav ms-auto">
-      <li class="nav-item">
-        <a href="/profile" class="nav-link"> username </a>
+    <ul *ngIf="roles" class="navbar-nav ms-auto">
+      <li  class="nav-item">
+        <a href="/profile" class="nav-link"> {{username}} </a>
       </li>
-      <li class="nav-item">
-        <a href class="nav-link">LogOut</a>
+      <li  class="nav-item">
+        <a role ="button" (click)="logout()" class="nav-link">LogOut</a>
       </li>
     </ul>
+    </div>
   </nav>
 
   <div class="container">
