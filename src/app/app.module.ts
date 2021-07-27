@@ -17,6 +17,10 @@ import { AddCourseComponent } from './components/add-course/add-course.component
 import { CourseDetailsComponent } from './components/course-details/course-details.component';
 import { CoursesListComponent } from './components/courses-list/courses-list.component';
 
+import {FormsModule} from "@angular/forms";
+import {HttpClientModule} from "@angular/common/http";
+import {AppRoutingModule} from "./app-routing/app-routing.module";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,8 +36,10 @@ import { CoursesListComponent } from './components/courses-list/courses-list.com
   ],
   imports: [
     BrowserModule,
-    RouterModule,
-    AppRoutingModule, HttpClientModule, FormsModule
+    FormsModule,
+    HttpClientModule,
+    AppRoutingModule
+    RouterModule
   ],
   providers: [httpInterceptorProviders,{ provide: JWT_OPTIONS, useValue: JWT_OPTIONS },JwtHelperService],
   bootstrap: [AppComponent]
