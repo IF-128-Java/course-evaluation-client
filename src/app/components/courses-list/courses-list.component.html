@@ -1,1 +1,43 @@
-<p>courses-list works!</p>
+<div class="list row">
+  <div class="col-md-8">
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" placeholder="Search by course name" [(ngModel)]="courseName"/>
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button" (click)="searchCourseName()">Search</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <h3>Courses List</h3>
+    <ul class="list-group">
+      <li class="list-group-item"
+          *ngFor="let course of courses;
+          let i = index" [class.active]="i == currentIndex"
+          (click)="setActiveCourse(course, i)">
+        {{ course.courseName }}
+      </li>
+    </ul>
+  </div>
+  <div class="col-md-6">
+    <div *ngIf="currentCourse.id">
+      <h3>Course</h3>
+      <div>
+        <label><strong>Course Name:</strong></label> {{ currentCourse.courseName }}
+      </div>
+      <div>
+        <label><strong>Description:</strong></label> {{ currentCourse.description }}
+      </div>
+      <div>
+        <label><strong>Teacher:</strong></label> {{ currentCourse.teacher }}
+      </div>
+      <div>
+        <label><strong>Start Date:</strong></label> {{ currentCourse.startDate }}  <label><strong> //  End Date:</strong></label> {{ currentCourse.endDate }}
+      </div>
+      <a class="badge badge-warning" routerLink="/courses/{{ currentCourse.id }}">Edit</a>
+    </div>
+    <div *ngIf="!currentCourse">
+      <br />
+      <p>Please click on a Course</p>
+    </div>
+  </div>
+</div>
