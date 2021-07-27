@@ -6,12 +6,13 @@
       <li class="nav-item">
         <a href="/home" class="nav-link" routerLink="home">Home </a>
       </li>
-      <li class="nav-item">
-        <a routerLink="courses" class="nav-link">Courses</a>
-      </li>
-      <li class="nav-item">
-        <a routerLink="add" class="nav-link">Add New Course</a>
-      </li>
+      <li *ngIf="roles && roles.includes('ROLE_ADMIN')" class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" role ="button" (click)="toggleNavbar()"  id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Admin Board
+        </a>
+        <ul [ngClass]="{ 'show': navbarOpen }" class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li><a class="dropdown-item" href="/admin" (click)="toggleNavbar()" routerLink="admin">Users list</a></li>
+        </ul>
       <li *ngIf="roles && roles.includes('ROLE_ADMIN')" class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" role ="button" (click)="toggleNavbar()"  id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           Admin Board
@@ -33,7 +34,7 @@
       <li *ngIf="!username" class="nav-item">
         <a href="/register" class="nav-link" routerLink="register">Sign Up</a>
       </li>
-      <li class="nav-item">
+      <li *ngIf="!roles" class="nav-item">
         <a href="/login" class="nav-link" routerLink="login">Login</a>
       </li>
     </ul>
