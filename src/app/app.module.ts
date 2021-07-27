@@ -20,6 +20,7 @@ import { CoursesListComponent } from './components/courses-list/courses-list.com
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {AppRoutingModule} from "./app-routing/app-routing.module";
+import {RouterModule} from "@angular/router";
 
 @NgModule({
   declarations: [
