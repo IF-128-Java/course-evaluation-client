@@ -13,27 +13,27 @@ export class CoursesService {
 
   constructor(private  http: HttpClient) { }
 
-  getAll(): Observable<any> {
-    return this.http.get(AppConfig.API_ENDPOINT, {responseType: 'text'});
+  getAll(): Observable<Course[]> {
+    return this.http.get<Course[]>(AppConfig.API_ENDPOINT);
   }
 
-  get(id: number): Observable<any> {
-    return this.http.get(`${AppConfig.API_ENDPOINT}/${id}`, {responseType: 'text'});
+  get(id: number): Observable<Course> {
+    return this.http.get(`${AppConfig.API_ENDPOINT}/${id}`);
   }
 
   create(data: any): Observable<any> {
-    return this.http.post(AppConfig.API_ENDPOINT, {responseType: 'text'});
+    return this.http.post(AppConfig.API_ENDPOINT, data);
   }
 
   update(id: number | any, data: any): Observable<any> {
-    return this.http.put(`${AppConfig.API_ENDPOINT}/${id}`, {responseType: 'text'});
+    return this.http.put(`${AppConfig.API_ENDPOINT}/${id}`, data);
   }
 
-  delete(id: number | any): Observable<any> {
-    return this.http.delete(AppConfig.API_ENDPOINT, {responseType: 'text'});
+  delete(id: number | any): Observable<Course> {
+    return this.http.delete(AppConfig.API_ENDPOINT);
   }
 
-  findByCourseName(courseName: string): Observable<any> {
-    return this.http.get(`${AppConfig.API_ENDPOINT}?courseName=${courseName}`, {responseType: 'text'});
+  findByCourseName(courseName: string): Observable<Course[]> {
+    return this.http.get<Course[]>(`${AppConfig.API_ENDPOINT}?courseName=${courseName}`);
   }
 }
