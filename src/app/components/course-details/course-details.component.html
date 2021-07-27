@@ -1,1 +1,32 @@
-<p>course-details works!</p>
+<div>
+  <div *ngIf="currentCourse.id" class="edit-form">
+    <h3>Course</h3>
+    <form>
+      <div class="form-group">
+        <label for="courseName">Course Name</label>
+        <input type="text" class="form-control" id="courseName" [(ngModel)]="currentCourse.courseName" name="courseName"/>
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <input type="text" class="form-control" id="description" [(ngModel)]="currentCourse.description" name="description"/>
+      </div>
+      <div class="form-group">
+        <label for="startDate">Start Date</label>
+        <input type="text" class="form-control" id="startDate" [(ngModel)]="currentCourse.startDate" name="startDate"/>
+      </div>
+      <div class="form-group">
+        <label for="endDate">End Date</label>
+        <input type="text" class="form-control" id="endDate" [(ngModel)]="currentCourse.endDate" name="endDate"/>
+      </div>
+      <div class="form-group">
+        <label for="teacher">Teacher</label>
+        <input type="text" class="form-control" id="teacher" [(ngModel)]="currentCourse.teacher" name="teacher"/>
+      </div>
+    </form>
+    <button class="badge badge-danger mr-2" (click)="deleteCourse()">Delete</button>
+    <button type="submit" class="badge badge-success mb-2">Update</button>
+    <p>{{ message }}</p>
+    <br />
+    <p>Can't access this course</p>
+  </div>
+</div>

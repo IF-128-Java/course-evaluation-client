@@ -1,5 +1,5 @@
-import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
 import {RouterModule} from '@angular/router';
@@ -13,14 +13,12 @@ import {FormsModule} from '@angular/forms';
 import { AdminComponent } from './components/admin/admin.component';
 import {JWT_OPTIONS, JwtHelperService} from '@auth0/angular-jwt';
 import {GroupsListComponent, NgbdModalContent} from './components/groups-list/groups-list.component';
-import { AppComponent } from './app.component';
 import { AddCourseComponent } from './components/add-course/add-course.component';
 import { CourseDetailsComponent } from './components/course-details/course-details.component';
 import { CoursesListComponent } from './components/courses-list/courses-list.component';
 
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
-import {AppRoutingModule} from "./app-routing/app-routing.module";
 
 @NgModule({
   declarations: [
@@ -31,7 +29,6 @@ import {AppRoutingModule} from "./app-routing/app-routing.module";
     AdminComponent,
     GroupsListComponent,
     NgbdModalContent
-    AppComponent,
     AddCourseComponent,
     CourseDetailsComponent,
     CoursesListComponent
