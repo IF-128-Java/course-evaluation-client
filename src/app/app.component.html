@@ -393,6 +393,7 @@
         </a>
         <ul [ngClass]="{ 'show': navbarOpen }" class="dropdown-menu" aria-labelledby="navbarDropdown">
           <li><a class="dropdown-item" href="/admin" (click)="toggleNavbar()" routerLink="admin">Users list</a></li>
+          <li><a class="dropdown-item" href="/groups-list" (click)="toggleNavbar()" routerLink="groups-list">Groups list</a></li>
         </ul>
       <li *ngIf="roles && roles.includes('ROLE_ADMIN')" class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" role ="button" (click)="toggleNavbar()"  id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
