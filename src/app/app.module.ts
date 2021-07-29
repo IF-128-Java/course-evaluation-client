@@ -37,7 +37,6 @@ import { CoursesListComponent } from './components/courses-list/courses-list.com
     FormsModule,
     HttpClientModule,
     AppRoutingModule
-    RouterModule
   ],
   providers: [httpInterceptorProviders,{ provide: JWT_OPTIONS, useValue: JWT_OPTIONS },JwtHelperService],
   bootstrap: [AppComponent]
