@@ -17,6 +17,7 @@ import {GroupsListComponent, NgbdModalContent} from './components/groups-list/gr
 import { AddCourseComponent } from './components/add-course/add-course.component';
 import { CourseDetailsComponent } from './components/course-details/course-details.component';
 import { CoursesListComponent } from './components/courses-list/courses-list.component';
+import {GroupsListComponent, NgbdModalContent} from "./components/groups-list/groups-list.component";
 
 @NgModule({
   declarations: [
@@ -29,7 +30,9 @@ import { CoursesListComponent } from './components/courses-list/courses-list.com
     NgbdModalContent,
     AddCourseComponent,
     CourseDetailsComponent,
-    CoursesListComponent
+    CoursesListComponent,
+    GroupsListComponent,
+    NgbdModalContent
   ],
   imports: [
     BrowserModule,
