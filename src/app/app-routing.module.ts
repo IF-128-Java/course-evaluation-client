@@ -20,6 +20,9 @@ const routes: Routes = [
   {path: 'courses/:id', component: CourseDetailsComponent},
   {path: 'add', component: AddCourseComponent},
   {path: 'groups-list', component: GroupsListComponent,canActivate:[AuthGuardService]},
+  {path: 'courses', component: CoursesListComponent},
+  {path: 'courses/:id', component: CourseDetailsComponent},
+  {path: 'add', component: AddCourseComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'}
 ];
 
