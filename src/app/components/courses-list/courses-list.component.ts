@@ -35,11 +35,6 @@ export class CoursesListComponent implements OnInit {
     this.currentIndex = 1;
   }
 
-  setActiveCourse(course: Course, index: number): void {
-    this.currentCourse = course;
-    this.currentIndex = index;
-  }
-
   searchCourseName(): void {
     this.currentCourse = {};
     this.currentIndex = -1;

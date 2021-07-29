@@ -12,8 +12,9 @@
     <ul class="list-group">
       <li class="list-group-item"
           *ngFor="let course of courses;
-          let i = index" [class.active]="i == currentIndex"
-          (click)="setActiveCourse(course, i)">
+          let i = index;
+"
+          >
         {{ course.courseName }}
       </li>
     </ul>
