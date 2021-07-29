@@ -10,7 +10,6 @@ import {User} from '../../models/user.model';
 export class AdminComponent implements OnInit {
 
   users: User[] | undefined;
-  errorMessage: string | undefined;
 
   constructor(private userService: UserService) { }
 
@@ -18,9 +17,6 @@ export class AdminComponent implements OnInit {
     this.userService.getAdminBoard().subscribe(
       data => {
         this.users = data;
-      },
-      error => {
-        this.errorMessage = `${error.status}: ${JSON.parse(error.error).message}`;
       }
     );
   }

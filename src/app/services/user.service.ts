@@ -13,6 +13,8 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   getAdminBoard(): Observable<any> {
-    return this.http.get(this.adminUrl, { responseType: 'text' });
+    return this.http.get(this.adminUrl);
   }
+
+
 }

@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import { AdminComponent } from './components/admin/admin.component';
 import {JWT_OPTIONS, JwtHelperService} from '@auth0/angular-jwt';
+import {GroupsListComponent, NgbdModalContent} from './components/groups-list/groups-list.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,9 @@ import {JWT_OPTIONS, JwtHelperService} from '@auth0/angular-jwt';
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    AdminComponent
+    AdminComponent,
+    GroupsListComponent,
+    NgbdModalContent
   ],
   imports: [
     BrowserModule,
