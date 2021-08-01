@@ -25,12 +25,9 @@ import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
           <div *ngIf="groupName.errors">Group name is required</div>
           <div *ngIf="isSignedUp && group">Group {{group.groupName}} has added!</div>
         </div>
-
         <div class="form-group">
           <button class="btn btn-primary btn-block">Add</button>
         </div>
-
-
       </form>
     </div>
     <div class="modal-footer">
