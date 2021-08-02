@@ -1,1 +1,66 @@
-<p>register works!</p>
+<div *ngIf="isSignedUp; else signupForm">
+  Your registration is successful. Please login!
+</div>
+<ng-template #signupForm>
+  <div class="form-wraper">
+    <div class="form-container card">
+      <div class="form-header">
+        <H3>User Login</H3>
+      </div>
+      <form name="form" class="form-body" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+
+        <mat-form-field class="justifier">
+          <input
+            type="text"
+            matInput placeholder="First name" class="form-input"
+            name="firstName"
+            [(ngModel)]="form.firstName" #firstName="ngModel" required
+          />
+
+        </mat-form-field>
+
+        <mat-form-field class="justifier">
+          <input
+            type="text"
+            class="form-control"
+            name="lastName"
+            matInput placeholder="Last name"
+            [(ngModel)]="form.lastName" #lastName="ngModel" required
+          />
+        </mat-form-field>
+        <mat-form-field class="justifier">
+          <input
+            type="email"
+            class="form-control"
+            name="email"
+            matInput placeholder="Email"
+            [(ngModel)]="form.email" #email="ngModel"
+            required
+            email
+
+          />
+        </mat-form-field>
+        <mat-form-field class="justifier">
+          <input
+            type="password"
+            class="form-control"
+            name="password"
+            matInput placeholder="Password"
+            [(ngModel)]="form.password" #password="ngModel" required
+            required
+          />
+        </mat-form-field>
+        <div class="form-footer">
+          <button mat-raised-button class="btn custom-btn">
+            <mat-icon>add</mat-icon>
+            Sign Up
+          </button>
+        </div>
+        <div class="additional-link">
+          <a routerLink="/login">Already have an Account? <strong>Login</strong></a>
+        </div>
+      </form>
+    </div>
+  </div>
+</ng-template>
+

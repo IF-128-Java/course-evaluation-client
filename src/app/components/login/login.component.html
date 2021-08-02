@@ -1,1 +1,32 @@
-<p>login works!</p>
+<div *ngIf="isLoggedIn; else loggedOut">
+  Logged in as {{roles}}.
+</div>
+<ng-template #loggedOut>
+  <div class="form-wraper">
+    <div class="form-container card">
+      <div class="form-header">
+        <H3>User Login</H3>
+      </div>
+      <form name="form" class="form-body" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+        <mat-form-field class="justifier">
+          <input matInput placeholder="Email" class="form-input" name="username"
+                 [(ngModel)]="form.username" #username="ngModel" required>
+        </mat-form-field>
+        <mat-form-field class="justifier">
+          <input type="password" matInput placeholder="Password" class="form-input" name="password"
+                 [(ngModel)]="form.password" #password="ngModel" required>
+        </mat-form-field>
+        <div class="form-footer">
+          <button mat-raised-button class="btn custom-btn">
+            <mat-icon>input</mat-icon>
+            Login
+          </button>
+        </div>
+        <div class="additional-link">
+          <a routerLink="/register">No Account? <strong>Create one here</strong></a>
+        </div>
+      </form>
+    </div>
+  </div>
+</ng-template>
+

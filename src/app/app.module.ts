@@ -13,6 +13,10 @@ import {FormsModule} from '@angular/forms';
 import { AdminComponent } from './components/admin/admin.component';
 import {JWT_OPTIONS, JwtHelperService} from '@auth0/angular-jwt';
 import {GroupsListComponent, NgbdModalContent} from './components/groups-list/groups-list.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+import {MatInputModule} from "@angular/material/input";
 
 import { AddCourseComponent } from './components/add-course/add-course.component';
 import { CourseDetailsComponent } from './components/course-details/course-details.component';
@@ -34,9 +38,10 @@ import { CoursesListComponent } from './components/courses-list/courses-list.com
   imports: [
     BrowserModule,
     RouterModule,
+    AppRoutingModule, HttpClientModule,
     FormsModule,
-    HttpClientModule,
-    AppRoutingModule
+    BrowserAnimationsModule,
+    MatButtonModule, MatIconModule, MatInputModule,
   ],
   providers: [httpInterceptorProviders,{ provide: JWT_OPTIONS, useValue: JWT_OPTIONS },JwtHelperService],
   bootstrap: [AppComponent]

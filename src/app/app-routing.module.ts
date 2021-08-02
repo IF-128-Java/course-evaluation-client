@@ -6,9 +6,9 @@ import {LoginComponent} from './components/login/login.component';
 import {RegisterComponent} from './components/register/register.component';
 import {AdminComponent} from './components/admin/admin.component';
 import {AuthGuardService} from './auth/auth-guard.service';
-import {CoursesListComponent} from "./components/courses-list/courses-list.component";
-import {AddCourseComponent} from "./components/add-course/add-course.component";
-import {CourseDetailsComponent} from "./components/course-details/course-details.component";
+import {CoursesListComponent} from './components/courses-list/courses-list.component';
+import {AddCourseComponent} from './components/add-course/add-course.component';
+import {CourseDetailsComponent} from './components/course-details/course-details.component';
 import {GroupsListComponent} from './components/groups-list/groups-list.component';
 
 const routes: Routes = [
