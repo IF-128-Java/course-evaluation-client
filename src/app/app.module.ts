@@ -1,8 +1,8 @@
-import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 
-import {AppComponent} from './app.component';
-import {RouterModule} from '@angular/router';
+import { AppComponent } from './app.component';
+import {RouterModule} from "@angular/router";
 import {AppRoutingModule} from './app-routing.module';
 import {HomeComponent} from './components/home/home.component';
 import {LoginComponent} from './components/login/login.component';
@@ -18,6 +18,10 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from "@angular/material/input";
 
+import { AddCourseComponent } from './components/add-course/add-course.component';
+import { CourseDetailsComponent } from './components/course-details/course-details.component';
+import { CoursesListComponent } from './components/courses-list/courses-list.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +29,9 @@ import {MatInputModule} from "@angular/material/input";
     LoginComponent,
     RegisterComponent,
     AdminComponent,
+    AddCourseComponent,
+    CourseDetailsComponent,
+    CoursesListComponent,
     GroupsListComponent,
     NgbdModalContent
   ],
@@ -39,5 +46,4 @@ import {MatInputModule} from "@angular/material/input";
   providers: [httpInterceptorProviders,{ provide: JWT_OPTIONS, useValue: JWT_OPTIONS },JwtHelperService],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule { }
