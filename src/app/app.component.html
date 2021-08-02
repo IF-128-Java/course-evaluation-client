@@ -1,3 +1,4 @@
+
 <div id="app">
   <nav class="navbar navbar-expand navbar-dark bg-dark">
     <a href="#" class="navbar-brand">Course Evaluation</a>
@@ -6,17 +7,21 @@
       <li class="nav-item">
         <a href="/home" class="nav-link" routerLink="home">Home </a>
       </li>
+      <li class="nav-item">
+        <a routerLink="courses" class="nav-link">Courses</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="add" class="nav-link">Add New Course</a>
+      </li>
       <li *ngIf="roles && roles.includes('ROLE_ADMIN')" class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" role ="button" (click)="toggleNavbar()"  id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           Admin Board
         </a>
         <ul [ngClass]="{ 'show': navbarOpen }" class="dropdown-menu" aria-labelledby="navbarDropdown">
           <li><a class="dropdown-item" href="/admin" (click)="toggleNavbar()" routerLink="admin">Users list</a></li>
-          <li><a class="dropdown-item" href="/groups-list" (click)="toggleNavbar()" routerLink="groups-list">Groups list</a></li>
         </ul>
       </li>
     </ul>
-
     <ul class="navbar-nav ms-auto">
       <li *ngIf="!username" class="nav-item">
         <a href="/register" class="nav-link" routerLink="register">Sign Up</a>
@@ -41,3 +46,5 @@
     <router-outlet></router-outlet>
   </div>
 </div>
+
+

@@ -1,8 +1,8 @@
-import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 
-import {AppComponent} from './app.component';
-import {RouterModule} from '@angular/router';
+import { AppComponent } from './app.component';
+import {RouterModule} from "@angular/router";
 import {AppRoutingModule} from './app-routing.module';
 import {HomeComponent} from './components/home/home.component';
 import {LoginComponent} from './components/login/login.component';
@@ -14,6 +14,10 @@ import { AdminComponent } from './components/admin/admin.component';
 import {JWT_OPTIONS, JwtHelperService} from '@auth0/angular-jwt';
 import {GroupsListComponent, NgbdModalContent} from './components/groups-list/groups-list.component';
 
+import { AddCourseComponent } from './components/add-course/add-course.component';
+import { CourseDetailsComponent } from './components/course-details/course-details.component';
+import { CoursesListComponent } from './components/courses-list/courses-list.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,16 +25,20 @@ import {GroupsListComponent, NgbdModalContent} from './components/groups-list/gr
     LoginComponent,
     RegisterComponent,
     AdminComponent,
+    AddCourseComponent,
+    CourseDetailsComponent,
+    CoursesListComponent,
     GroupsListComponent,
     NgbdModalContent
   ],
   imports: [
     BrowserModule,
     RouterModule,
-    AppRoutingModule, HttpClientModule, FormsModule
+    FormsModule,
+    HttpClientModule,
+    AppRoutingModule
   ],
   providers: [httpInterceptorProviders,{ provide: JWT_OPTIONS, useValue: JWT_OPTIONS },JwtHelperService],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule { }
