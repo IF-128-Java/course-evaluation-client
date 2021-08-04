@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {AppConfig} from '../common/app-config';
+import {AppConfig} from '../../common/app-config';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Group} from '../models/group.model';
+import {Group} from '../../models/group.model';
 
 @Injectable({
   providedIn: 'root'

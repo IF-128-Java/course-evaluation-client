@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Group} from '../../models/group.model';
-import {GroupService} from '../../services/group.service';
+import {Group} from '../../../../models/group.model';
+import {GroupService} from '../../../../services/admin/group.service';
 import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({

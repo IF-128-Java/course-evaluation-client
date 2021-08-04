@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from '../../services/user.service';
-import {User} from '../../models/user.model';
+import {UserService} from '../../../services/admin/user.service';
+import {User} from '../../../models/user.model';
 
 @Component({
   selector: 'app-admin',
-  templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.css']
+  templateUrl: './user.component.html',
+  styleUrls: ['./user.component.css']
 })
-export class AdminComponent implements OnInit {
+export class UserComponent implements OnInit {
 
   users: User[] | undefined;
   errorMessage: string | undefined;

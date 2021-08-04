@@ -1,0 +1,24 @@
+
+.intro-header {
+  height: 150vh !important;
+  background: url("src/assets/images/background.jpg") no-repeat center;
+  background-size: cover;
+  display: block;
+}
+
+.mat-toolbar {
+  background: transparent;
+  font-size: 1.5em;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+.mat-button{
+  font-size: 0.8em;
+}
+.intro-2 {
+  background: transparent;
+  height: 100%;
+  background-size: cover;
+}
