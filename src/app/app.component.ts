@@ -26,7 +26,4 @@ export class AppComponent implements OnInit {
     window.location.reload();
   }
 
-  toggleNavbar() {
-    this.navbarOpen = !this.navbarOpen;
-  }
 }

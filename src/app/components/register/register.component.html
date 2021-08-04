@@ -5,7 +5,7 @@
   <div class="form-wraper">
     <div class="form-container card">
       <div class="form-header">
-        <H3>User Login</H3>
+        <H3>Sign Up</H3>
       </div>
       <form name="form" class="form-body" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
 
@@ -16,22 +16,21 @@
             name="firstName"
             [(ngModel)]="form.firstName" #firstName="ngModel" required
           />
-
         </mat-form-field>
 
         <mat-form-field class="justifier">
-          <input
+          <input matInput
             type="text"
-            class="form-control"
+            class="form-input"
             name="lastName"
-            matInput placeholder="Last name"
+             placeholder="Last name"
             [(ngModel)]="form.lastName" #lastName="ngModel" required
           />
         </mat-form-field>
         <mat-form-field class="justifier">
           <input
             type="email"
-            class="form-control"
+            class="form-input"
             name="email"
             matInput placeholder="Email"
             [(ngModel)]="form.email" #email="ngModel"
@@ -43,7 +42,7 @@
         <mat-form-field class="justifier">
           <input
             type="password"
-            class="form-control"
+            class="form-input"
             name="password"
             matInput placeholder="Password"
             [(ngModel)]="form.password" #password="ngModel" required
@@ -51,7 +50,7 @@
           />
         </mat-form-field>
         <div class="form-footer">
-          <button mat-raised-button class="btn custom-btn">
+          <button mat-stroked-button class="btn custom-btn">
             <mat-icon>add</mat-icon>
             Sign Up
           </button>

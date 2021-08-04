@@ -1,49 +1,43 @@
-
-<div id="app">
-  <nav class="navbar navbar-expand navbar-dark bg-dark">
-    <a href="#" class="navbar-brand">Course Evaluation</a>
-    <div class="collapse navbar-collapse show">
-    <ul class="navbar-nav mr-auto" routerLinkActive="active">
-      <li class="nav-item">
-        <a href="/home" class="nav-link" routerLink="home">Home </a>
-      </li>
-      <li class="nav-item">
-        <a routerLink="courses" class="nav-link">Courses</a>
-      </li>
-      <li class="nav-item">
-        <a routerLink="add" class="nav-link">Add New Course</a>
-      </li>
-      <li *ngIf="roles && roles.includes('ROLE_ADMIN')" class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" role ="button" (click)="toggleNavbar()"  id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          Admin Board
-        </a>
-        <ul [ngClass]="{ 'show': navbarOpen }" class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <li><a class="dropdown-item" href="/admin" (click)="toggleNavbar()" routerLink="admin">Users list</a></li>
-          <li><a class="dropdown-item" href="/groups-list" (click)="toggleNavbar()" routerLink="groups-list">Groups list</a></li>
-        </ul>
-      </li>
-    </ul>
-    <ul class="navbar-nav ms-auto">
-      <li *ngIf="!username" class="nav-item">
-        <a href="/register" class="nav-link" routerLink="register">Sign Up</a>
-      </li>
-      <li *ngIf="!roles" class="nav-item">
-        <a href="/login" class="nav-link" routerLink="login">Login</a>
-      </li>
-    </ul>
-
-    <ul *ngIf="roles" class="navbar-nav ms-auto">
-      <li  class="nav-item">
-        <a href="/profile" class="nav-link"> {{username}} </a>
-      </li>
-      <li  class="nav-item">
-        <a role ="button" (click)="logout()" class="nav-link">LogOut</a>
-      </li>
-    </ul>
+<header class=" view intro-header">
+  <mat-toolbar id="toolbar" cdk-scrollable>
+    <span>Course Evaluation</span>
+    <button mat-button [matMenuTriggerFor]="menuCourses">Courses</button>
+    <mat-menu #menuCourses="matMenu" yPosition="below">
+      <a routerLink="courses" mat-menu-item>Courses List</a>
+      <a routerLink="add" mat-menu-item>Add New Course</a>
+    </mat-menu>
+    <button mat-button [matMenuTriggerFor]="menuGroups">Groups</button>
+    <mat-menu #menuGroups="matMenu" yPosition="below">
+      <a mat-menu-item>Groups list</a>
+    </mat-menu>
+    <button mat-button [matMenuTriggerFor]="menuAdmin" *ngIf="roles && roles.includes('ROLE_ADMIN')">Admin</button>
+    <mat-menu #menuAdmin="matMenu" yPosition="below">
+      <a routerLink="admin/users" mat-menu-item>User List</a>
+      <a routerLink="courses" mat-menu-item>Courses List</a>
+      <a routerLink="admin/groups" mat-menu-item>Groups List</a>
+    </mat-menu>
+    <span class="spacer"></span>
+    <div *ngIf="!username" id="reg-login-links">
+      <a routerLink="register" mat-button>
+        <mat-icon>add</mat-icon>
+        Sign Up</a>
+      <a routerLink="login" mat-button>
+        <mat-icon>input</mat-icon>
+        Login</a>
     </div>
-  </nav>
+    <div id="profile-logout-links">
+      <a *ngIf="roles" mat-button>
+        <mat-icon>account_box</mat-icon>
+        {{username}}</a>
+      <a *ngIf="roles" mat-button (click)="logout()">
+        LogOut</a>
+    </div>
+  </mat-toolbar>
+  <hr>
+  <section class=" intro-2 ">
 
-  <div class="container">
     <router-outlet></router-outlet>
-  </div>
-</div>
+
+  </section>
+</header>
+<p class="py-5 text-center">IF128</p>

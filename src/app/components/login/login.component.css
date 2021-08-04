@@ -5,7 +5,7 @@ body{
 }
 h3{
   text-align: center;
-  color: #3f51b5;
+  color: #333333;
 }
 .add-btn{
   position: fixed;
@@ -17,14 +17,14 @@ h3{
 .form-wraper{
   width: 100%;
   margin-top: 2%;
+  background: transparent;
 }
 .form-container{
   width: 35%;
   margin: auto;
   padding-bottom: 24px !important;
   display: block;
-  background: rgb(253, 253, 253);
-
+  background: transparent;
 }
 .card {
   border-radius: 12px;
@@ -66,20 +66,19 @@ h3{
   display: block;
   width: 100%;
   padding: 5% !important;
-  font-size: 1em;
+  font-size: 1.5em;
   font-weight: 100;
   margin-top: 18px;
 }
 .custom-btn{
   margin-bottom: 15px;
-  background: #3f51b5;
-  color: #fff;
+  color: #333333;
   border-radius: 15px;
-}
+  }
 
 .txt{
   text-align: center;
-  color: #333;
+  color: #3f51b5;
   margin: 10px auto !important;
 }
 .additional-link{
@@ -88,7 +87,7 @@ h3{
 }
 a{
   text-decoration: none;
-  color: rgb(42, 125, 219);
+  color: #3f51b5;
 }
 
 
