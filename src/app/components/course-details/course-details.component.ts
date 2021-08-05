@@ -15,7 +15,7 @@ export class CourseDetailsComponent implements OnInit {
     description: '',
     startDate: '',
     endDate: '',
-    teacher: ''
+    teacher_id: ''
   };
   message = ';'
 
