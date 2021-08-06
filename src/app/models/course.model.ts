@@ -4,5 +4,5 @@ export class Course {
   description?: string;
   startDate?: any;
   endDate?: any;
-  teacher?: any;
+  teacher_id?: any;
 }

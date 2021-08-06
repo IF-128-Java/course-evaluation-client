@@ -10,13 +10,14 @@
   <div class="col-md-6">
     <h3>Courses List</h3>
     <ul class="list-group">
-      <li class="list-group-item"
+      <div class="list-group-item"
           *ngFor="let course of courses;
-          let i = index;
-"
-          >
-        {{ course.courseName }}
-      </li>
+          let i = index;">
+        <li class="list-group-item"> {{ course.courseName }} </li>
+        <li class="list-group-item"> {{ course.description }} </li>
+
+      </div>
+
     </ul>
   </div>
   <div class="col-md-6">
@@ -29,7 +30,7 @@
         <label><strong>Description:</strong></label> {{ currentCourse.description }}
       </div>
       <div>
-        <label><strong>Teacher:</strong></label> {{ currentCourse.teacher }}
+        <label><strong>Teacher:</strong></label> {{ currentCourse.teacher_id }}
       </div>
       <div>
         <label><strong>Start Date:</strong></label> {{ currentCourse.startDate }}  <label><strong> //  End Date:</strong></label> {{ currentCourse.endDate }}
