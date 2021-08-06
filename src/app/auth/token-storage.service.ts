@@ -11,37 +11,35 @@ export class TokenStorageService {
   constructor() { }
 
   signOut() {
-    window.sessionStorage.clear();
+    window.localStorage.clear();
   }
 
   public saveToken(token: string) {
-    window.sessionStorage.removeItem(AppConfig.TOKEN_KEY);
-    window.sessionStorage.setItem(AppConfig.TOKEN_KEY, token);
-
-    console.log(JSON.parse(this.decodeToken(token)).role);
+    window.localStorage.removeItem(AppConfig.TOKEN_KEY);
+    window.localStorage.setItem(AppConfig.TOKEN_KEY, token);
   }
 
   public getToken(): string {
-    return <string>sessionStorage.getItem(AppConfig.TOKEN_KEY);
+    return <string>localStorage.getItem(AppConfig.TOKEN_KEY);
   }
 
   public saveUsername(token: string) {
-    window.sessionStorage.removeItem(AppConfig.USERNAME_KEY);
-    window.sessionStorage.setItem(AppConfig.USERNAME_KEY, JSON.parse(this.decodeToken(token)).sub);
+    window.localStorage.removeItem(AppConfig.USERNAME_KEY);
+    window.localStorage.setItem(AppConfig.USERNAME_KEY, JSON.parse(this.decodeToken(token)).sub);
   }
 
   public getUsername(): string {
-    return <string>sessionStorage.getItem(AppConfig.USERNAME_KEY);
+    return <string>localStorage.getItem(AppConfig.USERNAME_KEY);
   }
 
   public saveAuthorities(token: string) {
-    window.sessionStorage.removeItem(AppConfig.AUTHORITIES_KEY);
-    window.sessionStorage.setItem(AppConfig.AUTHORITIES_KEY,JSON.parse(this.decodeToken(token)).role );
+    window.localStorage.removeItem(AppConfig.AUTHORITIES_KEY);
+    window.localStorage.setItem(AppConfig.AUTHORITIES_KEY,JSON.parse(this.decodeToken(token)).role );
   }
 
   public getAuthorities(): string[] {
     this.roles = [];
-    if (sessionStorage.getItem(AppConfig.TOKEN_KEY)) {
+    if (localStorage.getItem(AppConfig.TOKEN_KEY)) {
         this.roles=JSON.parse(this.decodeToken(this.getToken())).role;
     }
     return this.roles;
