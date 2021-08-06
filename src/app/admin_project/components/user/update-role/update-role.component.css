@@ -1,0 +1,8 @@
+.user-card {
+  max-width: 400px;
+}
+
+.example-header-image {
+  background-image: url('src/assets/images/profile_card_img.png');
+  background-size: cover;
+}

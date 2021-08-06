@@ -1,0 +1,36 @@
+<mat-card class="user-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{data.lastName}}</mat-card-title>
+    <mat-card-subtitle>{{data.firstName}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      User roles:
+    </p>
+    <form [formGroup]="roles">
+      <mat-selection-list>
+        <p>
+          <mat-checkbox
+            formControlName="student">Student
+          </mat-checkbox>
+        </p>
+        <p>
+          <mat-checkbox
+            formControlName="teacher">Teacher
+          </mat-checkbox>
+        </p>
+        <p>
+          <mat-checkbox
+            formControlName="admin">Admin
+          </mat-checkbox>
+        </p>
+        <div *ngIf="message">Added roles : {{message}}</div>
+      </mat-selection-list>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-stroked-button (click)="cancel()"> Cancel </button>
+    <button mat-stroked-button (click)="onSubmit()"> Add </button>
+  </mat-card-actions>
+</mat-card>
