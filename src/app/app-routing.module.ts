@@ -8,8 +8,8 @@ import {AuthGuardService} from './auth/auth-guard.service';
 import {CoursesListComponent} from './components/courses-list/courses-list.component';
 import {AddCourseComponent} from './components/add-course/add-course.component';
 import {CourseDetailsComponent} from './components/course-details/course-details.component';
-import {GroupsListComponent} from './components/admin/group/groups-list/groups-list.component';
 import {UserListComponent} from './admin_project/components/user/user-list/user-list.component';
+import {GroupsListComponent} from './admin_project/components/group/groups-list/groups-list.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
