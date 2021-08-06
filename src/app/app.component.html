@@ -1,5 +1,5 @@
 <header class=" view intro-header">
-  <mat-toolbar id="toolbar" cdk-scrollable>
+  <mat-toolbar class="sticky-toolbar" id="toolbar" cdk-scrollable>
     <span>Course Evaluation</span>
     <button mat-button [matMenuTriggerFor]="menuCourses">Courses</button>
     <mat-menu #menuCourses="matMenu" yPosition="below">
@@ -33,7 +33,7 @@
         LogOut</a>
     </div>
   </mat-toolbar>
-  <hr>
+  <hr class="sticky-hr">
   <section class=" intro-2 ">
 
     <router-outlet></router-outlet>
