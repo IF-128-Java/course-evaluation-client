@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
-import {RouterModule} from "@angular/router";
+import {RouterModule} from '@angular/router';
 import {AppRoutingModule} from './app-routing.module';
 import {HomeComponent} from './components/home/home.component';
 import {LoginComponent} from './components/login/login.component';
@@ -16,11 +16,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from "@angular/material/input";
-
-import {AddCourseComponent} from './components/add-course/add-course.component';
-import {CourseDetailsComponent} from './components/course-details/course-details.component';
-import {CoursesListComponent} from './components/courses-list/courses-list.component';
-import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatMenuModule} from '@angular/material/menu';
 import {UserListComponent} from './admin_project/components/user/user-list/user-list.component';
 import {MatTableModule} from '@angular/material/table';
@@ -31,6 +26,10 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatCardModule} from '@angular/material/card';
 import {MatListModule} from '@angular/material/list';
 import { StudentListComponent } from './admin_project/components/group/student-list/student-list.component';
+import {AddCourseComponent} from './components/add-course/add-course.component';
+import {CourseDetailsComponent} from './components/course-details/course-details.component';
+import {CoursesListComponent} from './components/courses-list/courses-list.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [

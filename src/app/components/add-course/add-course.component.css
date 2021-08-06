@@ -2,3 +2,7 @@
   max-width: 400px;
   margin: auto;
 }
+.transparent-field{
+  background-color: transparent
+}
+/*.mat-stroked-button*/

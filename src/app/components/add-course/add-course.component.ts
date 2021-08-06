@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Course} from "../../models/course.model";
-import {CoursesService} from "../../services/courses.service";
+import {Course} from '../../models/course.model';
+import {CoursesService} from '../../services/courses.service';
 
 @Component({
   selector: 'app-add-course',
@@ -14,9 +14,10 @@ export class AddCourseComponent implements OnInit {
     description: '',
     startDate: '',
     endDate: '',
-    teacher: ''
+    teacher_id: ''
   }
   submitted = false
+  private numId: number | undefined;
 
   constructor(private coursesService: CoursesService) { }
 
@@ -24,13 +25,15 @@ export class AddCourseComponent implements OnInit {
   }
 
   saveCourse(): void {
+    this.numId = +this.course.teacher_id;
     const data = {
       courseName: this.course.courseName,
       description: this.course.description,
       startDate: this.course.startDate,
       endDate: this.course.endDate,
-      teacher: this.course.teacher
+      teacher_id: this.numId
     };
+    console.log(data);
 
     this.coursesService.create(data).subscribe(
       response => {
@@ -49,7 +52,7 @@ export class AddCourseComponent implements OnInit {
       description: '',
       startDate: '',
       endDate: '',
-      teacher: ''
+      teacher_id: ''
     }
   }
 
