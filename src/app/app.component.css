@@ -1,7 +1,7 @@
 
 .intro-header {
   height: 150vh !important;
-  background: url("src/assets/images/background.jpg") no-repeat center;
+  background: url("src/assets/images/background_img.jpg") no-repeat center;
   background-size: cover;
   display: block;
 }

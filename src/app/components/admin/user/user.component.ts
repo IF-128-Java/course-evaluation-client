@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from '../../../services/admin/user.service';
+import {UserService} from '../../../admin_project/services/user.service';
 import {User} from '../../../models/user.model';
 
 @Component({
@@ -15,7 +15,7 @@ export class UserComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-    this.userService.getAdminBoard().subscribe(
+    this.userService.getUserList().subscribe(
       data => {
         this.users = data;
       },
