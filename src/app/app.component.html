@@ -26,7 +26,7 @@
         Login</a>
     </div>
     <div id="profile-logout-links">
-      <a *ngIf="roles" mat-button>
+      <a *ngIf="roles" routerLink="users/{{id}}" mat-button>
         <mat-icon>account_box</mat-icon>
         {{username}}</a>
       <a *ngIf="roles" mat-button (click)="logout()">

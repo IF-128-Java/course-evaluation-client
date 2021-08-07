@@ -7,4 +7,5 @@ export class AppConfig {
   public static TOKEN_KEY = 'AuthToken';
   public static USERNAME_KEY = 'AuthUsername';
   public static AUTHORITIES_KEY = 'AuthAuthorities';
+  public static ID_KEY = 'AuthId';
 }

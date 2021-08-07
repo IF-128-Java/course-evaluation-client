@@ -30,6 +30,7 @@ import {AddCourseComponent} from './components/add-course/add-course.component';
 import {CourseDetailsComponent} from './components/course-details/course-details.component';
 import {CoursesListComponent} from './components/courses-list/courses-list.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {UserComponent} from "./components/user/user.component";
 import {MatGridListModule} from '@angular/material/grid-list';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import {CreateGroupComponent} from './admin_project/components/group/create-group/create-group.component';
@@ -47,6 +48,7 @@ import {CreateGroupComponent} from './admin_project/components/group/create-grou
     UserListComponent,
     GroupsListComponent,
     UpdateRoleComponent,
+    UserComponent,
     StudentListComponent,
     CreateGroupComponent
   ],
