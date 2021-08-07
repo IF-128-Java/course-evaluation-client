@@ -1,1 +1,51 @@
-<p>student-list works!</p>
+
+<mat-grid-list cols="2" rowHeight="1:1">
+  <mat-grid-tile-header>{{group.groupName}}</mat-grid-tile-header>
+  <mat-grid-tile>
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title>Enrolled students:</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-selection-list #enrolled>
+          <cdk-virtual-scroll-viewport itemSize="60" class="example-viewport">
+            <mat-list-option *cdkVirtualFor="let student of enrolledStudents; templateCacheSize: 0" class="example-item"
+                             [value]="student">
+              {{student.id}}  {{student.firstName}} {{student.lastName}}
+
+            </mat-list-option>
+          </cdk-virtual-scroll-viewport>
+        </mat-selection-list>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-stroked-button (click)="removeStudents(enrolled.selectedOptions.selected)"> Remove
+          students
+        </button>
+      </mat-card-actions>
+    </mat-card>
+
+
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title>Candidates:</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-selection-list #studentCandidates>
+          <cdk-virtual-scroll-viewport itemSize="60" class="example-viewport">
+            <mat-list-option *cdkVirtualFor="let student of candidates; templateCacheSize: 0" class="example-item"
+                             [value]="student">
+              {{student.id}}  {{student.firstName}} {{student.lastName}}
+
+            </mat-list-option>
+          </cdk-virtual-scroll-viewport>
+        </mat-selection-list>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-stroked-button (click)="addStudents(studentCandidates.selectedOptions.selected)"> Add students</button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+
+</mat-grid-list>

@@ -25,11 +25,14 @@ import {MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatCardModule} from '@angular/material/card';
 import {MatListModule} from '@angular/material/list';
-import { StudentListComponent } from './admin_project/components/group/student-list/student-list.component';
+import {StudentListComponent} from './admin_project/components/group/student-list/student-list.component';
 import {AddCourseComponent} from './components/add-course/add-course.component';
 import {CourseDetailsComponent} from './components/course-details/course-details.component';
 import {CoursesListComponent} from './components/courses-list/courses-list.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {ScrollingModule} from '@angular/cdk/scrolling';
+import {CreateGroupComponent} from './admin_project/components/group/create-group/create-group.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +47,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     UserListComponent,
     GroupsListComponent,
     UpdateRoleComponent,
-    StudentListComponent
+    StudentListComponent,
+    CreateGroupComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +56,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     AppRoutingModule, HttpClientModule,
     FormsModule,
     BrowserAnimationsModule, MatDialogModule,
-    MatButtonModule, MatIconModule, MatInputModule, MatToolbarModule, MatMenuModule, MatTableModule, MatTooltipModule, MatCheckboxModule, ReactiveFormsModule, MatCardModule, MatListModule,
+    MatButtonModule, MatIconModule, MatInputModule, MatToolbarModule, MatMenuModule, MatTableModule, MatTooltipModule, MatCheckboxModule, ReactiveFormsModule, MatCardModule, MatListModule, MatGridListModule, ScrollingModule,
   ],
   providers: [httpInterceptorProviders, {provide: JWT_OPTIONS, useValue: JWT_OPTIONS}, JwtHelperService, {
     provide: MatDialogRef,

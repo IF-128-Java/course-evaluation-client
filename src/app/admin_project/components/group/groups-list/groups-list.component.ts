@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {GroupDto} from '../../../models/group-dto.model';
-import {GroupService} from "../../../services/group.service";
-import {MatDialog, MatDialogRef} from "@angular/material/dialog";
-import {UpdateRoleComponent} from "../../user/update-role/update-role.component";
-import {StudentListComponent} from "../student-list/student-list.component";
+import {GroupService} from '../../../services/group.service';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+import {StudentListComponent} from '../student-list/student-list.component';
+import {CreateGroupComponent} from '../create-group/create-group.component';
 
 
 @Component({
@@ -24,15 +24,21 @@ export class GroupsListComponent implements OnInit {
 
 
   openStudents(id: number) {
-    this.groupService.getById(id).subscribe(data => {
         const dialogRef = this.dialog.open(StudentListComponent, {
-          width: '400px',
-          data: data
+          width: '800px',
+          data: id
         });
         dialogRef.afterClosed().subscribe(result => {
           window.location.reload();
         });
       }
-    );
+
+  addGroup() {
+    const dialogRef = this.dialog.open(CreateGroupComponent, {
+      width: '400px'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      window.location.reload();
+    });
   }
 }
