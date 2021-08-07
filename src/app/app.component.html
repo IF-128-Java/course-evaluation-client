@@ -1,5 +1,5 @@
 <header class=" view intro-header">
-  <mat-toolbar id="toolbar" cdk-scrollable>
+  <mat-toolbar class="sticky-toolbar toolbar-background" id="toolbar" cdk-scrollable>
     <span>Course Evaluation</span>
     <button mat-button [matMenuTriggerFor]="menuCourses">Courses</button>
     <mat-menu #menuCourses="matMenu" yPosition="below">
@@ -32,8 +32,8 @@
       <a *ngIf="roles" mat-button (click)="logout()">
         LogOut</a>
     </div>
+    <br>
   </mat-toolbar>
-  <hr>
   <section class=" intro-2 ">
 
     <router-outlet></router-outlet>
