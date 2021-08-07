@@ -13,20 +13,24 @@ const httpOptions = {
 })
 export class UserService {
 
-  private adminUrl = AppConfig.API_ADMIN_ENDPOINT + 'users';
+  private url = AppConfig.API_ADMIN_ENDPOINT + 'users';
 
   constructor(private http: HttpClient) {
   }
 
   getUserList(): Observable<any> {
-    return this.http.get(this.adminUrl);
+    return this.http.get(this.url);
   }
 
   getUser(id: number): Observable<any> {
-    return this.http.get(this.adminUrl + '/' + id);
+    return this.http.get(this.url + '/' + id);
   }
 
   addRoles(user: UserDto): Observable<any> {
-    return this.http.patch(this.adminUrl + '/add-roles', user, httpOptions)
+    return this.http.patch(this.url + '/add-roles', user, httpOptions)
+  }
+
+  getStudentCandidates():Observable<UserDto[]>{
+    return this.http.get<UserDto[]>(this.url+'/student-candidates');
   }
 }
