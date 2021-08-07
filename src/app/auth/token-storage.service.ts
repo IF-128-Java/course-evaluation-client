@@ -45,6 +45,15 @@ export class TokenStorageService {
     return this.roles;
   }
 
+  public saveId(token: string){
+    window.localStorage.removeItem(AppConfig.ID_KEY);
+    window.localStorage.setItem(AppConfig.ID_KEY, JSON.parse(this.decodeToken(token)).id);
+  }
+
+  public getId(): string{
+    return <string>localStorage.getItem(AppConfig.ID_KEY);
+  }
+
   decodeToken(token: string | null): string {
     return JSON.stringify(jwt_decode(<string>token));
   }
