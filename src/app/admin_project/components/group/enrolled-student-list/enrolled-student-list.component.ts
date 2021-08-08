@@ -8,8 +8,8 @@ import {UserService} from '../../../services/user.service';
 
 @Component({
   selector: 'app-student-list',
-  templateUrl: './student-list.component.html',
-  styleUrls: ['./student-list.component.css']
+  templateUrl: './enrolled-student-list.component.html',
+  styleUrls: ['./enrolled-student-list.component.css']
 })
 export class StudentListComponent implements OnInit {
   enrolledStudents?: UserDto[]
