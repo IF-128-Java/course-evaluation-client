@@ -1,15 +1,11 @@
 table {
   background: transparent;
-  width: 70%;
+  width: 90%;
 }
 
 th {
   font-size: 15px;
   font-weight: bold;
-}
-
-.pointer {
-  cursor: pointer;
 }
 
 .button {

@@ -1,10 +1,7 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {UserDto} from '../../../models/user-dto.model';
-import {GroupDto} from '../../../models/group-dto.model';
-import {MatListOption} from '@angular/material/list';
-import {GroupService} from '../../../services/group.service';
-import {UserService} from '../../../services/user.service';
+import {Component, OnInit} from '@angular/core';
+import {MatDialogRef} from '@angular/material/dialog';
+import {StudentDto} from '../../../models/student-dto.model';
+import {StudentService} from '../../../services/student.service';
 
 @Component({
   selector: 'app-student-list',
@@ -12,36 +9,18 @@ import {UserService} from '../../../services/user.service';
   styleUrls: ['./student-list.component.css']
 })
 export class StudentListComponent implements OnInit {
-  enrolledStudents?: UserDto[]
-  candidates?: UserDto[];
-  group: GroupDto = {};
+  students: StudentDto[]=[];
+  public displayedColumns: string[] = ['Id', 'First Name', 'Last Name', 'Group Id', 'Group Name'];
 
-  constructor(private groupService: GroupService, private userService: UserService,
-              public dialogRef: MatDialogRef<StudentListComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: number) {
+  constructor(private studentService: StudentService,
+              public dialogRef: MatDialogRef<StudentListComponent>
+  ) {
   }
 
   ngOnInit(): void {
-    this.groupService.getById(this.data).subscribe(
-      data => {
-        this.group = data;
-        this.enrolledStudents = data.students
-      }
-    );
-    this.userService.getStudentCandidates().subscribe(data => {
-      this.candidates = data;
+    this.studentService.getAllStudents().subscribe(data => {
+      this.students = data;
     })
   }
 
-
-  removeStudents(selected: MatListOption[]) {
-    this.groupService.removeStudent(this.data, selected.map(item => item.value))
-      .subscribe(d => this.ngOnInit());
-
-  }
-
-  addStudents(selected: MatListOption[]) {
-    this.groupService.addStudent(this.data, selected.map(item => item.value))
-      .subscribe(d => this.ngOnInit());
-  }
 }
