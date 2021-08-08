@@ -4,20 +4,20 @@ import {UserDto} from '../../../models/user-dto.model';
 import {GroupDto} from '../../../models/group-dto.model';
 import {MatListOption} from '@angular/material/list';
 import {GroupService} from '../../../services/group.service';
-import {UserService} from '../../../services/user.service';
+import {StudentService} from '../../../services/student.service';
 
 @Component({
   selector: 'app-student-list',
   templateUrl: './enrolled-student-list.component.html',
   styleUrls: ['./enrolled-student-list.component.css']
 })
-export class StudentListComponent implements OnInit {
+export class EnrolledStudentListComponent implements OnInit {
   enrolledStudents?: UserDto[]
-  candidates?: UserDto[];
+  candidates?: (UserDto | undefined)[];
   group: GroupDto = {};
 
-  constructor(private groupService: GroupService, private userService: UserService,
-              public dialogRef: MatDialogRef<StudentListComponent>,
+  constructor(private groupService: GroupService, private studentService: StudentService,
+              public dialogRef: MatDialogRef<EnrolledStudentListComponent>,
               @Inject(MAT_DIALOG_DATA) public data: number) {
   }
 
@@ -28,8 +28,8 @@ export class StudentListComponent implements OnInit {
         this.enrolledStudents = data.students
       }
     );
-    this.userService.getStudentCandidates().subscribe(data => {
-      this.candidates = data;
+    this.studentService.getStudentCandidates().subscribe(data => {
+      this.candidates = data.map(d => d.userDto);
     })
   }
 

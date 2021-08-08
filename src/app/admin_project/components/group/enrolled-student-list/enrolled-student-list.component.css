@@ -1,11 +1,16 @@
 .example-viewport {
   height: 200px;
   width: 350px;
-  border: 1px solid black;
   background: transparent;
 }
 
 .example-item {
   height: 50px;
+}
+
+.mat-card:not([class*=mat-elevation-z]) {
+  box-shadow: 0 2px 1px -1px rgba(0,0,0,1),
+  0 1px 1px 0 rgba(0,0,0,1),
+  0 1px 3px 0 rgba(0,0,0,1);
 }
 
