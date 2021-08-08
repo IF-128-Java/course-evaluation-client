@@ -5,6 +5,7 @@ import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {EnrolledStudentListComponent} from '../enrolled-student-list/enrolled-student-list.component';
 import {CreateGroupComponent} from '../create-group/create-group.component';
 import {Router} from '@angular/router';
+import {PageEvent} from '@angular/material/paginator';
 
 
 @Component({
@@ -15,6 +16,10 @@ import {Router} from '@angular/router';
 export class GroupsListComponent implements OnInit {
   public groups: GroupDto[] = [];
   public displayedColumns: string[] = ['Id', 'Group Name', 'Students', 'Courses', 'Actions'];
+  pageEvent?: PageEvent;
+  pageIndex?: number;
+  pageSize?: number;
+  length?: number;
 
   constructor(private groupService: GroupService,
               public dialog: MatDialog, public dialModRef: MatDialogRef<any>,
@@ -22,9 +27,10 @@ export class GroupsListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.groupService.getGroups().subscribe(data => {
-      this.groups = data;
-    })
+    var event = new PageEvent();
+    event.pageIndex = 0;
+    event.pageSize = 25;
+    this.getGroups(event);
   }
 
 
@@ -56,5 +62,17 @@ export class GroupsListComponent implements OnInit {
 
   openCourse(id: any) {
     this.router.navigateByUrl('admin/groups/' + id + '/courses')
+  }
+
+  getGroups(event: PageEvent) {
+    this.groupService.getGroups(event).subscribe(
+      response => {
+        this.groups = response.content;
+        this.pageIndex = response.pageIndex;
+        this.pageSize = response.size;
+        this.length = response.totalElements;
+      }
+    );
+    return event;
   }
 }

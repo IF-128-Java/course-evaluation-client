@@ -1,12 +1,23 @@
-table {
-  background: transparent;
-  width: 70%;
+.container {
   margin-left: auto;
   margin-right: auto;
-
+  background-color: rgba(228, 228, 228, .6);
 }
 
-th{
+table {
+  width: 100%;
+  background: transparent;
+}
+
+th {
+  color: black;
   font-size: 15px;
   font-weight: bold;
+}
+
+mat-paginator {
+  background: transparent;
+  font-size: 15px;
+  font-weight: bold;
+  color: black;
 }
