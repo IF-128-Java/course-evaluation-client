@@ -35,6 +35,7 @@ import {CreateGroupComponent} from './admin_project/components/group/create-grou
 import {EnrolledStudentListComponent} from './admin_project/components/group/enrolled-student-list/enrolled-student-list.component';
 import {StudentListComponent} from './admin_project/components/group/student-list/student-list.component';
 import {GroupCourseListComponent} from './admin_project/components/group/group-course-list/group-course-list.component';
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 @NgModule({
   declarations: [
@@ -60,7 +61,7 @@ import {GroupCourseListComponent} from './admin_project/components/group/group-c
     AppRoutingModule, HttpClientModule,
     FormsModule,
     BrowserAnimationsModule, MatDialogModule,
-    MatButtonModule, MatIconModule, MatInputModule, MatToolbarModule, MatMenuModule, MatTableModule, MatTooltipModule, MatCheckboxModule, ReactiveFormsModule, MatCardModule, MatListModule, MatGridListModule, ScrollingModule,
+    MatButtonModule, MatIconModule, MatInputModule, MatToolbarModule, MatMenuModule, MatTableModule, MatTooltipModule, MatCheckboxModule, ReactiveFormsModule, MatCardModule, MatListModule, MatGridListModule, ScrollingModule, MatPaginatorModule,
   ],
   providers: [httpInterceptorProviders, {provide: JWT_OPTIONS, useValue: JWT_OPTIONS}, JwtHelperService, {
     provide: MatDialogRef,

@@ -1,30 +1,44 @@
-<table mat-table [dataSource]="students" class="mat-elevation-z8">
-  <ng-container matColumnDef="Id">
-    <th mat-header-cell *matHeaderCellDef> Id</th>
-    <td mat-cell *matCellDef="let student"> {{student.userDto.id}} </td>
-  </ng-container>
+<div class="container">
+  <h4>Students list</h4>
 
-  <ng-container matColumnDef="First Name">
-    <th mat-header-cell *matHeaderCellDef> First name</th>
-    <td mat-cell *matCellDef="let student"> {{student.userDto.firstName}} </td>
-  </ng-container>
+  <table mat-table [dataSource]="students" class="mat-elevation-z8">
 
-  <ng-container matColumnDef="Last Name">
-    <th mat-header-cell *matHeaderCellDef> Last Name</th>
-    <td mat-cell *matCellDef="let student"> {{student.userDto.lastName}} </td>
-  </ng-container>
 
-  <ng-container matColumnDef="Group Id">
-    <th mat-header-cell *matHeaderCellDef> Group Id</th>
-    <td mat-cell *matCellDef="let student"> {{student.groupId}} </td>
-  </ng-container>
+    <ng-container matColumnDef="Id">
+      <th mat-header-cell *matHeaderCellDef> Id</th>
+      <td mat-cell *matCellDef="let student"> {{student.userDto.id}} </td>
+    </ng-container>
 
-  <ng-container matColumnDef="Group Name">
-    <th mat-header-cell *matHeaderCellDef> Group Name</th>
-    <td mat-cell *matCellDef="let student"> {{student.groupName}} </td>
-  </ng-container>
+    <ng-container matColumnDef="First Name">
+      <th mat-header-cell *matHeaderCellDef> First name</th>
+      <td mat-cell *matCellDef="let student"> {{student.userDto.firstName}} </td>
+    </ng-container>
 
-  <tr id="row" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+    <ng-container matColumnDef="Last Name">
+      <th mat-header-cell *matHeaderCellDef> Last Name</th>
+      <td mat-cell *matCellDef="let student"> {{student.userDto.lastName}} </td>
+    </ng-container>
 
+    <ng-container matColumnDef="Group Id">
+      <th mat-header-cell *matHeaderCellDef> Group Id</th>
+      <td mat-cell *matCellDef="let student"> {{student.groupId}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Group Name">
+      <th mat-header-cell *matHeaderCellDef> Group Name</th>
+      <td mat-cell *matCellDef="let student"> {{student.groupName}} </td>
+    </ng-container>
+
+    <tr id="row" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  </table>
+  <mat-paginator
+    #paginator
+    [length]="length"
+    [pageIndex]="pageIndex"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    (page)="pageEvent = getStudents($event)"
+  ></mat-paginator>
+</div>

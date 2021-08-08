@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {AppConfig} from '../../common/app-config';
 import {UserDto} from '../models/user-dto.model';
+import {PageEvent} from '@angular/material/paginator';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -18,8 +19,11 @@ export class UserService {
   constructor(private http: HttpClient) {
   }
 
-  getUserList(): Observable<any> {
-    return this.http.get(this.url);
+  getUserList(event: PageEvent): Observable<any> {
+    const params = new HttpParams()
+      .set('page', event.pageIndex)
+      .set('size', event.pageSize)
+    return this.http.get(this.url, {params});
   }
 
   getUser(id: number): Observable<any> {

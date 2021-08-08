@@ -1,6 +1,12 @@
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  background-color: rgba(228, 228, 228, .6);
+}
+
 table {
   background: transparent;
-  width: 70%;
+  width: 100%;
 }
 
 th {
@@ -21,7 +27,9 @@ th {
   background: transparent;
 }
 
-.container {
-  margin-left: auto;
-  margin-right: auto;
+mat-paginator {
+  background: transparent;
+  font-size: 15px;
+  font-weight: bold;
+  color: black;
 }

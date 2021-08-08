@@ -22,12 +22,16 @@
 
     <ng-container matColumnDef="Students">
       <th mat-header-cell *matHeaderCellDef> Students</th>
-      <td class="pointer" mat-cell *matCellDef="let group" (click)="openStudents(group.id)"> View</td>
+      <td class="pointer" mat-cell *matCellDef="let group" matTooltip="Manage students"
+          (click)="openStudents(group.id)"> View
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="Courses">
       <th mat-header-cell *matHeaderCellDef> Courses</th>
-      <td class="pointer" mat-cell *matCellDef="let group" (click)="openCourse(group.id)"> View</td>
+      <td class="pointer" mat-cell *matCellDef="let group" matTooltip="View group courses"
+          (click)="openCourse(group.id)"> View
+      </td>
     </ng-container>
     <ng-container matColumnDef="Actions">
       <th mat-header-cell *matHeaderCellDef> Actions</th>
@@ -42,5 +46,13 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"
     ></tr>
   </table>
+  <mat-paginator
+    #paginator
+    [length]="length"
+    [pageIndex]="pageIndex"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    (page)="pageEvent = getGroups($event)"
+  ></mat-paginator>
 </div>
 
