@@ -29,8 +29,4 @@ export class UserService {
   addRoles(user: UserDto): Observable<any> {
     return this.http.patch(this.url + '/add-roles', user, httpOptions)
   }
-
-  getStudentCandidates():Observable<UserDto[]>{
-    return this.http.get<UserDto[]>(this.url+'/student-candidates');
-  }
 }
