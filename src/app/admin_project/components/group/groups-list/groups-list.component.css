@@ -1,20 +1,27 @@
 table {
   background: transparent;
   width: 70%;
-
-
 }
 
-th{
+th {
   font-size: 15px;
   font-weight: bold;
 }
 
-.button {
-  margin-bottom: 16px;
+.pointer {
+  cursor: pointer;
 }
 
-.container  {
+.button {
+  margin-bottom: 16px;
+  margin-right: 16px;
+}
+
+.delete-button {
+  background: transparent;
+}
+
+.container {
   margin-left: auto;
   margin-right: auto;
 }
