@@ -29,6 +29,10 @@ import {AddCourseComponent} from './components/add-course/add-course.component';
 import {CourseDetailsComponent} from './components/course-details/course-details.component';
 import {CoursesListComponent} from './components/courses-list/courses-list.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {AddFeedbackrequestComponent} from './components/add-feedbackrequest/add-feedbackrequest.component';
+import {MatSelectModule} from "@angular/material/select";
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {MatChipsModule} from "@angular/material/chips";
 
 @NgModule({
   declarations: [
@@ -43,15 +47,16 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     NgbdModalContent,
     UserListComponent,
     UpdateRoleComponent,
+    AddFeedbackrequestComponent,
   ],
-  imports: [
-    BrowserModule,
-    RouterModule,
-    AppRoutingModule, HttpClientModule,
-    FormsModule,
-    BrowserAnimationsModule, MatDialogModule,
-    MatButtonModule, MatIconModule, MatInputModule, MatToolbarModule, MatMenuModule, MatTableModule, MatTooltipModule, MatCheckboxModule, ReactiveFormsModule, MatCardModule, MatListModule,
-  ],
+    imports: [
+        BrowserModule,
+        RouterModule,
+        AppRoutingModule, HttpClientModule,
+        FormsModule,
+        BrowserAnimationsModule, MatDialogModule,
+        MatButtonModule, MatIconModule, MatInputModule, MatToolbarModule, MatMenuModule, MatTableModule, MatTooltipModule, MatCheckboxModule, ReactiveFormsModule, MatCardModule, MatListModule, MatSelectModule, MatAutocompleteModule, MatChipsModule,
+    ],
   providers: [httpInterceptorProviders, {provide: JWT_OPTIONS, useValue: JWT_OPTIONS}, JwtHelperService, {
     provide: MatDialogRef,
     useValue: {}

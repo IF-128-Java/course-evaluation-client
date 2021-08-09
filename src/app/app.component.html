@@ -10,6 +10,10 @@
     <mat-menu #menuGroups="matMenu" yPosition="below">
       <a mat-menu-item>Groups list</a>
     </mat-menu>
+    <button mat-button [matMenuTriggerFor]="menuFeedbackRequest">FeedbackRequest</button>
+    <mat-menu #menuFeedbackRequest="matMenu" yPosition="below">
+      <a routerLink="feedback_request/add" mat-menu-item>Add new Feedback Request</a>
+    </mat-menu>
     <button mat-button [matMenuTriggerFor]="menuAdmin" *ngIf="roles && roles.includes('ROLE_ADMIN')">Admin</button>
     <mat-menu #menuAdmin="matMenu" yPosition="below">
       <a routerLink="admin/users" mat-menu-item>User List</a>

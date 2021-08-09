@@ -10,6 +10,7 @@ import {AddCourseComponent} from './components/add-course/add-course.component';
 import {CourseDetailsComponent} from './components/course-details/course-details.component';
 import {GroupsListComponent} from './components/admin/group/groups-list/groups-list.component';
 import {UserListComponent} from './admin_project/components/user/user-list/user-list.component';
+import {AddFeedbackrequestComponent} from "./components/add-feedbackrequest/add-feedbackrequest.component";
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path: 'admin/groups', component: GroupsListComponent,canActivate:[AuthGuardService]},
   {path: 'courses', component: CoursesListComponent},
   {path: 'courses/:id', component: CourseDetailsComponent},
+  {path: 'feedback_request/add', component: AddFeedbackrequestComponent},
   {path: 'add', component: AddCourseComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'}
 ];
