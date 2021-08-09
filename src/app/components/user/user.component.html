@@ -35,13 +35,18 @@
 
     <div *ngIf="updatePasswordComponent">
       <h3 class="mt-5">Update Password!</h3>
+
+      <div *ngIf="invalidOldPassword" class="mt-5">
+        <h5>Old password doesn't match!</h5>
+      </div>
+
       <div class="mt-5">
         <label for="oldPassword" class="form-label">Old Password:</label>
-        <input [(ngModel)]="oldPassword" type="text" placeholder="Old Password" class="form-control transparent-field input" id="oldPassword" required name="oldPassword"/>
+        <input [(ngModel)]="oldPassword" type="password" placeholder="Old Password" class="form-control transparent-field input" id="oldPassword" required name="oldPassword"/>
       </div>
       <div class="mt-2">
         <label for="newPassword" class="form-label">New Password:</label>
-        <input [(ngModel)]="newPassword" type="text" placeholder="New Password"  class="form-control transparent-field input" id="newPassword" required name="newPassword"/>
+        <input [(ngModel)]="newPassword" type="password" placeholder="New Password"  class="form-control transparent-field input" id="newPassword" required name="newPassword"/>
       </div>
       <br/>
       <button (click)="updatePassword()" class="btn mat-stroked-button m-2">Update</button>

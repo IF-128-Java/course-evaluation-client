@@ -27,6 +27,8 @@ export class UserComponent implements OnInit{
   oldPassword: string = '';
   newPassword: string = '';
 
+  invalidOldPassword: boolean = false;
+
   ngOnInit(): void {
     this.getUser(this.route.snapshot.params.id);
   }
@@ -39,7 +41,6 @@ export class UserComponent implements OnInit{
   getUser(id: number): void {
     this.userService.get(id).subscribe(data => {
         this.currentUser = data;
-        console.log('Get method' + data);
       },
       error => {
         console.log(error);
@@ -52,11 +53,8 @@ export class UserComponent implements OnInit{
       firstName : this.firstNameToUpdate,
       lastName: this.lastNameToUpdate
     }
-    console.log('Update method' + data);
-
-    this.userService.update(this.route.snapshot.params.id, data).subscribe(data => {
-        this.ngOnInit();
-        console.log(data);
+    this.userService.update(this.route.snapshot.params.id, data).subscribe(response => {
+        console.log(response);
         this.reloadPage();
       },
       error => {
@@ -70,7 +68,17 @@ export class UserComponent implements OnInit{
       oldPassword : this.oldPassword,
       newPassword: this.newPassword
     }
-    console.log(data);
+    this.userService.updatePassword(this.route.snapshot.params.id, data).subscribe(response => {
+        console.log(response);
+        this.reloadPage();
+      },
+      error => {
+        console.log(error);
+        if(error.error.error === 'InvalidOldPasswordException'){
+          this.invalidOldPassword = true;
+        }
+      }
+    );
   }
 
   showProfileComponent(): void{
@@ -89,6 +97,7 @@ export class UserComponent implements OnInit{
   showUpdatePasswordComponent(): void{
     this.profileComponent = !this.profileComponent;
     this.updatePasswordComponent = !this.updatePasswordComponent;
+    this.invalidOldPassword = false;
     this.oldPassword = '';
     this.newPassword = '';
   }
