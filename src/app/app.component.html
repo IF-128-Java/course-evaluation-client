@@ -10,7 +10,7 @@
     <mat-menu #menuGroups="matMenu" yPosition="below">
       <a mat-menu-item>Groups list</a>
     </mat-menu>
-    <button mat-button [matMenuTriggerFor]="menuFeedbackRequest">FeedbackRequest</button>
+    <button mat-button [matMenuTriggerFor]="menuFeedbackRequest" *ngIf="roles && (roles.includes('ROLE_TEACHER') || roles.includes('ROLE_ADMIN'))">FeedbackRequest</button>
     <mat-menu #menuFeedbackRequest="matMenu" yPosition="below">
       <a routerLink="feedback_request/add" mat-menu-item>Add new Feedback Request</a>
     </mat-menu>
