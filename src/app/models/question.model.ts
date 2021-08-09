@@ -1,12 +1,12 @@
 export class Question {
-  id?: number;
+  id: number;
   questionText: string;
-  isPattern?: boolean;
+  pattern: boolean;
 
-  constructor(id: number, questionText: string, isPattern: boolean) {
+  constructor(id: number , questionText: string, pattern: boolean) {
     this.id = id;
     this.questionText = questionText;
-    this.isPattern = isPattern;
+    this.pattern = pattern;
   }
 
 

@@ -9,7 +9,6 @@ import {MatAutocompleteSelectedEvent} from "@angular/material/autocomplete";
 import {MatChipInputEvent} from "@angular/material/chips";
 import {map, startWith} from "rxjs/operators";
 import {FormControl} from "@angular/forms";
-import {Observable} from "rxjs";
 
 
 @Component({
@@ -27,23 +26,21 @@ export class AddFeedbackrequestComponent implements OnInit {
     course: ''
   }
   public allCourse?: Course[]
-  public questions: Question[] = []
-  public patternQuestion: Question[] = this.questions.filter(q=>q.isPattern)
-  public notPatternQuestion: Question[] = this.questions.filter(q=>!q.isPattern)
-  public selectQuestions: Set<string> = new Set<string>()
+  public allQuestions: Question[] = []
+  public patternQuestion: Question[] = []
+  public selectQuestions: Set<Question> = new Set<Question>()
   public id?: number
   saved = false
   selectable = true;
   removable = true;
   questionCtrl = new FormControl();
-  filteredQuestion: Observable<string[]>;
 
   @ViewChild('questionInput') questionInput?: ElementRef<HTMLInputElement>;
 
   constructor(private feedbackrequestService: FeedbackrequestService, private courseService: CoursesService, private questionService: QuestionService) {
-    this.filteredQuestion = this.questionCtrl.valueChanges.pipe(
+   this.questionCtrl.valueChanges.pipe(
       startWith(null),
-      map((question: string | null) => question ? this._filter(question) : this.questions.map(q=>q.questionText).slice()));
+      map((question: string | null) => question ? this._filter(question) : this.allQuestions.map(q=>q.questionText).slice()));
   }
 
   ngOnInit(): void {
@@ -52,13 +49,10 @@ export class AddFeedbackrequestComponent implements OnInit {
       console.log(data);
     })
     this.questionService.getAll().subscribe(data => {
-      this.questions = data;
-      console.log(data)
+      this.allQuestions = data;
+      this.patternQuestion = this.allQuestions.filter(q=>q.pattern);
+      this.patternQuestion.forEach(item => this.selectQuestions.add(item))
     })
-    for(let item of this.patternQuestion){
-      this.selectQuestions.add(item.questionText);
-    }
-    console.log('select question' + this.selectQuestions)
 
   }
 
@@ -67,9 +61,7 @@ export class AddFeedbackrequestComponent implements OnInit {
     this.feedbackrequestService.create(this.feedbackrequest).subscribe(
       (data: any) => {
         console.log(this.feedbackrequest = data);
-        let questionIds = this.questions.map(q => q.id);
-        let questionName = Array.from(this.selectQuestions);
-        this.feedbackrequestService.addQuestionToFeedbackRequest(this.feedbackrequest.id, questionName).subscribe()
+        this.feedbackrequestService.addQuestionToFeedbackRequest(this.feedbackrequest.id, Array.from(this.selectQuestions)).subscribe()
         this.saved = true;
       },
       error => {
@@ -82,18 +74,24 @@ export class AddFeedbackrequestComponent implements OnInit {
     const value = (event.value || '').trim();
     // Add our question
     if (value) {
-      this.selectQuestions.add(value);
+    this.questionService.create(new Question(0, event.value,false))
+        .subscribe((data: any) => {
+          this.selectQuestions.add(data);
+          console.log('ADD QUESTION')
+          console.log(data)
+      })
+
     }
     // Clear the input value
     event.chipInput!.clear();
-
     this.questionCtrl.setValue(null);
     console.log(this.selectQuestions)
   }
 
 
   selected(event: MatAutocompleteSelectedEvent): void {
-    this.selectQuestions.add(event.option.viewValue);
+    let question: Question = event.option.value
+    this.selectQuestions.add(question);
     // @ts-ignore
     this.questionInput.nativeElement.value = '';
     this.questionCtrl.setValue(null);
@@ -102,12 +100,12 @@ export class AddFeedbackrequestComponent implements OnInit {
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
-    return this.questions.map(q => q.questionText)
+    return this.allQuestions.map(q => q.questionText)
       .filter(q => q.toLowerCase()
         .includes(filterValue));
   }
 
-  remove(question: string): void {
+  remove(question: Question): void {
       this.selectQuestions.delete(question);
   }
 
