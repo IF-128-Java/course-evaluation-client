@@ -17,6 +17,16 @@ export class UserComponent implements OnInit{
     roles: [],
   };
 
+  profileComponent: boolean = true;
+  updateComponent: boolean = false;
+  updatePasswordComponent: boolean = false;
+
+  firstNameToUpdate: string = '';
+  lastNameToUpdate: string = '';
+
+  oldPassword: string = '';
+  newPassword: string = '';
+
   ngOnInit(): void {
     this.getUser(this.route.snapshot.params.id);
   }
@@ -29,11 +39,61 @@ export class UserComponent implements OnInit{
   getUser(id: number): void {
     this.userService.get(id).subscribe(data => {
         this.currentUser = data;
-        console.log(data);
+        console.log('Get method' + data);
       },
       error => {
         console.log(error);
       }
     );
+  }
+
+  update(): void{
+    const data = {
+      firstName : this.firstNameToUpdate,
+      lastName: this.lastNameToUpdate
+    }
+    console.log('Update method' + data);
+
+    this.userService.update(this.route.snapshot.params.id, data).subscribe(data => {
+        this.ngOnInit();
+        console.log(data);
+        this.reloadPage();
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+  updatePassword(): void{
+    const data = {
+      oldPassword : this.oldPassword,
+      newPassword: this.newPassword
+    }
+    console.log(data);
+  }
+
+  showProfileComponent(): void{
+    this.profileComponent = !this.profileComponent;
+    this.updateComponent = false
+    this.updatePasswordComponent = false;
+  }
+
+  showUpdateComponent(): void{
+    this.profileComponent = !this.profileComponent;
+    this.updateComponent = !this.updateComponent;
+    this.firstNameToUpdate = this.currentUser.firstName;
+    this.lastNameToUpdate = this.currentUser.lastName;
+  }
+
+  showUpdatePasswordComponent(): void{
+    this.profileComponent = !this.profileComponent;
+    this.updatePasswordComponent = !this.updatePasswordComponent;
+    this.oldPassword = '';
+    this.newPassword = '';
+  }
+
+  reloadPage() {
+    window.location.reload();
   }
 }
