@@ -24,10 +24,16 @@ export class UserComponent implements OnInit{
   firstNameToUpdate: string = '';
   lastNameToUpdate: string = '';
 
+  invalidFirstName: boolean = false;
+  invalidLastName: boolean = false;
+
   oldPassword: string = '';
   newPassword: string = '';
 
   invalidOldPassword: boolean = false;
+  invalidNewPassword: boolean = false;
+
+  OldPasswordNotMatch: boolean = false;
 
   ngOnInit(): void {
     this.getUser(this.route.snapshot.params.id);
@@ -53,11 +59,24 @@ export class UserComponent implements OnInit{
       firstName : this.firstNameToUpdate,
       lastName: this.lastNameToUpdate
     }
-    this.userService.update(this.route.snapshot.params.id, data).subscribe(response => {
+    this.userService.update(this.route.snapshot.params.id, data).subscribe(() => {
         this.reloadPage();
       },
       error => {
         console.log(error);
+
+        this.invalidFirstName = false;
+        this.invalidLastName = false;
+
+        if(error.error.error === 'MethodArgumentNotValidException'){
+          if (error.error.message.includes("firstName")){
+            this.invalidFirstName = true;
+          }
+
+          if (error.error.message.includes("lastName")){
+            this.invalidLastName = true;
+          }
+        }
       }
     );
   }
@@ -67,13 +86,26 @@ export class UserComponent implements OnInit{
       oldPassword : this.oldPassword,
       newPassword: this.newPassword
     }
-    this.userService.updatePassword(this.route.snapshot.params.id, data).subscribe(response => {
+    this.userService.updatePassword(this.route.snapshot.params.id, data).subscribe(() => {
         this.reloadPage();
       },
       error => {
         console.log(error);
         if(error.error.error === 'InvalidOldPasswordException'){
-          this.invalidOldPassword = true;
+          this.OldPasswordNotMatch = true;
+        }
+
+        this.invalidOldPassword = false;
+        this.invalidNewPassword = false;
+
+        if(error.error.error === 'MethodArgumentNotValidException'){
+          if (error.error.message.includes("oldPassword")){
+            this.invalidOldPassword = true;
+          }
+
+          if (error.error.message.includes("newPassword")){
+            this.invalidNewPassword = true;
+          }
         }
       }
     );
@@ -88,16 +120,25 @@ export class UserComponent implements OnInit{
   showUpdateComponent(): void{
     this.profileComponent = !this.profileComponent;
     this.updateComponent = !this.updateComponent;
+
     this.firstNameToUpdate = this.currentUser.firstName;
     this.lastNameToUpdate = this.currentUser.lastName;
+
+    this.invalidFirstName = false;
+    this.invalidLastName = false;
   }
 
   showUpdatePasswordComponent(): void{
     this.profileComponent = !this.profileComponent;
     this.updatePasswordComponent = !this.updatePasswordComponent;
-    this.invalidOldPassword = false;
+
+    this.OldPasswordNotMatch = false;
+
     this.oldPassword = '';
     this.newPassword = '';
+
+    this.invalidOldPassword = false;
+    this.invalidNewPassword = false;
   }
 
   reloadPage() {
