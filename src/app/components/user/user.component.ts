@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
-import {UsersService} from "../../services/users.service";
-import {User} from "../../models/user.model";
+import {ActivatedRoute} from '@angular/router';
+import {UsersService} from '../../services/users.service';
+import {User} from '../../models/user.model';
 
 @Component({
   selector: 'app-user',
@@ -54,7 +54,6 @@ export class UserComponent implements OnInit{
       lastName: this.lastNameToUpdate
     }
     this.userService.update(this.route.snapshot.params.id, data).subscribe(response => {
-        console.log(response);
         this.reloadPage();
       },
       error => {
@@ -69,7 +68,6 @@ export class UserComponent implements OnInit{
       newPassword: this.newPassword
     }
     this.userService.updatePassword(this.route.snapshot.params.id, data).subscribe(response => {
-        console.log(response);
         this.reloadPage();
       },
       error => {

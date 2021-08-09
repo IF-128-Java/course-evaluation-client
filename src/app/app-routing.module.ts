@@ -9,7 +9,7 @@ import {CoursesListComponent} from './components/courses-list/courses-list.compo
 import {AddCourseComponent} from './components/add-course/add-course.component';
 import {CourseDetailsComponent} from './components/course-details/course-details.component';
 import {UserListComponent} from './admin_project/components/user/user-list/user-list.component';
-import {UserComponent} from "./components/user/user.component";
+import {UserComponent} from './components/user/user.component';
 import {GroupsListComponent} from './admin_project/components/group/groups-list/groups-list.component';
 import {StudentListComponent} from './admin_project/components/group/student-list/student-list.component';
 import {GroupCourseListComponent} from './admin_project/components/group/group-course-list/group-course-list.component';
