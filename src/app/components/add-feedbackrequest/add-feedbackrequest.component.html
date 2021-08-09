@@ -1,5 +1,5 @@
 <div class="submit-form">
-  <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+  <form name="form" (ngSubmit)="f.form.valid && onSubmit()" *ngIf="!saved" #f="ngForm" novalidate>
     <div class="form-group">
       <label>Description</label>
       <input class="form-control" name="feedbackDescription" [(ngModel)]="feedbackrequest.feedbackDescription"/>
@@ -23,31 +23,16 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-<!--    <form class="example-form">-->
-<!--      <mat-selection-list #quest>-->
-<!--        <mat-list-option *ngFor="let question of selectQuestions" [value]="question">-->
-<!--          {{question}}-->
-<!--        </mat-list-option>-->
-<!--      </mat-selection-list>-->
-
-<!--      <p>-->
-<!--        Question selected: {{quest.selectedOptions.selected.length}}-->
-<!--      </p>-->
-<!--      <div>-->
-<!--      <label>Choice question</label>-->
-<!--      </div>-->
-<!--    </form>-->
-    <!---->
     <mat-form-field class="example-chip-list" appearance="fill">
       <mat-label>Choice question</mat-label>
-      <mat-chip-list #chipList aria-label="Fruit selection">
+      <mat-chip-list #chipList aria-label="Question selection">
         <mat-chip
           *ngFor="let question of selectQuestions"
           [selectable]="selectable"
           [removable]="removable"
           (removed)="remove(question)">
           {{question.questionText}}
-          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+          <mat-icon matChipRemove *ngIf="!question.pattern">cancel</mat-icon>
         </mat-chip>
         <input
           placeholder="New question..."
@@ -63,11 +48,14 @@
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
-    <!--    -->
 
     <div class="form-group">
       <button class="btn btn-primary btn-block">Save</button>
     </div>
-    <div *ngIf="saved"> {{feedbackrequest.feedbackDescription}} has added!</div>
   </form>
+  <div *ngIf="saved"><h3> {{feedbackrequest.feedbackDescription}} has added!</h3>
+  <div class="form-group mt-5" >
+    <button class="btn btn-primary btn-block" (click)="reloadPage()">Add new feedback request</button>
+  </div>
+  </div>
 </div>

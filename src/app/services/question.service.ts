@@ -22,4 +22,8 @@ export class QuestionService {
     return this.http.post(this.questionUrl, question)
   }
 
+  deleteById(id: any) {
+    return this.http.delete(this.questionUrl+`${id}`)
+  }
+
 }

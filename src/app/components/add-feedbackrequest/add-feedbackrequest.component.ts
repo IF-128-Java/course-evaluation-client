@@ -20,9 +20,9 @@ import {FormControl} from "@angular/forms";
 export class AddFeedbackrequestComponent implements OnInit {
 
   feedbackrequest: FeedbackRequest = {
-    feedbackDescription: 'sdfasdf',
-    startDate: '2007-12-03T10:15:30',
-    endDate: '2007-12-03T10:15:30',
+    feedbackDescription: '',
+    startDate: '',
+    endDate: '',
     course: ''
   }
   public allCourse?: Course[]
@@ -46,12 +46,11 @@ export class AddFeedbackrequestComponent implements OnInit {
   ngOnInit(): void {
     this.courseService.getAll().subscribe(data => {
       this.allCourse = data;
-      console.log(data);
     })
     this.questionService.getAll().subscribe(data => {
       this.allQuestions = data;
       this.patternQuestion = this.allQuestions.filter(q=>q.pattern);
-      this.patternQuestion.forEach(item => this.selectQuestions.add(item))
+      this.patternQuestion.forEach(item => this.selectQuestions.add(item));
     })
 
   }
@@ -77,20 +76,18 @@ export class AddFeedbackrequestComponent implements OnInit {
     this.questionService.create(new Question(0, event.value,false))
         .subscribe((data: any) => {
           this.selectQuestions.add(data);
-          console.log('ADD QUESTION')
-          console.log(data)
       })
 
     }
     // Clear the input value
     event.chipInput!.clear();
     this.questionCtrl.setValue(null);
-    console.log(this.selectQuestions)
+    console.log(this.selectQuestions);
   }
 
 
   selected(event: MatAutocompleteSelectedEvent): void {
-    let question: Question = event.option.value
+    let question: Question = event.option.value;
     this.selectQuestions.add(question);
     // @ts-ignore
     this.questionInput.nativeElement.value = '';
@@ -106,7 +103,12 @@ export class AddFeedbackrequestComponent implements OnInit {
   }
 
   remove(question: Question): void {
+    if(!question.pattern) {
+      this.questionService.deleteById(question.id).subscribe();
       this.selectQuestions.delete(question);
+    }
   }
-
+  reloadPage() {
+    window.location.reload();
+  }
 }
