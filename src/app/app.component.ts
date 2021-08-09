@@ -10,6 +10,7 @@ export class AppComponent implements OnInit {
   title = 'course-evaluation-client';
   roles: string[] | undefined;
   username: string | undefined;
+  id: string | undefined;
   navbarOpen = false;
 
   constructor(private tokenStorage: TokenStorageService) {
@@ -19,6 +20,7 @@ export class AppComponent implements OnInit {
     if (this.tokenStorage.getToken()) {
       this.roles = this.tokenStorage.getAuthorities();
       this.username = this.tokenStorage.getUsername();
+      this.id = this.tokenStorage.getId();
     }
   }
   logout() {
