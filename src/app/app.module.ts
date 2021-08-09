@@ -11,11 +11,11 @@ import {httpInterceptorProviders} from './auth/auth-interceptor';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {JWT_OPTIONS, JwtHelperService} from '@auth0/angular-jwt';
-import {GroupsListComponent, NgbdModalContent} from './components/admin/group/groups-list/groups-list.component';
+import {GroupsListComponent} from './admin_project/components/group/groups-list/groups-list.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
-import {MatInputModule} from "@angular/material/input";
+import {MatInputModule} from '@angular/material/input';
 import {MatMenuModule} from '@angular/material/menu';
 import {UserListComponent} from './admin_project/components/user/user-list/user-list.component';
 import {MatTableModule} from '@angular/material/table';
@@ -29,6 +29,14 @@ import {AddCourseComponent} from './components/add-course/add-course.component';
 import {CourseDetailsComponent} from './components/course-details/course-details.component';
 import {CoursesListComponent} from './components/courses-list/courses-list.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {UserComponent} from './components/user/user.component';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {ScrollingModule} from '@angular/cdk/scrolling';
+import {CreateGroupComponent} from './admin_project/components/group/create-group/create-group.component';
+import {EnrolledStudentListComponent} from './admin_project/components/group/enrolled-student-list/enrolled-student-list.component';
+import {StudentListComponent} from './admin_project/components/group/student-list/student-list.component';
+import {GroupCourseListComponent} from './admin_project/components/group/group-course-list/group-course-list.component';
+import {MatPaginatorModule} from "@angular/material/paginator";
 import {AddFeedbackrequestComponent} from './components/add-feedbackrequest/add-feedbackrequest.component';
 import {MatSelectModule} from "@angular/material/select";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
@@ -44,19 +52,24 @@ import {MatChipsModule} from "@angular/material/chips";
     CourseDetailsComponent,
     CoursesListComponent,
     GroupsListComponent,
-    NgbdModalContent,
     UserListComponent,
+    GroupsListComponent,
     UpdateRoleComponent,
+    UserComponent,
+    EnrolledStudentListComponent,
+    CreateGroupComponent,
+    StudentListComponent,
+    GroupCourseListComponent,
     AddFeedbackrequestComponent,
   ],
-    imports: [
-        BrowserModule,
-        RouterModule,
-        AppRoutingModule, HttpClientModule,
-        FormsModule,
-        BrowserAnimationsModule, MatDialogModule,
-        MatButtonModule, MatIconModule, MatInputModule, MatToolbarModule, MatMenuModule, MatTableModule, MatTooltipModule, MatCheckboxModule, ReactiveFormsModule, MatCardModule, MatListModule, MatSelectModule, MatAutocompleteModule, MatChipsModule,
-    ],
+  imports: [
+    BrowserModule,
+    RouterModule,
+    AppRoutingModule, HttpClientModule,
+    FormsModule,
+    BrowserAnimationsModule, MatDialogModule,
+    MatButtonModule, MatIconModule, MatInputModule, MatToolbarModule, MatMenuModule, MatTableModule, MatTooltipModule, MatCheckboxModule, ReactiveFormsModule, MatCardModule, MatListModule, MatGridListModule, ScrollingModule, MatPaginatorModule,MatSelectModule, MatAutocompleteModule, MatChipsModule,
+  ],
   providers: [httpInterceptorProviders, {provide: JWT_OPTIONS, useValue: JWT_OPTIONS}, JwtHelperService, {
     provide: MatDialogRef,
     useValue: {}

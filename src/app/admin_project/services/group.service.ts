@@ -1,30 +1,49 @@
 import {Injectable} from '@angular/core';
 import {AppConfig} from '../../common/app-config';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Group} from '../../models/group.model';
+import {GroupDto} from '../models/group-dto.model';
+import {UserDto} from '../models/user-dto.model';
+import {CourseDto} from '../models/course-dto.model';
+import {PageEvent} from '@angular/material/paginator';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GroupService {
-private group =new Group('4','test');
-  private groupUrl = AppConfig.API_ENDPOINT + 'groups';
+  private url = AppConfig.API_ADMIN_ENDPOINT + 'groups';
 
   constructor(private http: HttpClient) {
-
   }
 
-  getGroups(): Observable<any> {
-    return this.http.get(this.groupUrl);
+  getGroups(event: PageEvent): Observable<any> {
+    const params = new HttpParams()
+      .set('page', event.pageIndex)
+      .set('size', event.pageSize)
+    return this.http.get(this.url, {params});
   }
 
-  public delete(group: Group) :Observable<any>{
-    return this.http.delete(this.groupUrl+'/'+group.id)
+  getCoursesByGroupId(id: number): Observable<CourseDto[]> {
+    return this.http.get<CourseDto[]>(this.url + '/' + id + '/courses');
   }
 
-  create(group: Group) {
-    return this.http.post(this.groupUrl,group)
+  getById(id: number): Observable<GroupDto> {
+    return this.http.get(this.url + '/' + id);
   }
 
+  public delete(id: number): Observable<any> {
+    return this.http.delete(this.url + '/' + id);
+  }
+
+  create(groupName: string | undefined) {
+    return this.http.post(this.url, groupName)
+  }
+
+  removeStudent(groupId: number | undefined, students: UserDto[]) {
+    return this.http.patch(this.url + '/' + groupId + '/remove-students', students)
+  }
+
+  addStudent(groupId: number | undefined, students: UserDto[]) {
+    return this.http.patch(this.url + '/' + groupId + '/add-students', students)
+  }
 }

@@ -13,8 +13,17 @@ export class CoursesListComponent implements OnInit {
   currentCourse: Course = {};
   currentIndex = 1;
   courseName = '';
+  // show = false;
+  activeItem: number | undefined;
 
   constructor(private coursesService: CoursesService) { }
+
+  // update(show?: number){
+  //   show = !show;
+  // }
+  onSelect(item: number): void {
+    this.activeItem = item;
+  }
 
   ngOnInit(): void {
   this.retrieveCourses()

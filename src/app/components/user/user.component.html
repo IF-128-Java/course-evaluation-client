@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="text-center">
+    <div *ngIf="profileComponent">
+      <h3 class="mt-5">User Profile!</h3>
+      <div class="mt-4">
+        <label><strong>Email:</strong></label> {{ currentUser.email }}
+      </div>
+      <div class="mt-1">
+        <label><strong>First Name:</strong></label> {{ currentUser.firstName }}
+      </div>
+      <div class="mt-1">
+        <label><strong>Last Name:</strong></label> {{ currentUser.lastName }}
+      </div>
+
+      <div class="text-center mt-3">
+        <button (click)="showUpdateComponent()" type="submit" class="btn mat-stroked-button m-2">Update</button>
+        <button (click)="showUpdatePasswordComponent()" type="reset" class="btn mat-stroked-button m-2">Update Password</button>
+      </div>
+    </div>
+
+    <div *ngIf="updateComponent">
+      <h3 class="mt-5">Update User!</h3>
+      <div class="mt-5">
+        <label for="firstName" class="form-label">First Name:</label>
+        <input [(ngModel)]="firstNameToUpdate" type="text" placeholder="First Name" class="form-control transparent-field input" id="firstName" required name="firstName"/>
+      </div>
+      <div class="mt-2">
+        <label for="lastName" class="form-label">Last Name:</label>
+        <input [(ngModel)]="lastNameToUpdate" type="text" placeholder="Last Name"  class="form-control transparent-field input" id="lastName" required name="lastName"/>
+      </div>
+      <br/>
+      <button (click)="update()" class="btn mat-stroked-button m-2">Update</button>
+      <button (click)="showProfileComponent()" class="btn mat-stroked-button m-2">Cancel</button>
+    </div>
+
+    <div *ngIf="updatePasswordComponent">
+      <h3 class="mt-5">Update Password!</h3>
+
+      <div *ngIf="invalidOldPassword" class="mt-5">
+        <h5>Old password doesn't match!</h5>
+      </div>
+
+      <div class="mt-5">
+        <label for="oldPassword" class="form-label">Old Password:</label>
+        <input [(ngModel)]="oldPassword" type="password" placeholder="Old Password" class="form-control transparent-field input" id="oldPassword" required name="oldPassword"/>
+      </div>
+      <div class="mt-2">
+        <label for="newPassword" class="form-label">New Password:</label>
+        <input [(ngModel)]="newPassword" type="password" placeholder="New Password"  class="form-control transparent-field input" id="newPassword" required name="newPassword"/>
+      </div>
+      <br/>
+      <button (click)="updatePassword()" class="btn mat-stroked-button m-2">Update</button>
+      <button (click)="showProfileComponent()" class="btn mat-stroked-button m-2">Cancel</button>
+    </div>
+  </div>
+</div>

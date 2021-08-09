@@ -1,27 +1,27 @@
 <header class=" view intro-header">
-  <mat-toolbar id="toolbar" cdk-scrollable>
-    <span>Course Evaluation</span>
-    <button mat-button [matMenuTriggerFor]="menuCourses">Courses</button>
-    <mat-menu #menuCourses="matMenu" yPosition="below">
+  <mat-toolbar class="sticky-toolbar toolbar-background" id="toolbar" cdk-scrollable>
+    <span class="toolbar-logo">Course Evaluation</span>
+    <button class="toolbar-content" mat-button [matMenuTriggerFor]="menuCourses">Courses</button>
+    <mat-menu class="toolbar-content" #menuCourses="matMenu" yPosition="below">
       <a routerLink="courses" mat-menu-item>Courses List</a>
       <a routerLink="add" mat-menu-item>Add New Course</a>
     </mat-menu>
-    <button mat-button [matMenuTriggerFor]="menuGroups">Groups</button>
-    <mat-menu #menuGroups="matMenu" yPosition="below">
+    <button class="toolbar-content" mat-button [matMenuTriggerFor]="menuGroups">Groups</button>
+    <mat-menu class="toolbar-content" #menuGroups="matMenu" yPosition="below">
       <a mat-menu-item>Groups list</a>
     </mat-menu>
-    <button mat-button [matMenuTriggerFor]="menuFeedbackRequest" *ngIf="roles && (roles.includes('ROLE_TEACHER') || roles.includes('ROLE_ADMIN'))">FeedbackRequest</button>
-    <mat-menu #menuFeedbackRequest="matMenu" yPosition="below">
+    <button class="toolbar-content" mat-button [matMenuTriggerFor]="menuFeedbackRequest" *ngIf="roles && (roles.includes('ROLE_TEACHER') || roles.includes('ROLE_ADMIN'))">FeedbackRequest</button>
+    <mat-menu class="toolbar-content" #menuFeedbackRequest="matMenu" yPosition="below">
       <a routerLink="feedback_request/add" mat-menu-item>Add new Feedback Request</a>
     </mat-menu>
-    <button mat-button [matMenuTriggerFor]="menuAdmin" *ngIf="roles && roles.includes('ROLE_ADMIN')">Admin</button>
-    <mat-menu #menuAdmin="matMenu" yPosition="below">
+    <button class="toolbar-content" mat-button [matMenuTriggerFor]="menuAdmin" *ngIf="roles && roles.includes('ROLE_ADMIN')">Admin</button>
+    <mat-menu class="toolbar-content" #menuAdmin="matMenu" yPosition="below">
       <a routerLink="admin/users" mat-menu-item>User List</a>
       <a routerLink="courses" mat-menu-item>Courses List</a>
       <a routerLink="admin/groups" mat-menu-item>Groups List</a>
     </mat-menu>
     <span class="spacer"></span>
-    <div *ngIf="!username" id="reg-login-links">
+    <div class="toolbar-content" *ngIf="!username" id="reg-login-links">
       <a routerLink="register" mat-button>
         <mat-icon>add</mat-icon>
         Sign Up</a>
@@ -29,15 +29,16 @@
         <mat-icon>input</mat-icon>
         Login</a>
     </div>
-    <div id="profile-logout-links">
-      <a *ngIf="roles" mat-button>
+    <div class="toolbar-content" id="profile-logout-links">
+      <a *ngIf="roles" routerLink="users/{{id}}" mat-button>
         <mat-icon>account_box</mat-icon>
         {{username}}</a>
       <a *ngIf="roles" mat-button (click)="logout()">
         LogOut</a>
     </div>
+    <br>
   </mat-toolbar>
-  <hr>
+  <br>
   <section class=" intro-2 ">
 
     <router-outlet></router-outlet>
