@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {AppConfig} from '../common/app-config';
 import {HttpClient} from '@angular/common/http';
 import {FeedbackRequest} from '../models/feedbackrequest.model';
-import {Question} from "../models/question.model";
+import {Question} from '../models/question.model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,10 +18,8 @@ export class FeedbackrequestService {
     return this.http.post(this.feedbackRequestUrl, feedbackRequest)
   }
 
-  addQuestionToFeedbackRequest(id: any, listLong: Question[]) {
-    console.log(this.feedbackRequestUrl+  `${id}` +'/questions')
-
-    return this.http.post(this.feedbackRequestUrl +  `${id}` +'/questions', listLong)
+  addQuestionToFeedbackRequest(id: any, questions: Question[]) {
+    return this.http.post(this.feedbackRequestUrl +  `${id}` +'/questions', questions)
   }
 
 }

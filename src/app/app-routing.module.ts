@@ -13,7 +13,7 @@ import {UserComponent} from './components/user/user.component';
 import {GroupsListComponent} from './admin_project/components/group/groups-list/groups-list.component';
 import {StudentListComponent} from './admin_project/components/group/student-list/student-list.component';
 import {GroupCourseListComponent} from './admin_project/components/group/group-course-list/group-course-list.component';
-import {AddFeedbackrequestComponent} from "./components/add-feedbackrequest/add-feedbackrequest.component";
+import {AddFeedbackrequestComponent} from './components/add-feedbackrequest/add-feedbackrequest.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
