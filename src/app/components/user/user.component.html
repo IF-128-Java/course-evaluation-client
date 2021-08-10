@@ -23,10 +23,12 @@
       <div class="mt-5">
         <label for="firstName" class="form-label">First Name:</label>
         <input [(ngModel)]="firstNameToUpdate" type="text" placeholder="First Name" class="form-control transparent-field input" id="firstName" required name="firstName"/>
+        <div *ngIf="invalidFirstName" class="form-text text-center">First Name is mandatory!</div>
       </div>
       <div class="mt-2">
         <label for="lastName" class="form-label">Last Name:</label>
         <input [(ngModel)]="lastNameToUpdate" type="text" placeholder="Last Name"  class="form-control transparent-field input" id="lastName" required name="lastName"/>
+        <div *ngIf="invalidLastName" class="form-text text-center">Last Name is mandatory!</div>
       </div>
       <br/>
       <button (click)="update()" class="btn mat-stroked-button m-2">Update</button>
@@ -36,17 +38,19 @@
     <div *ngIf="updatePasswordComponent">
       <h3 class="mt-5">Update Password!</h3>
 
-      <div *ngIf="invalidOldPassword" class="mt-5">
+      <div *ngIf="OldPasswordNotMatch" class="mt-5">
         <h5>Old password doesn't match!</h5>
       </div>
 
       <div class="mt-5">
         <label for="oldPassword" class="form-label">Old Password:</label>
         <input [(ngModel)]="oldPassword" type="password" placeholder="Old Password" class="form-control transparent-field input" id="oldPassword" required name="oldPassword"/>
+        <div *ngIf="invalidOldPassword" class="form-text text-center">Old Password is mandatory!</div>
       </div>
       <div class="mt-2">
         <label for="newPassword" class="form-label">New Password:</label>
         <input [(ngModel)]="newPassword" type="password" placeholder="New Password"  class="form-control transparent-field input" id="newPassword" required name="newPassword"/>
+        <div *ngIf="invalidNewPassword" class="form-text text-center">New Password is mandatory!</div>
       </div>
       <br/>
       <button (click)="updatePassword()" class="btn mat-stroked-button m-2">Update</button>
