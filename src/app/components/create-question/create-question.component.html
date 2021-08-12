@@ -1,0 +1,22 @@
+<mat-card class="question-card">
+  <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+      <label>Question text</label>
+  <br>
+      <mat-form-field>
+        <textarea matInput placeholder="Your question text" name="questionText" [(ngModel)]="question.questionText"></textarea>
+      </mat-form-field>
+  <br>
+      <label>Pattern Question? </label>
+  <br>
+  <span class="example-list-section">
+      <mat-checkbox (change)="OnChange($event)" class="example-margin" name="pattern">
+    </mat-checkbox>
+  </span>
+  <br>
+  <br>
+    <button mat-stroked-button class="btn custom-btn">
+      <mat-icon>add</mat-icon>
+      Create
+    </button>
+  </form>
+</mat-card>

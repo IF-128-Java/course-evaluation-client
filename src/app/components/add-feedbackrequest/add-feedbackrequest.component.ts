@@ -8,6 +8,8 @@ import {Question} from '../../models/question.model';
 import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
 import {MatChipInputEvent} from '@angular/material/chips';
 import {FormControl} from '@angular/forms';
+import {CreateQuestionComponent} from '../create-question/create-question.component';
+import {MatDialog} from '@angular/material/dialog';
 
 
 @Component({
@@ -36,7 +38,8 @@ export class AddFeedbackrequestComponent implements OnInit {
 
   @ViewChild('questionInput') questionInput?: ElementRef<HTMLInputElement>;
 
-  constructor(private feedbackrequestService: FeedbackrequestService, private courseService: CoursesService, private questionService: QuestionService) {
+  constructor(private feedbackrequestService: FeedbackrequestService, private courseService: CoursesService, private questionService: QuestionService, public dialog: MatDialog) {
+
   }
 
   ngOnInit(): void {
@@ -45,7 +48,7 @@ export class AddFeedbackrequestComponent implements OnInit {
     })
     this.questionService.getAll().subscribe(data => {
       this.allQuestions = data;
-      this.patternQuestion = this.allQuestions.filter(q=>q.pattern);
+      this.patternQuestion = this.allQuestions.filter(q => q.pattern);
       this.patternQuestion.forEach(item => this.selectQuestions.add(item));
     })
   }
@@ -67,10 +70,10 @@ export class AddFeedbackrequestComponent implements OnInit {
     const value = (event.value || '').trim();
     // Add our question
     if (value) {
-    this.questionService.create(new Question(0, event.value,false))
+      this.questionService.create(new Question(0, event.value, false))
         .subscribe((data: any) => {
           this.selectQuestions.add(data);
-      })
+        })
 
     }
     // Clear the input value
@@ -82,19 +85,30 @@ export class AddFeedbackrequestComponent implements OnInit {
   selected(event: MatAutocompleteSelectedEvent): void {
     let question: Question = event.option.value;
     this.selectQuestions.add(question);
-    if(this.questionInput) {
+    if (this.questionInput) {
       this.questionInput.nativeElement.value = '';
     }
     this.questionCtrl.setValue(null);
   }
 
   remove(question: Question): void {
-    if(!question.pattern) {
+    if (!question.pattern) {
       this.questionService.deleteById(question.id).subscribe();
       this.selectQuestions.delete(question);
     }
   }
+
+  addQuestion() {
+    const dialogRef = this.dialog.open(CreateQuestionComponent, {
+      width: '400px',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      window.location.reload();
+    });
+  }
+
   reloadPage() {
     window.location.reload();
   }
+
 }

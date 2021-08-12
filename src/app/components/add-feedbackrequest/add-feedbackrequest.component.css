@@ -6,3 +6,8 @@
   width: 400px;
   margin: auto;
 }
+
+.button {
+  margin-bottom: 16px;
+  margin-right: 16px;
+}

@@ -17,7 +17,7 @@
     </div>
     <mat-form-field appearance="outline">
       <mat-label>Select course</mat-label>
-      <mat-select [(ngModel)]="feedbackrequest.course" name="course">
+      <mat-select [(ngModel)]="feedbackrequest.course" name="course" required>
         <mat-option *ngFor="let course of allCourse" [value]="course.id">
           {{course.courseName}}
         </mat-option>
@@ -48,14 +48,17 @@
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
-
+    <button mat-stroked-button class="button" (click)="addQuestion()">
+      <mat-icon>add</mat-icon> Add question</button>
     <div class="form-group">
-      <button class="btn btn-primary btn-block">Save</button>
+      <button mat-stroked-button class="button">
+        <mat-icon>save</mat-icon> Save</button>
     </div>
   </form>
   <div *ngIf="saved"><h3> {{feedbackrequest.feedbackDescription}} has added!</h3>
   <div class="form-group mt-5" >
-    <button class="btn btn-primary btn-block" (click)="reloadPage()">Add new feedback request</button>
+    <button mat-stroked-button class="button" (click)="reloadPage()">
+      <mat-icon>add</mat-icon> Add new feedback request</button>
   </div>
   </div>
 </div>
