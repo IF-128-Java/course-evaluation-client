@@ -14,6 +14,7 @@ import {GroupsListComponent} from './admin_project/components/group/groups-list/
 import {StudentListComponent} from './admin_project/components/group/student-list/student-list.component';
 import {GroupCourseListComponent} from './admin_project/components/group/group-course-list/group-course-list.component';
 import {AddFeedbackrequestComponent} from './components/add-feedbackrequest/add-feedbackrequest.component';
+import {GroupAddCourseComponent} from "./admin_project/components/group/group-add-course/group-add-course.component";
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'admin/users', component: UserListComponent, canActivate: [AuthGuardService]},
   {path: 'admin/groups', component: GroupsListComponent, canActivate: [AuthGuardService]},
+  {path: 'admin/groups/:id/available-courses', component: GroupAddCourseComponent, canActivate: [AuthGuardService]},
   {path: 'admin/students', component: StudentListComponent, canActivate: [AuthGuardService]},
   {path: 'admin/groups/:id/courses', component: GroupCourseListComponent, canActivate: [AuthGuardService]},
   {path: 'courses', component: CoursesListComponent},
