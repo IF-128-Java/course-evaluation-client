@@ -1,38 +1,37 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TokenStorageService} from './auth/token-storage.service';
-import {MatSidenav} from "@angular/material/sidenav";
-import {MatButton} from "@angular/material/button";
-import {ActivatedRoute, Router} from "@angular/router";
+import {MatIconRegistry} from '@angular/material/icon';
+import {DomSanitizer} from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit,AfterViewInit {
+export class AppComponent implements OnInit {
   title = 'course-evaluation-client';
   roles: string[] | undefined;
   username: string | undefined;
   id: string | undefined;
-  navbarOpen = false;
-  @ViewChild('sidenav') sidenav: MatSidenav | undefined;
-  @ViewChild('btnRef') buttonRef?: MatButton;
-  isExpanded = true;
-  isShowing = false;
-  constructor(private tokenStorage: TokenStorageService,private router: Router) {
-  }
-  mouseenter() {
-    if (!this.isExpanded) {
-      this.isShowing = true;
-    }
+  public isExpanded = false;
+
+
+  constructor(private tokenStorage: TokenStorageService,private matIconRegistry: MatIconRegistry,private domSanitizer: DomSanitizer,) {
+    this.matIconRegistry.addSvgIcon('users',this.domSanitizer
+      .bypassSecurityTrustResourceUrl('assets/images/admin-icons/users.svg'));
+    this.matIconRegistry.addSvgIcon('students',this.domSanitizer
+      .bypassSecurityTrustResourceUrl('assets/images/admin-icons/students.svg'));
+    this.matIconRegistry.addSvgIcon('groups',this.domSanitizer
+      .bypassSecurityTrustResourceUrl('assets/images/admin-icons/groups.svg'));
+    this.matIconRegistry.addSvgIcon('courses',this.domSanitizer
+      .bypassSecurityTrustResourceUrl('assets/images/admin-icons/courses.svg'));
   }
 
-  mouseleave() {
-    if (!this.isExpanded) {
-      this.isShowing = false;
-    }
-  }
 
+  public toggleMenu() {
+    this.isExpanded = !this.isExpanded;
+  }
 
   ngOnInit() {
     if (this.tokenStorage.getToken()) {
@@ -41,13 +40,12 @@ export class AppComponent implements OnInit,AfterViewInit {
       this.id = this.tokenStorage.getId();
     }
   }
+
   logout() {
     this.tokenStorage.signOut();
     window.location.reload();
   }
 
-  ngAfterViewInit(): void {
-    this.buttonRef?.focus();
-  }
+
 
 }
