@@ -35,3 +35,6 @@ mat-paginator {
 .list-name{
   text-align: center;
 }
+.admin-empty-records{
+  text-align: center;
+}

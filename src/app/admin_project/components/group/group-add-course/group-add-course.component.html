@@ -9,7 +9,8 @@
   <form class="example-form">
     <mat-icon>search</mat-icon>
     <mat-form-field appearance="fill">
-      <mat-label>Find by course name, teacher last or first name</mat-label>
+      <mat-label *ngIf="courses.length > 0 || myControl.value===''">Find by course name, teacher last or first name</mat-label>
+      <mat-label *ngIf="courses.length === 0 && myControl.value!==''">No matches found</mat-label>
       <input type="text"
              placeholder="Java"
              aria-label="Number"
@@ -20,9 +21,11 @@
         <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
           {{option}}
         </mat-option>
-      </mat-autocomplete>
+            </mat-autocomplete>
     </mat-form-field>
+
   </form>
+  <div *ngIf="courses.length === 0 && myControl.value!==''" >No matches found</div>
   Available courses to add to the group
   <table mat-table [dataSource]="courses" class="mat-elevation-z8">
 
@@ -68,6 +71,7 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"
     ></tr>
   </table>
+  <div *ngIf="courses.length === 0" class="admin-empty-records">No records found</div>
   <mat-paginator
     #paginator
     [length]="length"

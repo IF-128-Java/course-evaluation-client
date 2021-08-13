@@ -26,6 +26,7 @@
         matTooltip="Browse {{row.firstName +' '+ row.lastName}}"
         (click)="openDialog(row.id)"></tr>
   </table>
+  <div *ngIf="users.length === 0" class="admin-empty-records">No records found</div>
   <mat-paginator
     #paginator
     [length]="length"

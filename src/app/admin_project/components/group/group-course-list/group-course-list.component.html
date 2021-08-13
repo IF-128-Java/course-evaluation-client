@@ -50,5 +50,6 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"
     ></tr>
   </table>
+  <div *ngIf="courses.length === 0" class="admin-empty-records">No records found</div>
 </div>
 

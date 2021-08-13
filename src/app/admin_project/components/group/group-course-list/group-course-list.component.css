@@ -34,3 +34,6 @@ th {
   background: transparent;
   float: right;
 }
+.admin-empty-records{
+  text-align: center;
+}
