@@ -1,4 +1,6 @@
-.input{
-  max-width: 400px;
-  margin: 0 auto;
+.input-width {
+  width: 400px;
+}
+.spinner{
+  margin:15% auto 0;
 }

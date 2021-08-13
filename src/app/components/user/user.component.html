@@ -1,8 +1,9 @@
 <div class="container">
   <div class="text-center">
-    <div *ngIf="profileComponent">
+    <mat-spinner *ngIf="currentUser.email === ''" class="spinner"></mat-spinner>
+    <div *ngIf="profileComponent && currentUser.email !== ''">
       <h3 class="mt-5">User Profile!</h3>
-      <div class="mt-4">
+      <div class="mt-5">
         <label><strong>Email:</strong></label> {{ currentUser.email }}
       </div>
       <div class="mt-1">
@@ -13,48 +14,72 @@
       </div>
 
       <div class="text-center mt-3">
-        <button (click)="showUpdateComponent()" type="submit" class="btn mat-stroked-button m-2">Update</button>
-        <button (click)="showUpdatePasswordComponent()" type="reset" class="btn mat-stroked-button m-2">Update Password</button>
+        <button (click)="showUpdateComponent()" mat-stroked-button type="submit" class="m-2">Update</button>
+        <button (click)="showUpdatePasswordComponent()" mat-stroked-button type="reset" class="m-2">Update Password</button>
       </div>
     </div>
 
     <div *ngIf="updateComponent">
       <h3 class="mt-5">Update User!</h3>
       <div class="mt-5">
-        <label for="firstName" class="form-label">First Name:</label>
-        <input [(ngModel)]="firstNameToUpdate" type="text" placeholder="First Name" class="form-control transparent-field input" id="firstName" required name="firstName"/>
-        <div *ngIf="invalidFirstName" class="form-text text-center">First Name is mandatory!</div>
+        <div *ngIf="invalidFirstName" class="form-text text-center mb-1">The first name must start with a capital letter followed by one to ten lowercase letters!</div>
+        <mat-form-field hintLabel="Max 11 characters" appearance="fill" class="input-width">
+          <mat-label>First Name</mat-label>
+          <input [(ngModel)]="firstNameToUpdate" matInput #input1 maxlength="11" type="text" placeholder="Enter your First Name">
+          <mat-hint align="end">{{input1.value?.length || 0}}/11</mat-hint>
+        </mat-form-field>
       </div>
-      <div class="mt-2">
-        <label for="lastName" class="form-label">Last Name:</label>
-        <input [(ngModel)]="lastNameToUpdate" type="text" placeholder="Last Name"  class="form-control transparent-field input" id="lastName" required name="lastName"/>
-        <div *ngIf="invalidLastName" class="form-text text-center">Last Name is mandatory!</div>
+      <div class="mt-3">
+        <div *ngIf="invalidLastName" class="form-text text-center mb-1">The last name must start with a capital letter followed by one to ten lowercase letters!</div>
+        <mat-form-field hintLabel="Max 11 characters" appearance="fill" class="input-width">
+          <mat-label>Last Name</mat-label>
+          <input [(ngModel)]="lastNameToUpdate" matInput #input2 maxlength="11" type="text" placeholder="Enter your Last Name">
+          <mat-hint align="end">{{input2.value?.length || 0}}/11</mat-hint>
+        </mat-form-field>
       </div>
       <br/>
-      <button (click)="update()" class="btn mat-stroked-button m-2">Update</button>
-      <button (click)="showProfileComponent()" class="btn mat-stroked-button m-2">Cancel</button>
+      <button (click)="update()" mat-stroked-button class="m-2">Update</button>
+      <button (click)="showProfileComponent()" mat-stroked-button class="m-2">Cancel</button>
     </div>
 
     <div *ngIf="updatePasswordComponent">
       <h3 class="mt-5">Update Password!</h3>
-
-      <div *ngIf="OldPasswordNotMatch" class="mt-5">
-        <h5>Old password doesn't match!</h5>
-      </div>
-
       <div class="mt-5">
-        <label for="oldPassword" class="form-label">Old Password:</label>
-        <input [(ngModel)]="oldPassword" type="password" placeholder="Old Password" class="form-control transparent-field input" id="oldPassword" required name="oldPassword"/>
-        <div *ngIf="invalidOldPassword" class="form-text text-center">Old Password is mandatory!</div>
+        <div *ngIf="OldPasswordNotMatch" class="form-text text-center mb-1">Old password doesn't match!</div>
+        <div *ngIf="invalidOldPassword" class="form-text text-center mb-1">Old Password is mandatory!</div>
+        <mat-form-field appearance="fill" class="input-width">
+          <mat-label>Old Password</mat-label>
+          <input [(ngModel)]="oldPassword" matInput [type]="hideOldPassword ? 'password' : 'text'" placeholder="Enter your Old Password">
+          <button mat-icon-button matSuffix (click)="hideOldPassword = !hideOldPassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideOldPassword">
+            <mat-icon>{{hideOldPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
       </div>
       <div class="mt-2">
-        <label for="newPassword" class="form-label">New Password:</label>
-        <input [(ngModel)]="newPassword" type="password" placeholder="New Password"  class="form-control transparent-field input" id="newPassword" required name="newPassword"/>
-        <div *ngIf="invalidNewPassword" class="form-text text-center">New Password is mandatory!</div>
+        <div *ngIf="newPasswordsNotMatch" class="form-text text-center mb-1">New passwords have to match!</div>
+        <div *ngIf="invalidNewPassword" class="form-text text-center mb-1">New Password is mandatory!</div>
+        <mat-form-field appearance="fill" class="input-width">
+          <mat-label>New Password</mat-label>
+          <input [(ngModel)]="newPassword" matInput [type]="hideNewPassword ? 'password' : 'text'" placeholder="Enter your New Password">
+          <button mat-icon-button matSuffix (click)="hideNewPassword = !hideNewPassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideNewPassword">
+            <mat-icon>{{hideNewPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+      <div class="mt-2">
+        <div *ngIf="newPasswordsNotMatch" class="form-text text-center mb-1">New passwords have to match!</div>
+        <div *ngIf="invalidNewPassword" class="form-text text-center mb-1">New Password is mandatory!</div>
+        <mat-form-field appearance="fill" class="input-width">
+          <mat-label>Repeat New Password</mat-label>
+          <input [(ngModel)]="repeatNewPassword" matInput [type]="hideRepeatNewPassword ? 'password' : 'text'" placeholder="Repeat your New Password">
+          <button mat-icon-button matSuffix (click)="hideRepeatNewPassword = !hideRepeatNewPassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideRepeatNewPassword">
+            <mat-icon>{{hideRepeatNewPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
       </div>
       <br/>
-      <button (click)="updatePassword()" class="btn mat-stroked-button m-2">Update</button>
-      <button (click)="showProfileComponent()" class="btn mat-stroked-button m-2">Cancel</button>
+      <button (click)="updatePassword()" mat-stroked-button class="m-2">Update</button>
+      <button (click)="showProfileComponent()" mat-stroked-button class="m-2">Cancel</button>
     </div>
   </div>
 </div>

@@ -29,11 +29,17 @@ export class UserComponent implements OnInit{
 
   oldPassword: string = '';
   newPassword: string = '';
+  repeatNewPassword: string = '';
 
   invalidOldPassword: boolean = false;
   invalidNewPassword: boolean = false;
 
+  hideOldPassword: boolean = true
+  hideNewPassword: boolean = true
+  hideRepeatNewPassword: boolean = true
+
   OldPasswordNotMatch: boolean = false;
+  newPasswordsNotMatch: boolean = false;
 
   ngOnInit(): void {
     this.getUser(this.route.snapshot.params.id);
@@ -69,11 +75,13 @@ export class UserComponent implements OnInit{
         this.invalidLastName = false;
 
         if(error.error.error === 'MethodArgumentNotValidException'){
-          if (error.error.message.includes("firstName")){
+          if (error.error.fields.firstName){
+            this.firstNameToUpdate = this.currentUser.firstName;
             this.invalidFirstName = true;
           }
 
-          if (error.error.message.includes("lastName")){
+          if (error.error.fields.lastName){
+            this.lastNameToUpdate = this.currentUser.lastName;
             this.invalidLastName = true;
           }
         }
@@ -82,6 +90,12 @@ export class UserComponent implements OnInit{
   }
 
   updatePassword(): void{
+
+    if(this.newPassword !== this.repeatNewPassword){
+      this.newPasswordsNotMatch = true;
+      return;
+    }
+
     const data = {
       oldPassword : this.oldPassword,
       newPassword: this.newPassword
@@ -91,6 +105,12 @@ export class UserComponent implements OnInit{
       },
       error => {
         console.log(error);
+
+        this.oldPassword = '';
+        this.newPassword = '';
+        this.repeatNewPassword = '';
+        this.newPasswordsNotMatch = false;
+
         if(error.error.error === 'InvalidOldPasswordException'){
           this.OldPasswordNotMatch = true;
         }
@@ -99,11 +119,13 @@ export class UserComponent implements OnInit{
         this.invalidNewPassword = false;
 
         if(error.error.error === 'MethodArgumentNotValidException'){
-          if (error.error.message.includes("oldPassword")){
+          this.OldPasswordNotMatch = false;
+
+          if (error.error.fields.oldPassword){
             this.invalidOldPassword = true;
           }
 
-          if (error.error.message.includes("newPassword")){
+          if (error.error.fields.newPassword){
             this.invalidNewPassword = true;
           }
         }
@@ -134,8 +156,15 @@ export class UserComponent implements OnInit{
 
     this.OldPasswordNotMatch = false;
 
+    this.newPasswordsNotMatch = false;
+
     this.oldPassword = '';
     this.newPassword = '';
+    this.repeatNewPassword = '';
+
+    this.hideOldPassword = true;
+    this.hideNewPassword = true;
+    this.hideRepeatNewPassword = true;
 
     this.invalidOldPassword = false;
     this.invalidNewPassword = false;
