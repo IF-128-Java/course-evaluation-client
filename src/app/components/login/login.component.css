@@ -90,4 +90,27 @@ a{
   color: #3f51b5;
 }
 
+.btn-google {
+  color: white;
+  background-color: #ea4335
+}
 
+.btn-facebook {
+  color: white;
+  background-color: #3b5998
+}
+
+.btn-github {
+  color: white;
+  background-color: #333333
+}
+
+.btn-social {
+  width: 40%;
+  padding: 1% !important;
+  font-size: 1.5em;
+  font-weight: 20;
+  margin-top: 5px;
+  margin-left: 5px;
+  display: inline-block;
+}
