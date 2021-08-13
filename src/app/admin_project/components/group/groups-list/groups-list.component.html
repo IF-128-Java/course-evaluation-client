@@ -4,10 +4,7 @@
     <mat-icon>add</mat-icon>
     Add Group
   </a>
-  <a mat-stroked-button routerLink="/admin/students" class="button">
-    <mat-icon>people</mat-icon>
-    Students list
-  </a>
+
   <table mat-table [dataSource]="groups" class="mat-elevation-z8">
 
     <ng-container matColumnDef="Id">
@@ -51,7 +48,7 @@
     [length]="length"
     [pageIndex]="pageIndex"
     [pageSize]="pageSize"
-    [pageSizeOptions]="[5, 10, 25, 100]"
+    [pageSizeOptions]="[5, 10, 25]"
     (page)="pageEvent = getGroups($event)"
   ></mat-paginator>
 </div>

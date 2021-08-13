@@ -44,23 +44,28 @@
   </mat-toolbar>
   <br>
   <mat-sidenav-container class="example-container" autosize>
-    <mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true"  ] (mouseenter)="mouseenter()"
+    <mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true"  (mouseenter)="mouseenter()"
                  (mouseleave)="mouseleave()">
       <mat-nav-list>
         <span>Admin panel</span>
         <mat-divider></mat-divider>
         <p>
-          <button routerLink="admin/users" mat-button class="menu-button">
+          <button routerLinkActive="active-link" routerLink="admin/users" mat-button class="menu-button">
             <span>Users</span>
           </button>
         </p>
         <p>
-          <button routerLink="admin/groups" mat-button  class="menu-button">
+          <button routerLinkActive="active-link" routerLink="admin/students" mat-button class="menu-button">
+            <span>Students</span>
+          </button>
+        </p>
+        <p>
+          <button routerLinkActive="active-link" routerLink="admin/groups" mat-button  class="menu-button">
             <span>Groups</span>
           </button>
         </p>
         <p>
-        <button mat-button class="menu-button">
+        <button  mat-button class="menu-button">
           <span>Courses</span>
         </button>
         </p>

@@ -21,7 +21,17 @@ mat-paginator {
   font-weight: bold;
   color: black;
 }
-
+.mat-form-field{
+  width: 50%;
+}
 .add-button {
   background: transparent;
+}
+
+.back-button {
+  background: transparent;
+  float: right;
+}
+.list-name{
+  text-align: center;
 }

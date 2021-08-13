@@ -5,14 +5,20 @@
   background-size: cover;
   display: block;
 }
-.mat-sidenav-container{
+
+.mat-sidenav-container {
   background: transparent;
   height: 90%;
 }
 
-.mat-sidenav{
+.active-link {
+  background-color: #fafafa;
+  border-left: solid 3px #1976d2;
+}
+
+.mat-sidenav {
   margin: 16px;
-  width: 200px;
+  width: 150px;
   border-right: none;
   background-color: rgba(228, 228, 228, .6);
   color: black;
@@ -20,6 +26,7 @@
   padding: 16px;
   text-align: center;
 }
+
 .mat-toolbar {
   background: transparent;
   font-size: 1.5em;
@@ -28,39 +35,46 @@
 .spacer {
   flex: 1 1 auto;
 }
-.mat-button{
+
+.mat-button {
   font-size: 0.8em;
 }
+
 .intro-2 {
   background: transparent;
   height: 100%;
   background-size: cover;
   margin-left: 32px;
 }
-.sticky-toolbar{
+
+.sticky-toolbar {
   position: -webkit-sticky;
   position: sticky;
   top: -35px;
   z-index: 100;
 }
-.sticky-hr{
+
+.sticky-hr {
   position: -webkit-sticky;
   position: sticky;
   top: 35px;
   z-index: 100;
 }
+
 .toolbar-background {
-  box-shadow:0 5px 5px -3px rgba(0, 0, 0, 0.2),
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
   0 8px 10px 1px rgba(0, 0, 0, 0.14),
   0 3px 14px 2px rgba(0, 0, 0, 0.12)
 }
-.toolbar-content{
+
+.toolbar-content {
   position: sticky;
   top: 16px;
   position: -webkit-sticky;
   z-index: 100;
 }
-.toolbar-logo{
+
+.toolbar-logo {
   position: sticky;
   top: 20px;
   position: -webkit-sticky;

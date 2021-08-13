@@ -1,24 +1,25 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {TokenStorageService} from './auth/token-storage.service';
 import {MatSidenav} from "@angular/material/sidenav";
+import {MatButton} from "@angular/material/button";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit,AfterViewInit {
   title = 'course-evaluation-client';
   roles: string[] | undefined;
   username: string | undefined;
   id: string | undefined;
   navbarOpen = false;
   @ViewChild('sidenav') sidenav: MatSidenav | undefined;
+  @ViewChild('btnRef') buttonRef?: MatButton;
   isExpanded = true;
-  showSubmenu: boolean = false;
   isShowing = false;
-  showSubSubMenu: boolean = false;
-  constructor(private tokenStorage: TokenStorageService) {
+  constructor(private tokenStorage: TokenStorageService,private router: Router) {
   }
   mouseenter() {
     if (!this.isExpanded) {
@@ -43,6 +44,10 @@ export class AppComponent implements OnInit {
   logout() {
     this.tokenStorage.signOut();
     window.location.reload();
+  }
+
+  ngAfterViewInit(): void {
+    this.buttonRef?.focus();
   }
 
 }
