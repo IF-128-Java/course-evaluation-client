@@ -15,16 +15,27 @@ import {StudentListComponent} from './admin_project/components/group/student-lis
 import {GroupCourseListComponent} from './admin_project/components/group/group-course-list/group-course-list.component';
 import {AddFeedbackrequestComponent} from './components/add-feedbackrequest/add-feedbackrequest.component';
 import {GroupAddCourseComponent} from "./admin_project/components/group/group-add-course/group-add-course.component";
+import {RoleGuardService} from "./auth/role-guard.service";
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'admin/users', component: UserListComponent, canActivate: [AuthGuardService]},
-  {path: 'admin/groups', component: GroupsListComponent, canActivate: [AuthGuardService]},
-  {path: 'admin/groups/:id/available-courses', component: GroupAddCourseComponent, canActivate: [AuthGuardService]},
-  {path: 'admin/students', component: StudentListComponent, canActivate: [AuthGuardService]},
-  {path: 'admin/groups/:id/courses', component: GroupCourseListComponent, canActivate: [AuthGuardService]},
+  {path: 'admin/users', component: UserListComponent, canActivate: [RoleGuardService],data:{
+      expectedRole: 'ROLE_ADMIN'
+    }},
+  {path: 'admin/groups', component: GroupsListComponent, canActivate: [RoleGuardService],data:{
+      expectedRole: 'ROLE_ADMIN'
+    }},
+  {path: 'admin/groups/:id/available-courses', component: GroupAddCourseComponent, canActivate: [RoleGuardService],data:{
+      expectedRole: 'ROLE_ADMIN'
+    }},
+  {path: 'admin/students', component: StudentListComponent, canActivate: [RoleGuardService],data:{
+      expectedRole: 'ROLE_ADMIN'
+    }},
+  {path: 'admin/groups/:id/courses', component: GroupCourseListComponent, canActivate: [RoleGuardService],data:{
+      expectedRole: 'ROLE_ADMIN'
+    }},
   {path: 'courses', component: CoursesListComponent},
   {path: 'courses/:id', component: CourseDetailsComponent},
   {path: 'feedback_request/add', component: AddFeedbackrequestComponent},
