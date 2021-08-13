@@ -5,9 +5,24 @@ Create new group
 <form name="form" class="form-body" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
   <mat-form-field class="justifier">
     <input matInput placeholder="Group name" class="form-input" name="groupName"
-           [(ngModel)]="form.groupName" #groupName="ngModel" required>
+           [(ngModel)]="form.groupName" #groupName="ngModel" required minlength="3" maxlength="20"
+           (input)="onSearchChange($event)">
+    <div *ngIf="groupName.invalid && (groupName.dirty || groupName.touched)"
+         class="alert">
+
+      <div *ngIf="groupName.errors?.required">
+        Group name is required.
+      </div>
+      <div *ngIf="groupName.errors?.minlength">
+       Group name must be between 3 and 20 any symbols.
+      </div>
+    </div>
+    <div class="alert" *ngIf="errorMessage">
+      {{errorMessage}}
+    </div>
   </mat-form-field>
   <div class="form-footer">
+
     <button mat-stroked-button class="btn custom-btn">
       <mat-icon>add</mat-icon>
       Create
