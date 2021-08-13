@@ -16,14 +16,6 @@
     <mat-menu class="toolbar-content" #menuFeedbackRequest="matMenu" yPosition="below">
       <a routerLink="feedback_request/add" mat-menu-item>Add new Feedback Request</a>
     </mat-menu>
-    <button class="toolbar-content" mat-button [matMenuTriggerFor]="menuAdmin"
-            *ngIf="roles && roles.includes('ROLE_ADMIN')">Admin
-    </button>
-    <mat-menu class="toolbar-content" #menuAdmin="matMenu" yPosition="below">
-      <a routerLink="admin/users" mat-menu-item>User List</a>
-      <a routerLink="courses" mat-menu-item>Courses List</a>
-      <a routerLink="admin/groups" mat-menu-item>Groups List</a>
-    </mat-menu>
     <span class="spacer"></span>
     <div class="toolbar-content" *ngIf="!username" id="reg-login-links">
       <a routerLink="register" mat-button>
@@ -44,7 +36,7 @@
   </mat-toolbar>
   <br>
   <mat-sidenav-container class="example-container" autosize>
-    <mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true"  (mouseenter)="mouseenter()"
+    <mat-sidenav *ngIf="roles && roles.includes('ROLE_ADMIN')" #sidenav class="example-sidenav" mode="side" opened="true"  (mouseenter)="mouseenter()"
                  (mouseleave)="mouseleave()">
       <mat-nav-list>
         <span>Admin panel</span>
