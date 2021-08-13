@@ -17,11 +17,11 @@ export class UsersService{
     return this.http.get(`${this.usersUrl}${id}`, {responseType: 'json'});
   }
 
-  update(id: number | any, data: any): Observable<any> {
-    return this.http.patch(`${this.usersUrl}${id}`, data, httpOptions);
+  update(data: any): Observable<any> {
+    return this.http.patch(`${this.usersUrl}`, data, httpOptions);
   }
 
-  updatePassword(id: number | any, data: any): Observable<any> {
-    return this.http.patch(`${this.usersUrl}${id}/update-password`, data, httpOptions);
+  updatePassword(data: any): Observable<any> {
+    return this.http.patch(`${this.usersUrl}update-password`, data, httpOptions);
   }
 }

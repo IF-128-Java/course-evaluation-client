@@ -59,7 +59,7 @@ export class UserComponent implements OnInit{
       firstName : this.firstNameToUpdate,
       lastName: this.lastNameToUpdate
     }
-    this.userService.update(this.route.snapshot.params.id, data).subscribe(() => {
+    this.userService.update(data).subscribe(() => {
         this.reloadPage();
       },
       error => {
@@ -86,7 +86,7 @@ export class UserComponent implements OnInit{
       oldPassword : this.oldPassword,
       newPassword: this.newPassword
     }
-    this.userService.updatePassword(this.route.snapshot.params.id, data).subscribe(() => {
+    this.userService.updatePassword(data).subscribe(() => {
         this.reloadPage();
       },
       error => {
