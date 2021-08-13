@@ -1,10 +1,23 @@
 <div class="container">
   <p>Group : {{group?.groupName}}</p>
-  <a mat-stroked-button routerLink="../available-courses" class="button">
-    <mat-icon>add</mat-icon>
-    Add Courses
-  </a>
-  <p>Course list</p>
+  <form class="example-form">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Find by course name, teacher last or first name</mat-label>
+      <input type="text"
+             placeholder="Java"
+             aria-label="Number"
+             matInput
+             [formControl]="myControl"
+             [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+          {{option}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+
+  <p>Available Course list</p>
   <table mat-table [dataSource]="courses" class="mat-elevation-z8">
 
     <ng-container matColumnDef="Id">
@@ -38,14 +51,23 @@
     </ng-container>
     <ng-container matColumnDef="Actions">
       <th mat-header-cell *matHeaderCellDef> Actions</th>
-      <td mat-cell *matCellDef="let course" ><button mat-flat-button (click)="removeCourse(course)" class="delete-button">
-        <mat-icon>delete</mat-icon>
-        Remove
+      <td mat-cell *matCellDef="let course" ><button mat-flat-button (click)="addCourse(course)" class="add-button">
+        <mat-icon>add</mat-icon>
+        Add course
       </button></td>
     </ng-container>
     <tr id="row" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"
     ></tr>
   </table>
-</div>
+  <mat-paginator
+    #paginator
+    [length]="length"
+    [pageIndex]="pageIndex"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    (page)="pageEvent = getCourses($event)"
+  ></mat-paginator>
+  </div>
+
 

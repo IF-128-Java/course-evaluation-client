@@ -41,6 +41,7 @@ import {AddFeedbackrequestComponent} from './components/add-feedbackrequest/add-
 import {MatSelectModule} from '@angular/material/select';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatChipsModule} from '@angular/material/chips';
+import { GroupAddCourseComponent } from './admin_project/components/group/group-add-course/group-add-course.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import {MatChipsModule} from '@angular/material/chips';
     StudentListComponent,
     GroupCourseListComponent,
     AddFeedbackrequestComponent,
+    GroupAddCourseComponent,
   ],
   imports: [
     BrowserModule,
