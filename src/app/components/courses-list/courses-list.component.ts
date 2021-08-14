@@ -58,4 +58,8 @@ export class CoursesListComponent implements OnInit {
       }
     );
   }
+
+  showFeedbackRequest(id: number) {
+    
+  }
 }
