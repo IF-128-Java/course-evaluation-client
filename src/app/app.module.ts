@@ -41,6 +41,9 @@ import {AddFeedbackrequestComponent} from './components/add-feedbackrequest/add-
 import {MatSelectModule} from '@angular/material/select';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatChipsModule} from '@angular/material/chips';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatDividerModule} from '@angular/material/divider';
 import {GroupAddCourseComponent} from './admin_project/components/group/group-add-course/group-add-course.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 
@@ -71,7 +74,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     AppRoutingModule, HttpClientModule,
     FormsModule,
     BrowserAnimationsModule, MatDialogModule,
-    MatButtonModule, MatIconModule, MatInputModule, MatToolbarModule, MatMenuModule, MatTableModule, MatTooltipModule, MatCheckboxModule, ReactiveFormsModule, MatCardModule, MatListModule, MatGridListModule, ScrollingModule, MatPaginatorModule, MatSelectModule, MatAutocompleteModule, MatChipsModule, MatSidenavModule,
+    MatDividerModule, MatSnackBarModule, MatProgressSpinnerModule, MatButtonModule, MatIconModule, MatInputModule, MatToolbarModule, MatMenuModule, MatTableModule, MatTooltipModule, MatCheckboxModule, ReactiveFormsModule, MatCardModule, MatListModule, MatGridListModule, ScrollingModule, MatPaginatorModule, MatSelectModule, MatAutocompleteModule, MatChipsModule, MatSidenavModule,
   ],
   providers: [httpInterceptorProviders, {provide: JWT_OPTIONS, useValue: JWT_OPTIONS}, JwtHelperService, {
     provide: MatDialogRef,
