@@ -12,8 +12,7 @@ export class AppConfig {
   private static API_BASE_URL = "http://localhost:8080/";
   private static OAUTH2_URL = AppConfig.API_BASE_URL + "oauth2/authorization/";
   private static REDIRECT_URL = "?redirect_uri=http://localhost:4200/login";
-  public static API_URL = AppConfig.API_BASE_URL + "api/v1";
-  public static AUTH_API = AppConfig.API_URL + "auth/";
+
   public static GOOGLE_AUTH_URL = AppConfig.OAUTH2_URL + "google" + AppConfig.REDIRECT_URL;
   public static FACEBOOK_AUTH_URL = AppConfig.OAUTH2_URL + "facebook" + AppConfig.REDIRECT_URL;
   public static GITHUB_AUTH_URL = AppConfig.OAUTH2_URL + "github" + AppConfig.REDIRECT_URL;
