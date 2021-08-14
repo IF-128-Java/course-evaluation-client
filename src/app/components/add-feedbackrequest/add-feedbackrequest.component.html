@@ -6,11 +6,19 @@
     </div>
     <div class="form-group">
       <label>Start Date</label>
-      <input class="form-control" type="datetime-local" name="startDate" [(ngModel)]="feedbackrequest.startDate"/>
+      <input class="form-control" type="date" name="startDate" [(ngModel)]="startDateTime.date"/>
+    </div>
+    <div class="form-group">
+      <label>Start Time</label>
+      <input class="form-control" type="time" name="startDate" [(ngModel)]="startDateTime.time"/>
     </div>
     <div class="form-group">
       <label>End Date</label>
-      <input class="form-control" type="datetime-local" name="endDate" [(ngModel)]="feedbackrequest.endDate"/>
+      <input class="form-control" type="date" name="endDate" [(ngModel)]="endDateTime.date"/>
+    </div>
+    <div class="form-group">
+      <label>End Time</label>
+      <input class="form-control" type="time" name="startDate" [(ngModel)]="endDateTime.time"/>
     </div>
     <div>
     <label>Course</label>

@@ -12,6 +12,7 @@ import {CreateQuestionComponent} from '../create-question/create-question.compon
 import {MatDialog} from '@angular/material/dialog';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
+import {LocalDateTime} from "../../models/locadatetime.model";
 
 
 @Component({
@@ -21,12 +22,13 @@ import {map, startWith} from 'rxjs/operators';
 })
 
 export class AddFeedbackrequestComponent implements OnInit {
-
-  feedbackrequest: FeedbackRequest = {
-    feedbackDescription: '',
-    startDate: '',
-    endDate: '',
-    course: '',
+  startDateTime: LocalDateTime = {
+    date: '',
+    time: '',
+  }
+  endDateTime: LocalDateTime = {
+    date: '',
+    time: '',
   }
   public allCourse?: Course[];
   public allQuestions: Question[] = [];
@@ -38,6 +40,17 @@ export class AddFeedbackrequestComponent implements OnInit {
   removable = true;
   questionCtrl = new FormControl();
   public filteredQuestion: Observable<string[]>;
+  minDate: Date;
+  maxDate: Date;
+  startDate: string = this.startDateTime.date+'T'+this.startDateTime.time
+  endDate: string = this.endDateTime.date+'T'+this.endDateTime.time
+
+  feedbackrequest: FeedbackRequest = {
+    feedbackDescription: '',
+    startDate: this.startDate,
+    endDate: this.endDate,
+    course: '',
+  }
 
   @ViewChild('questionInput') questionInput?: ElementRef<HTMLInputElement>;
 
@@ -45,6 +58,9 @@ export class AddFeedbackrequestComponent implements OnInit {
     this.filteredQuestion = this.questionCtrl.valueChanges.pipe(
         startWith(null),
         map((q: string | null) => q ? this._filter(q) : this.allQuestions.map(q=>q.questionText).slice()));
+    const currentYear = new Date().getFullYear();
+    this.minDate = new Date(currentYear - 20, 0, 1);
+    this.maxDate = new Date(currentYear + 1, 11, 31);
   }
 
   ngOnInit(): void {
@@ -59,7 +75,7 @@ export class AddFeedbackrequestComponent implements OnInit {
   }
 
   onSubmit() {
-    this.feedbackrequest = new FeedbackRequest(this.feedbackrequest.feedbackDescription, this.feedbackrequest.startDate, this.feedbackrequest.endDate, this.feedbackrequest.course);
+    this.feedbackrequest = new FeedbackRequest(this.feedbackrequest.feedbackDescription, this.startDate , this.endDate, this.feedbackrequest.course);
     this.feedbackrequestService.create(this.feedbackrequest).subscribe(
       () => {
         this.feedbackrequestService.addQuestionToFeedbackRequest(this.feedbackrequest.id, Array.from(this.selectQuestions)).subscribe()
