@@ -1,4 +1,5 @@
 <header class=" view intro-header">
+
   <mat-toolbar class="sticky-toolbar toolbar-background" id="toolbar" cdk-scrollable>
     <span class="toolbar-logo">Course Evaluation</span>
     <button class="toolbar-content" mat-button [matMenuTriggerFor]="menuCourses">Courses</button>
@@ -10,15 +11,11 @@
     <mat-menu class="toolbar-content" #menuGroups="matMenu" yPosition="below">
       <a mat-menu-item>Groups list</a>
     </mat-menu>
-    <button class="toolbar-content" mat-button [matMenuTriggerFor]="menuFeedbackRequest" *ngIf="roles && (roles.includes('ROLE_TEACHER') || roles.includes('ROLE_ADMIN'))">FeedbackRequest</button>
+    <button class="toolbar-content" mat-button [matMenuTriggerFor]="menuFeedbackRequest"
+            *ngIf="roles && (roles.includes('ROLE_TEACHER') || roles.includes('ROLE_ADMIN'))">FeedbackRequest
+    </button>
     <mat-menu class="toolbar-content" #menuFeedbackRequest="matMenu" yPosition="below">
       <a routerLink="feedback_request/add" mat-menu-item>Add new Feedback Request</a>
-    </mat-menu>
-    <button class="toolbar-content" mat-button [matMenuTriggerFor]="menuAdmin" *ngIf="roles && roles.includes('ROLE_ADMIN')">Admin</button>
-    <mat-menu class="toolbar-content" #menuAdmin="matMenu" yPosition="below">
-      <a routerLink="admin/users" mat-menu-item>User List</a>
-      <a routerLink="courses" mat-menu-item>Courses List</a>
-      <a routerLink="admin/groups" mat-menu-item>Groups List</a>
     </mat-menu>
     <span class="spacer"></span>
     <div class="toolbar-content" *ngIf="!username" id="reg-login-links">
@@ -39,10 +36,51 @@
     <br>
   </mat-toolbar>
   <br>
-  <section class=" intro-2 ">
 
-    <router-outlet></router-outlet>
+  <mat-sidenav-container class="example-container" autosize>
+    <mat-sidenav *ngIf="roles && roles.includes('ROLE_ADMIN')" #sidenav mode="side"
+                 opened="{{isExpanded}}">
+      <div class="toggle">
+        <mat-icon (click)="toggleMenu()">
+          {{ isExpanded ? "keyboard_backspace" : "dehaze" }}
+        </mat-icon>
+      </div>
+      <mat-nav-list>
+        <p>
+          <button routerLinkActive="active-link" routerLink="admin/users" mat-button class="sidenav-button">
+            <mat-icon svgIcon="users"></mat-icon>
+            <span *ngIf="isExpanded">Users</span>
+          </button>
+        </p>
+        <p>
+          <button routerLinkActive="active-link" routerLink="admin/students" mat-button class="sidenav-button">
+            <mat-icon svgIcon="students"></mat-icon>
+            <span *ngIf="isExpanded">Students</span>
+          </button>
+        </p>
+        <p>
+          <button routerLinkActive="active-link" routerLink="admin/groups" mat-button class="sidenav-button">
+            <mat-icon svgIcon="groups"></mat-icon>
+            <span *ngIf="isExpanded">Groups</span>
+          </button>
+        </p>
+        <p>
+          <button mat-button class="menu-button">
+            <mat-icon svgIcon="courses"></mat-icon>
+            <span *ngIf="isExpanded">Courses</span>
+          </button>
+        </p>
+      </mat-nav-list>
+      <mat-nav-list>
+      </mat-nav-list>
+    </mat-sidenav>
 
-  </section>
+    <mat-sidenav-content [style.margin-left.px]="!isExpanded && roles && roles.includes('ROLE_ADMIN') ? -20 : 30">
+      <section class=" intro-2 ">
+        <router-outlet></router-outlet>
+      </section>
+    </mat-sidenav-content>
+
+  </mat-sidenav-container>
 </header>
 <p class="py-5 text-center">IF128</p>

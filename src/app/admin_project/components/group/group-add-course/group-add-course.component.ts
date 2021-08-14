@@ -43,7 +43,10 @@ export class GroupAddCourseComponent implements OnInit {
         startWith(''),
         map(value => {
           this.groupService.getAvailableByGroupId(this.group_id, value, event).subscribe(
-            data => this.courses = data.content
+            data => {
+              this.courses = data.content
+              this.length=data.totalElements
+            }
           )
           return this._filter(value)
         })

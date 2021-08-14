@@ -4,6 +4,7 @@ import {AuthService} from '../../auth/auth.service';
 import {TokenStorageService} from '../../auth/token-storage.service';
 import {AppConfig} from "../../common/app-config";
 import {ActivatedRoute} from "@angular/router";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,7 @@ export class LoginComponent implements OnInit {
   facebookURL = AppConfig.FACEBOOK_AUTH_URL;
   githubURL = AppConfig.GITHUB_AUTH_URL;
 
-  constructor(private authService: AuthService, private tokenStorage: TokenStorageService, private route: ActivatedRoute) { }
+  constructor(private authService: AuthService, private tokenStorage: TokenStorageService,private router :Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
     const token: string = <string>this.route.snapshot.queryParamMap.get('token');
@@ -54,6 +55,11 @@ export class LoginComponent implements OnInit {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getAuthorities();
+        if(this.roles.includes('ROLE_ADMIN')){
+          this.router.navigate(['/admin/users']).then(()=>{
+            window.location.reload()
+          })
+        }
         this.reloadPage();
       },
       error => {
