@@ -37,7 +37,7 @@ export class UserListComponent implements OnInit {
           data: this.user
         });
         dialogRef.afterClosed().subscribe(result => {
-          window.location.reload();
+          this.ngOnInit();
         });
       }
     );
@@ -53,5 +53,8 @@ export class UserListComponent implements OnInit {
       }
     );
     return event;
+  }
+  public getSimpleRolesName(user:UserDto):string{
+    return <string>user.roles?.map(r => r.substring(5)).join(', ');
   }
 }

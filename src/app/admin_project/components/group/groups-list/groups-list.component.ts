@@ -40,16 +40,16 @@ export class GroupsListComponent implements OnInit {
       data: id
     });
     dialogRef.afterClosed().subscribe(result => {
-      window.location.reload();
+      this.ngOnInit();
     });
   }
 
   addGroup() {
     const dialogRef = this.dialog.open(CreateGroupComponent, {
-      width: '80%'
+      width: '50%'
     });
     dialogRef.afterClosed().subscribe(result => {
-      window.location.reload();
+      this.ngOnInit();
     });
   }
 

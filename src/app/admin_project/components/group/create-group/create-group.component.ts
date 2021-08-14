@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {GroupDto} from '../../../models/group-dto.model';
 import {GroupService} from '../../../services/group.service';
 
@@ -10,14 +10,26 @@ import {GroupService} from '../../../services/group.service';
 export class CreateGroupComponent implements OnInit {
   form: any = {};
   group?: GroupDto;
-  constructor(private groupService:GroupService) { }
+  message: string = '';
+  errorMessage?: string;
+  constructor(private groupService: GroupService) {
+  }
 
   ngOnInit(): void {
   }
 
   onSubmit() {
-    this.group=new GroupDto();
-    this.group.groupName=this.form.groupName;
-    this.groupService.create(this.group.groupName).subscribe(data=>data);
+    this.group = new GroupDto();
+    this.group.groupName = this.form.groupName;
+    this.groupService.create(this.group.groupName).subscribe(data => {
+      this.message='A group with name : '+this.form.groupName+' was successfully created!';
+    },error => {
+      this.errorMessage=error.error.message;
+    });
+  }
+
+
+  onSearchChange($event: Event) {
+    this.errorMessage='';
   }
 }

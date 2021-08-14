@@ -33,6 +33,7 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
   </table>
+  <div *ngIf="students.length === 0" class="admin-empty-records">No records found</div>
   <mat-paginator
     #paginator
     [length]="length"
