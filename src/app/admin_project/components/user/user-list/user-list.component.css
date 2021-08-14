@@ -26,4 +26,7 @@ mat-paginator {
 td {
   cursor: pointer;
 }
+.admin-empty-records{
+  text-align: center;
+}
 

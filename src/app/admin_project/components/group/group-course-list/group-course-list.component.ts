@@ -12,7 +12,7 @@ import {GroupDto} from '../../../models/group-dto.model';
 export class GroupCourseListComponent implements OnInit {
   courses: CourseDto[] = [];
   group?: GroupDto;
-  displayedColumns: string[] = ['Id', 'Course Name', 'Description', 'Start Date', 'End Date', 'Teacher First Name', 'Teacher Last Name'];
+  displayedColumns: string[] = ['Id', 'Course Name', 'Description', 'Start Date', 'End Date', 'Teacher First Name', 'Teacher Last Name', 'Actions'];
 
   constructor(private groupService: GroupService, private route: ActivatedRoute) {
   }
@@ -29,4 +29,7 @@ export class GroupCourseListComponent implements OnInit {
     })
   }
 
+  removeCourse( course: CourseDto) {
+    this.groupService.removeCourse(this.group?.id,course).subscribe(d=>this.ngOnInit())
+  }
 }
