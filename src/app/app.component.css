@@ -1,6 +1,6 @@
 
 .intro-header {
-  height: 160vh !important;
+  height: 170vh !important;
   background: url("src/assets/images/background_img.jpg") no-repeat center;
   background-size: cover;
   display: block;
@@ -61,7 +61,6 @@
 }
 .mat-sidenav-container {
   background: transparent;
-  height: 100%;
 }
 
 .active-link {
