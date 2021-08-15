@@ -4,7 +4,6 @@ import {RouterModule, Routes} from '@angular/router';
 import {HomeComponent} from './components/home/home.component';
 import {LoginComponent} from './components/login/login.component';
 import {RegisterComponent} from './components/register/register.component';
-import {AuthGuardService} from './auth/auth-guard.service';
 import {CoursesListComponent} from './components/courses-list/courses-list.component';
 import {AddCourseComponent} from './components/add-course/add-course.component';
 import {CourseDetailsComponent} from './components/course-details/course-details.component';
@@ -14,8 +13,9 @@ import {GroupsListComponent} from './admin_project/components/group/groups-list/
 import {StudentListComponent} from './admin_project/components/group/student-list/student-list.component';
 import {GroupCourseListComponent} from './admin_project/components/group/group-course-list/group-course-list.component';
 import {AddFeedbackrequestComponent} from './components/add-feedbackrequest/add-feedbackrequest.component';
-import {GroupAddCourseComponent} from "./admin_project/components/group/group-add-course/group-add-course.component";
-import {RoleGuardService} from "./auth/role-guard.service";
+import {GroupAddCourseComponent} from './admin_project/components/group/group-add-course/group-add-course.component';
+import {RoleGuardService} from './auth/role-guard.service';
+import {EnrolledStudentListComponent} from './admin_project/components/group/enrolled-student-list/enrolled-student-list.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -28,6 +28,9 @@ const routes: Routes = [
       expectedRole: 'ROLE_ADMIN'
     }},
   {path: 'admin/groups/:id/available-courses', component: GroupAddCourseComponent, canActivate: [RoleGuardService],data:{
+      expectedRole: 'ROLE_ADMIN'
+    }},
+  {path: 'admin/groups/:id/enrolled-students', component: EnrolledStudentListComponent, canActivate: [RoleGuardService],data:{
       expectedRole: 'ROLE_ADMIN'
     }},
   {path: 'admin/students', component: StudentListComponent, canActivate: [RoleGuardService],data:{

@@ -1,53 +1,113 @@
-<button mat-icon-button class="close-button" [mat-dialog-close]="true">
-  <mat-icon class="close-icon" color="warn">close</mat-icon>
-</button>
-<mat-grid-list cols="2" rowHeight="1:1">
-  <mat-grid-tile-header>{{group.groupName}}</mat-grid-tile-header>
-  <mat-grid-tile>
-    <mat-card class="example-card">
-      <mat-card-header>
-        <mat-card-title>Enrolled students:</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <mat-selection-list #enrolled>
-          <cdk-virtual-scroll-viewport itemSize="60" class="example-viewport">
-            <mat-list-option *cdkVirtualFor="let student of enrolledStudents; templateCacheSize: 0" class="example-item"
-                             [value]="student">
-              {{student.id}}  {{student.firstName}} {{student.lastName}}
-
-            </mat-list-option>
-          </cdk-virtual-scroll-viewport>
-        </mat-selection-list>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-stroked-button (click)="removeStudents(enrolled.selectedOptions.selected)"> Remove
-          students
-        </button>
-      </mat-card-actions>
-    </mat-card>
+<h4 style="text-align: center">Group: {{group.groupName}}</h4>
+<div class="container">
+  <div class="column">
+    <form >
+      <mat-icon>search</mat-icon>
+      <mat-form-field appearance="fill">
+        <mat-label *ngIf="dataSource.filteredData.length > 0 || searchEnrolled.value===''">Find by name</mat-label>
+        <mat-label *ngIf="dataSource.filteredData.length === 0 && searchEnrolled.value!==''">No matches found</mat-label>
+        <input type="text"
+               placeholder="Mike Green"
+               matInput
+               [formControl]="searchEnrolled" (input)="filterEnrolled(searchEnrolled.value)"
+        >
+      </mat-form-field>
+    </form>
+    Enrolled students
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" >
 
 
-  </mat-grid-tile>
-  <mat-grid-tile>
-    <mat-card class="example-card">
-      <mat-card-header>
-        <mat-card-title>Candidates:</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <mat-selection-list #studentCandidates>
-          <cdk-virtual-scroll-viewport itemSize="60" class="example-viewport">
-            <mat-list-option *cdkVirtualFor="let student of candidates; templateCacheSize: 0" class="example-item"
-                             [value]="student">
-              {{student.id}}  {{student.firstName}} {{student.lastName}}
+      <ng-container matColumnDef="Id">
+        <th mat-header-cell *matHeaderCellDef> Id</th>
+        <td mat-cell *matCellDef="let student"> {{student.id}} </td>
+      </ng-container>
 
-            </mat-list-option>
-          </cdk-virtual-scroll-viewport>
-        </mat-selection-list>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-stroked-button (click)="addStudents(studentCandidates.selectedOptions.selected)"> Add students</button>
-      </mat-card-actions>
-    </mat-card>
-  </mat-grid-tile>
+      <ng-container matColumnDef="First Name">
+        <th mat-header-cell *matHeaderCellDef> First name</th>
+        <td mat-cell *matCellDef="let student"> {{student.firstName}} </td>
+      </ng-container>
 
-</mat-grid-list>
+      <ng-container matColumnDef="Last Name">
+        <th mat-header-cell *matHeaderCellDef> Last Name</th>
+        <td mat-cell *matCellDef="let student"> {{student.lastName}} </td>
+      </ng-container>
+      <ng-container matColumnDef="Actions">
+        <th mat-header-cell *matHeaderCellDef> Actions</th>
+        <td mat-cell *matCellDef="let student"> <button *ngIf="group" (click)="removeStudents(student)" mat-flat-button >
+          Remove
+        </button> </td>
+      </ng-container>
+
+      <tr id="row" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr class="mat-row" *matNoDataRow>
+        <td  colspan="4" class="admin-empty-records"> No records found</td>
+      </tr>
+    </table>
+    <mat-paginator
+      #paginator
+      [length]="enrolledStudents.length"
+      [pageSizeOptions]="[5, 10, 25]"
+
+    ></mat-paginator>
+  </div>
+
+  <div class="column">
+
+    <a mat-raised-button routerLink="../.." class="back-button">
+      <mat-icon>arrow_back</mat-icon>
+      Back</a>
+     <form >
+      <mat-icon>search</mat-icon>
+      <mat-form-field appearance="fill">
+        <mat-label *ngIf="candidates.length > 0 || searchCandidates.value===''">Find by name</mat-label>
+        <mat-label *ngIf="candidates.length === 0 && searchCandidates.value!==''">No matches found</mat-label>
+
+        <input type="text"
+               placeholder="Mike Green"
+               matInput
+               [formControl]="searchCandidates" (input)="filterCandidates(searchCandidates.value)"
+               >
+      </mat-form-field>
+    </form>
+Candidates
+    <table mat-table [dataSource]="candidates" class="mat-elevation-z8">
+
+
+      <ng-container matColumnDef="Id">
+        <th mat-header-cell *matHeaderCellDef> Id</th>
+        <td mat-cell *matCellDef="let student"> {{student.userDto.id}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="First Name">
+        <th mat-header-cell *matHeaderCellDef> First name</th>
+        <td mat-cell *matCellDef="let student"> {{student.userDto.firstName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Last Name">
+        <th mat-header-cell *matHeaderCellDef> Last Name</th>
+        <td mat-cell *matCellDef="let student"> {{student.userDto.lastName}} </td>
+      </ng-container>
+      <ng-container matColumnDef="Actions">
+        <th mat-header-cell *matHeaderCellDef> Actions</th>
+        <td mat-cell *matCellDef="let student"> <button *ngIf="group" (click)="addStudents(student.userDto)" mat-flat-button >
+          Add
+        </button> </td>
+      </ng-container>
+
+      <tr id="row-candidates" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr class="mat-row" *matNoDataRow>
+        <td  colspan="4" class="admin-empty-records"> No records found</td>
+      </tr>
+    </table>
+    <mat-paginator
+      #paginator
+      [length]="candidatesLength"
+      [pageIndex]="candidatesPageIndex"
+      [pageSize]="candidatesPageSize"
+      [pageSizeOptions]="[5, 10, 25]"
+      (page)="candidatesPageEvent = getCandidates($event)"
+    ></mat-paginator>
+  </div>
+</div>
