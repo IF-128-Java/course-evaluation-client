@@ -14,8 +14,9 @@ import {GroupsListComponent} from './admin_project/components/group/groups-list/
 import {StudentListComponent} from './admin_project/components/group/student-list/student-list.component';
 import {GroupCourseListComponent} from './admin_project/components/group/group-course-list/group-course-list.component';
 import {AddFeedbackrequestComponent} from './components/add-feedbackrequest/add-feedbackrequest.component';
-import {GroupAddCourseComponent} from "./admin_project/components/group/group-add-course/group-add-course.component";
-import {RoleGuardService} from "./auth/role-guard.service";
+import {GroupAddCourseComponent} from './admin_project/components/group/group-add-course/group-add-course.component';
+import {RoleGuardService} from './auth/role-guard.service';
+import {FeedbackrequestListComponent} from './components/feedbackrequest-list/feedbackrequest-list.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -34,6 +35,9 @@ const routes: Routes = [
       expectedRole: 'ROLE_ADMIN'
     }},
   {path: 'admin/groups/:id/courses', component: GroupCourseListComponent, canActivate: [RoleGuardService],data:{
+      expectedRole: 'ROLE_ADMIN'
+    }},
+  {path: 'courses/:id/feedback_requests', component: FeedbackrequestListComponent, canActivate: [RoleGuardService],data:{
       expectedRole: 'ROLE_ADMIN'
     }},
   {path: 'courses', component: CoursesListComponent},

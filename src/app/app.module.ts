@@ -47,6 +47,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatDividerModule} from '@angular/material/divider';
 import {GroupAddCourseComponent} from './admin_project/components/group/group-add-course/group-add-course.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import { FeedbackrequestListComponent } from './components/feedbackrequest-list/feedbackrequest-list.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     AddFeedbackrequestComponent,
     GroupAddCourseComponent,
     CreateQuestionComponent,
+    FeedbackrequestListComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Course} from '../../models/course.model';
 import {CoursesService} from '../../services/courses.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-courses-list',
@@ -16,7 +17,7 @@ export class CoursesListComponent implements OnInit {
   // show = false;
   activeItem: number | undefined;
 
-  constructor(private coursesService: CoursesService) { }
+  constructor(private coursesService: CoursesService, private router: Router) { }
 
   // update(show?: number){
   //   show = !show;
@@ -59,7 +60,7 @@ export class CoursesListComponent implements OnInit {
     );
   }
 
-  showFeedbackRequest(id: number) {
-    
+  showFeedbackRequests(id: any) {
+    this.router.navigate(['/courses/'+id+'/feedback_requests'])
   }
 }
