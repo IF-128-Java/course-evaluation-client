@@ -34,7 +34,10 @@
             <br>
             Finishes on {{ course.endDate }}
             <div>
-              <button class="btn btn-success" (click)="showFeedbackRequests(course.id)">FeedbackRequests</button>
+            <a mat-stroked-button (click)="showFeedbackRequests(course.id)" class="button">
+              <mat-icon>list</mat-icon>
+              Feedback requests
+            </a>
             </div>
           </div>
         </td>
