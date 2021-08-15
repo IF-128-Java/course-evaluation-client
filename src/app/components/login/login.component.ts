@@ -36,7 +36,11 @@ export class LoginComponent implements OnInit {
       this.tokenStorage.saveToken(token);
 
       this.roles = this.tokenStorage.getAuthorities();
-      this.reloadPage()
+      if(this.roles.includes('ROLE_ADMIN')){
+        this.router.navigate(['/admin/users']).then(()=>{
+          window.location.reload()
+        })
+      }
     }
   }
 
