@@ -18,6 +18,7 @@ import {GroupAddCourseComponent} from "./admin_project/components/group/group-ad
 import {RoleGuardService} from "./auth/role-guard.service";
 import {MyGroupComponent} from './components/student/My-group/my-group.component';
 import {PassedCoursesComponent} from './components/student/Passed-courses/passed-courses.component';
+import {CurrentCoursesComponent} from './components/student/Current-courses/current-courses.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -45,7 +46,8 @@ const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'users/:id', component: UserComponent},
   {path: 'my-group', component: MyGroupComponent},
-  {path: 'passed-courses', component: PassedCoursesComponent}
+  {path: 'passed-courses', component: PassedCoursesComponent},
+  {path: 'current-courses', component: CurrentCoursesComponent}
 ];
 
 @NgModule({

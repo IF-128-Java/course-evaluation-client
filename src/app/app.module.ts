@@ -48,6 +48,7 @@ import {GroupAddCourseComponent} from './admin_project/components/group/group-ad
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MyGroupComponent} from './components/student/My-group/my-group.component';
 import {PassedCoursesComponent} from './components/student/Passed-courses/passed-courses.component';
+import {CurrentCoursesComponent} from './components/student/Current-courses/current-courses.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import {PassedCoursesComponent} from './components/student/Passed-courses/passed
     AddFeedbackrequestComponent,
     GroupAddCourseComponent,
     MyGroupComponent,
-    PassedCoursesComponent
+    PassedCoursesComponent,
+    CurrentCoursesComponent
   ],
   imports: [
     BrowserModule,
