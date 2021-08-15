@@ -17,6 +17,7 @@ import {AddFeedbackrequestComponent} from './components/add-feedbackrequest/add-
 import {GroupAddCourseComponent} from "./admin_project/components/group/group-add-course/group-add-course.component";
 import {RoleGuardService} from "./auth/role-guard.service";
 import {MyGroupComponent} from './components/student/My-group/my-group.component';
+import {PassedCoursesComponent} from './components/student/Passed-courses/passed-courses.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -43,7 +44,8 @@ const routes: Routes = [
   {path: 'add', component: AddCourseComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'users/:id', component: UserComponent},
-  {path: 'my-group', component: MyGroupComponent}
+  {path: 'my-group', component: MyGroupComponent},
+  {path: 'passed-courses', component: PassedCoursesComponent}
 ];
 
 @NgModule({

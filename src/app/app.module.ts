@@ -47,7 +47,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import {GroupAddCourseComponent} from './admin_project/components/group/group-add-course/group-add-course.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MyGroupComponent} from './components/student/My-group/my-group.component';
-
+import {PassedCoursesComponent} from './components/student/Passed-courses/passed-courses.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +70,7 @@ import {MyGroupComponent} from './components/student/My-group/my-group.component
     AddFeedbackrequestComponent,
     GroupAddCourseComponent,
     MyGroupComponent,
+    PassedCoursesComponent
   ],
   imports: [
     BrowserModule,
