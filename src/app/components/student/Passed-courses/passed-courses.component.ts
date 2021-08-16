@@ -1,8 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {MyGroupService} from '../../../services/student/my-group.service';
 import {Student} from '../../../models/student/student.model';
 import {Course} from '../../../models/student/course.model';
 import {TokenStorageService} from '../../../auth/token-storage.service';
+import {MatTableDataSource} from '@angular/material/table';
+import {MatPaginator} from '@angular/material/paginator';
+
 
 @Component({
   selector: 'app-my-courses',
@@ -12,6 +15,9 @@ import {TokenStorageService} from '../../../auth/token-storage.service';
 export class PassedCoursesComponent implements OnInit{
 
   public displayedColumns: string[] = ['Id', 'Course Name', 'Description', 'Start Date', 'End Date'];
+  @ViewChild('scheduledOrdersPaginator') paginator: MatPaginator;
+
+  listData: MatTableDataSource<any> = new MatTableDataSource<any>();
 
   courses: Course[] = [];
 
@@ -37,6 +43,8 @@ export class PassedCoursesComponent implements OnInit{
   getFinishedCoursesOfGroup(id: number): void {
     this.MyGroupService.getFinishedCoursesOfGroup(id).subscribe(data => {
         this.courses = data;
+        this.listData = new MatTableDataSource(this.courses);
+        setTimeout(() => this.listData.paginator = this.paginator);
       },
       error => {
         console.log(error);

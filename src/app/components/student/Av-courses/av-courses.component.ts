@@ -7,18 +7,18 @@ import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 
 @Component({
-  selector: 'app-my-current-courses',
-  templateUrl: './current-courses.component.html',
-  styleUrls: ['./current-courses.component.css']
+  selector: 'app-av-courses',
+  templateUrl: './av-courses.component.html',
+  styleUrls: ['./av-courses.component.css']
 })
-export class CurrentCoursesComponent implements OnInit{
-
-  public displayedColumns: string[] = ['Id', 'Course Name', 'Description', 'Start Date', 'End Date'];
-  @ViewChild('scheduledOrdersPaginator') paginator: MatPaginator;
+export class AvCoursesComponent implements OnInit {
 
   listData: MatTableDataSource<any> = new MatTableDataSource<any>();
 
   courses: Course[] = [];
+
+  public displayedColumns: string[] = ['Id', 'Course Name', 'Description', 'Start Date', 'End Date'];
+  @ViewChild('scheduledOrdersPaginator') paginator: MatPaginator;
 
   curStudent: Student = {
     id: '',
@@ -37,10 +37,11 @@ export class CurrentCoursesComponent implements OnInit{
   constructor(
     private tokenStorage: TokenStorageService,
     private MyGroupService: MyGroupService,
+
   ) { }
 
-  getCurrentCoursesOfGroup(id: number): void {
-    this.MyGroupService.getCurrentCoursesOfGroup(id).subscribe(data => {
+  getAvailableCourses(): void {
+    this.MyGroupService.getAvailableCourses().subscribe(data => {
         this.courses = data;
         this.listData = new MatTableDataSource(this.courses);
         setTimeout(() => this.listData.paginator = this.paginator);
@@ -54,7 +55,7 @@ export class CurrentCoursesComponent implements OnInit{
   getStudent(id: number): void {
     this.MyGroupService.get(id).subscribe(data => {
         this.curStudent = data;
-        this.getCurrentCoursesOfGroup(+this.curStudent.groupId);
+        this.getAvailableCourses();
       },
       error => {
         console.log(error);
