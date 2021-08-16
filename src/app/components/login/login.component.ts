@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/admin/users']).then(()=>{
           window.location.reload()
         })
-      } else {this.reloadPage();}
+      } else {window.location.href="/login"}
     }
   }
 
