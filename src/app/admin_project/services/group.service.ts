@@ -35,7 +35,7 @@ export class GroupService {
     return this.http.get<CourseDto[]>(this.url + '/' + id + '/available-courses',{params});
   }
 
-  getById(id: number): Observable<GroupDto> {
+  getById(id: number): Observable<any> {
     return this.http.get(this.url + '/' + id);
   }
 
