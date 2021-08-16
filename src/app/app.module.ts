@@ -47,6 +47,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatDividerModule} from '@angular/material/divider';
 import {GroupAddCourseComponent} from './admin_project/components/group/group-add-course/group-add-course.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import {MyGroupComponent} from './components/student/My-group/my-group.component';
+import {PassedCoursesComponent} from './components/student/Passed-courses/passed-courses.component';
+import {CurrentCoursesComponent} from './components/student/Current-courses/current-courses.component';
 import { FeedbackrequestListComponent } from './components/feedbackrequest-list/feedbackrequest-list.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
@@ -71,6 +74,9 @@ import {MatNativeDateModule} from '@angular/material/core';
     GroupCourseListComponent,
     AddFeedbackrequestComponent,
     GroupAddCourseComponent,
+    MyGroupComponent,
+    PassedCoursesComponent,
+    CurrentCoursesComponent,
     CreateQuestionComponent,
     FeedbackrequestListComponent,
   ],

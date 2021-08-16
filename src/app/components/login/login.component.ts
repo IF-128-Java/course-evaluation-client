@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {AuthLoginInfo} from '../../auth/auth-login-info';
 import {AuthService} from '../../auth/auth.service';
 import {TokenStorageService} from '../../auth/token-storage.service';
+import {AppConfig} from "../../common/app-config";
+import {ActivatedRoute} from "@angular/router";
 import {Router} from "@angular/router";
 
 @Component({
@@ -16,13 +18,29 @@ export class LoginComponent implements OnInit {
   errorMessage = '';
   roles: string[] = [];
   private loginInfo: AuthLoginInfo | undefined;
+  googleURL = AppConfig.GOOGLE_AUTH_URL;
+  facebookURL = AppConfig.FACEBOOK_AUTH_URL;
+  githubURL = AppConfig.GITHUB_AUTH_URL;
 
-  constructor(private authService: AuthService, private tokenStorage: TokenStorageService,private router :Router) { }
+  constructor(private authService: AuthService, private tokenStorage: TokenStorageService,private router :Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    const token: string = <string>this.route.snapshot.queryParamMap.get('token');
+    console.log("ngOnInit token: " + token);
+    console.log("tokenStorage.getToken: " + this.tokenStorage.getToken())
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
       this.roles = this.tokenStorage.getAuthorities();
+    } else if (token) {
+      this.isLoggedIn = true;
+      this.tokenStorage.saveToken(token);
+
+      this.roles = this.tokenStorage.getAuthorities();
+      if(this.roles.includes('ROLE_ADMIN')){
+        this.router.navigate(['/admin/users']).then(()=>{
+          window.location.reload()
+        })
+      } else {window.location.href="/login"}
     }
   }
 
@@ -33,6 +51,7 @@ export class LoginComponent implements OnInit {
 
     this.authService.attemptAuth(this.loginInfo).subscribe(
       data => {
+        console.log(data.token)
         this.tokenStorage.saveToken(data.token);
         this.tokenStorage.saveUsername(data.token);
         this.tokenStorage.saveAuthorities(data.token);
@@ -58,4 +77,5 @@ export class LoginComponent implements OnInit {
   reloadPage() {
     window.location.reload();
   }
+
 }

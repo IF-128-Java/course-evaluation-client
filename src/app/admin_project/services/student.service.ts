@@ -15,8 +15,12 @@ export class StudentService {
   constructor(private http: HttpClient) {
   }
 
-  getStudentCandidates(): Observable<StudentDto[]> {
-    return this.http.get<StudentDto[]>(this.url + '/candidates');
+  getStudentCandidates(filter: string, event: PageEvent): Observable<any> {
+    const params = new HttpParams()
+      .set('filter', filter)
+      .set('page', event.pageIndex)
+      .set('size', event.pageSize)
+    return this.http.get<StudentDto[]>(this.url + '/candidates', {params});
   }
 
   getAllStudents(event: PageEvent): Observable<any> {

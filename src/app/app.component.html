@@ -11,6 +11,13 @@
     <mat-menu class="toolbar-content" #menuGroups="matMenu" yPosition="below">
       <a mat-menu-item>Groups list</a>
     </mat-menu>
+    <button class="toolbar-content" mat-button [matMenuTriggerFor]="MenuStudent" *ngIf="roles && roles.includes('ROLE_STUDENT')">Student</button>
+    <mat-menu class="toolbar-content" #MenuStudent="matMenu" yPosition="below">
+      <a routerLink="my-group" mat-menu-item>My group</a>
+      <a routerLink="passed-courses" mat-menu-item>Passed courses</a>
+      <a routerLink="current-courses" mat-menu-item>Current courses</a>
+      <a routerLink="av-feedback" mat-menu-item>Available feedback</a>
+    </mat-menu>
     <button class="toolbar-content" mat-button [matMenuTriggerFor]="menuFeedbackRequest"
             *ngIf="roles && (roles.includes('ROLE_TEACHER') || roles.includes('ROLE_ADMIN'))">FeedbackRequest
     </button>
@@ -39,7 +46,7 @@
 
   <mat-sidenav-container class="example-container" autosize>
     <mat-sidenav *ngIf="roles && roles.includes('ROLE_ADMIN')" #sidenav mode="side"
-                 opened="{{isExpanded}}">
+                 opened="{{isExpanded}}" fixedInViewport="true" fixedTopGap="50">
       <div class="toggle">
         <mat-icon (click)="toggleMenu()">
           {{ isExpanded ? "keyboard_backspace" : "dehaze" }}
