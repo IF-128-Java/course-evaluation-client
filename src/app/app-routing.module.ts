@@ -40,9 +40,9 @@ const routes: Routes = [
   {path: 'courses/:id/feedback_requests', component: FeedbackrequestListComponent, canActivate: [RoleGuardService],data:{
       expectedRole: 'ROLE_ADMIN'
     }},
+  {path: 'feedback_request/add/:id', component: AddFeedbackrequestComponent},
   {path: 'courses', component: CoursesListComponent},
   {path: 'courses/:id', component: CourseDetailsComponent},
-  {path: 'feedback_request/add', component: AddFeedbackrequestComponent},
   {path: 'add', component: AddCourseComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'users/:id', component: UserComponent}

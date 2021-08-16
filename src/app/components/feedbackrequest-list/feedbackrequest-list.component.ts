@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FeedbackRequest} from '../../models/feedbackrequest.model';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {FeedbackrequestService} from '../../services/feedbackrequest.service';
 import {CoursesService} from '../../services/courses.service';
 import {PageEvent} from '@angular/material/paginator';
@@ -20,7 +20,7 @@ export class FeedbackrequestListComponent implements OnInit {
   length?: number;
   courseId?: number;
 
-  constructor(private feedbackRequestService: FeedbackrequestService, private route: ActivatedRoute, private courseService: CoursesService) {
+  constructor(private feedbackRequestService: FeedbackrequestService, private route: ActivatedRoute, private courseService: CoursesService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -36,6 +36,7 @@ export class FeedbackrequestListComponent implements OnInit {
   }
 
   addFeedbackRequest() {
+    this.router.navigateByUrl('feedback_request/add/' + this.courseId)
   }
 
   getFeedbackRequests(event: PageEvent) {

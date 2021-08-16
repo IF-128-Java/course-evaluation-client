@@ -12,6 +12,7 @@ import {CreateQuestionComponent} from '../create-question/create-question.compon
 import {MatDialog} from '@angular/material/dialog';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
+import {ActivatedRoute} from '@angular/router';
 
 
 @Component({
@@ -21,7 +22,6 @@ import {map, startWith} from 'rxjs/operators';
 })
 
 export class AddFeedbackrequestComponent implements OnInit {
-
   feedbackrequest: FeedbackRequest = {
     feedbackDescription: '',
     startDate: '',
@@ -38,25 +38,35 @@ export class AddFeedbackrequestComponent implements OnInit {
   removable = true;
   questionCtrl = new FormControl();
   public filteredQuestion: Observable<string[]>;
+  course? : Course;
 
   @ViewChild('questionInput') questionInput?: ElementRef<HTMLInputElement>;
 
-  constructor(private feedbackrequestService: FeedbackrequestService, private courseService: CoursesService, private questionService: QuestionService, public dialog: MatDialog) {
+  constructor(private feedbackrequestService: FeedbackrequestService, private courseService: CoursesService, private questionService: QuestionService, public dialog: MatDialog, private route: ActivatedRoute) {
     this.filteredQuestion = this.questionCtrl.valueChanges.pipe(
         startWith(null),
         map((q: string | null) => q ? this._filter(q) : this.allQuestions.map(q=>q.questionText).slice()));
   }
 
   ngOnInit(): void {
-    this.courseService.getAll().subscribe(data => {
+    this.courseService.getAll().subscribe(data =>
+    {
       this.allCourse = data;
+      this.courseService.get(parseInt(<string>this.route.snapshot.paramMap.get('id'))).subscribe(dataId=>{
+        if(dataId!=null){
+          this.allCourse = [];
+          this.allCourse.push(dataId)
+        }
+      })
     })
+
     this.questionService.getAll().subscribe(data => {
       this.allQuestions = data;
       this.patternQuestion = this.allQuestions.filter(q => q.pattern);
       this.patternQuestion.forEach(item => this.selectQuestions.add(item));
     })
   }
+
 
   onSubmit() {
     this.feedbackrequest = new FeedbackRequest(this.feedbackrequest.feedbackDescription, this.feedbackrequest.startDate, this.feedbackrequest.endDate, this.feedbackrequest.course);
