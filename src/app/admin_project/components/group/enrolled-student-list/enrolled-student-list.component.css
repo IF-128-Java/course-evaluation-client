@@ -1,39 +1,44 @@
-.example-viewport {
-  height: 200px;
-  width: 350px;
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  background-color: rgba(228, 228, 228, .6);
+}
+
+.column {
+  float: left;
+  width: 50%;
+  padding: 5px;
+  }
+
+table {
+  width: 100%;
+  background: rgba(228, 228, 228, .6);
+}
+
+th {
+  color: black;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+mat-paginator {
+  background: rgba(228, 228, 228, .6);
+  font-size: 15px;
+  font-weight: bold;
+  color: black;
+  width: 100%;
+}
+
+.admin-empty-records {
+  text-align: center;
+}
+
+.back-button {
+  background: transparent;
+  float: right;
+}
+.mat-flat-button{
   background: transparent;
 }
 
-.example-item {
-  height: 50px;
-}
-
-.mat-card:not([class*=mat-elevation-z]) {
-  box-shadow: 0 2px 1px -1px rgba(0,0,0,1),
-  0 1px 1px 0 rgba(0,0,0,1),
-  0 1px 3px 0 rgba(0,0,0,1);
-}
-
-.close-button{
-  float: right;
-  top:-24px;
-  right:-24px;
-}
-
-.close-icon {
-  transition: 1s ease-in-out;
-}
-
-.close-icon:hover {
-  transform: rotate(180deg);
-}
-
-::ng-deep .icon-outside .close-button{
-  float: right;
-  top:-52px;
-  right:-52px;
-}
-
-::ng-deep .icon-outside .mat-dialog-container {
-  overflow: unset
-}

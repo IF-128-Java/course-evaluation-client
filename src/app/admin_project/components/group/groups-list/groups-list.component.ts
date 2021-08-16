@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {GroupDto} from '../../../models/group-dto.model';
 import {GroupService} from '../../../services/group.service';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
-import {EnrolledStudentListComponent} from '../enrolled-student-list/enrolled-student-list.component';
 import {CreateGroupComponent} from '../create-group/create-group.component';
 import {Router} from '@angular/router';
 import {PageEvent} from '@angular/material/paginator';
@@ -35,13 +34,7 @@ export class GroupsListComponent implements OnInit {
 
 
   openStudents(id: number) {
-    const dialogRef = this.dialog.open(EnrolledStudentListComponent, {
-      width: '80%',
-      data: id
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      this.ngOnInit();
-    });
+   this.router.navigateByUrl('admin/groups/' + id + '/enrolled-students')
   }
 
   addGroup() {
