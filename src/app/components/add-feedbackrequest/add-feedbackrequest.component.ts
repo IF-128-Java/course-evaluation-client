@@ -7,7 +7,7 @@ import {QuestionService} from '../../services/question.service';
 import {Question} from '../../models/question.model';
 import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
 import {MatChipInputEvent} from '@angular/material/chips';
-import {FormControl} from '@angular/forms';
+import {FormControl, FormGroup} from '@angular/forms';
 import {CreateQuestionComponent} from '../create-question/create-question.component';
 import {MatDialog} from '@angular/material/dialog';
 import {Observable} from 'rxjs';
@@ -39,6 +39,10 @@ export class AddFeedbackrequestComponent implements OnInit {
   questionCtrl = new FormControl();
   public filteredQuestion: Observable<string[]>;
   course? : Course;
+  range = new FormGroup({
+    start: new FormControl(),
+    end: new FormControl()
+  });
 
   @ViewChild('questionInput') questionInput?: ElementRef<HTMLInputElement>;
 
@@ -59,7 +63,6 @@ export class AddFeedbackrequestComponent implements OnInit {
         }
       })
     })
-
     this.questionService.getAll().subscribe(data => {
       this.allQuestions = data;
       this.patternQuestion = this.allQuestions.filter(q => q.pattern);
@@ -69,7 +72,7 @@ export class AddFeedbackrequestComponent implements OnInit {
 
 
   onSubmit() {
-    this.feedbackrequest = new FeedbackRequest(this.feedbackrequest.feedbackDescription, this.feedbackrequest.startDate, this.feedbackrequest.endDate, this.feedbackrequest.course);
+    this.feedbackrequest = new FeedbackRequest(this.feedbackrequest.feedbackDescription, this.range.value.start, this.range.value.end, this.feedbackrequest.course);
     this.feedbackrequestService.create(this.feedbackrequest).subscribe(
       () => {
         this.feedbackrequestService.addQuestionToFeedbackRequest(this.feedbackrequest.id, Array.from(this.selectQuestions)).subscribe()
