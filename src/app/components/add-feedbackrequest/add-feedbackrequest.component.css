@@ -11,3 +11,8 @@
   margin-bottom: 16px;
   margin-right: 16px;
 }
+
+.back-button {
+  background: transparent;
+  float: right;
+}

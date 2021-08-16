@@ -38,7 +38,7 @@ export class AddFeedbackrequestComponent implements OnInit {
   removable = true;
   questionCtrl = new FormControl();
   public filteredQuestion: Observable<string[]>;
-  course? : Course;
+  courseId? : number;
   range = new FormGroup({
     start: new FormControl(),
     end: new FormControl()
@@ -56,10 +56,11 @@ export class AddFeedbackrequestComponent implements OnInit {
     this.courseService.getAll().subscribe(data =>
     {
       this.allCourse = data;
-      this.courseService.get(parseInt(<string>this.route.snapshot.paramMap.get('id'))).subscribe(dataId=>{
-        if(dataId!=null){
+      this.courseService.get(parseInt(<string>this.route.snapshot.paramMap.get('id'))).subscribe(singleData=>{
+        if(singleData!=null){
           this.allCourse = [];
-          this.allCourse.push(dataId)
+          this.courseId=singleData.id;
+          this.allCourse.push(singleData)
         }
       })
     })
