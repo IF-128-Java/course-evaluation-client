@@ -19,6 +19,7 @@ import {EnrolledStudentListComponent} from './admin_project/components/group/enr
 import {MyGroupComponent} from './components/student/My-group/my-group.component';
 import {PassedCoursesComponent} from './components/student/Passed-courses/passed-courses.component';
 import {CurrentCoursesComponent} from './components/student/Current-courses/current-courses.component';
+import {AvCoursesComponent} from './components/student/Av-courses/av-courses.component';
 
 
 const routes: Routes = [
@@ -51,7 +52,8 @@ const routes: Routes = [
   {path: 'users/:id', component: UserComponent},
   {path: 'my-group', component: MyGroupComponent},
   {path: 'passed-courses', component: PassedCoursesComponent},
-  {path: 'current-courses', component: CurrentCoursesComponent}
+  {path: 'current-courses', component: CurrentCoursesComponent},
+  {path: 'av-courses', component: AvCoursesComponent}
 ];
 
 @NgModule({

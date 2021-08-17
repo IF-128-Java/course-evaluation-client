@@ -49,6 +49,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MyGroupComponent} from './components/student/My-group/my-group.component';
 import {PassedCoursesComponent} from './components/student/Passed-courses/passed-courses.component';
 import {CurrentCoursesComponent} from './components/student/Current-courses/current-courses.component';
+import {AvCoursesComponent} from './components/student/Av-courses/av-courses.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import {CurrentCoursesComponent} from './components/student/Current-courses/curr
     GroupAddCourseComponent,
     MyGroupComponent,
     PassedCoursesComponent,
-    CurrentCoursesComponent
+    CurrentCoursesComponent,
+    AvCoursesComponent
   ],
   imports: [
     BrowserModule,
