@@ -14,6 +14,7 @@ export class MyGroupService{
   private usersUrl1 = AppConfig.API_ENDPOINT + 'students/group/';
   private usersUrl2 = AppConfig.API_ENDPOINT + 'courses/group/';
   private usersUrl3 = AppConfig.API_ENDPOINT + 'courses/current/group/';
+  private usersUrl4 = AppConfig.API_ENDPOINT + 'students/course/';
 
   constructor(private  http: HttpClient) { }
 
@@ -23,6 +24,10 @@ export class MyGroupService{
 
   getStudentsByGroupId(id: number): Observable<any> {
     return this.http.get(`${this.usersUrl1}${id}`, {responseType: 'json'});
+  }
+
+  getStudentsByCourseId(id: number): Observable<any> {
+    return this.http.get(`${this.usersUrl4}${id}`, {responseType: 'json'});
   }
 
   getFinishedCoursesOfGroup(id: number): Observable<any> {

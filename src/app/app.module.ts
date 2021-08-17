@@ -53,6 +53,7 @@ import {CurrentCoursesComponent} from './components/student/Current-courses/curr
 import { FeedbackrequestListComponent } from './components/feedbackrequest-list/feedbackrequest-list.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
+import { FeedbacksListComponent } from './components/feedbacks-list/feedbacks-list.component';
 
 @NgModule({
   declarations: [
@@ -79,6 +80,7 @@ import {MatNativeDateModule} from '@angular/material/core';
     CurrentCoursesComponent,
     CreateQuestionComponent,
     FeedbackrequestListComponent,
+    FeedbacksListComponent,
   ],
   imports: [
     BrowserModule,

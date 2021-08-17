@@ -12,7 +12,7 @@ import {PageEvent} from '@angular/material/paginator';
 })
 export class FeedbackrequestListComponent implements OnInit {
   public feedbackRequest: FeedbackRequest[] = [];
-  displayedColumns: string[] = ['Id', 'Description', 'Start Date', 'End Date'];
+  displayedColumns: string[] = ['Id', 'Description', 'Start Date', 'End Date', 'Review'];
   courseName?: string;
   pageEvent?: PageEvent;
   pageIndex?: number;
@@ -49,5 +49,9 @@ export class FeedbackrequestListComponent implements OnInit {
       }
     );
     return event;
+  }
+
+  showFeedbacks(courseId: any, feedbackRequestId: any) {
+    this.router.navigateByUrl('/courses/'+courseId+'/feedback_requests/' + feedbackRequestId)
   }
 }

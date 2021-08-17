@@ -20,6 +20,7 @@ import {EnrolledStudentListComponent} from './admin_project/components/group/enr
 import {MyGroupComponent} from './components/student/My-group/my-group.component';
 import {PassedCoursesComponent} from './components/student/Passed-courses/passed-courses.component';
 import {CurrentCoursesComponent} from './components/student/Current-courses/current-courses.component';
+import {FeedbacksListComponent} from './components/feedbacks-list/feedbacks-list.component';
 
 
 const routes: Routes = [
@@ -48,6 +49,7 @@ const routes: Routes = [
       expectedRole: 'ROLE_ADMIN'
     }},
   {path: 'feedback_request/add/:id', component: AddFeedbackrequestComponent},
+  {path: 'courses/:id/feedback_requests/:feedbackRequestsId', component: FeedbacksListComponent},
   {path: 'courses', component: CoursesListComponent},
   {path: 'courses/:id', component: CourseDetailsComponent},
   {path: 'add', component: AddCourseComponent},
