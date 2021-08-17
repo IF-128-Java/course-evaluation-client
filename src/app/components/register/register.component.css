@@ -58,6 +58,10 @@ h3{
   margin-top: 5px;
 }
 
+.alert-warning{
+  background: transparent;
+}
+
 /** form footer **/
 .form-footer{
   padding: 24px;

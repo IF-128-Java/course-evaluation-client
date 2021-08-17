@@ -7,12 +7,12 @@ export class SignUpInfo {
   role: string[];
 
 
-  constructor(firstName: string, lastName: string, email: string, password: string, passwordMatches: string) {
+  constructor(firstName: string, lastName: string, email: string, password: string, confirmPassword: string) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
     this.password = password;
-    this.confirmPassword = passwordMatches;
+    this.confirmPassword = confirmPassword;
     this.role = ['ROLE_STUDENT'];
   }
 }
