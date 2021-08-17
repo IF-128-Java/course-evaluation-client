@@ -54,6 +54,7 @@ import { FeedbackrequestListComponent } from './components/feedbackrequest-list/
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import { FeedbacksListComponent } from './components/feedbacks-list/feedbacks-list.component';
+import { FeedbackAnswerComponent } from './components/feedback-answer/feedback-answer.component';
 
 @NgModule({
   declarations: [
@@ -81,6 +82,7 @@ import { FeedbacksListComponent } from './components/feedbacks-list/feedbacks-li
     CreateQuestionComponent,
     FeedbackrequestListComponent,
     FeedbacksListComponent,
+    FeedbackAnswerComponent,
   ],
   imports: [
     BrowserModule,

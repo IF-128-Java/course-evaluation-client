@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Feedback} from '../../models/feedback.model';
 import {FeedbackService} from '../../services/feedback.service';
 import {PageEvent} from '@angular/material/paginator';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Student} from '../../models/student/student.model';
 import {MyGroupService} from '../../services/student/my-group.service';
 
@@ -12,16 +12,16 @@ import {MyGroupService} from '../../services/student/my-group.service';
   styleUrls: ['./feedbacks-list.component.css']
 })
 export class FeedbacksListComponent implements OnInit {
-  displayedColumns: string[] = ['Id', 'Date', 'Student', 'Comment', 'Rate'];
+  displayedColumns: string[] = ['Id', 'Date', 'Student', 'Comment', 'Action'];
   public feedbacks: Feedback[] = [];
-  private feedbackRequestId?: number;
+  feedbackRequestId?: number;
   pageEvent?: PageEvent;
   pageIndex?: number;
   pageSize?: number;
   length?: number;
-  private courseId?: any;
+  courseId?: any;
 
-  constructor(private feedbackService: FeedbackService, private route: ActivatedRoute, private groupService: MyGroupService) {
+  constructor(private feedbackService: FeedbackService, private route: ActivatedRoute, private groupService: MyGroupService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -57,8 +57,12 @@ export class FeedbacksListComponent implements OnInit {
             feedback!.studentName = st.email;
           })
         }
-
       }
     )
   }
+
+  showAnswer(feedbackId:any) {
+      this.router.navigateByUrl('/courses/'+this.courseId+'/feedback_requests/'+this.feedbackRequestId+'/feedback/'+feedbackId)
+  }
+
 }

@@ -20,4 +20,8 @@ export class FeedbackService {
       .set('size', event.pageSize)
     return this.http.get(this.feedbackUrl + 'feedback_request/' + requestId, {params});
   }
+
+  getFeedbackById(id:any): Observable<any>{
+    return this.http.get(this.feedbackUrl + id)
+  }
 }

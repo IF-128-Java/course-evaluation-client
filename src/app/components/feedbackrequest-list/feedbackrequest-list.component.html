@@ -33,7 +33,7 @@
 
     <ng-container matColumnDef="Actions">
       <th mat-header-cell *matHeaderCellDef> Actions</th>
-      <td mat-cell *matCellDef="let feedbackRequest"><a mat-raised-button (click)="showFeedbacks(courseId,feedbackRequest.id)" mat-flat-button >
+      <td mat-cell *matCellDef="let feedbackRequest"><a mat-raised-button (click)="showFeedbacks(feedbackRequest.id)" mat-flat-button >
         Feedbacks
       </a></td>
     </ng-container>
