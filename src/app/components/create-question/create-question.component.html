@@ -6,7 +6,17 @@
       <label>Question text</label>
   <br>
       <mat-form-field class="form-control">
-        <textarea matInput placeholder="Your question text" name="questionText" [(ngModel)]="question.questionText"></textarea>
+        <textarea matInput placeholder="Your question text" required minlength="5" maxlength="250" name="questionText" [(ngModel)]="question.questionText" #questionText="ngModel" >
+          </textarea>
+        <div *ngIf="questionText.invalid && (questionText.dirty || questionText.touched)"
+             class="alert">
+          <mat-error *ngIf="questionText.errors?.required">
+            Question is required.
+          </mat-error >
+          <mat-error  *ngIf="questionText.errors?.minlength">
+            Question must be between 5 and 250 any symbols.
+          </mat-error >
+        </div>
       </mat-form-field>
   <br>
       <label>Pattern Question? </label>

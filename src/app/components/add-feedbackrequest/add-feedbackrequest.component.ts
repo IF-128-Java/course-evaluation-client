@@ -13,6 +13,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import {ActivatedRoute} from '@angular/router';
+import {DateAdapter} from '@angular/material/core';
 
 
 @Component({
@@ -47,12 +48,14 @@ export class AddFeedbackrequestComponent implements OnInit {
 
   @ViewChild('questionInput') questionInput?: ElementRef<HTMLInputElement>;
 
-  constructor(private feedbackrequestService: FeedbackrequestService, private courseService: CoursesService, private questionService: QuestionService, public dialog: MatDialog, private route: ActivatedRoute) {
+  constructor(private feedbackrequestService: FeedbackrequestService, private courseService: CoursesService, private questionService: QuestionService, public dialog: MatDialog, private route: ActivatedRoute, private dateAdapter: DateAdapter<Date>) {
+    this.dateAdapter.setLocale('en-GB');
     this.filteredQuestion = this.questionCtrl.valueChanges.pipe(
         startWith(null),
         map((q: string | null) => q ? this._filter(q) : this.allQuestions.map(q=>q.questionText).slice()));
       const currentTime = new Date().getTime();
     this.minDate = new Date(currentTime);
+
   }
 
   ngOnInit(): void {
