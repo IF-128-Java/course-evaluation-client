@@ -19,3 +19,11 @@
   height: 100%;
   margin: 0 auto;
 }
+
+.defaultPersonPhoto{
+  background: #e4e5e7;
+  font-size: 100px;
+  color: #adb3b6;
+  text-align: center;
+  line-height: 280px;
+}
