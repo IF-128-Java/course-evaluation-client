@@ -43,6 +43,7 @@ export class AddFeedbackrequestComponent implements OnInit {
     start: new FormControl(),
     end: new FormControl()
   });
+  minDate: Date;
 
   @ViewChild('questionInput') questionInput?: ElementRef<HTMLInputElement>;
 
@@ -50,6 +51,8 @@ export class AddFeedbackrequestComponent implements OnInit {
     this.filteredQuestion = this.questionCtrl.valueChanges.pipe(
         startWith(null),
         map((q: string | null) => q ? this._filter(q) : this.allQuestions.map(q=>q.questionText).slice()));
+      const currentTime = new Date().getTime();
+    this.minDate = new Date(currentTime);
   }
 
   ngOnInit(): void {
