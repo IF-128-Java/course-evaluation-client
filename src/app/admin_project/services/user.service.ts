@@ -15,6 +15,8 @@ const httpOptions = {
 export class UserService {
 
   private url = AppConfig.API_ADMIN_ENDPOINT + 'users';
+  private teachersUrl = AppConfig.API_ENDPOINT + 'teachers';
+
 
   constructor(private http: HttpClient) {
   }
@@ -33,5 +35,9 @@ export class UserService {
   addRoles(user: UserDto): Observable<any> {
     return this.http.patch(this.url + '/add-roles', user, httpOptions)
   }
+  getTeachers(): Observable<any> {
+    return this.http.get(this.teachersUrl)
+  }
+
 
 }

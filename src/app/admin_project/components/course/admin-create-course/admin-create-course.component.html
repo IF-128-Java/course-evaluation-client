@@ -1,1 +1,100 @@
-<p>admin-create-course works!</p>
+<button mat-icon-button class="close-button" [mat-dialog-close]="true">
+  <mat-icon class="close-icon" color="warn">close</mat-icon>
+</button>
+Course creation
+<form name="form" class="form-body" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+  <mat-form-field class="justifier">
+    <input matInput placeholder="Course name" class="form-input" name="courseName"
+           [(ngModel)]="form.courseName" #courseName="ngModel" required minlength="3" maxlength="30"
+           (input)="onSearchChange($event)">
+    <div *ngIf="courseName.invalid && (courseName.dirty || courseName.touched)"
+         class="alert">
+      <div *ngIf="courseName.errors?.required">
+        Group name is required.
+      </div>
+      <div *ngIf="courseName.errors?.minlength">
+        Course name must have at least 3 symbols.
+      </div>
+    </div>
+    <div class="alert" *ngIf="errorMessage">
+      {{errorMessage}}
+    </div>
+  </mat-form-field>
+
+  <span class="space-between"></span>
+  <mat-form-field class="justifier">
+    <input matInput placeholder="Description" class="form-input" name="description"
+           [(ngModel)]="form.description" #description="ngModel" required minlength="3"
+           (input)="onSearchChange($event)">
+    <div *ngIf="description.invalid && (description.dirty || description.touched)"
+         class="alert">
+      <div *ngIf="description.errors?.required">
+        Description is required.
+      </div>
+      <div *ngIf="description.errors?.minlength">
+        Description must have at least 3 symbols.
+      </div>
+    </div>
+    <div class="alert" *ngIf="errorMessage">
+      {{errorMessage}}
+    </div>
+  </mat-form-field>
+
+  <mat-form-field class="justifier">
+    <input matInput placeholder="Start Date" type="datetime-local" class="form-input" name="startDate"
+           [(ngModel)]="form.startDate" #startDate="ngModel">
+    <div *ngIf="startDate.invalid && (startDate.dirty || startDate.touched)"
+         class="alert">
+      <div *ngIf="startDate.errors?.required">
+        Start Date is required.
+      </div>
+    </div>
+    <div class="alert" *ngIf="errorMessage">
+      {{errorMessage}}
+    </div>
+  </mat-form-field>
+
+  <span class="space-between"></span>
+  <mat-form-field class="justifier">
+    <input matInput placeholder="End Date" type="datetime-local" class="form-input" name="endDate"
+           [(ngModel)]="form.endDate" #endDate="ngModel">
+    <div *ngIf="endDate.invalid && (endDate.dirty || endDate.touched)"
+         class="alert">
+      <div *ngIf="endDate.errors?.required">
+        End Date is required.
+      </div>
+    </div>
+    <div class="alert" *ngIf="errorMessage">
+      {{errorMessage}}
+    </div>
+  </mat-form-field>
+
+  <span class="space-between"></span>
+
+  <mat-form-field class="justifier" appearance="fill">
+    <mat-label>Teacher</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let teacher of teachers" [value]="teacher.id">
+        {{teacher.lastName}}  {{teacher.lastName}}
+      </mat-option>
+    </mat-select>
+<!--    <div *ngIf="teacher.invalid && (teacher.dirty || teacher.touched)"-->
+<!--         class="alert">-->
+<!--      <div *ngIf="teacher.errors?.required">-->
+<!--        Teacher is required.-->
+<!--      </div>-->
+<!--    </div>-->
+    <div class="alert" *ngIf="errorMessage">
+      {{errorMessage}}
+    </div>
+  </mat-form-field>
+
+  <div class="form-footer">
+
+    <button mat-stroked-button class="btn custom-btn">
+      <mat-icon>add</mat-icon>
+      Create
+    </button>
+  </div>
+
+</form>
