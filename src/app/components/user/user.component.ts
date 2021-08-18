@@ -63,10 +63,10 @@ export class UserComponent implements OnInit{
         if(data.profilePicture === null){
           this.initials = data.firstName.charAt(0) + data.lastName.charAt(0);
           this.defaultProfilePicture = true;
-          this.currentUser = data;
         }else{
           this.profilePicture = 'data:image/jpeg;base64,' + data.profilePicture;
         }
+        this.currentUser = data;
       },
       error => {
         console.log(error);
