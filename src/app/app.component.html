@@ -16,7 +16,7 @@
       <a routerLink="my-group" mat-menu-item>My group</a>
       <a routerLink="passed-courses" mat-menu-item>Passed courses</a>
       <a routerLink="current-courses" mat-menu-item>Current courses</a>
-      <a routerLink="av-feedback" mat-menu-item>Available feedback</a>
+      <a routerLink="av-courses" mat-menu-item>Available courses</a>
     </mat-menu>
     <span class="spacer"></span>
     <div class="toolbar-content" *ngIf="!username" id="reg-login-links">
@@ -66,7 +66,7 @@
           </button>
         </p>
         <p>
-          <button mat-button class="menu-button">
+          <button routerLinkActive="active-link" routerLink="admin/courses" mat-button class="menu-button">
             <mat-icon svgIcon="courses"></mat-icon>
             <span *ngIf="isExpanded">Courses</span>
           </button>

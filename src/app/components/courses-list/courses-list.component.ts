@@ -14,14 +14,10 @@ export class CoursesListComponent implements OnInit {
   currentCourse: Course = {};
   currentIndex = 1;
   courseName = '';
-  // show = false;
   activeItem: number | undefined;
 
   constructor(private coursesService: CoursesService, private router: Router) { }
 
-  // update(show?: number){
-  //   show = !show;
-  // }
   onSelect(item: number): void {
     this.activeItem = item;
   }
@@ -47,7 +43,7 @@ export class CoursesListComponent implements OnInit {
 
   searchCourseName(): void {
     this.currentCourse = {};
-    this.currentIndex = -1;
+    this.currentIndex = 1;
 
     this.coursesService.findByCourseName(this.courseName).subscribe(
       data => {

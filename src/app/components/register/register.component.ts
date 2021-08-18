@@ -15,6 +15,9 @@ export class RegisterComponent implements OnInit {
   isSignUpFailed = false;
   errorMessage = '';
 
+  hidePassword: boolean = true;
+  hideConfirmPassword: boolean = true;
+
   constructor(private authService: AuthService) {
   }
 
@@ -27,7 +30,8 @@ export class RegisterComponent implements OnInit {
       this.form.firstName,
       this.form.lastName,
       this.form.email,
-      this.form.password);
+      this.form.password,
+      this.form.confirmPassword);
     this.authService.signUp(this.signupInfo).subscribe(
       data => {
         console.log(data);
@@ -36,7 +40,12 @@ export class RegisterComponent implements OnInit {
       },
       error => {
         console.log(error);
-        this.errorMessage = error.error.message;
+        if (error.error.fields) {
+          this.errorMessage = error.error.fields.Passwords
+        }
+        else if (error.error.message) {
+          this.errorMessage = error.error.message;
+        } else this.errorMessage = error.error;
         this.isSignUpFailed = true;
       }
     );

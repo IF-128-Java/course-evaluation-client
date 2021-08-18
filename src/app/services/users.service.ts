@@ -24,4 +24,8 @@ export class UsersService{
   updatePassword(data: any): Observable<any> {
     return this.http.patch(`${this.usersUrl}update-password`, data, httpOptions);
   }
+
+  updatePicture(data: any): Observable<any> {
+    return this.http.patch(`${this.usersUrl}profile-picture`, data);
+  }
 }

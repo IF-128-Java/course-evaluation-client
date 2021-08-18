@@ -50,6 +50,9 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MyGroupComponent} from './components/student/My-group/my-group.component';
 import {PassedCoursesComponent} from './components/student/Passed-courses/passed-courses.component';
 import {CurrentCoursesComponent} from './components/student/Current-courses/current-courses.component';
+import {AvCoursesComponent} from './components/student/Av-courses/av-courses.component';
+import { AdminCourseListComponent } from './admin_project/components/course/admin-course-list/admin-course-list.component';
+import {DialogForUpdateUserProfilePicture} from "./components/user/update-profile-picture-dialog/dialog-for-update-user-profile-picture.component";
 import { FeedbackrequestListComponent } from './components/feedbackrequest-list/feedbackrequest-list.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
@@ -83,6 +86,10 @@ import { FeedbackAnswerComponent } from './components/feedback-answer/feedback-a
     FeedbackrequestListComponent,
     FeedbacksListComponent,
     FeedbackAnswerComponent,
+    CurrentCoursesComponent,
+    AvCoursesComponent,
+    DialogForUpdateUserProfilePicture,
+    AdminCourseListComponent,
   ],
   imports: [
     BrowserModule,

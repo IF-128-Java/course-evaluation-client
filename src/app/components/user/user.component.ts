@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {UsersService} from '../../services/users.service';
-import {User} from '../../models/user.model';
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {MatDialog} from "@angular/material/dialog";
+import {DialogForUpdateUserProfilePicture} from "./update-profile-picture-dialog/dialog-for-update-user-profile-picture.component";
 
 @Component({
   selector: 'app-user',
@@ -11,12 +12,13 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 })
 export class UserComponent implements OnInit{
 
-  currentUser: User = {
+  currentUser = {
     firstName: '',
     lastName: '',
     email: '',
-    roles: [],
   };
+
+  profilePicture: string  = '';
 
   profileComponent: boolean = true;
   updateComponent: boolean = false;
@@ -30,14 +32,14 @@ export class UserComponent implements OnInit{
 
   oldPassword: string = '';
   newPassword: string = '';
-  repeatNewPassword: string = '';
+  confirmNewPassword: string = '';
 
   invalidOldPassword: boolean = false;
   invalidNewPassword: boolean = false;
 
   hideOldPassword: boolean = true
   hideNewPassword: boolean = true
-  hideRepeatNewPassword: boolean = true
+  hideConfirmNewPassword: boolean = true
 
   OldPasswordNotMatch: boolean = false;
   newPasswordsNotMatch: boolean = false;
@@ -49,17 +51,29 @@ export class UserComponent implements OnInit{
   constructor(
     private userService: UsersService,
     private route: ActivatedRoute,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private dialog: MatDialog
   ) { }
 
   getUser(id: number): void {
     this.userService.get(id).subscribe(data => {
         this.currentUser = data;
+        if(data.profilePicture === null){
+          this.profilePicture = "assets/images/profile_card_img.png";
+        }else{
+          this.profilePicture = 'data:image/jpeg;base64,' + data.profilePicture;
+        }
       },
       error => {
         console.log(error);
       }
     );
+  }
+
+  openDialog(): void {
+    this.dialog.open(DialogForUpdateUserProfilePicture, {
+      width: '370px',
+    })
   }
 
   update(): void{
@@ -96,7 +110,7 @@ export class UserComponent implements OnInit{
     this.invalidOldPassword = false;
     this.invalidNewPassword = false;
 
-    if(this.newPassword !== this.repeatNewPassword){
+    if(this.newPassword !== this.confirmNewPassword){
       this.newPasswordsNotMatch = true;
       return;
     }
@@ -113,7 +127,7 @@ export class UserComponent implements OnInit{
         console.log(error);
 
         this.newPassword = '';
-        this.repeatNewPassword = '';
+        this.confirmNewPassword = '';
         this.newPasswordsNotMatch = false;
 
         if(error.error.error === 'InvalidOldPasswordException'){
@@ -163,11 +177,11 @@ export class UserComponent implements OnInit{
 
     this.oldPassword = '';
     this.newPassword = '';
-    this.repeatNewPassword = '';
+    this.confirmNewPassword = '';
 
     this.hideOldPassword = true;
     this.hideNewPassword = true;
-    this.hideRepeatNewPassword = true;
+    this.hideConfirmNewPassword = true;
 
     this.invalidOldPassword = false;
     this.invalidNewPassword = false;
