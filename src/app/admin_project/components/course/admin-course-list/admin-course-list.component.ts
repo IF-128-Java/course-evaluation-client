@@ -18,11 +18,16 @@ export class AdminCourseListComponent implements OnInit {
   pageIndex?: number;
   pageSize?: number;
   length?: number;
+  activeItem: number | undefined;
 
   constructor(private coursesService: CoursesService,
               public dialog: MatDialog,
               public dialogModRef: MatDialogRef<any>,
               private router: Router) { }
+
+  onSelect(item: number): void {
+    this.activeItem = item;
+  }
 
   ngOnInit(): void {
     var event = new PageEvent();
