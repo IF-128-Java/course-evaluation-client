@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {Feedback} from '../../models/feedback.model';
-import {FeedbackService} from '../../services/feedback.service';
+import {Feedback} from '../../../models/feedback.model';
+import {FeedbackService} from '../../../services/feedback.service';
 import {PageEvent} from '@angular/material/paginator';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Student} from '../../models/student/student.model';
-import {MyGroupService} from '../../services/student/my-group.service';
+import {Student} from '../../../models/student/student.model';
+import {MyGroupService} from '../../../services/student/my-group.service';
 
 @Component({
   selector: 'app-feedbacks-list',
@@ -62,7 +62,7 @@ export class FeedbacksListComponent implements OnInit {
   }
 
   showAnswer(feedbackId:any) {
-      this.router.navigateByUrl('/courses/'+this.courseId+'/feedback_requests/'+this.feedbackRequestId+'/feedback/'+feedbackId)
+      this.router.navigateByUrl('/admin/courses/'+this.courseId+'/feedback_requests/'+this.feedbackRequestId+'/feedback/'+feedbackId)
   }
 
 }

@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {FeedbackRequest} from '../../models/feedbackrequest.model';
+import {FeedbackRequest} from '../../../models/feedbackrequest.model';
 import {ActivatedRoute, Router} from '@angular/router';
-import {FeedbackrequestService} from '../../services/feedbackrequest.service';
-import {CoursesService} from '../../services/courses.service';
+import {FeedbackrequestService} from '../../../services/feedbackrequest.service';
+import {CoursesService} from '../../../services/courses.service';
 import {PageEvent} from '@angular/material/paginator';
 
 @Component({
@@ -36,7 +36,7 @@ export class FeedbackrequestListComponent implements OnInit {
   }
 
   addFeedbackRequest() {
-    this.router.navigateByUrl('feedback_request/add/' + this.courseId)
+    this.router.navigateByUrl('admin/courses/feedback_request/add/' + this.courseId)
   }
 
   getFeedbackRequests(event: PageEvent) {
@@ -52,6 +52,6 @@ export class FeedbackrequestListComponent implements OnInit {
   }
 
   showFeedbacks(feedbackRequestId: any) {
-    this.router.navigateByUrl('/courses/'+this.courseId+'/feedback_requests/' + feedbackRequestId)
+    this.router.navigateByUrl('/admin/courses/'+this.courseId+'/feedback_requests/' + feedbackRequestId)
   }
 }

@@ -55,8 +55,4 @@ export class CoursesListComponent implements OnInit {
       }
     );
   }
-
-  showFeedbackRequests(id: any) {
-    this.router.navigate(['/courses/'+id+'/feedback_requests'])
-  }
 }

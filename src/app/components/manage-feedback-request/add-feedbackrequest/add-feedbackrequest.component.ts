@@ -1,10 +1,10 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {FeedbackRequest} from '../../models/feedbackrequest.model';
-import {FeedbackrequestService} from '../../services/feedbackrequest.service';
-import {CoursesService} from '../../services/courses.service';
-import {Course} from '../../models/course.model';
-import {QuestionService} from '../../services/question.service';
-import {Question} from '../../models/question.model';
+import {FeedbackRequest} from '../../../models/feedbackrequest.model';
+import {FeedbackrequestService} from '../../../services/feedbackrequest.service';
+import {CoursesService} from '../../../services/courses.service';
+import {Course} from '../../../models/course.model';
+import {QuestionService} from '../../../services/question.service';
+import {Question} from '../../../models/question.model';
 import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
 import {MatChipInputEvent} from '@angular/material/chips';
 import {FormControl, FormGroup} from '@angular/forms';

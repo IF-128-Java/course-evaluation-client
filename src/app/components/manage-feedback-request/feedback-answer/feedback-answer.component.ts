@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {FeedbackService} from '../../services/feedback.service';
+import {FeedbackService} from '../../../services/feedback.service';
 import {ActivatedRoute} from '@angular/router';
-import {Answers} from '../../models/answer.model';
-import {QuestionService} from '../../services/question.service';
-import {Question} from '../../models/question.model';
+import {Answers} from '../../../models/answer.model';
+import {QuestionService} from '../../../services/question.service';
+import {Question} from '../../../models/question.model';
 
 @Component({
   selector: 'app-feedback-answer',
