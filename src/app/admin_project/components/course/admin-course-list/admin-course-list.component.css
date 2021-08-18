@@ -1,0 +1,39 @@
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  background-color: rgba(228, 228, 228, .6);
+}
+
+table {
+  background: transparent;
+  width: 100%;
+}
+
+th {
+  color: black;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.button {
+  margin-bottom: 16px;
+  margin-right: 16px;
+}
+
+.delete-button {
+  background: transparent;
+}
+
+mat-paginator {
+  background: transparent;
+  font-size: 15px;
+  font-weight: bold;
+  color: black;
+}
+.admin-empty-records{
+  text-align: center;
+}
