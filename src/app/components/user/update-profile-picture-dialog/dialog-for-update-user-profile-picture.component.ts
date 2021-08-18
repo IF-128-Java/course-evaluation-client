@@ -32,7 +32,6 @@ export class DialogForUpdateUserProfilePicture {
 
     const uploadImageData = new FormData();
 
-    // @ts-ignore
     uploadImageData.append('image', this.selectedFile, this.selectedFile.name);
 
     this.userService.updatePicture(uploadImageData).subscribe(() => {
