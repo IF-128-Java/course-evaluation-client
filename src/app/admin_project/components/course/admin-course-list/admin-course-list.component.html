@@ -25,7 +25,7 @@
 
     <ng-container matColumnDef="Description">
       <th mat-header-cell *matHeaderCellDef>Description</th>
-      <td class="pointer" mat-cell *matCellDef="let course, let i = index" > {{ course.description }}
+      <td class="pointer" mat-cell *matCellDef="let course, let i = index" (click)="onSelect(i)"> {{ course.description }}
         <div *ngIf="activeItem == i">
           <hr>
           <span>{{ course.teacherDto.lastName }}  {{ course.teacherDto.firstName }}</span>
@@ -37,7 +37,7 @@
 
     <ng-container matColumnDef="Start Date">
       <th mat-header-cell *matHeaderCellDef>Start Date</th>
-      <td class="pointer" mat-cell *matCellDef="let course, let i = index"> {{ course.startDate | slice:0:10 }}
+      <td class="pointer" mat-cell *matCellDef="let course, let i = index" (click)="onSelect(i)"> {{ course.startDate | slice:0:10 }}
         <div *ngIf="activeItem == i">
           <hr>
           <span>{{ course.startDate | slice:11}}</span>
@@ -49,7 +49,7 @@
 
     <ng-container matColumnDef="End Date">
       <th mat-header-cell *matHeaderCellDef>End Date</th>
-      <td class="pointer" mat-cell *matCellDef="let course, let i = index"> {{ course.endDate | slice:0:10  }}
+      <td class="pointer" mat-cell *matCellDef="let course, let i = index" (click)="onSelect(i)"> {{ course.endDate | slice:0:10  }}
         <div *ngIf="activeItem == i">
           <hr>
           <span>{{ course.endDate | slice:11}}</span>
@@ -61,7 +61,7 @@
 
     <ng-container matColumnDef="Actions">
       <th mat-header-cell *matHeaderCellDef> Actions</th>
-      <td class="pointer" mat-cell *matCellDef="let course, let i = index">
+      <td class="pointer" mat-cell *matCellDef="let course, let i = index" (click)="onSelect(i)">
 <!--        <button *ngIf="group" mat-flat-button (click)="deleteGroup(group.id)" class="delete-button">-->
 <!--          <mat-icon>delete</mat-icon>-->
 <!--          Delete-->
