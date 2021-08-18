@@ -27,7 +27,7 @@ export class AdminCourseListComponent implements OnInit {
   ngOnInit(): void {
     var event = new PageEvent();
     event.pageIndex = 0;
-    event.pageSize = 25;
+    event.pageSize = 10;
     this.getCourses(event)
   }
 
