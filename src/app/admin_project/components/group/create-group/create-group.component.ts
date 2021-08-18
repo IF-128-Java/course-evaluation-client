@@ -25,11 +25,13 @@ export class CreateGroupComponent implements OnInit {
       this.message='A group with name : '+this.form.groupName+' was successfully created!';
     },error => {
       this.errorMessage=error.error.message;
+      this.message='';
     });
   }
 
 
   onSearchChange($event: Event) {
     this.errorMessage='';
+    this.message='';
   }
 }
