@@ -1,0 +1,10 @@
+<h1 mat-dialog-title class="text-center">Update Picture</h1>
+<div mat-dialog-content>
+  <div *ngIf="emptyImage" class="form-text text-center mb-1">Image can not be empty!</div>
+  <div *ngIf="invalidImageType" class="form-text text-center mb-1">Download only PNG or JPEG!</div>
+    <input class="form-control form-control-sm" id="formFileSm" type="file" (change)="onFileChanged($event)" accept="image/png, image/jpeg">
+</div>
+<div class="text-center mt-3">
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button (click)="upload()">Save</button>
+</div>

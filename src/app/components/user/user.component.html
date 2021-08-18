@@ -1,8 +1,15 @@
 <div class="container">
-  <div class="text-center">
+  <div class="text-center" style="margin-right: 55px">
     <mat-spinner *ngIf="currentUser.email === ''" class="spinner"></mat-spinner>
     <div *ngIf="profileComponent && currentUser.email !== ''">
-      <h3 class="mt-5 mb-5">User Profile!</h3>
+      <h3 class="mt-5 mb-4">User Profile!</h3>
+      <div class="photo">
+        <div *ngIf="defaultProfilePicture" class="defaultPersonPhoto">{{initials}}</div>
+        <img *ngIf="!defaultProfilePicture" class="personPhoto" [src]="profilePicture">
+      </div>
+      <div>
+        <button (click)="openDialog()" mat-stroked-button class="mt-4 mb-3">Update Picture</button>
+      </div>
       <mat-divider></mat-divider>
       <div class="mt-1">
         <label><strong>Email:</strong></label> {{ currentUser.email }}
@@ -18,8 +25,8 @@
       <mat-divider></mat-divider>
 
       <div class="text-center mt-3">
-        <button (click)="showUpdateComponent()" mat-stroked-button type="submit" class="m-2">Update</button>
-        <button (click)="showUpdatePasswordComponent()" mat-stroked-button type="reset" class="m-2">Update Password</button>
+        <button (click)="showUpdateComponent()" mat-stroked-button class="m-2">Update</button>
+        <button (click)="showUpdatePasswordComponent()" mat-stroked-button class="m-2">Update Password</button>
       </div>
     </div>
 
@@ -74,10 +81,10 @@
         <div *ngIf="newPasswordsNotMatch" class="form-text text-center mb-1">New passwords have to match!</div>
         <div *ngIf="invalidNewPassword" class="form-text text-center mb-1">New Password is mandatory!</div>
         <mat-form-field appearance="fill" class="input-width">
-          <mat-label>Repeat New Password</mat-label>
-          <input [(ngModel)]="repeatNewPassword" matInput [type]="hideRepeatNewPassword ? 'password' : 'text'" placeholder="Repeat your New Password">
-          <button mat-icon-button matSuffix (click)="hideRepeatNewPassword = !hideRepeatNewPassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideRepeatNewPassword">
-            <mat-icon>{{hideRepeatNewPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          <mat-label>Confirm New Password</mat-label>
+          <input [(ngModel)]="confirmNewPassword" matInput [type]="hideConfirmNewPassword ? 'password' : 'text'" placeholder="Confirm your New Password">
+          <button mat-icon-button matSuffix (click)="hideConfirmNewPassword = !hideConfirmNewPassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideConfirmNewPassword">
+            <mat-icon>{{hideConfirmNewPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
         </mat-form-field>
       </div>

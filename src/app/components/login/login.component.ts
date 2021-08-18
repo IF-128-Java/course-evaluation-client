@@ -26,8 +26,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     const token: string = <string>this.route.snapshot.queryParamMap.get('token');
-    console.log("ngOnInit token: " + token);
-    console.log("tokenStorage.getToken: " + this.tokenStorage.getToken())
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
       this.roles = this.tokenStorage.getAuthorities();

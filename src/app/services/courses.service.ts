@@ -11,14 +11,23 @@ const httpOptions = {headers: new HttpHeaders({'Content-Type': 'application/json
 export class CoursesService {
 
   private coursesUrl = AppConfig.API_ENDPOINT + 'courses/';
+  private teachersUrl = AppConfig.API_ENDPOINT + 'teachers';
   constructor(private  http: HttpClient) { }
 
   getAll(): Observable<any> {
     return this.http.get(this.coursesUrl);
   }
 
+  getTeachers(): Observable<any> {
+    return this.http.get(this.teachersUrl)
+  }
+
   get(id: number): Observable<any> {
     return this.http.get(`${this.coursesUrl}${id}`);
+  }
+
+  getTeacherById(id: number): Observable<any> {
+    return this.http.get(`${this.teachersUrl}/${id}`);
   }
 
   create(data: any): Observable<any> {
