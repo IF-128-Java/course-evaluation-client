@@ -21,3 +21,6 @@ mat-paginator {
   font-weight: bold;
   color: black;
 }
+.admin-empty-records{
+  text-align: center;
+}

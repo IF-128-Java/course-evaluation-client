@@ -1,0 +1,61 @@
+<div class="submit-form">
+  <form name="form" (ngSubmit)="f.form.valid && onSubmit()" *ngIf="!saved" #f="ngForm" novalidate>
+    <div class="form-group">
+      <label>Description</label>
+      <input class="form-control" name="feedbackDescription" [(ngModel)]="feedbackrequest.feedbackDescription"/>
+    </div>
+    <div class="form-group">
+      <label>Start Date</label>
+      <input class="form-control" type="datetime-local" name="startDate" [(ngModel)]="feedbackrequest.startDate"/>
+    </div>
+    <div class="form-group">
+      <label>End Date</label>
+      <input class="form-control" type="datetime-local" name="endDate" [(ngModel)]="feedbackrequest.endDate"/>
+    </div>
+    <div>
+    <label>Course</label>
+    </div>
+    <mat-form-field appearance="outline">
+      <mat-label>Select course</mat-label>
+      <mat-select [(ngModel)]="feedbackrequest.course" name="course">
+        <mat-option *ngFor="let course of allCourse" [value]="course.id">
+          {{course.courseName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="example-chip-list" appearance="fill">
+      <mat-label>Choice question</mat-label>
+      <mat-chip-list #chipList aria-label="Question selection">
+        <mat-chip
+          *ngFor="let question of selectQuestions"
+          [selectable]="selectable"
+          [removable]="removable"
+          (removed)="remove(question)">
+          {{question.questionText}}
+          <mat-icon matChipRemove *ngIf="!question.pattern">cancel</mat-icon>
+        </mat-chip>
+        <input
+          placeholder="New question..."
+          #questionInput
+          [formControl]="questionCtrl"
+          [matAutocomplete]="auto"
+          [matChipInputFor]="chipList"
+          (matChipInputTokenEnd)="add($event)">
+      </mat-chip-list>
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+        <mat-option *ngFor="let question of allQuestions" [value]="question">
+          {{question.questionText}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
+    <div class="form-group">
+      <button class="btn btn-primary btn-block">Save</button>
+    </div>
+  </form>
+  <div *ngIf="saved"><h3> {{feedbackrequest.feedbackDescription}} has added!</h3>
+  <div class="form-group mt-5" >
+    <button class="btn btn-primary btn-block" (click)="reloadPage()">Add new feedback request</button>
+  </div>
+  </div>
+</div>

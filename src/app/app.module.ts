@@ -14,7 +14,7 @@ import {JWT_OPTIONS, JwtHelperService} from '@auth0/angular-jwt';
 import {GroupsListComponent} from './admin_project/components/group/groups-list/groups-list.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
+import {MatIconModule, MatIconRegistry} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatMenuModule} from '@angular/material/menu';
 import {UserListComponent} from './admin_project/components/user/user-list/user-list.component';
@@ -36,7 +36,20 @@ import {CreateGroupComponent} from './admin_project/components/group/create-grou
 import {EnrolledStudentListComponent} from './admin_project/components/group/enrolled-student-list/enrolled-student-list.component';
 import {StudentListComponent} from './admin_project/components/group/student-list/student-list.component';
 import {GroupCourseListComponent} from './admin_project/components/group/group-course-list/group-course-list.component';
-import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {AddFeedbackrequestComponent} from './components/add-feedbackrequest/add-feedbackrequest.component';
+import {MatSelectModule} from '@angular/material/select';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatDividerModule} from '@angular/material/divider';
+import {GroupAddCourseComponent} from './admin_project/components/group/group-add-course/group-add-course.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MyGroupComponent} from './components/student/My-group/my-group.component';
+import {PassedCoursesComponent} from './components/student/Passed-courses/passed-courses.component';
+import {CurrentCoursesComponent} from './components/student/Current-courses/current-courses.component';
+import {AvCoursesComponent} from './components/student/Av-courses/av-courses.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +69,12 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     CreateGroupComponent,
     StudentListComponent,
     GroupCourseListComponent,
+    AddFeedbackrequestComponent,
+    GroupAddCourseComponent,
+    MyGroupComponent,
+    PassedCoursesComponent,
+    CurrentCoursesComponent,
+    AvCoursesComponent
   ],
   imports: [
     BrowserModule,
@@ -63,12 +82,12 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     AppRoutingModule, HttpClientModule,
     FormsModule,
     BrowserAnimationsModule, MatDialogModule,
-    MatButtonModule, MatIconModule, MatInputModule, MatToolbarModule, MatMenuModule, MatTableModule, MatTooltipModule, MatCheckboxModule, ReactiveFormsModule, MatCardModule, MatListModule, MatGridListModule, ScrollingModule, MatPaginatorModule,
+    MatDividerModule, MatSnackBarModule, MatProgressSpinnerModule, MatButtonModule, MatIconModule, MatInputModule, MatToolbarModule, MatMenuModule, MatTableModule, MatTooltipModule, MatCheckboxModule, ReactiveFormsModule, MatCardModule, MatListModule, MatGridListModule, ScrollingModule, MatPaginatorModule, MatSelectModule, MatAutocompleteModule, MatChipsModule, MatSidenavModule,
   ],
   providers: [httpInterceptorProviders, {provide: JWT_OPTIONS, useValue: JWT_OPTIONS}, JwtHelperService, {
     provide: MatDialogRef,
     useValue: {}
-  },],
+  }, MatIconRegistry],
   bootstrap: [AppComponent]
 })
 export class AppModule {

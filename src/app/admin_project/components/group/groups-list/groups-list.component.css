@@ -10,6 +10,7 @@ table {
 }
 
 th {
+  color: black;
   font-size: 15px;
   font-weight: bold;
 }
@@ -32,4 +33,7 @@ mat-paginator {
   font-size: 15px;
   font-weight: bold;
   color: black;
+}
+.admin-empty-records{
+  text-align: center;
 }

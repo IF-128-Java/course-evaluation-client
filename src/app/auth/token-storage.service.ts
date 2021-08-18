@@ -29,6 +29,9 @@ export class TokenStorageService {
   }
 
   public getUsername(): string {
+    if (localStorage.getItem(AppConfig.TOKEN_KEY)) {
+      return JSON.parse(this.decodeToken(this.getToken())).sub;
+    }
     return <string>localStorage.getItem(AppConfig.USERNAME_KEY);
   }
 
@@ -51,6 +54,9 @@ export class TokenStorageService {
   }
 
   public getId(): string{
+    if (localStorage.getItem(AppConfig.TOKEN_KEY)) {
+      return JSON.parse(this.decodeToken(this.getToken())).id;
+    }
     return <string>localStorage.getItem(AppConfig.ID_KEY);
   }
 
