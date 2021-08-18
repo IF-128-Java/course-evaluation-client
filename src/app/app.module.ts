@@ -51,6 +51,7 @@ import {PassedCoursesComponent} from './components/student/Passed-courses/passed
 import {CurrentCoursesComponent} from './components/student/Current-courses/current-courses.component';
 import {AvCoursesComponent} from './components/student/Av-courses/av-courses.component';
 import { AdminCourseListComponent } from './admin_project/components/course/admin-course-list/admin-course-list.component';
+import {DialogForUpdateUserProfilePicture} from "./components/user/update-profile-picture-dialog/dialog-for-update-user-profile-picture.component";
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import { AdminCourseListComponent } from './admin_project/components/course/admi
     PassedCoursesComponent,
     CurrentCoursesComponent,
     AvCoursesComponent,
-    AdminCourseListComponent
+    DialogForUpdateUserProfilePicture,
+    AdminCourseListComponent,
   ],
   imports: [
     BrowserModule,
