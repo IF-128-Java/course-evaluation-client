@@ -39,6 +39,11 @@
             </a>
           </p>
         </div>
+        <div class="alert alert-warning text-center" *ngIf="f.submitted && isLoginFailed">
+          <mat-error>
+            Login failed!<br />{{ errorMessage }}
+          </mat-error>
+        </div>
       </form>
     </div>
   </div>
