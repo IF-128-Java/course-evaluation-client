@@ -20,6 +20,7 @@ import {MyGroupComponent} from './components/student/My-group/my-group.component
 import {PassedCoursesComponent} from './components/student/Passed-courses/passed-courses.component';
 import {CurrentCoursesComponent} from './components/student/Current-courses/current-courses.component';
 import {AvCoursesComponent} from './components/student/Av-courses/av-courses.component';
+import {AdminCourseListComponent} from "./admin_project/components/course/admin-course-list/admin-course-list.component";
 
 
 const routes: Routes = [
@@ -42,6 +43,9 @@ const routes: Routes = [
       expectedRole: 'ROLE_ADMIN'
     }},
   {path: 'admin/groups/:id/courses', component: GroupCourseListComponent, canActivate: [RoleGuardService],data:{
+      expectedRole: 'ROLE_ADMIN'
+    }},
+  {path: 'admin/courses', component: AdminCourseListComponent, canActivate: [RoleGuardService],data:{
       expectedRole: 'ROLE_ADMIN'
     }},
   {path: 'courses', component: CoursesListComponent},

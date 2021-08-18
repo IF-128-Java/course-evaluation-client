@@ -50,6 +50,7 @@ import {MyGroupComponent} from './components/student/My-group/my-group.component
 import {PassedCoursesComponent} from './components/student/Passed-courses/passed-courses.component';
 import {CurrentCoursesComponent} from './components/student/Current-courses/current-courses.component';
 import {AvCoursesComponent} from './components/student/Av-courses/av-courses.component';
+import { AdminCourseListComponent } from './admin_project/components/course/admin-course-list/admin-course-list.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import {AvCoursesComponent} from './components/student/Av-courses/av-courses.com
     MyGroupComponent,
     PassedCoursesComponent,
     CurrentCoursesComponent,
-    AvCoursesComponent
+    AvCoursesComponent,
+    AdminCourseListComponent
   ],
   imports: [
     BrowserModule,
