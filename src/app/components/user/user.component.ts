@@ -20,6 +20,9 @@ export class UserComponent implements OnInit{
 
   profilePicture: string  = '';
 
+  defaultProfilePicture: boolean = false;
+  initials: string  = '';
+
   profileComponent: boolean = true;
   updateComponent: boolean = false;
   updatePasswordComponent: boolean = false;
@@ -57,12 +60,13 @@ export class UserComponent implements OnInit{
 
   getUser(id: number): void {
     this.userService.get(id).subscribe(data => {
-        this.currentUser = data;
         if(data.profilePicture === null){
-          this.profilePicture = "assets/images/profile_card_img.png";
+          this.initials = data.firstName.charAt(0) + data.lastName.charAt(0);
+          this.defaultProfilePicture = true;
         }else{
           this.profilePicture = 'data:image/jpeg;base64,' + data.profilePicture;
         }
+        this.currentUser = data;
       },
       error => {
         console.log(error);
