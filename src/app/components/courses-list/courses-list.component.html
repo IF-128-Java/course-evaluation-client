@@ -24,7 +24,8 @@
         <td>{{ course.courseName }}
           <div *ngIf="activeItem == i">
             <hr>
-            Teacher: {{ course.teacher_id }}
+            Teacher: <br>
+            <span style="font: bold">{{ course.lastName }}  {{ course.firstName }}</span>
           </div>
         </td>
         <td>{{ course.description }}

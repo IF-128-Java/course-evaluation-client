@@ -5,4 +5,7 @@ export class Course {
   startDate?: any;
   endDate?: any;
   teacher_id?: any;
+  firstName?: string;
+  lastName?: string;
+  roles?: any[];
 }
