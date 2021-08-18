@@ -37,3 +37,12 @@ mat-paginator {
 .admin-empty-records{
   text-align: center;
 }
+.id-column{
+  min-width: 50px
+}
+.name-column{
+  min-width: 150px
+}
+.date-column{
+  min-width: 100px
+}

@@ -52,6 +52,7 @@ import {PassedCoursesComponent} from './components/student/Passed-courses/passed
 import {CurrentCoursesComponent} from './components/student/Current-courses/current-courses.component';
 import {AvCoursesComponent} from './components/student/Av-courses/av-courses.component';
 import {AdminCourseListComponent} from './admin_project/components/course/admin-course-list/admin-course-list.component';
+import {AdminCreateCourseComponent} from './admin_project/components/course/admin-create-course/admin-create-course.component';
 import {DialogForUpdateUserProfilePicture} from "./components/user/update-profile-picture-dialog/dialog-for-update-user-profile-picture.component";
 import {GroupNotEmptyDialogComponent} from './admin_project/components/group/group-not-empty-dialog/group-not-empty-dialog.component';
 import {FeedbackrequestListComponent} from './components/manage-feedback-request/feedbackrequest-list/feedbackrequest-list.component';
@@ -59,7 +60,6 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import {FeedbacksListComponent} from './components/manage-feedback-request/feedbacks-list/feedbacks-list.component';
 import {FeedbackAnswerComponent} from './components/manage-feedback-request/feedback-answer/feedback-answer.component';
-
 
 @NgModule({
   declarations: [
@@ -90,8 +90,9 @@ import {FeedbackAnswerComponent} from './components/manage-feedback-request/feed
     FeedbackAnswerComponent,
     CurrentCoursesComponent,
     AvCoursesComponent,
-    DialogForUpdateUserProfilePicture,
     AdminCourseListComponent,
+    AdminCreateCourseComponent
+    DialogForUpdateUserProfilePicture,
     GroupNotEmptyDialogComponent,
   ],
   imports: [

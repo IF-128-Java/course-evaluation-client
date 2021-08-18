@@ -1,5 +1,5 @@
 <div class="container">
-  <p>Courses list</p>
+  <h4>Courses list</h4>
 <!--  <a mat-stroked-button (click)="addGroup()" class="button">-->
 <!--    <mat-icon>add</mat-icon>-->
 <!--    Add Group-->
@@ -9,17 +9,12 @@
 
     <ng-container matColumnDef="Id">
       <th mat-header-cell *matHeaderCellDef> Id</th>
-      <td class="pointer" mat-cell *matCellDef="let course, let i = index"> {{ course.id }} </td>
+      <td class="pointer id-column" mat-cell *matCellDef="let course, let i = index"> {{ course.id }} </td>
     </ng-container>
 
     <ng-container matColumnDef="Course Name">
       <th mat-header-cell *matHeaderCellDef> Group name</th>
-      <td class="pointer" mat-cell *matCellDef="let course, let i = index" (click)="onSelect(i)"> {{ course.courseName }}<br>
-      <div *ngIf="activeItem == i">
-        <hr>
-        <span>Teacher:</span>
-
-      </div>
+      <td class="pointer name-column" mat-cell *matCellDef="let course, let i = index" (click)="onSelect(i)"> {{ course.courseName }}<br>
       </td>
     </ng-container>
 
@@ -28,7 +23,7 @@
       <td class="pointer" mat-cell *matCellDef="let course, let i = index" (click)="onSelect(i)"> {{ course.description }}
         <div *ngIf="activeItem == i">
           <hr>
-          <span>{{ course.teacherDto.lastName }}  {{ course.teacherDto.firstName }}</span>
+          <span>Teacher: {{ course.teacherDto.lastName }}  {{ course.teacherDto.firstName }}</span>
 
         </div>
 
@@ -37,9 +32,8 @@
 
     <ng-container matColumnDef="Start Date">
       <th mat-header-cell *matHeaderCellDef>Start Date</th>
-      <td class="pointer" mat-cell *matCellDef="let course, let i = index" (click)="onSelect(i)"> {{ course.startDate | slice:0:10 }}
+      <td class="pointer date-column" mat-cell *matCellDef="let course, let i = index" (click)="onSelect(i)"> {{ course.startDate | slice:0:10 }}
         <div *ngIf="activeItem == i">
-          <hr>
           <span>{{ course.startDate | slice:11}}</span>
 
         </div>
@@ -49,9 +43,8 @@
 
     <ng-container matColumnDef="End Date">
       <th mat-header-cell *matHeaderCellDef>End Date</th>
-      <td class="pointer" mat-cell *matCellDef="let course, let i = index" (click)="onSelect(i)"> {{ course.endDate | slice:0:10  }}
+      <td class="pointer" style="min-width: 90px" mat-cell *matCellDef="let course, let i = index" (click)="onSelect(i)"> {{ course.endDate | slice:0:10  }}
         <div *ngIf="activeItem == i">
-          <hr>
           <span>{{ course.endDate | slice:11}}</span>
 
         </div>
