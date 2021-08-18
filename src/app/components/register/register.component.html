@@ -36,24 +36,42 @@
             [(ngModel)]="form.email" #email="ngModel"
             required
             email
-
           />
         </mat-form-field>
         <mat-form-field class="justifier">
           <input
-            type="password"
+            [type]="hidePassword ? 'password' : 'text'"
             class="form-input"
             name="password"
             matInput placeholder="Password"
             [(ngModel)]="form.password" #password="ngModel" required
-            required
           />
+          <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+        <mat-form-field class="justifier">
+          <input
+            [type]="hideConfirmPassword ? 'password' : 'text'"
+            class="form-input"
+            name="confirmPassword"
+            matInput placeholder="Confirm password"
+            [(ngModel)]="form.confirmPassword" #confirmPassword="ngModel" required
+          />
+          <button mat-icon-button matSuffix (click)="hideConfirmPassword = !hideConfirmPassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideConfirmPassword">
+            <mat-icon>{{hideConfirmPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
         </mat-form-field>
         <div class="form-footer">
           <button mat-stroked-button class="btn custom-btn">
             <mat-icon>add</mat-icon>
             Sign Up
           </button>
+        </div>
+        <div class="alert alert-warning text-center" *ngIf="f.submitted && isSignUpFailed">
+          <mat-error>
+            Signup failed!<br />{{ errorMessage }}
+          </mat-error>
         </div>
         <div class="additional-link">
           <a routerLink="/login">Already have an Account? <strong>Login</strong></a>
