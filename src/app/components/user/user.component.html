@@ -57,7 +57,7 @@
     <div *ngIf="updatePasswordComponent">
       <h3 class="mt-5">Update Password!</h3>
       <div class="mt-5">
-        <div *ngIf="OldPasswordNotMatch" class="form-text text-center mb-1 error-message">Old password doesn't match!</div>
+        <div *ngIf="oldPasswordNotMatch" class="form-text text-center mb-1 error-message">Old password doesn't match!</div>
         <div *ngIf="invalidOldPassword" class="form-text text-center mb-1 error-message">Old Password is mandatory!</div>
         <mat-form-field appearance="fill" class="input-width">
           <mat-label>Old Password</mat-label>
