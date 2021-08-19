@@ -23,4 +23,7 @@ export class CoursesService {
   createCourse(data: any): Observable<any>{
     return this.http.post(this.url, data, httpOptions);
   }
+  editCourse(id: any, data: any){
+    return this.http.patch(`${this.url}/${id}`, data, httpOptions)
+  }
 }
