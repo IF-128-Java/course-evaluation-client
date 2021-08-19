@@ -41,24 +41,25 @@ export class FeedbacksListComponent implements OnInit {
         this.pageIndex = response.pageIndex;
         this.pageSize = response.size;
         this.length = response.totalElements;
-        this.getUsers(event);
+        this.getUsers();
       }
     );
     return event;
   }
 
-  getUsers(event: PageEvent) {
-    this.userService.getUserList('',event).subscribe( response =>{
-        let students: Student[] = response.content;
+  getUsers() {
+    this.groupService.getStudentsByCourseId(this.courseId).subscribe(
+      response => {
+        let students: Student[] = response;
+        console.log(students);
         if (students != undefined) {
           students!.forEach(st => {
-            let feedback = this.feedbacks.find(f => f.studentId == st.id)
+            let feedback = this.feedbacks.find(f => f.studentId == st.id);
             feedback!.studentName = st.firstName + ' ' + st.lastName;
           })
         }
-      }
-    )
-  }
+        console.log(students);
+  })}
 
   showAnswer(feedbackId:any) {
       this.router.navigateByUrl('/admin/courses/'+this.courseId+'/feedback_requests/'+this.feedbackRequestId+'/feedback/'+feedbackId)
