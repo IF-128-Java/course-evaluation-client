@@ -5,6 +5,7 @@ import {CoursesService} from '../../../services/courses.service';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {Router} from '@angular/router';
 import {AdminCreateCourseComponent} from '../admin-create-course/admin-create-course.component';
+import {AdminEditCourseComponent} from "../admin-edit-course/admin-edit-course.component";
 
 @Component({
   selector: 'app-admin-course-list',
@@ -54,6 +55,12 @@ export class AdminCourseListComponent implements OnInit {
 
   addCourse() {
     const dialogRef = this.dialog.open(AdminCreateCourseComponent, { width: '50%' });
+    dialogRef.afterClosed().subscribe(result => { this.ngOnInit();
+    });
+  }
+
+  editCourse(id: any) {
+    const dialogRef = this.dialog.open(AdminEditCourseComponent, { width: '50%' });
     dialogRef.afterClosed().subscribe(result => { this.ngOnInit();
     });
   }

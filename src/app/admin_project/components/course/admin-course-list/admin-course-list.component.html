@@ -19,9 +19,7 @@
         <div *ngIf="activeItem == i">
           <hr>
           <span>Teacher: {{ course.teacherDto.lastName }}  {{ course.teacherDto.firstName }}</span>
-
         </div>
-
       </td>
     </ng-container>
 
@@ -38,7 +36,7 @@
 
     <ng-container matColumnDef="End Date">
       <th mat-header-cell *matHeaderCellDef>End Date</th>
-      <td class="pointer" style="min-width: 90px" mat-cell *matCellDef="let course, let i = index" (click)="onSelect(i)"> {{ course.endDate | slice:0:10  }}
+      <td class="pointer date-column" mat-cell *matCellDef="let course, let i = index" (click)="onSelect(i)"> {{ course.endDate | slice:0:10  }}
         <div *ngIf="activeItem == i">
           <span>{{ course.endDate | slice:11}}</span>
 
@@ -49,15 +47,27 @@
 
     <ng-container matColumnDef="Actions">
       <th mat-header-cell *matHeaderCellDef> Actions</th>
-      <td class="pointer" mat-cell *matCellDef="let course">
+      <td class="pointer action-column" mat-cell *matCellDef="let course, let i = index">
 <!--        <button *ngIf="group" mat-flat-button (click)="deleteGroup(group.id)" class="delete-button">-->
 <!--          <mat-icon>delete</mat-icon>-->
 <!--          Delete-->
 <!--        </button>-->
         <button mat-stroked-button (click)="showFeedbackRequests(course.id)" class="delete-button">
           <mat-icon>list</mat-icon>
-          Feedback requests
+          <span class="button-text" *ngIf="activeItem == i">Feedback requests</span>
         </button>
+        <br *ngIf="activeItem == i">
+        <span class="vertical-space" *ngIf="activeItem == i"></span>
+        <button mat-stroked-button (click)="editCourse(course.id)" class="delete-button">
+          <mat-icon>edit</mat-icon>
+          <span class="button-text" *ngIf="activeItem == i">Edit Course</span>
+        </button>
+        <br *ngIf="activeItem == i">
+        <button mat-stroked-button (click)="addCourse()" class="delete-button">
+          <mat-icon>delete</mat-icon>
+          <span class="button-text" *ngIf="activeItem == i">Delete Course</span>
+        </button>
+
       </td>
     </ng-container>
     <tr id="row" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
