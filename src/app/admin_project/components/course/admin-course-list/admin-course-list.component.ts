@@ -52,6 +52,10 @@ export class AdminCourseListComponent implements OnInit {
     this.router.navigate(['/admin/courses/'+id+'/feedback_requests'])
   }
 
+  showFeedbackRequests(id: any) {
+    this.router.navigate(['/admin/courses/'+id+'/feedback_requests'])
+  }
+
   addCourse() {
     const dialogRef = this.dialog.open(AdminCreateCourseComponent, { width: '50%' });
     dialogRef.afterClosed().subscribe(result => { this.ngOnInit();

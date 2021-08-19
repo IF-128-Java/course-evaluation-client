@@ -49,15 +49,15 @@
 
     <ng-container matColumnDef="Actions">
       <th mat-header-cell *matHeaderCellDef> Actions</th>
-      <td class="pointer" mat-cell *matCellDef="let course, let i = index" (click)="onSelect(i)">
+      <td class="pointer" mat-cell *matCellDef="let course">
 <!--        <button *ngIf="group" mat-flat-button (click)="deleteGroup(group.id)" class="delete-button">-->
 <!--          <mat-icon>delete</mat-icon>-->
 <!--          Delete-->
 <!--        </button>-->
-          <button mat-stroked-button (click)="showFeedbackRequests(course.id)" class="delete-button">
-            <mat-icon>list</mat-icon>
-            Feedback requests
-          </button>
+        <button mat-stroked-button (click)="showFeedbackRequests(course.id)" class="delete-button">
+          <mat-icon>list</mat-icon>
+          Feedback requests
+        </button>
       </td>
     </ng-container>
     <tr id="row" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
