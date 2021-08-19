@@ -10,12 +10,7 @@
 
   <table mat-table [dataSource]="listData" class="mat-elevation-z8">
 
-    <ng-container matColumnDef="Id">
-      <th mat-header-cell *matHeaderCellDef> Id</th>
-      <td mat-cell *matCellDef="let coursesgroup"> {{coursesgroup.id}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="Course Name">
+    <ng-container matColumnDef="CourseName">
       <th mat-header-cell *matHeaderCellDef> Course name</th>
       <td mat-cell *matCellDef="let studentgroup"> {{studentgroup.courseName}} </td>
     </ng-container>
@@ -25,14 +20,23 @@
       <td mat-cell *matCellDef="let studentgroup"> {{studentgroup.description}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="Start Date">
+    <ng-container matColumnDef="StartDate">
       <th mat-header-cell *matHeaderCellDef> Start Date</th>
       <td mat-cell *matCellDef="let studentgroup"> {{studentgroup.startDate | date : 'd MMM, y' : '+0000'}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="End Date">
+    <ng-container matColumnDef="EndDate">
       <th mat-header-cell *matHeaderCellDef> End Date</th>
       <td mat-cell *matCellDef="let studentgroup"> {{studentgroup.endDate | date : 'd MMM, y' : '+0000'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Requests">
+      <th mat-header-cell *matHeaderCellDef> Feedback requests</th>
+      <td class="pointer" mat-cell *matCellDef="let studentgroup, let i = index" (click)="onSelect(i)">
+        <button mat-button (click)="showFeedbackRequests(studentgroup.id)" >
+          <mat-icon>open_in_new</mat-icon>
+        </button>
+      </td>
     </ng-container>
 
     <tr id="row" mat-header-row *matHeaderRowDef="displayedColumns"></tr>

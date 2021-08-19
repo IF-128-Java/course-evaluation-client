@@ -17,7 +17,7 @@ export class AvCoursesComponent implements OnInit {
 
   courses: Course[] = [];
 
-  public displayedColumns: string[] = ['Id', 'Course Name', 'Description', 'Start Date', 'End Date'];
+  public displayedColumns: string[] = ['CourseName', 'Description', 'StartDate', 'EndDate'];
   @ViewChild('scheduledOrdersPaginator') paginator: MatPaginator;
 
   curStudent: Student = {
