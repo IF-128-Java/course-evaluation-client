@@ -7,11 +7,6 @@
 
   <table mat-table [dataSource]="courses" class="mat-elevation-z8">
 
-    <ng-container matColumnDef="Id">
-      <th mat-header-cell *matHeaderCellDef> Id</th>
-      <td class="pointer id-column" mat-cell *matCellDef="let course, let i = index"> {{ course.id }} </td>
-    </ng-container>
-
     <ng-container matColumnDef="Course Name">
       <th mat-header-cell *matHeaderCellDef> Group name</th>
       <td class="pointer name-column" mat-cell *matCellDef="let course, let i = index" (click)="onSelect(i)"> {{ course.courseName }}<br>
