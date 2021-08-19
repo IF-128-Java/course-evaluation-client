@@ -4,7 +4,7 @@ export class CourseDto {
   id?: number;
   courseName?: string;
   description?: string;
-  endDate?: string;
-  startDate?: string;
+  endDate?: Date;
+  startDate?: Date;
   teacherDto?: UserDto;
 }

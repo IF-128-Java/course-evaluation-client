@@ -21,8 +21,8 @@ import {MyGroupComponent} from './components/student/My-group/my-group.component
 import {PassedCoursesComponent} from './components/student/Passed-courses/passed-courses.component';
 import {CurrentCoursesComponent} from './components/student/Current-courses/current-courses.component';
 import {AvCoursesComponent} from './components/student/Av-courses/av-courses.component';
-import {AdminCourseListComponent} from "./admin_project/components/course/admin-course-list/admin-course-list.component";
-import {AdminCreateCourseComponent} from "./admin_project/components/course/admin-create-course/admin-create-course.component";
+import {AdminCourseListComponent} from './admin_project/components/course/admin-course-list/admin-course-list.component';
+import {AdminCreateCourseComponent} from './admin_project/components/course/admin-create-course/admin-create-course.component';
 import {FeedbacksListComponent} from './components/manage-feedback-request/feedbacks-list/feedbacks-list.component';
 import {FeedbackAnswerComponent} from './components/manage-feedback-request/feedback-answer/feedback-answer.component';
 

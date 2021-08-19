@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {CourseDto} from "../../../models/course-dto.model";
-import {PageEvent} from "@angular/material/paginator";
-import {CoursesService} from "../../../services/courses.service";
-import {MatDialog, MatDialogRef} from "@angular/material/dialog";
-import {Router} from "@angular/router";
-import {AdminCreateCourseComponent} from "../admin-create-course/admin-create-course.component";
+import {CourseDto} from '../../../models/course-dto.model';
+import {PageEvent} from '@angular/material/paginator';
+import {CoursesService} from '../../../services/courses.service';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+import {Router} from '@angular/router';
+import {AdminCreateCourseComponent} from '../admin-create-course/admin-create-course.component';
 
 @Component({
   selector: 'app-admin-course-list',
