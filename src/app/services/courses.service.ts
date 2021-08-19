@@ -31,7 +31,6 @@ export class CoursesService {
   }
 
   create(data: any): Observable<any> {
-    // @ts-ignore
     return this.http.post(this.coursesUrl, data, httpOptions);
   }
 
