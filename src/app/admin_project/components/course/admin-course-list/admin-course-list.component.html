@@ -4,6 +4,8 @@
     <mat-icon>add</mat-icon>
     Add Course
   </a>
+  <input type="text" class="form-search" placeholder="Search by course name" [(ngModel)]="courseName"/>
+  <button class="btn btn-outline-secondary" type="button" (click)="searchCourseName(courseName)">Search</button>
 
   <table mat-table [dataSource]="courses" class="mat-elevation-z8">
 
@@ -63,7 +65,7 @@
           <span class="button-text" *ngIf="activeItem == i">Edit Course</span>
         </button>
         <br *ngIf="activeItem == i">
-        <button mat-stroked-button (click)="addCourse()" class="delete-button">
+        <button mat-stroked-button (click)="deleteCourse(course.id)" class="delete-button">
           <mat-icon>delete</mat-icon>
           <span class="button-text" *ngIf="activeItem == i">Delete Course</span>
         </button>

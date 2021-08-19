@@ -1,1 +1,63 @@
-<p>admin-edit-course works!</p>
+<div>
+  <div *ngIf="currentCourse.id" class="edit-form">
+    <h3>Edit Course {{ currentCourse.courseName }}</h3>
+    <br><br>
+    <form name="form" class="form-body" (ngSubmit)="f.form.valid && UpdateCourse()" #f="ngForm" novalidate>
+      <mat-form-field class="justifier">
+        <input matInput placeholder="Course name" class="form-input" name="courseName"
+               [(ngModel)]="currentCourse.courseName" #courseName="ngModel" required minlength="3" maxlength="30">
+        <mat-error *ngIf="courseName.invalid && (courseName.dirty || courseName.touched)"></mat-error>
+        <mat-error *ngIf="courseName.errors?.minlength">Min length at least 3 symbols</mat-error>
+      </mat-form-field>
+      <span class="space-between"></span>
+      <mat-form-field class="justifier" appearance="fill">
+        <mat-label>Teacher</mat-label>
+        <mat-select matNativeControl required>
+          <mat-option *ngFor="let teacher of teachers" [value]="teacher.id" (click)="selected($event, teacher.id)">
+            {{teacher.lastName}}  {{teacher.lastName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <br>
+      <mat-form-field class="justifier">
+        <input matInput placeholder="Start Date" type="datetime-local" class="form-input" name="startDate"
+               [(ngModel)]="currentCourse.startDate" #startDate="ngModel" required>
+        <mat-error *ngIf="startDate.invalid && (startDate.dirty || startDate.touched)"></mat-error>
+        <mat-error *ngIf="startDate.hasError('required')">Please choose Start Date</mat-error>
+      </mat-form-field>
+
+
+      <span class="space-between"></span>
+      <mat-form-field class="justifier">
+        <input matInput placeholder="End Date" type="datetime-local" class="form-input" name="endDate"
+               [(ngModel)]="currentCourse.endDate" #endDate="ngModel" required>
+        <mat-error *ngIf="endDate.invalid && (endDate.dirty || endDate.touched)"></mat-error>
+        <mat-error *ngIf="endDate.hasError('required')">Please choose End Date</mat-error>
+      </mat-form-field>
+      <br>
+<!--      <p style="display: inline-block">{{currentCourse.startDate | slice:0:10 }}</p><span class="space-between"></span><span class="space-between"></span><span class="space-between"></span><span class="space-between"></span>-->
+<!--      <p style="display: inline-block">{{currentCourse.endDate | slice:0:10 }}</p>-->
+
+      <mat-form-field class="justifier mat-form-field-text">
+    <textarea matInput cdkTextareaAutosize #autosize = "cdkTextareaAutosize" cdkAutosizeMinRows = "1"
+              cdkAutosizeMaxRows="5" placeholder="Description" class="form-input" name="description"
+              [(ngModel)]="currentCourse.description" #description="ngModel" required minlength="10"></textarea>
+        <mat-error *ngIf="description.invalid && (description.dirty || description.touched)"></mat-error>
+        <mat-error *ngIf="description.errors?.minlength">Min length at least 10 symbols</mat-error>
+        <mat-error *ngIf="description.hasError('required')">Description is required</mat-error>
+      </mat-form-field>
+
+      <div class="form-footer">
+
+        <button mat-stroked-button class="btn custom-btn" >
+          <mat-icon>edit</mat-icon>
+          Edit
+        </button>
+      </div>
+
+    </form>
+<!--    <button class="badge badge-danger mr-2" (click)="deleteCourse()">Delete</button>-->
+    <p>{{ message }}</p>
+  </div>
+</div>

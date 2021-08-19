@@ -6,6 +6,7 @@ import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {Router} from '@angular/router';
 import {AdminCreateCourseComponent} from '../admin-create-course/admin-create-course.component';
 import {AdminEditCourseComponent} from "../admin-edit-course/admin-edit-course.component";
+import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'app-admin-course-list',
@@ -16,11 +17,13 @@ export class AdminCourseListComponent implements OnInit {
 
   public courses: CourseDto[] = [];
   public displayedColumns: string[] = ['Course Name', 'Description', 'Start Date', 'End Date', 'Actions'];
-  pageEvent?: PageEvent;
+  pageEvent?: PageEvent = new PageEvent();
   pageIndex?: number;
   pageSize?: number;
   length?: number;
   activeItem: number | undefined;
+  searchCourse = new FormControl('');
+  courseName: string = '';
 
   constructor(private coursesService: CoursesService,
               public dialog: MatDialog,
@@ -60,8 +63,44 @@ export class AdminCourseListComponent implements OnInit {
   }
 
   editCourse(id: any) {
-    const dialogRef = this.dialog.open(AdminEditCourseComponent, { width: '50%' });
-    dialogRef.afterClosed().subscribe(result => { this.ngOnInit();
+    this.router.navigate(['/admin/courses/'+id]);
+
+  }
+
+  searchCourses(value: any) {
+      this.courseName = value;
+      this.ngOnInit()
+  }
+
+  searchCourseName(name: string): void {
+    this.coursesService.findByCourseName(name).subscribe(
+      data => {
+        this.courses = data;
+        console.log(data);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+  reloadCurrentRoute() {
+    let currentUrl = this.router.url;
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+      this.router.navigate([currentUrl]);
+      console.log(currentUrl);
     });
+  }
+
+  deleteCourse(id: any): void {
+    this.coursesService.delete(id).subscribe(
+      response => {
+        console.log(response);
+        this.reloadCurrentRoute();
+      },
+      error => {
+        console.log(error);
+      }
+    )
   }
 }
