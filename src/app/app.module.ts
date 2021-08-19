@@ -52,6 +52,7 @@ import {CurrentCoursesComponent} from './components/student/Current-courses/curr
 import {AvCoursesComponent} from './components/student/Av-courses/av-courses.component';
 import { AdminCourseListComponent } from './admin_project/components/course/admin-course-list/admin-course-list.component';
 import { AdminCreateCourseComponent } from './admin_project/components/course/admin-create-course/admin-create-course.component';
+import {MatDatepickerModule} from "@angular/material/datepicker";
 
 @NgModule({
   declarations: [
@@ -80,14 +81,14 @@ import { AdminCreateCourseComponent } from './admin_project/components/course/ad
     AdminCourseListComponent,
     AdminCreateCourseComponent
   ],
-  imports: [
-    BrowserModule,
-    RouterModule,
-    AppRoutingModule, HttpClientModule,
-    FormsModule,
-    BrowserAnimationsModule, MatDialogModule,
-    MatDividerModule, MatSnackBarModule, MatProgressSpinnerModule, MatButtonModule, MatIconModule, MatInputModule, MatToolbarModule, MatMenuModule, MatTableModule, MatTooltipModule, MatCheckboxModule, ReactiveFormsModule, MatCardModule, MatListModule, MatGridListModule, ScrollingModule, MatPaginatorModule, MatSelectModule, MatAutocompleteModule, MatChipsModule, MatSidenavModule,
-  ],
+    imports: [
+        BrowserModule,
+        RouterModule,
+        AppRoutingModule, HttpClientModule,
+        FormsModule,
+        BrowserAnimationsModule, MatDialogModule,
+        MatDividerModule, MatSnackBarModule, MatProgressSpinnerModule, MatButtonModule, MatIconModule, MatInputModule, MatToolbarModule, MatMenuModule, MatTableModule, MatTooltipModule, MatCheckboxModule, ReactiveFormsModule, MatCardModule, MatListModule, MatGridListModule, ScrollingModule, MatPaginatorModule, MatSelectModule, MatAutocompleteModule, MatChipsModule, MatSidenavModule, MatDatepickerModule,
+    ],
   providers: [httpInterceptorProviders, {provide: JWT_OPTIONS, useValue: JWT_OPTIONS}, JwtHelperService, {
     provide: MatDialogRef,
     useValue: {}

@@ -14,7 +14,7 @@ import {AdminCreateCourseComponent} from "../admin-create-course/admin-create-co
 export class AdminCourseListComponent implements OnInit {
 
   public courses: CourseDto[] = [];
-  public displayedColumns: string[] = ['Id', 'Course Name', 'Description', 'Start Date', 'End Date', 'Actions'];
+  public displayedColumns: string[] = ['Course Name', 'Description', 'Start Date', 'End Date', 'Actions'];
   pageEvent?: PageEvent;
   pageIndex?: number;
   pageSize?: number;
