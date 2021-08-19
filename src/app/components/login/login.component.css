@@ -95,6 +95,10 @@ a{
   background-color: #ea4335
 }
 
+.alert-warning{
+  background: transparent;
+}
+
 .btn-facebook {
   color: white;
   background-color: #3b5998

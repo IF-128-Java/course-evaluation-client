@@ -21,6 +21,8 @@ import {PassedCoursesComponent} from './components/student/Passed-courses/passed
 import {CurrentCoursesComponent} from './components/student/Current-courses/current-courses.component';
 import {AvCoursesComponent} from './components/student/Av-courses/av-courses.component';
 import {AdminCourseListComponent} from "./admin_project/components/course/admin-course-list/admin-course-list.component";
+import {ConfirmComponent} from "./components/confirm/confirm.component";
+import {AuthGuardService} from "./auth/auth-guard.service";
 
 
 const routes: Routes = [
@@ -30,6 +32,8 @@ const routes: Routes = [
   {path: 'admin/users', component: UserListComponent, canActivate: [RoleGuardService],data:{
       expectedRole: 'ROLE_ADMIN'
     }},
+  {path: 'confirm', component: ConfirmComponent,
+  canActivate: [AuthGuardService]},
   {path: 'admin/groups', component: GroupsListComponent, canActivate: [RoleGuardService],data:{
       expectedRole: 'ROLE_ADMIN'
     }},
