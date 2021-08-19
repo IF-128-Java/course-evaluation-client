@@ -15,7 +15,7 @@ import {GroupNotEmptyDialogComponent} from "../group-not-empty-dialog/group-not-
 })
 export class GroupsListComponent implements OnInit {
   public groups: GroupDto[] = [];
-  public displayedColumns: string[] = ['Id', 'Group Name', 'Students', 'Courses', 'Actions'];
+  public displayedColumns: string[] = ['Group Name', 'Students', 'Courses', 'Actions'];
   pageEvent?: PageEvent;
   pageIndex?: number;
   pageSize?: number;

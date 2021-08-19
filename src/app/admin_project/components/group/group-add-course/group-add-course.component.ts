@@ -17,7 +17,7 @@ export class GroupAddCourseComponent implements OnInit {
   courses: CourseDto[] = [];
   group_id?: number;
   group?: GroupDto;
-  displayedColumns: string[] = ['Id', 'Course Name', 'Description', 'Start Date', 'End Date', 'Teacher First Name', 'Teacher Last Name', 'Actions'];
+  displayedColumns: string[] = ['Course Name', 'Description', 'Start Date', 'End Date', 'Teacher First Name', 'Teacher Last Name', 'Actions'];
   myControl = new FormControl('');
   options: string[] = [];
   filteredOptions?: Observable<string[]>;
