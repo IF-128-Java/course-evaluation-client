@@ -24,7 +24,7 @@ export class EnrolledStudentListComponent implements AfterViewInit {
   candidatesPageEvent: PageEvent = new PageEvent();
 
   public dataSource: MatTableDataSource<UserDto> = new MatTableDataSource<UserDto>(this.enrolledStudents);
-  public displayedColumns: string[] = ['Id', 'First Name', 'Last Name', 'Actions'];
+  public displayedColumns: string[] = ['First Name', 'Last Name', 'Actions'];
 
   @ViewChild(MatPaginator) paginator: any;
   searchCandidates = new FormControl('');

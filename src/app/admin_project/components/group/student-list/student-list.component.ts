@@ -11,7 +11,7 @@ import {PageEvent} from '@angular/material/paginator';
 })
 export class StudentListComponent implements OnInit {
   students: StudentDto[] = [];
-  public displayedColumns: string[] = ['Id', 'First Name', 'Last Name', 'Group Id', 'Group Name'];
+  public displayedColumns: string[] = ['First Name', 'Last Name', 'Group Name'];
   pageEvent?: PageEvent;
   pageIndex?: number;
   pageSize?: number;

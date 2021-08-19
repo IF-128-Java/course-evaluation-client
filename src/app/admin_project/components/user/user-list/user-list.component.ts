@@ -14,7 +14,7 @@ import {FormControl} from '@angular/forms';
 export class UserListComponent implements OnInit {
   public users: UserDto[] = [];
   public user: UserDto | undefined;
-  public displayedColumns: string[] = ['Id', 'First Name', 'Last Name', 'Roles'];
+  public displayedColumns: string[] = ['First Name', 'Last Name', 'Roles'];
   pageEvent: PageEvent = new PageEvent();
   pageIndex?: number;
   pageSize?: number;
