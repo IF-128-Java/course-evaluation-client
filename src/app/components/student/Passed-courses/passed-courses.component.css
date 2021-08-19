@@ -25,3 +25,13 @@ th {
   font-weight: bold;
   background-color: rgba(170, 170, 170, .3);
 }
+
+.mat-column-StartDate {
+  color: black;
+  width:10% ;
+}
+
+.mat-column-EndDate {
+  color: black;
+  width:10% ;
+}

@@ -12,7 +12,7 @@ import {MatPaginator} from '@angular/material/paginator';
 })
 export class MyGroupComponent implements OnInit{
 
-  public displayedColumns: string[] = ['Id', 'First Name', 'Last Name', "Email"];
+  public displayedColumns: string[] = ['FirstName', 'LastName', "Email"];
   @ViewChild('scheduledOrdersPaginator') paginator: MatPaginator;
 
   listData: MatTableDataSource<any> = new MatTableDataSource<any>();

@@ -13,7 +13,7 @@ import {MatPaginator} from '@angular/material/paginator';
 })
 export class CurrentCoursesComponent implements OnInit{
 
-  public displayedColumns: string[] = ['Id', 'Course Name', 'Description', 'Start Date', 'End Date'];
+  public displayedColumns: string[] = ['CourseName', 'Description', 'StartDate', 'EndDate'];
   @ViewChild('scheduledOrdersPaginator') paginator: MatPaginator;
 
   listData: MatTableDataSource<any> = new MatTableDataSource<any>();

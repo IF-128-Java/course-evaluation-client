@@ -5,6 +5,7 @@ import {Course} from '../../../models/student/course.model';
 import {TokenStorageService} from '../../../auth/token-storage.service';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -14,7 +15,7 @@ import {MatPaginator} from '@angular/material/paginator';
 })
 export class PassedCoursesComponent implements OnInit{
 
-  public displayedColumns: string[] = ['Id', 'Course Name', 'Description', 'Start Date', 'End Date'];
+  public displayedColumns: string[] = ['CourseName', 'Description', 'StartDate', 'EndDate', 'Requests'];
   @ViewChild('scheduledOrdersPaginator') paginator: MatPaginator;
 
   listData: MatTableDataSource<any> = new MatTableDataSource<any>();
@@ -31,11 +32,18 @@ export class PassedCoursesComponent implements OnInit{
     groupName: '',
   };
 
+  activeItem: number | undefined;
+
+  onSelect(item: number): void {
+    this.activeItem = item;
+  }
+
   ngOnInit(): void {
     this.getStudent(Number(this.tokenStorage.getId()));
   }
 
   constructor(
+    private router: Router,
     private tokenStorage: TokenStorageService,
     private MyGroupService: MyGroupService,
   ) { }
@@ -44,6 +52,7 @@ export class PassedCoursesComponent implements OnInit{
     this.MyGroupService.getFinishedCoursesOfGroup(id).subscribe(data => {
         this.courses = data;
         this.listData = new MatTableDataSource(this.courses);
+
         setTimeout(() => this.listData.paginator = this.paginator);
       },
       error => {
@@ -61,5 +70,9 @@ export class PassedCoursesComponent implements OnInit{
         console.log(error);
       }
     );
+  }
+
+  showFeedbackRequests(id: any) {
+//    this.router.navigateByUrl('/feedback_request/student/course/'+id)
   }
 }
