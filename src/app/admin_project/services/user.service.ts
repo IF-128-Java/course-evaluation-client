@@ -19,10 +19,11 @@ export class UserService {
   constructor(private http: HttpClient) {
   }
 
-  getUserList(event: PageEvent): Observable<any> {
+  getUserList(filter: string, event: PageEvent): Observable<any> {
     const params = new HttpParams()
       .set('page', event.pageIndex)
       .set('size', event.pageSize)
+      .set('filter',filter)
     return this.http.get(this.url, {params});
   }
 
