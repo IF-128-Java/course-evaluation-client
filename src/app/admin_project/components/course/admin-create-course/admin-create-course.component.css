@@ -24,6 +24,9 @@ mat-paginator {
 .mat-form-field{
   width: 45%;
 }
+.mat-form-field-text{
+  width: 93.5%;
+}
 .add-button {
   background: transparent;
 }

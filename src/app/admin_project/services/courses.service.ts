@@ -21,6 +21,6 @@ export class CoursesService {
     return this.http.get(this.url, {params});
   }
   createCourse(data: any): Observable<any>{
-    return this.http.post(this.url + '/add', data, httpOptions);
+    return this.http.post(this.url, data, httpOptions);
   }
 }
