@@ -12,6 +12,8 @@ export class DialogForUpdateUserProfilePicture {
 
   emptyImage: boolean = false;
   invalidImageType: boolean = false;
+  invalidImageSize: boolean = false;
+  invalidImageSizeMessage: string = '';
 
   private selectedFile: File | undefined;
 
@@ -26,8 +28,10 @@ export class DialogForUpdateUserProfilePicture {
   }
 
   upload() {
+    this.invalidImageSize = false;
+    this.invalidImageType = false;
+
     if(this.selectedFile === undefined){
-      this.invalidImageType = false;
       this.emptyImage = true;
       return
     }
@@ -46,7 +50,12 @@ export class DialogForUpdateUserProfilePicture {
         this.emptyImage = false;
 
         if(error.error.error === 'ConstraintViolationException'){
-          this.invalidImageType = true;
+          if(error.error.message === 'Download PNG or JPEG only!'){
+            this.invalidImageType = true;
+          }else {
+            this.invalidImageSize = true;
+            this.invalidImageSizeMessage = error.error.message;
+          }
         }
       }
     )
