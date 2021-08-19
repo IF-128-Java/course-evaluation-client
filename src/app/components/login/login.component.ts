@@ -38,7 +38,9 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/admin/users']).then(()=>{
           window.location.reload()
         })
-      } else {window.location.href="/login"}
+      }
+      else {window.location.href="/login"}
+
     }
   }
 
@@ -62,6 +64,12 @@ export class LoginComponent implements OnInit {
             window.location.reload()
           })
         }
+        if(this.roles.includes('ROLE_STUDENT')){
+          this.router.navigate(['/my-group']).then(()=>{
+            window.location.reload()
+          })
+        }
+
         this.reloadPage();
       },
       error => {
