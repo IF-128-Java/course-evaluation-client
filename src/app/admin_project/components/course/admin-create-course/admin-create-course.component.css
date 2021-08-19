@@ -1,7 +1,6 @@
 .container {
   margin-left: auto;
   margin-right: auto;
-
   background-color: rgba(228, 228, 228, .6);
 }
 
@@ -22,11 +21,26 @@ mat-paginator {
   font-weight: bold;
   color: black;
 }
-
+.mat-form-field{
+  width: 45%;
+}
+.mat-form-field-text{
+  width: 93.5%;
+}
+.add-button {
+  background: transparent;
+}
+.space-between{
+  display: inline-block;
+  width: 20px;
+}
+.back-button{
+  background: transparent;
+  float: right;
+}
+.list-name{
+  text-align: center;
+}
 .admin-empty-records{
   text-align: center;
 }
-.edit-button {
-  background: transparent;
-}
-

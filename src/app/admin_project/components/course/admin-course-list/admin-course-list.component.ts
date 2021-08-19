@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {CourseDto} from "../../../models/course-dto.model";
-import {PageEvent} from "@angular/material/paginator";
-import {CoursesService} from "../../../services/courses.service";
-import {MatDialog, MatDialogRef} from "@angular/material/dialog";
-import {Router} from "@angular/router";
+import {CourseDto} from '../../../models/course-dto.model';
+import {PageEvent} from '@angular/material/paginator';
+import {CoursesService} from '../../../services/courses.service';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+import {Router} from '@angular/router';
+import {AdminCreateCourseComponent} from '../admin-create-course/admin-create-course.component';
 
 @Component({
   selector: 'app-admin-course-list',
@@ -13,7 +14,7 @@ import {Router} from "@angular/router";
 export class AdminCourseListComponent implements OnInit {
 
   public courses: CourseDto[] = [];
-  public displayedColumns: string[] = ['Id', 'Course Name', 'Description', 'Start Date', 'End Date', 'Actions'];
+  public displayedColumns: string[] = ['Course Name', 'Description', 'Start Date', 'End Date', 'Actions'];
   pageEvent?: PageEvent;
   pageIndex?: number;
   pageSize?: number;
@@ -49,5 +50,11 @@ export class AdminCourseListComponent implements OnInit {
   }
   showFeedbackRequests(id: any) {
     this.router.navigate(['/admin/courses/'+id+'/feedback_requests'])
+  }
+
+  addCourse() {
+    const dialogRef = this.dialog.open(AdminCreateCourseComponent, { width: '50%' });
+    dialogRef.afterClosed().subscribe(result => { this.ngOnInit();
+    });
   }
 }

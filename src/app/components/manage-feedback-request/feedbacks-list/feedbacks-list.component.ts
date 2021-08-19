@@ -5,6 +5,7 @@ import {PageEvent} from '@angular/material/paginator';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Student} from '../../../models/student/student.model';
 import {MyGroupService} from '../../../services/student/my-group.service';
+import {UserService} from '../../../admin_project/services/user.service';
 
 @Component({
   selector: 'app-feedbacks-list',
@@ -12,7 +13,7 @@ import {MyGroupService} from '../../../services/student/my-group.service';
   styleUrls: ['./feedbacks-list.component.css']
 })
 export class FeedbacksListComponent implements OnInit {
-  displayedColumns: string[] = ['Id', 'Date', 'Student', 'Comment', 'Action'];
+  displayedColumns: string[] = ['Date', 'Student', 'Comment', 'Action'];
   public feedbacks: Feedback[] = [];
   feedbackRequestId?: number;
   pageEvent?: PageEvent;
@@ -21,7 +22,7 @@ export class FeedbacksListComponent implements OnInit {
   length?: number;
   courseId?: any;
 
-  constructor(private feedbackService: FeedbackService, private route: ActivatedRoute, private groupService: MyGroupService, private router: Router) {
+  constructor(private feedbackService: FeedbackService, private route: ActivatedRoute, private groupService: MyGroupService, private router: Router, private userService: UserService) {
   }
 
   ngOnInit(): void {
@@ -31,7 +32,6 @@ export class FeedbacksListComponent implements OnInit {
     event.pageIndex = 0;
     event.pageSize = 10;
     this.getFeedbacks(event);
-
   }
 
   getFeedbacks(event: PageEvent) {
@@ -41,20 +41,19 @@ export class FeedbacksListComponent implements OnInit {
         this.pageIndex = response.pageIndex;
         this.pageSize = response.size;
         this.length = response.totalElements;
-        this.getUsers();
+        this.getUsers(event);
       }
     );
     return event;
   }
 
-  getUsers() {
-    this.groupService.getStudentsByCourseId(this.courseId).subscribe(
-      response => {
-        let students: Student[] = response;
+  getUsers(event: PageEvent) {
+    this.userService.getUserList('',event).subscribe( response =>{
+        let students: Student[] = response.content;
         if (students != undefined) {
           students!.forEach(st => {
             let feedback = this.feedbacks.find(f => f.studentId == st.id)
-            feedback!.studentName = st.email;
+            feedback!.studentName = st.firstName + ' ' + st.lastName;
           })
         }
       }

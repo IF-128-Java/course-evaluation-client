@@ -1,6 +1,6 @@
 <div class="container">
   <h4>Users list</h4>
-  <form >
+  <form>
     <mat-icon>search</mat-icon>
     <mat-form-field appearance="fill">
       <mat-label *ngIf="users.length > 0 || searchUsers.value===''">Find by name</mat-label>
@@ -14,10 +14,6 @@
     </mat-form-field>
   </form>
   <table mat-table [dataSource]="users" class="mat-elevation-z8">
-    <ng-container matColumnDef="Id">
-      <th mat-header-cell *matHeaderCellDef> Id</th>
-      <td mat-cell *matCellDef="let user"> {{user.id}} </td>
-    </ng-container>
 
     <ng-container matColumnDef="First Name">
       <th mat-header-cell *matHeaderCellDef> First name</th>
@@ -34,10 +30,18 @@
       <td mat-cell *matCellDef="let user"> {{getSimpleRolesName(user)}} </td>
     </ng-container>
 
+    <ng-container matColumnDef="Action">
+      <th mat-header-cell *matHeaderCellDef> Action</th>
+      <td mat-cell *matCellDef="let user">
+        <button *ngIf="user" mat-flat-button (click)="openDialog(user.id)" class="edit-button"
+                matTooltip="Change role">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
     <tr id="row" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"
-        matTooltip="Browse {{row.firstName +' '+ row.lastName}}"
-        (click)="openDialog(row.id)"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
   <div *ngIf="users.length === 0" class="admin-empty-records">No records found</div>
   <mat-paginator
