@@ -28,9 +28,10 @@
     <ng-container matColumnDef="Actions">
       <th mat-header-cell *matHeaderCellDef> Actions</th>
       <td mat-cell *matCellDef="let group">
-        <button *ngIf="group" mat-flat-button (click)="deleteGroup(group.id)" class="delete-button">
+        <button *ngIf="group" mat-flat-button (click)="deleteGroup(group.id)" class="delete-button"
+                matTooltip="Remove group">
           <mat-icon>delete</mat-icon>
-          Delete
+
         </button>
       </td>
     </ng-container>
