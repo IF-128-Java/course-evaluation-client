@@ -12,7 +12,7 @@ import {CreateQuestionComponent} from '../create-question/create-question.compon
 import {MatDialog} from '@angular/material/dialog';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {DateAdapter} from '@angular/material/core';
 
 
@@ -27,9 +27,8 @@ export class AddFeedbackrequestComponent implements OnInit {
     feedbackDescription: '',
     startDate: '',
     endDate: '',
-    course: '',
+    course: 0,
   }
-  public allCourse?: Course[];
   public allQuestions: Question[] = [];
   public patternQuestion: Question[] = [];
   public selectQuestions: Set<Question> = new Set<Question>();
@@ -39,7 +38,7 @@ export class AddFeedbackrequestComponent implements OnInit {
   removable = true;
   questionCtrl = new FormControl();
   public filteredQuestion: Observable<string[]>;
-  courseId? : number;
+  courseId : number;
   range = new FormGroup({
     start: new FormControl(),
     end: new FormControl()
@@ -48,28 +47,25 @@ export class AddFeedbackrequestComponent implements OnInit {
 
   @ViewChild('questionInput') questionInput?: ElementRef<HTMLInputElement>;
 
-  constructor(private feedbackrequestService: FeedbackrequestService, private courseService: CoursesService, private questionService: QuestionService, public dialog: MatDialog, private route: ActivatedRoute, private dateAdapter: DateAdapter<Date>) {
+  constructor(private feedbackrequestService: FeedbackrequestService, private courseService: CoursesService, private questionService: QuestionService, public dialog: MatDialog, private route: ActivatedRoute, private dateAdapter: DateAdapter<Date>, private router: Router) {
     this.dateAdapter.setLocale('en-GB');
     this.filteredQuestion = this.questionCtrl.valueChanges.pipe(
         startWith(null),
         map((q: string | null) => q ? this._filter(q) : this.allQuestions.map(q=>q.questionText).slice()));
       const currentTime = new Date().getTime();
     this.minDate = new Date(currentTime);
-
   }
 
   ngOnInit(): void {
-    this.courseService.getAll().subscribe(data =>
-    {
-      this.allCourse = data;
+
       this.courseService.get(parseInt(<string>this.route.snapshot.paramMap.get('id'))).subscribe(singleData=>{
         if(singleData!=null){
-          this.allCourse = [];
-          this.courseId=singleData.id;
-          this.allCourse.push(singleData)
+          this.courseId = singleData.id;
         }
-      })
-    })
+      },
+        error => {
+          this.router.navigateByUrl('/admin/courses')
+        })
     this.questionService.getAll().subscribe(data => {
       this.allQuestions = data;
       this.patternQuestion = this.allQuestions.filter(q => q.pattern);
@@ -79,7 +75,7 @@ export class AddFeedbackrequestComponent implements OnInit {
 
 
   onSubmit() {
-    this.feedbackrequest = new FeedbackRequest(this.feedbackrequest.feedbackDescription, this.range.value.start, this.range.value.end, this.feedbackrequest.course);
+    this.feedbackrequest = new FeedbackRequest(this.feedbackrequest.feedbackDescription, this.range.value.start, this.range.value.end, this.courseId);
     this.feedbackrequestService.create(this.feedbackrequest).subscribe(
       () => {
         this.feedbackrequestService.addQuestionToFeedbackRequest(this.feedbackrequest.id, Array.from(this.selectQuestions)).subscribe()

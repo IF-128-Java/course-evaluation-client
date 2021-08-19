@@ -12,7 +12,7 @@ import {PageEvent} from '@angular/material/paginator';
 })
 export class FeedbackrequestListComponent implements OnInit {
   public feedbackRequest: FeedbackRequest[] = [];
-  displayedColumns: string[] = ['Id', 'Description', 'Start Date', 'End Date', 'Actions'];
+  displayedColumns: string[] = ['Description', 'Start Date', 'End Date', 'Actions'];
   courseName?: string;
   pageEvent?: PageEvent;
   pageIndex?: number;
@@ -28,7 +28,10 @@ export class FeedbackrequestListComponent implements OnInit {
     this.courseService.get(this.courseId)
       .subscribe(data =>{
         this.courseName = data.courseName;
-      })
+      },
+        error => {
+          this.router.navigateByUrl('/admin/courses')
+        })
     var event = new PageEvent();
     event.pageIndex = 0;
     event.pageSize = 10;

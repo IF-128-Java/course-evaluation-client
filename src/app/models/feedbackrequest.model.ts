@@ -5,9 +5,9 @@ export class FeedbackRequest {
   feedbackDescription: string;
   startDate: string;
   endDate: string;
-  course: string;
+  course: number;
 
-  constructor(feedbackDescription: string, startDate: string, endDate: string, course: string) {
+  constructor(feedbackDescription: string, startDate: string, endDate: string, course: number) {
     this.feedbackDescription = feedbackDescription;
     this.startDate = startDate;
     this.endDate = endDate;

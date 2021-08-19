@@ -8,7 +8,7 @@
   <table mat-table [dataSource]="courses" class="mat-elevation-z8">
 
     <ng-container matColumnDef="Course Name">
-      <th mat-header-cell *matHeaderCellDef> Group name</th>
+      <th mat-header-cell *matHeaderCellDef> Course name</th>
       <td class="pointer name-column" mat-cell *matCellDef="let course, let i = index" (click)="onSelect(i)"> {{ course.courseName }}<br>
       </td>
     </ng-container>
