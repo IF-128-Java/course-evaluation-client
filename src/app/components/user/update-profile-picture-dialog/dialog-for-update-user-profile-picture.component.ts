@@ -5,7 +5,8 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'dialog-for-update-user-profile-picture',
-  templateUrl: 'dialog-for-update-user-profile-picture.html',
+  templateUrl: 'dialog-for-update-user-profile-picture.component.html',
+  styleUrls: ['dialog-for-update-user-profile-picture.component.css']
 })
 export class DialogForUpdateUserProfilePicture {
 
@@ -26,6 +27,7 @@ export class DialogForUpdateUserProfilePicture {
 
   upload() {
     if(this.selectedFile === undefined){
+      this.invalidImageType = false;
       this.emptyImage = true;
       return
     }

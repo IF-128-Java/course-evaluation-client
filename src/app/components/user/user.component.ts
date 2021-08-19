@@ -44,7 +44,7 @@ export class UserComponent implements OnInit{
   hideNewPassword: boolean = true
   hideConfirmNewPassword: boolean = true
 
-  OldPasswordNotMatch: boolean = false;
+  oldPasswordNotMatch: boolean = false;
   newPasswordsNotMatch: boolean = false;
 
   ngOnInit(): void {
@@ -111,6 +111,7 @@ export class UserComponent implements OnInit{
   }
 
   updatePassword(): void{
+    this.oldPasswordNotMatch = false;
     this.invalidOldPassword = false;
     this.invalidNewPassword = false;
 
@@ -135,12 +136,12 @@ export class UserComponent implements OnInit{
         this.newPasswordsNotMatch = false;
 
         if(error.error.error === 'InvalidOldPasswordException'){
-          this.OldPasswordNotMatch = true;
+          this.oldPasswordNotMatch = true;
           this.oldPassword = '';
         }
 
         if(error.error.error === 'MethodArgumentNotValidException'){
-          this.OldPasswordNotMatch = false;
+          this.oldPasswordNotMatch = false;
 
           if (error.error.fields.oldPassword){
             this.invalidOldPassword = true;
@@ -186,7 +187,7 @@ export class UserComponent implements OnInit{
     this.profileComponent = !this.profileComponent;
     this.updatePasswordComponent = !this.updatePasswordComponent;
 
-    this.OldPasswordNotMatch = false;
+    this.oldPasswordNotMatch = false;
 
     this.newPasswordsNotMatch = false;
 
