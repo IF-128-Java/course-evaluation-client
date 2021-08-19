@@ -1,0 +1,35 @@
+<button mat-icon-button class="close-button" [mat-dialog-close]="true">
+  <mat-icon class="close-icon" color="warn">close</mat-icon>
+</button>
+<mat-card class="question-card">
+  <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+      <label>Question text</label>
+  <br>
+      <mat-form-field class="form-control">
+        <textarea matInput placeholder="Your question text" required minlength="5" maxlength="250" name="questionText" [(ngModel)]="question.questionText" #questionText="ngModel" >
+          </textarea>
+        <div *ngIf="questionText.invalid && (questionText.dirty || questionText.touched)"
+             class="alert">
+          <mat-error *ngIf="questionText.errors?.required">
+            Question is required.
+          </mat-error >
+          <mat-error  *ngIf="questionText.errors?.minlength">
+            Question must be between 5 and 250 any symbols.
+          </mat-error >
+        </div>
+      </mat-form-field>
+  <br>
+      <label>Pattern Question? </label>
+  <br>
+  <span class="example-list-section">
+      <mat-checkbox (change)="OnChange($event)" class="example-margin" name="pattern">
+    </mat-checkbox>
+  </span>
+  <br>
+  <br>
+    <button mat-stroked-button class="btn custom-btn">
+      <mat-icon>add</mat-icon>
+      Create
+    </button>
+  </form>
+</mat-card>

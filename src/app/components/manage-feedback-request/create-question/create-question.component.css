@@ -1,0 +1,10 @@
+.question-card {
+  max-width: 800px;
+  margin: auto;
+  text-align: center;
+}
+.close-button{
+  float: right;
+  top:-24px;
+  right:-24px;
+}

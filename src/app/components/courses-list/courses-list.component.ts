@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Course} from '../../models/course.model';
 import {CoursesService} from '../../services/courses.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-courses-list',
@@ -15,7 +16,7 @@ export class CoursesListComponent implements OnInit {
   courseName = '';
   activeItem: number | undefined;
 
-  constructor(private coursesService: CoursesService) { }
+  constructor(private coursesService: CoursesService, private router: Router) { }
 
   onSelect(item: number): void {
     this.activeItem = item;

@@ -47,4 +47,7 @@ export class AdminCourseListComponent implements OnInit {
     );
     return event;
   }
+  showFeedbackRequests(id: any) {
+    this.router.navigate(['/admin/courses/'+id+'/feedback_requests'])
+  }
 }

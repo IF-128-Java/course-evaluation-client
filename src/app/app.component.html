@@ -18,12 +18,6 @@
       <a routerLink="current-courses" mat-menu-item>Current courses</a>
       <a routerLink="av-courses" mat-menu-item>Available courses</a>
     </mat-menu>
-    <button class="toolbar-content" mat-button [matMenuTriggerFor]="menuFeedbackRequest"
-            *ngIf="roles && (roles.includes('ROLE_TEACHER') || roles.includes('ROLE_ADMIN'))">FeedbackRequest
-    </button>
-    <mat-menu class="toolbar-content" #menuFeedbackRequest="matMenu" yPosition="below">
-      <a routerLink="feedback_request/add" mat-menu-item>Add new Feedback Request</a>
-    </mat-menu>
     <span class="spacer"></span>
     <div class="toolbar-content" *ngIf="!username" id="reg-login-links">
       <a routerLink="register" mat-button>

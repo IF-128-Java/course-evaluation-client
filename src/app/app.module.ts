@@ -37,10 +37,11 @@ import {EnrolledStudentListComponent} from './admin_project/components/group/enr
 import {StudentListComponent} from './admin_project/components/group/student-list/student-list.component';
 import {GroupCourseListComponent} from './admin_project/components/group/group-course-list/group-course-list.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
-import {AddFeedbackrequestComponent} from './components/add-feedbackrequest/add-feedbackrequest.component';
+import {AddFeedbackrequestComponent} from './components/manage-feedback-request/add-feedbackrequest/add-feedbackrequest.component';
 import {MatSelectModule} from '@angular/material/select';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatChipsModule} from '@angular/material/chips';
+import { CreateQuestionComponent } from './components/manage-feedback-request/create-question/create-question.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatDividerModule} from '@angular/material/divider';
@@ -52,6 +53,11 @@ import {CurrentCoursesComponent} from './components/student/Current-courses/curr
 import {AvCoursesComponent} from './components/student/Av-courses/av-courses.component';
 import { AdminCourseListComponent } from './admin_project/components/course/admin-course-list/admin-course-list.component';
 import {DialogForUpdateUserProfilePicture} from "./components/user/update-profile-picture-dialog/dialog-for-update-user-profile-picture.component";
+import { FeedbackrequestListComponent } from './components/manage-feedback-request/feedbackrequest-list/feedbackrequest-list.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+import { FeedbacksListComponent } from './components/manage-feedback-request/feedbacks-list/feedbacks-list.component';
+import { FeedbackAnswerComponent } from './components/manage-feedback-request/feedback-answer/feedback-answer.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +82,11 @@ import {DialogForUpdateUserProfilePicture} from "./components/user/update-profil
     MyGroupComponent,
     PassedCoursesComponent,
     CurrentCoursesComponent,
+    CreateQuestionComponent,
+    FeedbackrequestListComponent,
+    FeedbacksListComponent,
+    FeedbackAnswerComponent,
+    CurrentCoursesComponent,
     AvCoursesComponent,
     DialogForUpdateUserProfilePicture,
     AdminCourseListComponent,
@@ -86,7 +97,7 @@ import {DialogForUpdateUserProfilePicture} from "./components/user/update-profil
     AppRoutingModule, HttpClientModule,
     FormsModule,
     BrowserAnimationsModule, MatDialogModule,
-    MatDividerModule, MatSnackBarModule, MatProgressSpinnerModule, MatButtonModule, MatIconModule, MatInputModule, MatToolbarModule, MatMenuModule, MatTableModule, MatTooltipModule, MatCheckboxModule, ReactiveFormsModule, MatCardModule, MatListModule, MatGridListModule, ScrollingModule, MatPaginatorModule, MatSelectModule, MatAutocompleteModule, MatChipsModule, MatSidenavModule,
+    MatDividerModule, MatSnackBarModule, MatProgressSpinnerModule, MatButtonModule, MatIconModule, MatInputModule, MatToolbarModule, MatMenuModule, MatTableModule, MatTooltipModule, MatCheckboxModule, ReactiveFormsModule, MatCardModule, MatListModule, MatGridListModule, ScrollingModule, MatPaginatorModule, MatSelectModule, MatAutocompleteModule, MatChipsModule, MatSidenavModule, MatDatepickerModule, MatNativeDateModule,
   ],
   providers: [httpInterceptorProviders, {provide: JWT_OPTIONS, useValue: JWT_OPTIONS}, JwtHelperService, {
     provide: MatDialogRef,
