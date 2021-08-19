@@ -36,11 +36,12 @@ export class FeedbackAnswerComponent implements OnInit {
     this.questionService.getAll().subscribe(
       response => {
         let questions: Question[] = response;
-        console.log(questions);
         if (questions != undefined) {
           questions.forEach(q => {
             let answer = this.answers.find(a => a.questionId == q.id);
-            answer!.questionName = q.questionText;
+            if (answer != undefined) {
+              answer.questionName = q.questionText;
+            }
           })
         }
       }

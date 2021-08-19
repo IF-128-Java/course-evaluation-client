@@ -51,15 +51,17 @@ export class FeedbacksListComponent implements OnInit {
     this.groupService.getStudentsByCourseId(this.courseId).subscribe(
       response => {
         let students: Student[] = response;
-        console.log(students);
         if (students != undefined) {
           students!.forEach(st => {
             let feedback = this.feedbacks.find(f => f.studentId == st.id);
-            feedback!.studentName = st.firstName + ' ' + st.lastName;
+            if (feedback != undefined) {
+              feedback.studentName = st.firstName + ' ' + st.lastName;
+            }
           })
         }
-        console.log(students);
-  })}
+      })
+  }
+
 
   showAnswer(feedbackId:any) {
       this.router.navigateByUrl('/admin/courses/'+this.courseId+'/feedback_requests/'+this.feedbackRequestId+'/feedback/'+feedbackId)
