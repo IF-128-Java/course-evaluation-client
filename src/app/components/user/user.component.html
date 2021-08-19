@@ -8,7 +8,8 @@
         <img *ngIf="!defaultProfilePicture" class="personPhoto" [src]="profilePicture">
       </div>
       <div>
-        <button (click)="openDialog()" mat-stroked-button class="mt-4 mb-3">Update Picture</button>
+        <button (click)="openDialog()" mat-stroked-button class="mt-4 mb-4 mx-2">Update Picture</button>
+        <button (click)="deletePicture()" *ngIf="!defaultProfilePicture" mat-stroked-button class="mt-4 mb-4 mx-2">Default Picture</button>
       </div>
       <mat-divider></mat-divider>
       <div class="mt-1">

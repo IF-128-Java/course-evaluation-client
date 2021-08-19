@@ -1,8 +1,10 @@
 import {Injectable} from '@angular/core';
 import {AppConfig} from '../common/app-config';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {FeedbackRequest} from '../models/feedbackrequest.model';
 import {Question} from '../models/question.model';
+import {Observable} from 'rxjs';
+import {PageEvent} from '@angular/material/paginator';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +21,18 @@ export class FeedbackrequestService {
   }
 
   addQuestionToFeedbackRequest(id: any, questions: Question[]) {
-    return this.http.post(this.feedbackRequestUrl +  `${id}` +'/questions', questions)
+    return this.http.post(this.feedbackRequestUrl + `${id}` + '/questions', questions)
+  }
+
+  getFeedbackRequestByCourseId(id: number): Observable<FeedbackRequest[]> {
+    return this.http.get<FeedbackRequest[]>(this.feedbackRequestUrl + 'course/' + id);
+  }
+
+  getFbRequests(event: PageEvent, courseId: any): Observable<any> {
+    const params = new HttpParams()
+      .set('page', event.pageIndex)
+      .set('size', event.pageSize)
+    return this.http.get(this.feedbackRequestUrl + 'course/' + courseId, {params});
   }
 
 }

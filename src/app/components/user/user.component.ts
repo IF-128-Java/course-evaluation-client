@@ -154,6 +154,17 @@ export class UserComponent implements OnInit{
     );
   }
 
+  deletePicture():void{
+    this.userService.deletePicture().subscribe(() => {
+        this._snackBar.open('Picture was deleted!', 'Close');
+        this.reloadPage();
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
   showProfileComponent(): void{
     this.profileComponent = !this.profileComponent;
     this.updateComponent = false
