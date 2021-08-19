@@ -8,7 +8,7 @@
   <table mat-table [dataSource]="courses" class="mat-elevation-z8">
 
     <ng-container matColumnDef="Course Name">
-      <th mat-header-cell *matHeaderCellDef> Group name</th>
+      <th mat-header-cell *matHeaderCellDef> Course name</th>
       <td class="pointer name-column" mat-cell *matCellDef="let course, let i = index" (click)="onSelect(i)"> {{ course.courseName }}<br>
       </td>
     </ng-container>
@@ -54,10 +54,9 @@
 <!--          <mat-icon>delete</mat-icon>-->
 <!--          Delete-->
 <!--        </button>-->
-        <button mat-stroked-button (click)="showFeedbackRequests(course.id)" class="delete-button">
-          <mat-icon>list</mat-icon>
-          Feedback requests
-        </button>
+          <button mat-stroked-button (click)="showFeedbackRequests(course.id)" class="delete-button">
+            <mat-icon>list</mat-icon>
+          </button>
       </td>
     </ng-container>
     <tr id="row" mat-header-row *matHeaderRowDef="displayedColumns"></tr>

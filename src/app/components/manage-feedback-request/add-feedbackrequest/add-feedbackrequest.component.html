@@ -33,19 +33,6 @@
     </mat-form-field>
     </div>
     <div>
-    <label>Course</label>
-    </div>
-    <div>
-    <mat-form-field class="form-control">
-      <mat-label>Select course</mat-label>
-      <mat-select [(ngModel)]="feedbackrequest.course" name="course" required>
-        <mat-option *ngFor="let course of allCourse" [value]="course.id">
-          {{course.courseName}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    </div>
-    <div>
       <label>Questions</label>
     </div>
     <mat-form-field class="form-control">
