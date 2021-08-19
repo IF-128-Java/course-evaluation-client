@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {GroupDto} from '../../../models/group-dto.model';
 import {GroupService} from '../../../services/group.service';
+import {MatDialogRef} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-create-group',
@@ -10,9 +11,8 @@ import {GroupService} from '../../../services/group.service';
 export class CreateGroupComponent implements OnInit {
   form: any = {};
   group?: GroupDto;
-  message: string = '';
   errorMessage?: string;
-  constructor(private groupService: GroupService) {
+  constructor(private groupService: GroupService,public dialogRef: MatDialogRef<CreateGroupComponent>) {
   }
 
   ngOnInit(): void {
@@ -22,16 +22,14 @@ export class CreateGroupComponent implements OnInit {
     this.group = new GroupDto();
     this.group.groupName = this.form.groupName;
     this.groupService.create(this.group.groupName).subscribe(data => {
-      this.message='A group with name : '+this.form.groupName+' was successfully created!';
-    },error => {
+    this.dialogRef.close();
+      },error => {
       this.errorMessage=error.error.message;
-      this.message='';
     });
   }
 
 
   onSearchChange($event: Event) {
     this.errorMessage='';
-    this.message='';
   }
 }
