@@ -13,7 +13,7 @@
     </ng-container>
 
     <ng-container matColumnDef="Course Name">
-      <th mat-header-cell *matHeaderCellDef> Group name</th>
+      <th mat-header-cell *matHeaderCellDef> Course Name</th>
       <td class="pointer" mat-cell *matCellDef="let course, let i = index" (click)="onSelect(i)"> {{ course.courseName }}<br>
       <div *ngIf="activeItem == i">
         <hr>
@@ -68,7 +68,6 @@
 <!--        </button>-->
           <button mat-stroked-button (click)="showFeedbackRequests(course.id)" class="delete-button">
             <mat-icon>list</mat-icon>
-            Feedback requests
           </button>
       </td>
     </ng-container>

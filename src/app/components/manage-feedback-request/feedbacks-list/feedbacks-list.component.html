@@ -3,12 +3,8 @@
     <mat-icon>arrow_back</mat-icon>
     Back</a>
 
-  <table mat-table [dataSource]="feedbacks" class="mat-elevation-z8">
+  <table mat-table [dataSource]="feedbacks" *ngIf="feedbacks.length != 0" class="mat-elevation-z8">
 
-    <ng-container matColumnDef="Id">
-      <th mat-header-cell *matHeaderCellDef> Id</th>
-      <td mat-cell *matCellDef="let feedbacks"> {{feedbacks.id}} </td>
-    </ng-container>
 
     <ng-container matColumnDef="Date">
       <th mat-header-cell *matHeaderCellDef> Date</th>
@@ -37,7 +33,7 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
   <div *ngIf="feedbacks.length === 0" class="admin-empty-records">No records found</div>
-  <mat-paginator
+  <mat-paginator *ngIf="feedbacks.length != 0"
     #paginator
     [length]="length"
     [pageIndex]="pageIndex"
