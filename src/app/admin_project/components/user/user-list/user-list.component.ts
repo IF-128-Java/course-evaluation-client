@@ -4,6 +4,7 @@ import {UserDto} from '../../../models/user-dto.model';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {UpdateRoleComponent} from '../update-role/update-role.component';
 import {PageEvent} from '@angular/material/paginator';
+import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-user-list',
@@ -14,19 +15,18 @@ export class UserListComponent implements OnInit {
   public users: UserDto[] = [];
   public user: UserDto | undefined;
   public displayedColumns: string[] = ['Id', 'First Name', 'Last Name', 'Roles'];
-  pageEvent?: PageEvent;
+  pageEvent: PageEvent = new PageEvent();
   pageIndex?: number;
   pageSize?: number;
   length?: number;
+  searchUsers = new FormControl('');
+  searchUsersFilter: string = '';
 
   constructor(private userService: UserService, public dialog: MatDialog, public dialModRef: MatDialogRef<any>) {
   }
 
   ngOnInit(): void {
-    var event = new PageEvent();
-    event.pageIndex = 0;
-    event.pageSize = 25;
-    this.getUsers(event);
+   this.getUsers(this.getUsersPageEvent(this.pageEvent));
   }
 
   openDialog(id: number) {
@@ -44,10 +44,10 @@ export class UserListComponent implements OnInit {
   }
 
   public getUsers(event: PageEvent) {
-    this.userService.getUserList(event).subscribe(
+    this.userService.getUserList(this.searchUsersFilter,event).subscribe(
       response => {
         this.users = response.content;
-        this.pageIndex = response.pageIndex;
+        this.pageIndex = response.number;
         this.pageSize = response.size;
         this.length = response.totalElements;
       }
@@ -56,5 +56,20 @@ export class UserListComponent implements OnInit {
   }
   public getSimpleRolesName(user:UserDto):string{
     return <string>user.roles?.map(r => r.substring(5)).join(', ');
+  }
+
+  getUsersPageEvent(event: PageEvent) {
+    if (this.pageIndex || this.pageSize) {
+      return event;
+    }
+    event.pageIndex = 0;
+    event.pageSize = 10;
+    return event;
+  }
+
+  filterUsers(value: any) {
+    this.searchUsersFilter = value;
+    this.pageEvent.pageIndex = 0;
+    this.ngOnInit()
   }
 }

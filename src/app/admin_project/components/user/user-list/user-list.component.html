@@ -1,5 +1,18 @@
 <div class="container">
   <h4>Users list</h4>
+  <form >
+    <mat-icon>search</mat-icon>
+    <mat-form-field appearance="fill">
+      <mat-label *ngIf="users.length > 0 || searchUsers.value===''">Find by name</mat-label>
+      <mat-label *ngIf="users.length === 0 && searchUsers.value!==''">No matches found</mat-label>
+
+      <input type="text"
+             placeholder="Mike Green"
+             matInput
+             [formControl]="searchUsers" (input)="filterUsers(searchUsers.value)"
+      >
+    </mat-form-field>
+  </form>
   <table mat-table [dataSource]="users" class="mat-elevation-z8">
     <ng-container matColumnDef="Id">
       <th mat-header-cell *matHeaderCellDef> Id</th>
