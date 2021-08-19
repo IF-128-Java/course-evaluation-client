@@ -1,14 +1,4 @@
 <div class="container" *ngIf="curStudent && curStudent.id" >
-  <h3 class="mt-5"></h3>
-  <div class="mt-2">
-    <label><strong>First name:</strong></label> {{ curStudent.firstName }}
-  </div>
-  <div class="mt-2">
-    <label><strong>Last name:</strong></label> {{ curStudent.lastName }}
-  </div>
-  <div class="mt-2">
-    <label><strong>Email:</strong></label> {{ curStudent.email }}
-  </div>
   <div class="mt-2">
     <label><strong>Group:</strong></label> {{ curStudent.groupName }}
   </div>
@@ -21,12 +11,7 @@
 
   <table mat-table [dataSource]="listData" class="mat-elevation-z8">
 
-    <ng-container matColumnDef="Id">
-      <th mat-header-cell *matHeaderCellDef> Id</th>
-      <td mat-cell *matCellDef="let coursesgroup"> {{coursesgroup.id}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="Course Name">
+    <ng-container matColumnDef="CourseName">
       <th mat-header-cell *matHeaderCellDef> Course Name</th>
       <td mat-cell *matCellDef="let coursesgroup"> {{coursesgroup.courseName}} </td>
     </ng-container>
@@ -36,12 +21,12 @@
       <td mat-cell *matCellDef="let coursesgroup"> {{coursesgroup.description}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="Start Date">
+    <ng-container matColumnDef="StartDate">
       <th mat-header-cell *matHeaderCellDef> Start Date</th>
       <td mat-cell *matCellDef="let coursesgroup"> {{coursesgroup.startDate | date : 'd MMM, y' : '+0000'}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="End Date">
+    <ng-container matColumnDef="EndDate">
       <th mat-header-cell *matHeaderCellDef> End Date</th>
       <td mat-cell *matCellDef="let coursesgroup"> {{coursesgroup.endDate | date : 'd MMM, y' : '+0000'}} </td>
     </ng-container>
