@@ -3,6 +3,7 @@ import {AppConfig} from '../../common/app-config';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {PageEvent} from '@angular/material/paginator';
 import {Observable} from 'rxjs';
+import {A} from "@angular/cdk/keycodes";
 
 const httpOptions = {headers: new HttpHeaders({'Content-Type': 'application/json'})};
 
@@ -11,7 +12,9 @@ const httpOptions = {headers: new HttpHeaders({'Content-Type': 'application/json
 })
 export class CoursesService {
 
-  private url = AppConfig.API_ADMIN_ENDPOINT + 'courses'
+  private url = AppConfig.API_ADMIN_ENDPOINT + 'courses';
+  private editUrl = AppConfig.API_ADMIN_ENDPOINT + 'courses/edit';
+  private findUrl = AppConfig.API_ADMIN_ENDPOINT + 'courses/name';
   constructor(private http: HttpClient) { }
 
   getCourses(event: PageEvent): Observable<any> {
@@ -23,4 +26,17 @@ export class CoursesService {
   createCourse(data: any): Observable<any>{
     return this.http.post(this.url, data, httpOptions);
   }
+  editCourse(id: any, data: any): Observable<any>{
+    return this.http.patch(`${this.editUrl}/${id}`, data, httpOptions)
+  }
+  getCourse(id: any): Observable<any>{
+    return this.http.get(`${this.url}/${id}`, httpOptions)
+  }
+  findByCourseName(courseName: string): Observable<any> {
+    return this.http.get(`${this.findUrl}/?courseName=${courseName}`);
+  }
+  delete(id: any): Observable<any> {
+    return this.http.delete(`${this.url}/${id}`, httpOptions);
+  }
+
 }

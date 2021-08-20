@@ -5,16 +5,13 @@
       <mat-form-field class="form-control">
         <mat-label>Enter description</mat-label>
       <input matInput name="feedbackDescription" [(ngModel)]="feedbackrequest.feedbackDescription" #description="ngModel" required minlength="5" maxlength="250"/>
-      </mat-form-field>
-      <div *ngIf="description.invalid && (description.dirty || description.touched)"
-           class="alert">
         <mat-error *ngIf="description.errors?.required">
           Description is required.
         </mat-error >
         <mat-error  *ngIf="description.errors?.minlength">
           Description must be between 5 and 250 any symbols.
         </mat-error >
-      </div>
+      </mat-form-field>
     </div>
     <div>
       <label>Date range</label>
