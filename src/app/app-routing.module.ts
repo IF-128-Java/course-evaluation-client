@@ -32,8 +32,8 @@ const routes: Routes = [
   {path: 'admin/users', component: UserListComponent, canActivate: [RoleGuardService],data:{
       expectedRole: 'ROLE_ADMIN'
     }},
-  {path: 'confirm', component: ConfirmComponent,
-  canActivate: [AuthGuardService]},
+  {path: 'confirm', component: ConfirmComponent},
+
   {path: 'admin/groups', component: GroupsListComponent, canActivate: [RoleGuardService],data:{
       expectedRole: 'ROLE_ADMIN'
     }},

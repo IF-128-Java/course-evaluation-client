@@ -5,6 +5,7 @@ import {TokenStorageService} from '../../auth/token-storage.service';
 import {AppConfig} from "../../common/app-config";
 import {ActivatedRoute} from "@angular/router";
 import {Router} from "@angular/router";
+import {ConfirmComponent} from "../confirm/confirm.component";
 
 @Component({
   selector: 'app-login',
@@ -40,6 +41,7 @@ export class LoginComponent implements OnInit {
         })
       } else {window.location.href="/login"}
     }
+
   }
 
   onSubmit() {

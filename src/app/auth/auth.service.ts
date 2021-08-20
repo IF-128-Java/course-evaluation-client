@@ -19,6 +19,7 @@ export class AuthService {
   private loginUrl = AppConfig.API_ENDPOINT + 'auth/login';
   private signupUrl = AppConfig.API_ENDPOINT + 'auth/reg';
   private confirmUrl = AppConfig.API_ENDPOINT + 'auth/confirm';
+  public isConfirmed: false;
 
   constructor(private http: HttpClient, private jwtHelper: JwtHelperService, private tokenStorage: TokenStorageService) {
   }
@@ -36,8 +37,7 @@ export class AuthService {
     return !this.jwtHelper.isTokenExpired(token);
   }
 
-  confirm(code: string): Observable<void> {
-    return this.http.post<any>(`${this.confirmUrl}?`, {code});
+  public isConfirm(code: string): Observable<void> {
+    return this.http.get<any>(this.confirmUrl + "?token="+  code);
   }
-
 }

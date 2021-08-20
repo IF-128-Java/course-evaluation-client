@@ -1,5 +1,7 @@
-<div *ngIf="isSignedUp; else signupForm">
-  Success! A verification email has been sent to your email address.
+<div *ngIf="isSignedUp; else signupForm" class="verify-msg">
+  <mat-icon aria-hidden="false" aria-label="Example email icon">email</mat-icon>
+  <h1>Verify Your Email Address</h1>
+  <p>We just sent a verification email to the address you entered. Please go to your inbox and verify your account to continue.</p>
 </div>
 <ng-template #signupForm>
   <div class="form-wraper">
