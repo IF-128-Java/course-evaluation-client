@@ -25,6 +25,7 @@ import {AdminCourseListComponent} from './admin_project/components/course/admin-
 import {AdminCreateCourseComponent} from './admin_project/components/course/admin-create-course/admin-create-course.component';
 import {FeedbacksListComponent} from './components/manage-feedback-request/feedbacks-list/feedbacks-list.component';
 import {FeedbackAnswerComponent} from './components/manage-feedback-request/feedback-answer/feedback-answer.component';
+import {StudentFeedbackrequetComponent} from './components/student/StudentFeedbackrequest/studentfeedbackrequest.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -74,7 +75,9 @@ const routes: Routes = [
   {path: 'my-group', component: MyGroupComponent},
   {path: 'passed-courses', component: PassedCoursesComponent},
   {path: 'current-courses', component: CurrentCoursesComponent},
-  {path: 'av-courses', component: AvCoursesComponent}
+  {path: 'av-courses', component: AvCoursesComponent},
+  {path: 'feedback_request/course/:id', component: StudentFeedbackrequetComponent}
+
 ];
 
 @NgModule({

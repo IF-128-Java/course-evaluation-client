@@ -60,6 +60,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import {FeedbacksListComponent} from './components/manage-feedback-request/feedbacks-list/feedbacks-list.component';
 import {FeedbackAnswerComponent} from './components/manage-feedback-request/feedback-answer/feedback-answer.component';
+import {StudentFeedbackrequetComponent} from './components/student/StudentFeedbackrequest/studentfeedbackrequest.component';
 
 @NgModule({
   declarations: [
@@ -94,6 +95,7 @@ import {FeedbackAnswerComponent} from './components/manage-feedback-request/feed
     AdminCreateCourseComponent,
     DialogForUpdateUserProfilePicture,
     GroupNotEmptyDialogComponent,
+    StudentFeedbackrequetComponent,
   ],
     imports: [
         BrowserModule,
