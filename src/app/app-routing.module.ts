@@ -25,6 +25,7 @@ import {AdminCourseListComponent} from './admin_project/components/course/admin-
 import {AdminCreateCourseComponent} from './admin_project/components/course/admin-create-course/admin-create-course.component';
 import {FeedbacksListComponent} from './components/manage-feedback-request/feedbacks-list/feedbacks-list.component';
 import {FeedbackAnswerComponent} from './components/manage-feedback-request/feedback-answer/feedback-answer.component';
+import {AdminEditCourseComponent} from "./admin_project/components/course/admin-edit-course/admin-edit-course.component";
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -66,8 +67,13 @@ const routes: Routes = [
   {path: 'admin/courses/add', component: AdminCreateCourseComponent, canActivate: [RoleGuardService],data:{
       expectedRole: 'ROLE_ADMIN'
     }},
+  {path: 'admin/courses/:id', component: AdminEditCourseComponent, canActivate: [RoleGuardService],data:{
+      expectedRole: 'ROLE_ADMIN'
+    }},
   {path: 'courses', component: CoursesListComponent},
-  {path: 'courses/:id', component: CourseDetailsComponent},
+  {path: 'courses/:id', component: CourseDetailsComponent, canActivate: [RoleGuardService],data:{
+      expectedRole: 'ROLE_ADMIN'
+    }},
   {path: 'add', component: AddCourseComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'users/:id', component: UserComponent},

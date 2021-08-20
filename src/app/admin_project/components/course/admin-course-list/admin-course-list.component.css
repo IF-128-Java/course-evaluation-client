@@ -44,5 +44,21 @@ mat-paginator {
   min-width: 150px
 }
 .date-column{
-  min-width: 100px
+  min-width: 90px
 }
+.action-column{
+  width: 230px;
+}
+.space-between{
+  display: inline-block;
+  width: 15px;
+}
+.button-text{
+  display: inline-block;
+  min-width: 123px;
+}
+.form-search{
+  width: 300px;
+  height: 38px;
+}
+
