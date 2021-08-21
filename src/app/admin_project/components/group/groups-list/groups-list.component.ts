@@ -5,6 +5,7 @@ import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {CreateGroupComponent} from '../create-group/create-group.component';
 import {Router} from '@angular/router';
 import {PageEvent} from '@angular/material/paginator';
+import {GroupNotEmptyDialogComponent} from "../group-not-empty-dialog/group-not-empty-dialog.component";
 
 
 @Component({
@@ -14,7 +15,7 @@ import {PageEvent} from '@angular/material/paginator';
 })
 export class GroupsListComponent implements OnInit {
   public groups: GroupDto[] = [];
-  public displayedColumns: string[] = ['Id', 'Group Name', 'Students', 'Courses', 'Actions'];
+  public displayedColumns: string[] = ['Group Name', 'Students', 'Courses', 'Actions'];
   pageEvent?: PageEvent;
   pageIndex?: number;
   pageSize?: number;
@@ -45,10 +46,19 @@ export class GroupsListComponent implements OnInit {
       this.ngOnInit();
     });
   }
-
+  alertMessage() {
+    const dialogRef = this.dialog.open(GroupNotEmptyDialogComponent, {
+      width: '50%'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.ngOnInit();
+    });
+  }
   deleteGroup(id: number) {
     this.groupService.delete(id).subscribe(data => {
       this.ngOnInit();
+    },error => {
+      this.alertMessage();
     });
 
   }

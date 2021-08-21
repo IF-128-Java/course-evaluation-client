@@ -23,10 +23,10 @@ mat-paginator {
   color: black;
 }
 
-td {
-  cursor: pointer;
-}
 .admin-empty-records{
   text-align: center;
+}
+.edit-button {
+  background: transparent;
 }
 

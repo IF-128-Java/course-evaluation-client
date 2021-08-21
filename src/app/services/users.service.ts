@@ -28,4 +28,8 @@ export class UsersService{
   updatePicture(data: any): Observable<any> {
     return this.http.patch(`${this.usersUrl}profile-picture`, data);
   }
+
+  deletePicture(): Observable<any> {
+    return this.http.delete(`${this.usersUrl}profile-picture`);
+  }
 }

@@ -15,14 +15,17 @@ const httpOptions = {
 export class UserService {
 
   private url = AppConfig.API_ADMIN_ENDPOINT + 'users';
+  private teachersUrl = AppConfig.API_ENDPOINT + 'teachers';
+
 
   constructor(private http: HttpClient) {
   }
 
-  getUserList(event: PageEvent): Observable<any> {
+  getUserList(filter: string, event: PageEvent): Observable<any> {
     const params = new HttpParams()
       .set('page', event.pageIndex)
       .set('size', event.pageSize)
+      .set('filter',filter)
     return this.http.get(this.url, {params});
   }
 
@@ -33,5 +36,9 @@ export class UserService {
   addRoles(user: UserDto): Observable<any> {
     return this.http.patch(this.url + '/add-roles', user, httpOptions)
   }
+  getTeachers(): Observable<any> {
+    return this.http.get(this.teachersUrl)
+  }
+
 
 }

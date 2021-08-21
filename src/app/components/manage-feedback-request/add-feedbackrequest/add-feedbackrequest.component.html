@@ -1,0 +1,76 @@
+<div class="submit-form">
+  <form name="form" (ngSubmit)="f.form.valid && onSubmit()" *ngIf="!saved" #f="ngForm" novalidate>
+    <div class="form-group">
+      <label>Description</label>
+      <mat-form-field class="form-control">
+        <mat-label>Enter description</mat-label>
+      <input matInput name="feedbackDescription" [(ngModel)]="feedbackrequest.feedbackDescription" #description="ngModel" required minlength="5" maxlength="250"/>
+        <mat-error *ngIf="description.errors?.required">
+          Description is required.
+        </mat-error >
+        <mat-error  *ngIf="description.errors?.minlength">
+          Description must be between 5 and 250 any symbols.
+        </mat-error >
+      </mat-form-field>
+    </div>
+    <div>
+      <label>Date range</label>
+    </div>
+    <div>
+    <mat-form-field class="form-control">
+      <mat-label>Enter a date range</mat-label>
+      <mat-date-range-input [min]="minDate" [formGroup]="range" [rangePicker]="picker" required>
+        <input matStartDate formControlName="start" placeholder="Start date" required>
+        <input matEndDate formControlName="end" placeholder="End date" required>
+      </mat-date-range-input>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+      <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+      <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+    </mat-form-field>
+    </div>
+    <div>
+      <label>Questions</label>
+    </div>
+    <mat-form-field class="form-control">
+      <mat-label>Choice question</mat-label>
+      <mat-chip-list #chipList aria-label="Question selection">
+        <mat-chip
+          *ngFor="let question of selectQuestions"
+          [selectable]="selectable"
+          [removable]="removable"
+          (removed)="remove(question)">
+          {{question.questionText}}
+          <mat-icon matChipRemove *ngIf="!question.pattern">cancel</mat-icon>
+        </mat-chip>
+        <input
+          placeholder="New question..."
+          #questionInput
+          [formControl]="questionCtrl"
+          [matAutocomplete]="auto"
+          [matChipInputFor]="chipList"
+          (matChipInputTokenEnd)="add($event)" required>
+      </mat-chip-list>
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+        <mat-option *ngFor="let question of filteredQuestion | async" [value]="question">
+          {{question}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <button mat-stroked-button class="button" (click)="addQuestion()" style="margin-top: 15px">
+      <mat-icon>add</mat-icon> Add question</button>
+    <div class="form-group">
+      <button mat-stroked-button class="button">
+        <mat-icon>save</mat-icon> Save</button>
+      <a *ngIf="courseId" mat-raised-button routerLink="/admin/courses/{{courseId}}/feedback_requests" class="back-button">
+        <mat-icon>arrow_back</mat-icon>
+        Back</a>
+    </div>
+  </form>
+  <div *ngIf="saved"><h3> {{feedbackrequest.feedbackDescription}} has added!</h3>
+  <div class="form-group mt-5" >
+    <button mat-stroked-button class="button" (click)="reloadPage()">
+      <mat-icon>add</mat-icon> Add new feedback request</button>
+  </div>
+  </div>
+</div>

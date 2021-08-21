@@ -1,0 +1,47 @@
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  background-color: rgba(228, 228, 228, .6);
+  height: 90%;
+  border-radius: 10px;
+  padding: 16px;
+}
+table {
+  background: transparent;
+  width: 90%;
+}
+
+th {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.button {
+  margin-bottom: 16px;
+  margin-right: 16px;
+}
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.back-button {
+  background: transparent;
+  float: right;
+}
+.admin-empty-records{
+  text-align: center;
+}
+.alert{
+  color: red;
+}
+mat-paginator {
+  background: transparent;
+  font-size: 15px;
+  font-weight: bold;
+  color: black;
+}
+.mat-flat-button{
+  background: transparent;
+}
