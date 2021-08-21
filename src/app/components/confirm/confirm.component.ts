@@ -9,6 +9,7 @@ import {AuthService} from "../../auth/auth.service";
 })
 export class ConfirmComponent implements OnInit {
   public isConfirmed = false;
+  public errorMessage: '';
 
   constructor(private activeRoute: ActivatedRoute, private authService: AuthService) { }
 
@@ -20,9 +21,15 @@ export class ConfirmComponent implements OnInit {
 
     if (code) {
       this.authService.isConfirm(code)
-        .subscribe(() => this.isConfirmed = true
+        .subscribe(() =>
+          this.isConfirmed = true,
+          error => {
+            console.log(error);
+            if (error.error.message) {
+              this.errorMessage = error.error.message;
+            } else this.errorMessage = error.error;
+          }
         );
     }
-    console.log(this.isConfirmed)
   }
 }
