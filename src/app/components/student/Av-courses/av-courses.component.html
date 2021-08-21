@@ -1,12 +1,8 @@
-<div class="container" *ngIf="curStudent && curStudent.id" >
-  <div class="mt-2">
-    <label><strong>Group:</strong></label> {{ curStudent.groupName }}
-  </div>
-</div>
-
 <div class="container"  *ngIf="curStudent && courses.length">
-  <br>
 
+  <label><strong>Group:</strong></label> {{ curStudent.groupName }}
+  <br>
+  <br>
   <h4>Available course </h4>
 
   <table mat-table [dataSource]="listData" class="mat-elevation-z8">

@@ -73,6 +73,6 @@ export class PassedCoursesComponent implements OnInit{
   }
 
   showFeedbackRequests(id: any) {
-//    this.router.navigateByUrl('/feedback_request/student/course/'+id)
+    this.router.navigateByUrl('/feedback_request/course/'+id)
   }
 }
