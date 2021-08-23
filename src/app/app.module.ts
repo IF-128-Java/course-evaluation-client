@@ -54,6 +54,7 @@ import {AvCoursesComponent} from './components/student/Av-courses/av-courses.com
 import {AdminCourseListComponent} from './admin_project/components/course/admin-course-list/admin-course-list.component';
 import {AdminCreateCourseComponent} from './admin_project/components/course/admin-create-course/admin-create-course.component';
 import {DialogForUpdateUserProfilePicture} from "./components/user/update-profile-picture-dialog/dialog-for-update-user-profile-picture.component";
+import { ConfirmComponent } from './components/confirm/confirm.component';
 import {GroupNotEmptyDialogComponent} from './admin_project/components/group/group-not-empty-dialog/group-not-empty-dialog.component';
 import {FeedbackrequestListComponent} from './components/manage-feedback-request/feedbackrequest-list/feedbackrequest-list.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
@@ -93,6 +94,7 @@ import {AdminEditCourseComponent } from './admin_project/components/course/admin
     CurrentCoursesComponent,
     AvCoursesComponent,
     AdminCourseListComponent,
+    ConfirmComponent,
     AdminCreateCourseComponent,
     DialogForUpdateUserProfilePicture,
     GroupNotEmptyDialogComponent,

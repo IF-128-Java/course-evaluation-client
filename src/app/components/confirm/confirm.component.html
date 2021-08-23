@@ -1,0 +1,14 @@
+<div class="verify-msg" *ngIf="isConfirmed; else notConfirmed">
+  <mat-icon aria-hidden="false" aria-label="Example email icon">email</mat-icon>
+  <h1>Email Verified</h1>
+  <div class="header">Your profile is confirmed!</div>
+</div>
+
+<ng-template #notConfirmed>
+  <div class="alert alert-warning text-center">
+    <mat-error>
+      {{ errorMessage }}
+    </mat-error>
+  </div>
+</ng-template>
+
