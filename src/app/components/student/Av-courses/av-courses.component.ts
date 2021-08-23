@@ -28,6 +28,7 @@ export class AvCoursesComponent implements OnInit {
     roles: [],
     groupId: '',
     groupName: '',
+    position: 0
   };
 
   ngOnInit(): void {

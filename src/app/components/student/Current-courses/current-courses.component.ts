@@ -29,6 +29,7 @@ export class CurrentCoursesComponent implements OnInit{
     roles: [],
     groupId: '',
     groupName: '',
+    position: 0
   };
 
   activeItem: number | undefined;
