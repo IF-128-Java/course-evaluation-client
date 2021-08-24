@@ -1,17 +1,17 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {UserService} from '../../../services/user.service';
 import {UserDto} from '../../../models/user-dto.model';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {UpdateRoleComponent} from '../update-role/update-role.component';
 import {PageEvent} from '@angular/material/paginator';
-import {FormControl} from '@angular/forms';
+import {FormBuilder, FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.css']
 })
-export class UserListComponent implements OnInit {
+export class UserListComponent implements AfterViewInit {
   public users: UserDto[] = [];
   public user: UserDto | undefined;
   public displayedColumns: string[] = ['First Name', 'Last Name', 'Roles','Action'];
@@ -21,12 +21,15 @@ export class UserListComponent implements OnInit {
   length?: number;
   searchUsers = new FormControl('');
   searchUsersFilter: string = '';
+  sorting: 'first_name' | 'last_name' = 'last_name'
+  order:string = 'last_name';
+  direction:string='ASC';
+  constructor(private userService: UserService, public dialog: MatDialog, public dialModRef: MatDialogRef<any>, private fb: FormBuilder) {
 
-  constructor(private userService: UserService, public dialog: MatDialog, public dialModRef: MatDialogRef<any>) {
   }
 
-  ngOnInit(): void {
-   this.getUsers(this.getUsersPageEvent(this.pageEvent));
+  ngAfterViewInit(): void {
+   this.getUsers(this.getUsersPageEvent(this.pageEvent),this.order,this.direction);
   }
 
   openDialog(id: number) {
@@ -37,14 +40,14 @@ export class UserListComponent implements OnInit {
           data: this.user
         });
         dialogRef.afterClosed().subscribe(result => {
-          this.ngOnInit();
+          this.ngAfterViewInit();
         });
       }
     );
   }
 
-  public getUsers(event: PageEvent) {
-    this.userService.getUserList(this.searchUsersFilter,event).subscribe(
+  public getUsers(event: PageEvent, order: string, direction: string) {
+    this.userService.getUserList(this.searchUsersFilter,event,order,direction).subscribe(
       response => {
         this.users = response.content;
         this.pageIndex = response.number;
@@ -70,6 +73,20 @@ export class UserListComponent implements OnInit {
   filterUsers(value: any) {
     this.searchUsersFilter = value;
     this.pageEvent.pageIndex = 0;
-    this.ngOnInit()
+    this.ngAfterViewInit()
+  }
+
+  changeOrder() {
+    if (this.direction === 'ASC'){
+      this.direction = 'DESC'
+    }else{
+      this.direction = 'ASC'
+    }
+    this.ngAfterViewInit()
+  }
+
+  onChange(event: any) {
+    this.order = event
+    this.ngAfterViewInit()
   }
 }
