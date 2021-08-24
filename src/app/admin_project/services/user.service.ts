@@ -21,11 +21,13 @@ export class UserService {
   constructor(private http: HttpClient) {
   }
 
-  getUserList(filter: string, event: PageEvent): Observable<any> {
+  getUserList(filter: string, event: PageEvent, order: string, direction: string): Observable<any> {
     const params = new HttpParams()
       .set('page', event.pageIndex)
       .set('size', event.pageSize)
       .set('filter',filter)
+      .set('direction',direction)
+      .set('order',order)
     return this.http.get(this.url, {params});
   }
 
@@ -39,6 +41,4 @@ export class UserService {
   getTeachers(): Observable<any> {
     return this.http.get(this.teachersUrl)
   }
-
-
 }
