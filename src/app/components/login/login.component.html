@@ -8,6 +8,11 @@
         <H3>User Login</H3>
       </div>
       <form name="form" class="form-body" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+        <div class="alert alert-warning text-center" *ngIf="f.submitted && isLoginFailed">
+          <mat-error>
+            Login failed!<br />{{ errorMessage }}
+          </mat-error>
+        </div>
         <mat-form-field class="justifier">
           <input matInput placeholder="Email" class="form-input" name="username"
                  [(ngModel)]="form.username" #username="ngModel" required>
@@ -39,6 +44,7 @@
             </a>
           </p>
         </div>
+
       </form>
     </div>
   </div>

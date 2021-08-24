@@ -21,10 +21,15 @@ import {MyGroupComponent} from './components/student/My-group/my-group.component
 import {PassedCoursesComponent} from './components/student/Passed-courses/passed-courses.component';
 import {CurrentCoursesComponent} from './components/student/Current-courses/current-courses.component';
 import {AvCoursesComponent} from './components/student/Av-courses/av-courses.component';
-import {AdminCourseListComponent} from './admin_project/components/course/admin-course-list/admin-course-list.component';
+import {AdminCourseListComponent} from "./admin_project/components/course/admin-course-list/admin-course-list.component";
+import {ConfirmComponent} from "./components/confirm/confirm.component";
+import {AuthGuardService} from "./auth/auth-guard.service";
+
 import {AdminCreateCourseComponent} from './admin_project/components/course/admin-create-course/admin-create-course.component';
 import {FeedbacksListComponent} from './components/manage-feedback-request/feedbacks-list/feedbacks-list.component';
 import {FeedbackAnswerComponent} from './components/manage-feedback-request/feedback-answer/feedback-answer.component';
+import {StudentFeedbackrequetComponent} from './components/student/StudentFeedbackrequest/studentfeedbackrequest.component';
+import {AdminEditCourseComponent} from "./admin_project/components/course/admin-edit-course/admin-edit-course.component";
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -33,6 +38,8 @@ const routes: Routes = [
   {path: 'admin/users', component: UserListComponent, canActivate: [RoleGuardService],data:{
       expectedRole: 'ROLE_ADMIN'
     }},
+  {path: 'confirm', component: ConfirmComponent},
+
   {path: 'admin/groups', component: GroupsListComponent, canActivate: [RoleGuardService],data:{
       expectedRole: 'ROLE_ADMIN'
     }},
@@ -66,15 +73,22 @@ const routes: Routes = [
   {path: 'admin/courses/add', component: AdminCreateCourseComponent, canActivate: [RoleGuardService],data:{
       expectedRole: 'ROLE_ADMIN'
     }},
+  {path: 'admin/courses/:id', component: AdminEditCourseComponent, canActivate: [RoleGuardService],data:{
+      expectedRole: 'ROLE_ADMIN'
+    }},
   {path: 'courses', component: CoursesListComponent},
-  {path: 'courses/:id', component: CourseDetailsComponent},
+  {path: 'courses/:id', component: CourseDetailsComponent, canActivate: [RoleGuardService],data:{
+      expectedRole: 'ROLE_ADMIN'
+    }},
   {path: 'add', component: AddCourseComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'users/:id', component: UserComponent},
   {path: 'my-group', component: MyGroupComponent},
   {path: 'passed-courses', component: PassedCoursesComponent},
   {path: 'current-courses', component: CurrentCoursesComponent},
-  {path: 'av-courses', component: AvCoursesComponent}
+  {path: 'av-courses', component: AvCoursesComponent},
+  {path: 'feedback_request/course/:id', component: StudentFeedbackrequetComponent}
+
 ];
 
 @NgModule({
