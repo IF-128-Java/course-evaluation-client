@@ -2,7 +2,6 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FeedbackRequest} from '../../../models/feedbackrequest.model';
 import {FeedbackrequestService} from '../../../services/feedbackrequest.service';
 import {CoursesService} from '../../../services/courses.service';
-import {Course} from '../../../models/course.model';
 import {QuestionService} from '../../../services/question.service';
 import {Question} from '../../../models/question.model';
 import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
@@ -24,6 +23,7 @@ import {DateAdapter} from '@angular/material/core';
 
 export class AddFeedbackrequestComponent implements OnInit {
   feedbackrequest: FeedbackRequest = {
+    id: 0,
     feedbackDescription: '',
     startDate: '',
     endDate: '',
@@ -75,10 +75,9 @@ export class AddFeedbackrequestComponent implements OnInit {
 
 
   onSubmit() {
-    this.feedbackrequest = new FeedbackRequest(this.feedbackrequest.feedbackDescription, this.range.value.start, this.range.value.end, this.courseId);
-    this.feedbackrequestService.create(this.feedbackrequest).subscribe(
-      () => {
-        this.feedbackrequestService.addQuestionToFeedbackRequest(this.feedbackrequest.id, Array.from(this.selectQuestions)).subscribe()
+    this.feedbackrequest = new FeedbackRequest(0,this.feedbackrequest.feedbackDescription, this.range.value.start, this.range.value.end, this.courseId);
+    this.feedbackrequestService.create(this.feedbackrequest).subscribe((data: any)  => {
+        this.feedbackrequestService.addQuestionToFeedbackRequest(data.id, Array.from(this.selectQuestions)).subscribe()
         this.saved = true;
       },
       error => {
