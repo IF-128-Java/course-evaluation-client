@@ -30,6 +30,7 @@ import {FeedbacksListComponent} from './components/manage-feedback-request/feedb
 import {FeedbackAnswerComponent} from './components/manage-feedback-request/feedback-answer/feedback-answer.component';
 import {StudentFeedbackrequetComponent} from './components/student/StudentFeedbackrequest/studentfeedbackrequest.component';
 import {AdminEditCourseComponent} from "./admin_project/components/course/admin-edit-course/admin-edit-course.component";
+import {ResetPasswordComponent} from "./components/reset-password/reset-password.component";
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -39,6 +40,9 @@ const routes: Routes = [
       expectedRole: 'ROLE_ADMIN'
     }},
   {path: 'confirm', component: ConfirmComponent},
+  {path: 'password_reset', component: ResetPasswordComponent},
+
+  {path: 'changePassword', component: ResetPasswordComponent},
 
   {path: 'admin/groups', component: GroupsListComponent, canActivate: [RoleGuardService],data:{
       expectedRole: 'ROLE_ADMIN'
