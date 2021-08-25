@@ -29,4 +29,17 @@ mat-paginator {
 .edit-button {
   background: transparent;
 }
-
+.search {
+  float: right;
+  padding: 5px;
+  margin-left: 20px;
+}
+.sorting-panel {
+  float: left;
+  padding: 5px;
+  margin-left: 10px;
+  margin-top: 30px;
+}
+.sorting-label{
+  margin-right: 10px;
+}
