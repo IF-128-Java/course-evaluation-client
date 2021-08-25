@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from "../../auth/auth.service";
+import {AuthService} from '../../auth/auth.service';
 import {ActivatedRoute} from "@angular/router";
 import {ResetPasswordInfo} from "./reset-password-info";
 
@@ -24,7 +24,6 @@ export class ResetPasswordComponent implements OnInit {
 
   ngOnInit(): void {
     this.resetToken = this.activeRoute.snapshot.queryParams.token;
-    console.log(this.resetToken);
     if(this.resetToken) {
       this.isResetMessageReceived = true;
     }
@@ -32,7 +31,6 @@ export class ResetPasswordComponent implements OnInit {
 
   onSubmit() {
     if(!this.resetToken) {
-      console.log("send mail to: " + this.form.username);
       this.authService.sendResetPasswordMail(this.form.username)
         .subscribe(() => this.isSend = true,
           error => {
