@@ -64,6 +64,8 @@ import {FeedbackAnswerComponent} from './components/manage-feedback-request/feed
 import {StudentFeedbackrequetComponent} from './components/student/StudentFeedbackrequest/studentfeedbackrequest.component';
 import {AdminEditCourseComponent } from './admin_project/components/course/admin-edit-course/admin-edit-course.component';
 import {MatRadioModule} from '@angular/material/radio';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+
 
 @NgModule({
   declarations: [
@@ -101,6 +103,7 @@ import {MatRadioModule} from '@angular/material/radio';
     GroupNotEmptyDialogComponent,
     StudentFeedbackrequetComponent,
     AdminEditCourseComponent,
+    ResetPasswordComponent,
   ],
     imports: [
         BrowserModule,

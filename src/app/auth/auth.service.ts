@@ -6,6 +6,7 @@ import {SignUpInfo} from './sign-up-info';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import {TokenStorageService} from './token-storage.service';
 import {AppConfig} from '../common/app-config';
+import {ResetPasswordInfo} from '../components/reset-password/reset-password-info';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -19,7 +20,8 @@ export class AuthService {
   private loginUrl = AppConfig.API_ENDPOINT + 'auth/login';
   private signupUrl = AppConfig.API_ENDPOINT + 'auth/reg';
   private confirmUrl = AppConfig.API_ENDPOINT + 'auth/confirm';
-  public isConfirmed: false;
+  private resetUrl = AppConfig.API_ENDPOINT + 'auth/restorePassword';
+  private changePasswordUrl = AppConfig.API_ENDPOINT + 'auth/changePassword';
 
   constructor(private http: HttpClient, private jwtHelper: JwtHelperService, private tokenStorage: TokenStorageService) {
   }
@@ -39,5 +41,13 @@ export class AuthService {
 
   public isConfirm(code: string): Observable<void> {
     return this.http.get<any>(this.confirmUrl + "?token="+  code);
+  }
+
+  public sendResetPasswordMail(email: string): Observable<any> {
+    return this.http.get(this.resetUrl + "?email="+ email);
+  }
+
+  public changePassword(passwordResetInfo: ResetPasswordInfo): Observable<any> {
+    return this.http.post(this.changePasswordUrl, passwordResetInfo,httpOptions)
   }
 }
