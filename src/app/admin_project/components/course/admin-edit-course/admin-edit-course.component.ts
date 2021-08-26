@@ -43,13 +43,11 @@ export class AdminEditCourseComponent implements OnInit {
 
   public async selected(event: MouseEvent, id: any): Promise<void> {
     this.teacherObj.id = +id;
-    console.log(this.teacherObj.id)
   }
 
   getCourse(id: number): void {
     this.coursesService.getCourse(id).subscribe(data => {
         this.currentCourse = data;
-        console.log(data);
       },
       error => {
         console.log(error);
@@ -61,7 +59,7 @@ export class AdminEditCourseComponent implements OnInit {
     this.message = '';
     this.currentCourse.teacherDto = this.teacherObj;
     this.coursesService.editCourse(this.currentCourse.id, this.currentCourse).subscribe(
-      response => { console.log(response);
+      response => {
         this.message = response.message ? response.message : 'Course was updated!'; },
       error => {
         console.log(error);
@@ -72,13 +70,11 @@ export class AdminEditCourseComponent implements OnInit {
     let currentUrl = this.router.url;
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
       this.router.navigate([currentUrl]);
-      console.log(currentUrl);
     });
   }
   deleteCourse(id: any): void {
     this.coursesService.delete(this.currentCourse.id).subscribe(
       response => {
-        console.log(response);
         this.reloadCurrentRoute();
       },
       error => {

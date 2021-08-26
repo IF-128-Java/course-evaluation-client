@@ -77,7 +77,6 @@ export class AdminCourseListComponent implements OnInit {
     this.coursesService.findByCourseName(name).subscribe(
       data => {
         this.courses = data;
-        console.log(data);
       },
       error => {
         console.log(error);
@@ -89,14 +88,12 @@ export class AdminCourseListComponent implements OnInit {
     let currentUrl = this.router.url;
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
       this.router.navigate([currentUrl]);
-      console.log(currentUrl);
     });
   }
 
   deleteCourse(id: any): void {
     this.coursesService.delete(id).subscribe(
       response => {
-        console.log(response);
         this.reloadCurrentRoute();
       },
       error => {
