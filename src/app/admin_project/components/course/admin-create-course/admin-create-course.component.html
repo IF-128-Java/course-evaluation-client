@@ -17,7 +17,7 @@ Course creation
     <mat-label>Teacher</mat-label>
     <mat-select matNativeControl required>
       <mat-option *ngFor="let teacher of teachers" [value]="teacher.id" (click)="selected($event, teacher.id)">
-        {{teacher.lastName}}  {{teacher.lastName}}
+        {{teacher.lastName}}  {{teacher.firstName}}
       </mat-option>
     </mat-select>
     <mat-error *ngIf="control.hasError('required')">Please choose a teacher</mat-error>

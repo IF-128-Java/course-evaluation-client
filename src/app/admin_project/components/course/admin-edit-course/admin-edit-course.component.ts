@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {Course} from '../../../../models/course.model';
 import {CoursesService} from '../../../services/courses.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Teacher} from "../../../../models/teacher.model";
-import {UserService} from "../../../services/user.service";
-import {UserDto} from "../../../models/user-dto.model";
-import {NgForm} from "@angular/forms";
-import {CourseDto} from "../../../models/course-dto.model";
+import {Teacher} from '../../../../models/teacher.model';
+import {UserService} from '../../../services/user.service';
+import {UserDto} from '../../../models/user-dto.model';
+import {CourseDto} from '../../../models/course-dto.model';
 
 @Component({
   selector: 'app-admin-edit-course',

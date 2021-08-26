@@ -16,6 +16,7 @@ import {FormControl} from "@angular/forms";
 export class AdminCourseListComponent implements OnInit {
 
   public courses: CourseDto[] = [];
+  public foundCourses: CourseDto[] = [];
   public displayedColumns: string[] = ['Course Name', 'Description', 'Start Date', 'End Date', 'Actions'];
   pageEvent?: PageEvent = new PageEvent();
   pageIndex?: number;
