@@ -14,7 +14,7 @@
         <mat-label>Teacher</mat-label>
         <mat-select matNativeControl required>
           <mat-option *ngFor="let teacher of teachers" [value]="teacher.id" (click)="selected($event, teacher.id)">
-            {{teacher.lastName}}  {{teacher.lastName}}
+            {{teacher.lastName}}  {{teacher.firstName}}
           </mat-option>
         </mat-select>
       </mat-form-field>
@@ -36,9 +36,6 @@
         <mat-error *ngIf="endDate.hasError('required')">Please choose End Date</mat-error>
       </mat-form-field>
       <br>
-<!--      <p style="display: inline-block">{{currentCourse.startDate | slice:0:10 }}</p><span class="space-between"></span><span class="space-between"></span><span class="space-between"></span><span class="space-between"></span>-->
-<!--      <p style="display: inline-block">{{currentCourse.endDate | slice:0:10 }}</p>-->
-
       <mat-form-field class="justifier mat-form-field-text">
     <textarea matInput cdkTextareaAutosize #autosize = "cdkTextareaAutosize" cdkAutosizeMinRows = "1"
               cdkAutosizeMaxRows="5" placeholder="Description" class="form-input" name="description"

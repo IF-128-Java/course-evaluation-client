@@ -33,7 +33,7 @@ export class CoursesService {
     return this.http.get(`${this.url}/${id}`, httpOptions)
   }
   findByCourseName(courseName: string): Observable<any> {
-    return this.http.get(`${this.findUrl}/?courseName=${courseName}`);
+    return this.http.get(`${this.findUrl}/${courseName}`);
   }
   delete(id: any): Observable<any> {
     return this.http.delete(`${this.url}/${id}`, httpOptions);

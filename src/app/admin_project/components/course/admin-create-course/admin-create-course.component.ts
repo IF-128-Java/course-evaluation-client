@@ -49,7 +49,6 @@ export class AdminCreateCourseComponent implements OnInit {
 
   public async selected(event: MouseEvent, id: any): Promise<void> {
     this.teacherObj.id = +id;
-    console.log(this.teacherObj.id)
   }
 
   onSubmit(created: NgForm) {
@@ -62,7 +61,6 @@ export class AdminCreateCourseComponent implements OnInit {
     };
     console.log(data);
     this.courseService.createCourse(data).subscribe(response => {
-      console.log(response);
       this.submitted = true;
       this.message='A course: '+this.form.courseName+' was successfully created!';
       created.reset();
