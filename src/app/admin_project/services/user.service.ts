@@ -21,13 +21,14 @@ export class UserService {
   constructor(private http: HttpClient) {
   }
 
-  getUserList(filter: string, event: PageEvent, order: string, direction: string): Observable<any> {
+  getUserList(search: string, event: PageEvent, order: string, direction: string, filter: number[]): Observable<any> {
     const params = new HttpParams()
       .set('page', event.pageIndex)
       .set('size', event.pageSize)
-      .set('filter',filter)
+      .set('roles',filter.toString())
       .set('direction',direction)
       .set('order',order)
+      .set('search',search)
     return this.http.get(this.url, {params});
   }
 

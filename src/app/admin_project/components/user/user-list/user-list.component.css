@@ -23,23 +23,34 @@ mat-paginator {
   color: black;
 }
 
-.admin-empty-records{
+.admin-empty-records {
   text-align: center;
 }
+
 .edit-button {
   background: transparent;
 }
+
 .search {
   float: right;
   padding: 5px;
   margin-left: 20px;
 }
+
 .sorting-panel {
   float: left;
   padding: 5px;
   margin-left: 10px;
   margin-top: 30px;
 }
-.sorting-label{
+
+.filtering-panel {
+  float: left;
+  padding: 5px;
+  margin-left: 10px;
+  margin-top: 40px;
+}
+
+.sorting-label, .filtering-label {
   margin-right: 10px;
 }
