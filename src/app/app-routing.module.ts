@@ -22,14 +22,15 @@ import {PassedCoursesComponent} from './components/student/Passed-courses/passed
 import {CurrentCoursesComponent} from './components/student/Current-courses/current-courses.component';
 import {AvCoursesComponent} from './components/student/Av-courses/av-courses.component';
 import {AdminCourseListComponent} from "./admin_project/components/course/admin-course-list/admin-course-list.component";
-import {ConfirmComponent} from "./components/confirm/confirm.component";
+import {ConfirmComponent} from './components/confirm/confirm.component';
 import {AuthGuardService} from "./auth/auth-guard.service";
 
 import {AdminCreateCourseComponent} from './admin_project/components/course/admin-create-course/admin-create-course.component';
 import {FeedbacksListComponent} from './components/manage-feedback-request/feedbacks-list/feedbacks-list.component';
 import {FeedbackAnswerComponent} from './components/manage-feedback-request/feedback-answer/feedback-answer.component';
 import {StudentFeedbackrequetComponent} from './components/student/StudentFeedbackrequest/studentfeedbackrequest.component';
-import {AdminEditCourseComponent} from "./admin_project/components/course/admin-edit-course/admin-edit-course.component";
+import {AdminEditCourseComponent} from './admin_project/components/course/admin-edit-course/admin-edit-course.component';
+import {ResetPasswordComponent} from './components/reset-password/reset-password.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -39,6 +40,9 @@ const routes: Routes = [
       expectedRole: 'ROLE_ADMIN'
     }},
   {path: 'confirm', component: ConfirmComponent},
+  {path: 'password_reset', component: ResetPasswordComponent},
+
+  {path: 'changePassword', component: ResetPasswordComponent},
 
   {path: 'admin/groups', component: GroupsListComponent, canActivate: [RoleGuardService],data:{
       expectedRole: 'ROLE_ADMIN'

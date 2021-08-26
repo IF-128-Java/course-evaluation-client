@@ -21,6 +21,11 @@
           <input type="password" matInput placeholder="Password" class="form-input" name="password"
                  [(ngModel)]="form.password" #password="ngModel" required>
         </mat-form-field>
+        <div class="additional-link">
+          <a routerLink="/password_reset">
+            Forgot password?
+          </a>
+        </div>
         <div class="form-footer">
           <button mat-stroked-button class="btn custom-btn">
             <mat-icon>input</mat-icon>
@@ -30,7 +35,8 @@
         <div class="additional-link">
           <a routerLink="/register">No Account? <strong>Create one here</strong></a>
         </div>
-        <div class="form-group">
+
+        <div class="form-group-social">
           <p class="social text-center">Or sign in with:</p>
           <p class="social-login text-center">
             <a href="{{ googleURL }}" class="btn btn btn-block btn-social btn-google">
@@ -42,6 +48,7 @@
             <a href="{{ githubURL }}" class="btn btn-block btn-social btn-github">
               <span class="fa fa-github"></span> GitHub
             </a>
+
           </p>
         </div>
 
