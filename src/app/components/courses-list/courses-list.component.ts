@@ -29,7 +29,6 @@ export class CoursesListComponent implements OnInit {
   retrieveCourses(): void {
     this.coursesService.getAll().subscribe(
       data => {this.courses = data;
-      console.log(data);
       },
       (error: any) => {console.log(error);
       })
@@ -48,7 +47,6 @@ export class CoursesListComponent implements OnInit {
     this.coursesService.findByCourseName(this.courseName).subscribe(
       data => {
         this.courses = data;
-        console.log(data);
       },
       error => {
         console.log(error);
