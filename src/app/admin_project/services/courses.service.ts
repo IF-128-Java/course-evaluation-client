@@ -17,10 +17,12 @@ export class CoursesService {
   private findUrl = AppConfig.API_ADMIN_ENDPOINT + 'courses/name';
   constructor(private http: HttpClient) { }
 
-  getCourses(event: PageEvent): Observable<any> {
+  getCourses(event: PageEvent, orderBy: string, direction: string): Observable<any> {
     const params = new HttpParams()
       .set('page', event.pageIndex)
       .set('size', event.pageSize)
+      .set('orderBy', orderBy)
+      .set('direction', direction)
     return this.http.get(this.url, {params});
   }
   createCourse(data: any): Observable<any>{
