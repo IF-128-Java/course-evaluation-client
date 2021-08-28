@@ -3,7 +3,6 @@ import {AppConfig} from '../../common/app-config';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {PageEvent} from '@angular/material/paginator';
 import {Observable} from 'rxjs';
-import {A} from "@angular/cdk/keycodes";
 
 const httpOptions = {headers: new HttpHeaders({'Content-Type': 'application/json'})};
 

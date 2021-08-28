@@ -5,7 +5,7 @@ import {CoursesService} from '../../../services/courses.service';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {Router} from '@angular/router';
 import {AdminCreateCourseComponent} from '../admin-create-course/admin-create-course.component';
-import {AdminEditCourseComponent} from "../admin-edit-course/admin-edit-course.component";
+import {AdminEditCourseComponent} from '../admin-edit-course/admin-edit-course.component';
 import {FormControl} from '@angular/forms';
 
 @Component({
