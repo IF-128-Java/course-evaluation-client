@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {AppConfig} from '../../common/app-config';
-import {PageEvent} from "@angular/material/paginator";
+import {Student} from '../../models/student/student.model';
 
 const httpOptions = {headers: new HttpHeaders({'Content-Type': 'application/json'})};
 
@@ -18,6 +18,7 @@ export class MyGroupService{
   private usersUrl4 = AppConfig.API_ENDPOINT + 'courses/available/';
   private usersUrl5 = AppConfig.API_ENDPOINT + 'students/course/';
   private usersUrl6 = AppConfig.API_ENDPOINT + 'feedback_request/student/course/';
+  private usersUrl7 = AppConfig.API_ENDPOINT + 'students/mail';
 
   constructor(private  http: HttpClient) { }
 
@@ -47,5 +48,9 @@ export class MyGroupService{
 
   getFbRequests(id: number): Observable<any> {
     return this.http.get(`${this.usersUrl6}${id}`, {responseType: 'json'});
+  }
+
+  sendMail(students: Student[]) {
+    return this.http.post(`${this.usersUrl7}`, students)
   }
 }

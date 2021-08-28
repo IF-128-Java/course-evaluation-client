@@ -5,6 +5,8 @@ import {TokenStorageService} from '../../../auth/token-storage.service';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 import {SelectionModel} from '@angular/cdk/collections';
+import {CdkTextareaAutosize} from '@angular/cdk/text-field';
+import {UserDto} from "../../../admin_project/models/user-dto.model";
 
 @Component({
   selector: 'app-my-group',
@@ -18,6 +20,7 @@ export class MyGroupComponent implements OnInit{
 
   listData: MatTableDataSource<any> = new MatTableDataSource<any>();
   selection = new SelectionModel<Student>(true, []);
+  mess: string = '';
 
   allstudents: Student[] = [];
 
@@ -84,6 +87,33 @@ export class MyGroupComponent implements OnInit{
         console.log(error);
       }
     );
+  }
+
+  sendMail(): void {
+    if (this.selection.selected.length == 0 ) {
+      alert("No one selected !!! ")
+      console.log("No one selected !!! ");
+    }
+    else if (this.mess == ""){
+      alert("No message entered !!! ")
+      console.log("No message entered !!! ");
+    } else {
+      for (var j in this.selection.selected) {
+        console.log(this.selection.selected[j].email);
+        console.log(this.mess);
+
+        //this.selection.deselect(this.selection.selected[j]);
+      }
+
+      this.MyGroupService.sendMail(this.selection.selected).subscribe(data => {
+
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    }
+    return;
   }
 
 }
