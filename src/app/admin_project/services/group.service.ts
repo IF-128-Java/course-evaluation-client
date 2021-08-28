@@ -27,12 +27,12 @@ export class GroupService {
     return this.http.get<CourseDto[]>(this.url + '/' + id + '/courses');
   }
 
-  getAvailableByGroupId(id: number | undefined, filter: string,event: PageEvent): Observable<any> {
+  getAvailableByGroupId(id: number | undefined, filter: string, event: PageEvent): Observable<any> {
     const params = new HttpParams()
       .set('filter', filter)
       .set('page', event.pageIndex)
       .set('size', event.pageSize)
-    return this.http.get<CourseDto[]>(this.url + '/' + id + '/available-courses',{params});
+    return this.http.get<CourseDto[]>(this.url + '/' + id + '/available-courses', {params});
   }
 
   getById(id: number): Observable<any> {
@@ -47,6 +47,10 @@ export class GroupService {
     return this.http.post(this.url, groupName)
   }
 
+  updateName(id: number, groupName: string | undefined) {
+    return this.http.patch(this.url + '/' + id, groupName)
+  }
+
   removeStudent(groupId: number | undefined, students: UserDto[]) {
     return this.http.patch(this.url + '/' + groupId + '/remove-students', students)
   }
@@ -55,11 +59,11 @@ export class GroupService {
     return this.http.patch(this.url + '/' + groupId + '/add-students', students)
   }
 
-  addCourse(group_id: number | undefined, course: CourseDto):Observable<GroupDto> {
-    return this.http.patch<GroupDto>(this.url+'/'+group_id+'/add-course',course);
+  addCourse(group_id: number | undefined, course: CourseDto): Observable<GroupDto> {
+    return this.http.patch<GroupDto>(this.url + '/' + group_id + '/add-course', course);
   }
 
-  removeCourse(group_id: number | undefined, course: CourseDto):Observable<GroupDto> {
-    return this.http.patch<GroupDto>(this.url+'/'+group_id+'/remove-course',course);
+  removeCourse(group_id: number | undefined, course: CourseDto): Observable<GroupDto> {
+    return this.http.patch<GroupDto>(this.url + '/' + group_id + '/remove-course', course);
   }
 }

@@ -5,8 +5,8 @@ import {CoursesService} from '../../../services/courses.service';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {Router} from '@angular/router';
 import {AdminCreateCourseComponent} from '../admin-create-course/admin-create-course.component';
-import {AdminEditCourseComponent} from "../admin-edit-course/admin-edit-course.component";
-import {FormControl} from "@angular/forms";
+import {AdminEditCourseComponent} from '../admin-edit-course/admin-edit-course.component';
+import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-admin-course-list',
@@ -25,6 +25,8 @@ export class AdminCourseListComponent implements OnInit {
   activeItem: number | undefined;
   searchCourse = new FormControl('');
   courseName: string = '';
+  orderBy: string = 'courseName';
+  direction: string = 'ASC';
 
   constructor(private coursesService: CoursesService,
               public dialog: MatDialog,
@@ -38,12 +40,12 @@ export class AdminCourseListComponent implements OnInit {
   ngOnInit(): void {
     var event = new PageEvent();
     event.pageIndex = 0;
-    event.pageSize = 10;
+    event.pageSize = 25;
     this.getCourses(event)
   }
 
   getCourses(event: PageEvent) {
-    this.coursesService.getCourses(event).subscribe(
+    this.coursesService.getCourses(event, this.orderBy, this.direction).subscribe(
       response => {
         this.courses = response.content;
         this.pageIndex = response.pageIndex;
@@ -83,6 +85,13 @@ export class AdminCourseListComponent implements OnInit {
       }
     );
   }
+
+  changeDirection(sortingColumn: string){
+    this.orderBy = sortingColumn;
+    this.direction = this.direction == 'ASC' ? 'DESC' : 'ASC';
+    this.ngOnInit();
+  }
+
 
   reloadCurrentRoute() {
     let currentUrl = this.router.url;
