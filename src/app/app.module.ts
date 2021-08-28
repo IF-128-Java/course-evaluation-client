@@ -65,6 +65,7 @@ import {StudentFeedbackrequetComponent} from './components/student/StudentFeedba
 import {AdminEditCourseComponent } from './admin_project/components/course/admin-edit-course/admin-edit-course.component';
 import {MatRadioModule} from '@angular/material/radio';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { EditGroupComponent } from './admin_project/components/group/edit-group/edit-group.component';
 
 
 @NgModule({
@@ -104,6 +105,7 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
     StudentFeedbackrequetComponent,
     AdminEditCourseComponent,
     ResetPasswordComponent,
+    EditGroupComponent,
   ],
     imports: [
         BrowserModule,
