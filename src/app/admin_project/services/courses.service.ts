@@ -3,7 +3,6 @@ import {AppConfig} from '../../common/app-config';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {PageEvent} from '@angular/material/paginator';
 import {Observable} from 'rxjs';
-import {A} from "@angular/cdk/keycodes";
 
 const httpOptions = {headers: new HttpHeaders({'Content-Type': 'application/json'})};
 
@@ -17,10 +16,12 @@ export class CoursesService {
   private findUrl = AppConfig.API_ADMIN_ENDPOINT + 'courses/name';
   constructor(private http: HttpClient) { }
 
-  getCourses(event: PageEvent): Observable<any> {
+  getCourses(event: PageEvent, orderBy: string, direction: string): Observable<any> {
     const params = new HttpParams()
       .set('page', event.pageIndex)
       .set('size', event.pageSize)
+      .set('orderBy', orderBy)
+      .set('direction', direction)
     return this.http.get(this.url, {params});
   }
   createCourse(data: any): Observable<any>{
