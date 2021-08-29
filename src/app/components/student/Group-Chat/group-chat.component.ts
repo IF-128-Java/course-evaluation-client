@@ -4,8 +4,8 @@ import {ActivatedRoute} from "@angular/router";
 import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
 import {AppConfig} from '../../../common/app-config';
-import {Message} from "../../../models/message.model";
-import {ChatService} from "../../../services/chat.service";
+import {Message} from '../../../models/message.model';
+import {ChatService} from '../../../services/chat.service';
 
 @Component({
   selector: 'app-group-chat',
