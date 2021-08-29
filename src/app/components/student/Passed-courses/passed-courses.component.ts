@@ -30,6 +30,7 @@ export class PassedCoursesComponent implements OnInit{
     roles: [],
     groupId: '',
     groupName: '',
+    groupChatRoomId: '',
   };
 
   activeItem: number | undefined;
