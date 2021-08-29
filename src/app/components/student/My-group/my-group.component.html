@@ -2,6 +2,11 @@
   <label><strong>Group:</strong></label> {{ curStudent.groupName }}
   <br>
   <br>
+  <div class="text-center">
+    <button routerLink="groupChat/{{curStudent.groupChatRoomId}}" mat-stroked-button>Group Chat</button>
+  </div>
+  <br>
+  <br>
   <h4>Students list</h4>
 
   <table mat-table [dataSource]="listData" class="mat-elevation-z8">

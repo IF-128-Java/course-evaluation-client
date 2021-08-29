@@ -31,6 +31,7 @@ export class MyGroupComponent implements OnInit{
     roles: [],
     groupId: '',
     groupName: '',
+    groupChatRoomId: '',
     position: 0
   };
 

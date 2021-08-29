@@ -6,9 +6,11 @@ export class Student {
   roles: string[];
   groupId: string;
   groupName: string;
+  groupChatRoomId: string;
   position: number;
 
-  constructor(id: string, firstName: string, lastName: string, email: string, roles: string[], groupId: string, groupName: string, position: number) {
+  constructor(id: string, firstName: string, lastName: string, email: string, roles: string[], groupId: string, groupName: string, groupChatRoomId: string, position: number) {
+
     this.id = id
     this.firstName = firstName;
     this.lastName = lastName;
@@ -16,7 +18,7 @@ export class Student {
     this.roles = roles;
     this.groupId = groupId;
     this.groupName = groupName;
+    this.groupChatRoomId = groupChatRoomId;
     this.position = position;
-
   }
 }

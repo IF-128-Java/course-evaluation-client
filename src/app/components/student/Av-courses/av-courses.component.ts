@@ -28,6 +28,7 @@ export class AvCoursesComponent implements OnInit {
     roles: [],
     groupId: '',
     groupName: '',
+    groupChatRoomId: '',
     position: 0
   };
 
