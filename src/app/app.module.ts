@@ -64,6 +64,7 @@ import {FeedbackAnswerComponent} from './components/manage-feedback-request/feed
 import {StudentFeedbackrequetComponent} from './components/student/StudentFeedbackrequest/studentfeedbackrequest.component';
 import {AdminEditCourseComponent } from './admin_project/components/course/admin-edit-course/admin-edit-course.component';
 import {MatRadioModule} from '@angular/material/radio';
+import {GroupChatComponent} from './components/student/Group-Chat/group-chat.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { EditGroupComponent } from './admin_project/components/group/edit-group/edit-group.component';
 
@@ -106,6 +107,7 @@ import { EditGroupComponent } from './admin_project/components/group/edit-group/
     AdminEditCourseComponent,
     ResetPasswordComponent,
     EditGroupComponent,
+    GroupChatComponent,
   ],
     imports: [
         BrowserModule,
