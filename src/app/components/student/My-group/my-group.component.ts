@@ -1,12 +1,11 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MyGroupService} from '../../../services/student/my-group.service';
 import {Student} from '../../../models/student/student.model';
+import {Mail} from '../../../models/student/mail.model';
 import {TokenStorageService} from '../../../auth/token-storage.service';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 import {SelectionModel} from '@angular/cdk/collections';
-import {CdkTextareaAutosize} from '@angular/cdk/text-field';
-import {UserDto} from "../../../admin_project/models/user-dto.model";
 
 @Component({
   selector: 'app-my-group',
@@ -33,6 +32,12 @@ export class MyGroupComponent implements OnInit{
     groupId: '',
     groupName: '',
     position: 0
+  };
+
+  mail: Mail = {
+    to: '',
+    subject: '',
+    message: ''
   };
 
   ngOnInit(): void {
@@ -91,29 +96,29 @@ export class MyGroupComponent implements OnInit{
 
   sendMail(): void {
     if (this.selection.selected.length == 0 ) {
-      alert("No one selected !!! ")
-      console.log("No one selected !!! ");
+      window.alert("No one selected !!! ")
     }
     else if (this.mess == ""){
-      alert("No message entered !!! ")
-      console.log("No message entered !!! ");
+      window.alert("No message entered !!! ")
     } else {
-      for (var j in this.selection.selected) {
-        console.log(this.selection.selected[j].email);
-        console.log(this.mess);
 
-        //this.selection.deselect(this.selection.selected[j]);
+      this.mail.subject = "You have message from " + this.curStudent.firstName + " " + this.curStudent.lastName;
+      this.mail.message = this.mess;
+
+      this.mail.to = "";
+      for (var j in this.selection.selected) {
+        this.mail.to = this.mail.to + this.selection.selected[j].email + ",";
       }
 
-      this.MyGroupService.sendMail(this.selection.selected).subscribe(data => {
-
+      this.MyGroupService.sendMail(this.mail).subscribe(data => {
+        this.selection.clear();
         },
         error => {
           console.log(error);
         }
-      );
+    );
+
     }
     return;
   }
-
 }
