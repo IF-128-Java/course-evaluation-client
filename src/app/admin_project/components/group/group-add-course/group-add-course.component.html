@@ -57,9 +57,15 @@
     <ng-container matColumnDef="Actions">
       <th mat-header-cell *matHeaderCellDef> Actions</th>
       <td mat-cell *matCellDef="let course">
-        <button mat-flat-button (click)="addCourse(course)" class="add-button" matTooltip="Add course">
-          <mat-icon>add</mat-icon>
-        </button>
+        <div class="actions-button">
+          <button mat-flat-button (click)="addCourse(course)" class="add-button" matTooltip="Add course">
+            <mat-icon>add</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" *ngIf="isCourseStarted(course)" (click)="openInfo(course)"
+                  matTooltip="Info">
+            <mat-icon>info</mat-icon>
+          </button>
+        </div>
       </td>
     </ng-container>
     <tr id="row" mat-header-row *matHeaderRowDef="displayedColumns"></tr>

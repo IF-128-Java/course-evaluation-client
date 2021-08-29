@@ -7,6 +7,7 @@ import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import {PageEvent} from '@angular/material/paginator';
+import {MatSnackBar, MatSnackBarConfig} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-group-add-course',
@@ -27,7 +28,7 @@ export class GroupAddCourseComponent implements OnInit {
   pageSize?: number;
   length?: number;
 
-  constructor(private groupService: GroupService, private route: ActivatedRoute) {
+  constructor(private groupService: GroupService, private route: ActivatedRoute,private _snackBar: MatSnackBar) {
   }
 
   ngOnInit(): void {
@@ -45,12 +46,14 @@ export class GroupAddCourseComponent implements OnInit {
           this.groupService.getAvailableByGroupId(this.group_id, value, event).subscribe(
             data => {
               this.courses = data.content
-              this.length=data.totalElements
+              this.length = data.totalElements
+
             }
           )
           return this._filter(value)
         })
       );
+
   }
 
   private _filter(value: string): string[] {
@@ -74,5 +77,23 @@ export class GroupAddCourseComponent implements OnInit {
       }
     );
     return event;
+  }
+
+  isCourseStarted(course: any): boolean {
+    return Date.parse(course.startDate.toString()) <= new Date().getTime();
+  }
+
+  beginningDuration(course: any): number {
+    return Math.floor((new Date().getTime() - Date.parse(course.startDate.toString())) / (1000 * 3600 * 24));
+  }
+
+  openInfo(course : any) {
+    var message = 'Course has already started '+this.beginningDuration(course)+' days ago!'
+    const config = new MatSnackBarConfig();
+    config.panelClass=['snackBar-panel']
+    config.duration=4000;
+    config.verticalPosition = 'top';
+    config.horizontalPosition = 'center';
+    this._snackBar.open(message, 'X',config);
   }
 }
