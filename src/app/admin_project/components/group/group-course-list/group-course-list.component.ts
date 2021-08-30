@@ -28,7 +28,7 @@ export class GroupCourseListComponent implements AfterViewInit {
   sorting: 'start_date' | 'end_date' = 'start_date'
   direction: string = 'ASC';
   order: string = 'start_date';
-  status: string []= ['active'];
+  status: string [] = ['active'];
 
   constructor(private groupService: GroupService, private route: ActivatedRoute, private fb: FormBuilder) {
     this.filtering = fb.group({
@@ -40,7 +40,7 @@ export class GroupCourseListComponent implements AfterViewInit {
 
 
   ngAfterViewInit(): void {
-    if (this.status.length===0){
+    if (this.status.length === 0) {
       this.filtering = this.fb.group({
         active: true,
         expected: false,
@@ -74,13 +74,21 @@ export class GroupCourseListComponent implements AfterViewInit {
   }
 
   getStatus(course: CourseDto): string {
-    if (Date.parse(<string>course.endDate?.toString()) <= new Date().getTime()) {
+    var start = Date.parse(<string>course.startDate?.toString());
+    var now = new Date().getTime()
+    var end = Date.parse(<string>course.endDate?.toString())
+
+    if (this.truncateToDays(end) <= this.truncateToDays(now)) {
       return 'Completed'
     }
-    if (Date.parse(<string>course.startDate?.toString()) >= new Date().getTime()) {
+    if (this.truncateToDays(start) > this.truncateToDays(now)) {
       return 'Expected'
     }
     return 'Active';
+  }
+
+  truncateToDays(date: number): number {
+    return date - (date % 86400000)
   }
 
   getCourses(event: PageEvent) {
