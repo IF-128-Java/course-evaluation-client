@@ -27,6 +27,7 @@ export class MyGroupComponent implements OnInit{
     roles: [],
     groupId: '',
     groupName: '',
+    groupChatRoomId: '',
   };
 
   ngOnInit(): void {

@@ -1,0 +1,33 @@
+.input-message {
+  width: 500px;
+  height: 36px;
+}
+
+.message-item{
+  max-width: 400px;
+  margin: 5px;
+  padding: 10px;
+  background-color: silver;
+}
+
+.spinner {
+  margin:15% auto 0;
+}
+
+#message-area{
+  max-width: 850px;
+  height: 515px;
+  margin: 1% auto;
+  border-radius: 10px;
+  padding: 5px;
+  background-color: whitesmoke;
+  overflow-x: hidden;
+}
+
+.message-sender{
+  font-size: 12px;
+}
+
+.message-date{
+  font-size: 12px;
+}
