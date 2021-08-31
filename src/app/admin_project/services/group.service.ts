@@ -23,8 +23,15 @@ export class GroupService {
     return this.http.get(this.url, {params});
   }
 
-  getCoursesByGroupId(id: number): Observable<CourseDto[]> {
-    return this.http.get<CourseDto[]>(this.url + '/' + id + '/courses');
+  getCoursesByGroupId(id: number , filter: string, event: PageEvent,order:string, direction:string, status:string[]): Observable<any> {
+    const params = new HttpParams()
+      .set('filter', filter)
+      .set('page', event.pageIndex)
+      .set('size', event.pageSize)
+      .set('order', order)
+      .set('direction', direction)
+      .set('status',status.toString())
+    return this.http.get<CourseDto[]>(this.url + '/' + id + '/courses',{params});
   }
 
   getAvailableByGroupId(id: number | undefined, filter: string, event: PageEvent): Observable<any> {

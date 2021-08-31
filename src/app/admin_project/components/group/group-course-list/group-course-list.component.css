@@ -1,4 +1,5 @@
 .container {
+  display: block;
   margin-left: auto;
   margin-right: auto;
   background-color: rgba(228, 228, 228, .6);
@@ -6,6 +7,7 @@
   border-radius: 10px;
   padding: 16px;
 }
+
 table {
   background: transparent;
   width: 90%;
@@ -25,15 +27,57 @@ th {
   background: transparent;
 }
 
-.container {
-  margin-left: auto;
-  margin-right: auto;
-}
 
 .back-button {
   background: transparent;
   float: right;
 }
-.admin-empty-records{
+
+.admin-empty-records {
   text-align: center;
 }
+
+.status-active {
+  display: flex;
+  padding: 5px;
+  color: #27AE60;
+  border-radius: 5px;
+}
+
+.status-expected {
+  display: flex;
+  padding: 5px;
+  color: #2874A6;
+  border-radius: 5px;
+}
+
+.status-completed {
+  display: flex;
+  padding: 5px;
+  color: #283747;
+  border-radius: 5px;
+}
+.search {
+  float: right;
+  padding: 5px;
+  margin-left: 20px;
+}
+
+.sorting-panel {
+  float: left;
+  padding: 5px;
+  margin-left: 10px;
+  margin-top: 30px;
+}
+
+.filtering-panel {
+  float: left;
+  padding: 5px;
+  margin-left: 10px;
+  margin-top: 40px;
+}
+
+.sorting-label, .filtering-label {
+  margin-right: 10px;
+}
+
