@@ -1,13 +1,13 @@
 .input-message {
-  width: 500px;
+  width: 700px;
   height: 36px;
 }
 
 .message-item{
-  max-width: 400px;
-  margin: 5px;
+  max-width: 350px;
   padding: 10px;
   background-color: silver;
+  border-radius: 5px;
 }
 
 .spinner {
@@ -16,9 +16,9 @@
 
 #message-area{
   max-width: 850px;
-  height: 515px;
-  margin: 1% auto;
-  border-radius: 10px;
+  height: 550px;
+  margin: 0 auto;
+  border-radius: 10px 10px 0 0;
   padding: 5px;
   background-color: whitesmoke;
   overflow-x: hidden;
@@ -30,4 +30,12 @@
 
 .message-date{
   font-size: 12px;
+}
+
+.bottom-side{
+  max-width: 850px;
+  background-color: whitesmoke;
+  text-align: center;
+  margin: 0 auto;
+  border-radius: 0 0 10px 10px;
 }
