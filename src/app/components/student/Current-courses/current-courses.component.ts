@@ -30,6 +30,7 @@ export class CurrentCoursesComponent implements OnInit{
     groupId: '',
     groupName: '',
     groupChatRoomId: '',
+    position: 0
   };
 
   activeItem: number | undefined;

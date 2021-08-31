@@ -29,6 +29,7 @@ export class AvCoursesComponent implements OnInit {
     groupId: '',
     groupName: '',
     groupChatRoomId: '',
+    position: 0
   };
 
   ngOnInit(): void {
