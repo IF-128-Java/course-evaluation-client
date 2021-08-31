@@ -6,6 +6,7 @@ import * as SockJS from 'sockjs-client';
 import {AppConfig} from '../../../common/app-config';
 import {Message} from '../../../models/message.model';
 import {ChatService} from '../../../services/chat.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-group-chat',
@@ -13,37 +14,43 @@ import {ChatService} from '../../../services/chat.service';
   styleUrls: ['./group-chat.component.css']
 })
 export class GroupChatComponent implements OnInit, OnDestroy{
-  private sendMessageUrl: string = '';
   private groupChatRoomId: string = '';
+  private connectUrl: string = '';
+  private subscribeUrl: string = '';
+  private sendMessageUrl: string = '';
   private stompClient: any;
+  currentUserId: string = '';
+  messages: Message[] = []
+  connected: boolean = false;
   message: string = '';
 
-  messages: Message[] = []
-
-  connected:boolean = false;
+  error: boolean = false;
+  errorMessage: string = '';
 
   ngOnInit(): void {
     this.groupChatRoomId = this.route.snapshot.params.id;
-
+    this.connectUrl = AppConfig.API_ENDPOINT + 'connect-ws';
+    this.subscribeUrl = '/api/v1/event/chat/' + this.groupChatRoomId;
     this.sendMessageUrl = '/api/v1/chat/' + this.groupChatRoomId;
+    this.currentUserId = this.tokenStorage.getId();
 
     this.getMessages();
 
-    this.initializeWebSocketConnection(AppConfig.API_ENDPOINT + 'connect-ws', '/api/v1/event/chat/' + this.groupChatRoomId);
+    this.initializeWebSocketConnection(this.connectUrl, this.subscribeUrl);
   }
 
   constructor(
     private tokenStorage: TokenStorageService,
     private route: ActivatedRoute,
     private chatService: ChatService,
+    private location: Location
   ) { }
 
   initializeWebSocketConnection(connectUrl:string, subscribeUrl: string){
     let ws = new SockJS(connectUrl);
     this.stompClient = Stomp.over(ws);
-    this.stompClient.connect({'Authorization' : 'Bearer ' + this.tokenStorage.getToken()}, (frame: any) => {
+    this.stompClient.connect({'Authorization' : 'Bearer ' + this.tokenStorage.getToken()}, () => {
       this.connected = true;
-      console.log('Connected: ' + frame);
       this.stompClient.subscribe(subscribeUrl, (message: any) => {
         if(message.body) {
           this.messages.push(JSON.parse(message.body));
@@ -53,7 +60,19 @@ export class GroupChatComponent implements OnInit, OnDestroy{
   }
 
   sendMessage(){
+    if(this.message.trim().length < 1){
+      this.error = true;
+      this.errorMessage = "Message can't be empty!";
+      this.message = '';
+      return;
+    }else if(this.message.length > 255){
+      this.error = true;
+      this.errorMessage = "Maximum message size 255!";
+      return;
+    }
+
     this.stompClient.send(this.sendMessageUrl , {}, JSON.stringify({content: this.message}));
+    this.error = false;
     this.message = '';
   }
 
@@ -68,6 +87,10 @@ export class GroupChatComponent implements OnInit, OnDestroy{
   }
 
   ngOnDestroy() {
-    this.stompClient.disconnect(()=>{console.log('Disconnected')}, {});
+    this.stompClient.disconnect(()=>{}, {});
+  }
+
+  back(){
+    this.location.back();
   }
 }
