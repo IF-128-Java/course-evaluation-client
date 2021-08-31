@@ -35,4 +35,16 @@ export class FeedbackrequestService {
     return this.http.get(this.feedbackRequestUrl + 'course/' + courseId, {params});
   }
 
+  getFeedbackRequestById(id: number): Observable<any> {
+    return this.http.get(this.feedbackRequestUrl + id);
+  }
+
+  getQuestionsByFeedbackRequestId(id: number): Observable<any>{
+    return this.http.get(this.feedbackRequestUrl + id + '/questions')
+  }
+
+  update(feedbackRequest: FeedbackRequest): Observable<any>{
+   return this.http.put(this.feedbackRequestUrl, feedbackRequest);
+  }
+
 }
