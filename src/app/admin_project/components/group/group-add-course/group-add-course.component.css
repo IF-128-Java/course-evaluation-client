@@ -38,3 +38,11 @@ mat-paginator {
 .admin-empty-records{
   text-align: center;
 }
+.actions-button{
+  display: flex;
+  justify-content: space-between;
+}
+::ng-deep .snackBar-panel{
+  background-color:brown;
+  color:white;
+}

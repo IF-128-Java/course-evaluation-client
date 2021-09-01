@@ -13,6 +13,7 @@ export class UpdateRoleComponent implements OnInit {
   public user: UserDto = {};
   roles: FormGroup;
   message: string | undefined;
+  errorMessage: string | undefined;
 
   constructor(public dialogRef: MatDialogRef<UpdateRoleComponent>,
               @Inject(MAT_DIALOG_DATA) public data: UserDto,
@@ -46,11 +47,16 @@ export class UpdateRoleComponent implements OnInit {
         arr[index] = arr[index].substring(5);
       }
       this.message = arr;
+      this.errorMessage=''
+    },error => {
+      this.errorMessage = error.error.message;
+      this.message = '';
     })
   }
 
   public cancel() {
     this.message = '';
+    this.errorMessage = '';
     this.ngOnInit()
   }
 }

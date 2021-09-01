@@ -66,6 +66,12 @@ import {AdminEditCourseComponent } from './admin_project/components/course/admin
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { EditFeedbackrequestComponent } from './components/manage-feedback-request/edit-feedbackrequest/edit-feedbackrequest.component';
 import { AvailableStudentsFeedbackrequestComponent } from './components/manage-feedback-request/available-students-feedbackrequest/available-students-feedbackrequest.component';
+import {MatRadioModule} from '@angular/material/radio';
+import {GroupChatComponent} from './components/student/Group-Chat/group-chat.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { EditGroupComponent } from './admin_project/components/group/edit-group/edit-group.component';
+import {MatBadgeModule} from '@angular/material/badge';
+
 
 @NgModule({
   declarations: [
@@ -103,6 +109,9 @@ import { AvailableStudentsFeedbackrequestComponent } from './components/manage-f
     GroupNotEmptyDialogComponent,
     StudentFeedbackrequetComponent,
     AdminEditCourseComponent,
+    ResetPasswordComponent,
+    EditGroupComponent,
+    GroupChatComponent,
     EditFeedbackrequestComponent,
     AvailableStudentsFeedbackrequestComponent,
   ],
@@ -112,7 +121,7 @@ import { AvailableStudentsFeedbackrequestComponent } from './components/manage-f
         AppRoutingModule, HttpClientModule,
         FormsModule,
         BrowserAnimationsModule, MatDialogModule,
-        MatDividerModule, MatSnackBarModule, MatProgressSpinnerModule, MatButtonModule, MatIconModule, MatInputModule, MatToolbarModule, MatMenuModule, MatTableModule, MatTooltipModule, MatCheckboxModule, ReactiveFormsModule, MatCardModule, MatListModule, MatGridListModule, ScrollingModule, MatPaginatorModule, MatSelectModule, MatAutocompleteModule, MatChipsModule, MatSidenavModule, MatDatepickerModule, MatNativeDateModule, MatSlideToggleModule,
+        MatDividerModule, MatSnackBarModule, MatProgressSpinnerModule, MatButtonModule, MatIconModule, MatInputModule, MatToolbarModule, MatMenuModule, MatTableModule, MatTooltipModule, MatCheckboxModule, ReactiveFormsModule, MatCardModule, MatListModule, MatGridListModule, ScrollingModule, MatPaginatorModule, MatSelectModule, MatAutocompleteModule, MatChipsModule, MatSidenavModule, MatDatepickerModule, MatNativeDateModule, MatRadioModule, MatBadgeModule, MatSlideToggleModule
     ],
   providers: [httpInterceptorProviders, {provide: JWT_OPTIONS, useValue: JWT_OPTIONS}, JwtHelperService, {
     provide: MatDialogRef,

@@ -29,11 +29,12 @@
           </mat-checkbox>
         </p>
         <div *ngIf="message">Added roles : {{message}}</div>
+        <div *ngIf="errorMessage" class="alert">Failed to delete role: {{errorMessage}}</div>
       </mat-selection-list>
     </form>
   </mat-card-content>
   <mat-card-actions>
     <button mat-stroked-button (click)="cancel()"> Cancel </button>
-    <button mat-stroked-button (click)="onSubmit()"> Add </button>
+    <button mat-stroked-button (click)="onSubmit()"> Update </button>
   </mat-card-actions>
 </mat-card>

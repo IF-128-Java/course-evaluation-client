@@ -1,18 +1,42 @@
 <div class="container">
   <h4>Users list</h4>
-  <form>
-    <mat-icon>search</mat-icon>
-    <mat-form-field appearance="fill">
-      <mat-label *ngIf="users.length > 0 || searchUsers.value===''">Find by name</mat-label>
-      <mat-label *ngIf="users.length === 0 && searchUsers.value!==''">No matches found</mat-label>
+  <div class="header">
+    <form class="search">
+      <mat-icon>search</mat-icon>
+      <mat-form-field appearance="fill">
+        <mat-label *ngIf="users.length > 0 || searchUsers.value===''">Find by name</mat-label>
+        <mat-label *ngIf="users.length === 0 && searchUsers.value!==''">No matches found</mat-label>
 
-      <input type="text"
-             placeholder="Mike Green"
-             matInput
-             [formControl]="searchUsers" (input)="filterUsers(searchUsers.value)"
-      >
-    </mat-form-field>
-  </form>
+        <input type="text"
+               placeholder="Mike Green"
+               matInput
+               [formControl]="searchUsers" (input)="filterUsers(searchUsers.value)"
+        >
+      </mat-form-field>
+    </form>
+
+    <div class="sorting-panel">
+      <label class="sorting-label">Sorting:  </label>
+      <mat-radio-group [(ngModel)]="sorting" (ngModelChange)="onChange($event)">
+        <mat-radio-button value="first_name">First Name</mat-radio-button>
+        <mat-radio-button value="last_name">Last name</mat-radio-button>
+        <button *ngIf="direction==='ASC'" mat-icon-button (click)="changeOrder()">
+          <mat-icon>keyboard_arrow_down</mat-icon>
+        </button>
+        <button *ngIf="direction==='DESC'" mat-icon-button (click)="changeOrder()">
+          <mat-icon>keyboard_arrow_up</mat-icon>
+        </button>
+      </mat-radio-group>
+    </div>
+
+    <div class="filtering-panel" [formGroup]="filtering">
+      <label class="filtering-label">Filtering:  </label>
+      <mat-checkbox class="example-margin" (change)="filterChange($event,2)" formControlName="adminRole">Admin</mat-checkbox>
+      <mat-checkbox class="example-margin" (change)="filterChange($event,1)" formControlName="teacherRole">Teacher</mat-checkbox>
+      <mat-checkbox class="example-margin" (change)="filterChange($event,0)" formControlName="studentRole">Student</mat-checkbox>
+    </div>
+
+  </div>
   <table mat-table [dataSource]="users" class="mat-elevation-z8">
 
     <ng-container matColumnDef="First Name">
@@ -50,6 +74,6 @@
     [pageIndex]="pageIndex"
     [pageSize]="pageSize"
     [pageSizeOptions]="[5, 10, 25]"
-    (page)="pageEvent = getUsers($event)"
+    (page)="pageEvent = getUsers($event,this.search,this.order,this.direction,this.filter)"
   ></mat-paginator>
 </div>

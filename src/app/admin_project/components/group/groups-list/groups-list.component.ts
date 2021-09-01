@@ -5,7 +5,8 @@ import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {CreateGroupComponent} from '../create-group/create-group.component';
 import {Router} from '@angular/router';
 import {PageEvent} from '@angular/material/paginator';
-import {GroupNotEmptyDialogComponent} from "../group-not-empty-dialog/group-not-empty-dialog.component";
+import {GroupNotEmptyDialogComponent} from '../group-not-empty-dialog/group-not-empty-dialog.component';
+import {EditGroupComponent} from '../edit-group/edit-group.component';
 
 
 @Component({
@@ -46,6 +47,7 @@ export class GroupsListComponent implements OnInit {
       this.ngOnInit();
     });
   }
+
   alertMessage() {
     const dialogRef = this.dialog.open(GroupNotEmptyDialogComponent, {
       width: '50%'
@@ -54,6 +56,7 @@ export class GroupsListComponent implements OnInit {
       this.ngOnInit();
     });
   }
+
   deleteGroup(id: number) {
     this.groupService.delete(id).subscribe(data => {
       this.ngOnInit();
@@ -77,5 +80,15 @@ export class GroupsListComponent implements OnInit {
       }
     );
     return event;
+  }
+
+  editGroup(id: number,name:string) {
+    const dialogRef = this.dialog.open(EditGroupComponent, {
+      width: '30%',
+      data: {id:id,name:name}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.ngOnInit();
+    });
   }
 }

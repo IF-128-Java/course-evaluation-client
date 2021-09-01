@@ -10,7 +10,10 @@
   <table mat-table [dataSource]="courses" class="mat-elevation-z8">
 
     <ng-container matColumnDef="Course Name">
-      <th mat-header-cell *matHeaderCellDef> Course name</th>
+      <th mat-header-cell class="pointer" *matHeaderCellDef (click)="changeDirection('courseName')">Course name
+          <mat-icon *ngIf="orderBy === 'courseName' && direction==='ASC'">keyboard_arrow_down</mat-icon>
+          <mat-icon *ngIf="orderBy === 'courseName' && direction==='DESC'">keyboard_arrow_up</mat-icon>
+      </th>
       <td class="pointer name-column" mat-cell *matCellDef="let course, let i = index" (click)="onSelect(i)"> {{ course.courseName }}<br>
       </td>
     </ng-container>
@@ -26,7 +29,10 @@
     </ng-container>
 
     <ng-container matColumnDef="Start Date">
-      <th mat-header-cell *matHeaderCellDef>Start Date</th>
+      <th mat-header-cell class="pointer" *matHeaderCellDef (click)="changeDirection('startDate')">Start Date
+        <mat-icon *ngIf="orderBy === 'startDate' && direction==='ASC'">keyboard_arrow_down</mat-icon>
+        <mat-icon *ngIf="orderBy === 'startDate' && direction==='DESC'">keyboard_arrow_up</mat-icon>
+      </th>
       <td class="pointer date-column" mat-cell *matCellDef="let course, let i = index" (click)="onSelect(i)"> {{ course.startDate | slice:0:10 }}
         <div *ngIf="activeItem == i">
           <span>{{ course.startDate | slice:11}}</span>
@@ -37,7 +43,10 @@
     </ng-container>
 
     <ng-container matColumnDef="End Date">
-      <th mat-header-cell *matHeaderCellDef>End Date</th>
+      <th mat-header-cell class="pointer" *matHeaderCellDef (click)="changeDirection('endDate')">End Date
+        <mat-icon *ngIf="orderBy === 'endDate' && direction==='ASC'">keyboard_arrow_down</mat-icon>
+        <mat-icon *ngIf="orderBy === 'endDate' && direction==='DESC'">keyboard_arrow_up</mat-icon>
+      </th>
       <td class="pointer date-column" mat-cell *matCellDef="let course, let i = index" (click)="onSelect(i)"> {{ course.endDate | slice:0:10  }}
         <div *ngIf="activeItem == i">
           <span>{{ course.endDate | slice:11}}</span>
@@ -50,10 +59,6 @@
     <ng-container matColumnDef="Actions">
       <th mat-header-cell *matHeaderCellDef> Actions</th>
       <td class="pointer action-column" mat-cell *matCellDef="let course, let i = index">
-<!--        <button *ngIf="group" mat-flat-button (click)="deleteGroup(group.id)" class="delete-button">-->
-<!--          <mat-icon>delete</mat-icon>-->
-<!--          Delete-->
-<!--        </button>-->
         <button mat-stroked-button (click)="showFeedbackRequests(course.id)" class="delete-button">
           <mat-icon>list</mat-icon>
           <span class="button-text" *ngIf="activeItem == i">Feedback requests</span>

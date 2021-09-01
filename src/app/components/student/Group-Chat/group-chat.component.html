@@ -1,0 +1,40 @@
+<div class="container">
+  <mat-spinner *ngIf="!connected" class="spinner"></mat-spinner>
+
+  <div *ngIf="connected">
+    <div id="message-area" >
+      <h6 *ngIf="messages.length == 0" class="text-center fst-italic">No messages yet!</h6>
+
+      <div *ngIf="messages.length != 0">
+        <mat-card *ngFor="let m of messages" class="message-item" [ngStyle]="{
+          margin: m.senderId !== currentUserId? '5px 20px' : '5px 5px 5px 470px'
+        }">
+          <div class="message-sender text-start fw-bold">{{m.senderFirstName + ' ' + m.senderLastName}}</div>
+          {{ m.content }}
+          <div class="message-date text-end fst-italic fw-bold">{{m.createdAt | date : 'dd.MM.yyyy HH:mm' : '+0300'}}</div>
+        </mat-card>
+      </div>
+    </div>
+
+    <div class="bottom-side">
+      <mat-divider></mat-divider>
+      <!--<p style="color:red; margin:5px 0 -20px 0; font-size: 12px">Empty</p>-->
+      <mat-form-field appearance="standard" class="input-message">
+        <mat-label *ngIf="error"><span style="color:red">{{errorMessage}}</span></mat-label>
+        <input matInput [(ngModel)]="message" type="text" placeholder="Enter you message...">
+      </mat-form-field>
+      <button (click)="sendMessage()" mat-stroked-button class="m-2" style="width:110px">
+        <mat-icon>send</mat-icon>
+        Send
+      </button>
+    </div>
+
+    <div class="text-center mt-3">
+      <button (click)="back()" mat-raised-button>
+        <mat-icon>keyboard_backspace</mat-icon>
+        Go back!
+      </button>
+    </div>
+  </div>
+
+</div>

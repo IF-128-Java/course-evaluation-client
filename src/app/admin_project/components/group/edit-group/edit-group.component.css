@@ -1,10 +1,5 @@
-.user-card {
-  max-width: 400px;
-}
-
-.example-header-image {
-  background-image: url('src/assets/images/profile_card_img.png');
-  background-size: cover;
+.mat-form-field{
+  width: 80%;
 }
 .close-button{
   float: right;
@@ -29,9 +24,11 @@
 ::ng-deep .icon-outside .mat-dialog-container {
   overflow: unset
 }
-.alert {
-  padding: 20px;
-  background-color: #f44336; /* Red */
-  color: white;
-  margin-bottom: 15px;
+.alert{
+  color: red;
+}
+
+.form-footer{
+  display: flex;
+  justify-content: space-between;
 }

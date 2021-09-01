@@ -30,6 +30,8 @@ import {FeedbacksListComponent} from './components/manage-feedback-request/feedb
 import {FeedbackAnswerComponent} from './components/manage-feedback-request/feedback-answer/feedback-answer.component';
 import {StudentFeedbackrequetComponent} from './components/student/StudentFeedbackrequest/studentfeedbackrequest.component';
 import {AdminEditCourseComponent} from './admin_project/components/course/admin-edit-course/admin-edit-course.component';
+import {ResetPasswordComponent} from './components/reset-password/reset-password.component';
+import {GroupChatComponent} from './components/student/Group-Chat/group-chat.component';
 import {EditFeedbackrequestComponent} from './components/manage-feedback-request/edit-feedbackrequest/edit-feedbackrequest.component';
 import {AvailableStudentsFeedbackrequestComponent} from './components/manage-feedback-request/available-students-feedbackrequest/available-students-feedbackrequest.component';
 
@@ -41,6 +43,9 @@ const routes: Routes = [
       expectedRole: 'ROLE_ADMIN'
     }},
   {path: 'confirm', component: ConfirmComponent},
+  {path: 'password_reset', component: ResetPasswordComponent},
+
+  {path: 'changePassword', component: ResetPasswordComponent},
 
   {path: 'admin/groups', component: GroupsListComponent, canActivate: [RoleGuardService],data:{
       expectedRole: 'ROLE_ADMIN'
@@ -95,7 +100,8 @@ const routes: Routes = [
   {path: 'passed-courses', component: PassedCoursesComponent},
   {path: 'current-courses', component: CurrentCoursesComponent},
   {path: 'av-courses', component: AvCoursesComponent},
-  {path: 'feedback_request/course/:id', component: StudentFeedbackrequetComponent}
+  {path: 'feedback_request/course/:id', component: StudentFeedbackrequetComponent},
+  {path: 'my-group/groupChat/:id', component: GroupChatComponent}
 
 ];
 
