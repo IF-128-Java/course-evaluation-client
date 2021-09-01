@@ -1,10 +1,9 @@
 <div class="container">
   <h4>Available students</h4>
-  <a mat-raised-button (click)="sendLetterToAllAvailableStudents(students)" class="back-button"  matTooltip="Send notification to all students">
+  <a mat-raised-button (click)="sendLetterToAllAvailableStudents(students)" class="button"  matTooltip="Send notification to all students">
     <mat-icon>send</mat-icon>
     Send all</a>
-
-  <a mat-raised-button routerLink="/admin/courses/{{courseId}}/feedback_requests/" class="back-button">
+  <a mat-raised-button routerLink="/admin/courses/{{courseId}}/feedback_requests/" class="back-button-right">
     <mat-icon>arrow_back</mat-icon>
     Back</a>
 <div class="column-right">

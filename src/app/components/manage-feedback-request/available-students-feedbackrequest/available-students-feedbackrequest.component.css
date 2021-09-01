@@ -17,6 +17,7 @@ th {
 }
 
 .button {
+  background: transparent;
   margin-bottom: 16px;
   margin-right: 16px;
 }
@@ -26,10 +27,11 @@ th {
   margin-right: auto;
 }
 
-.back-button {
+.back-button-right {
   background: transparent;
   float: right;
 }
+
 .admin-empty-records{
   text-align: center;
 }
