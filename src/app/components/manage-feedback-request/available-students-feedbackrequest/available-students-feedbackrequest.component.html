@@ -22,7 +22,7 @@
     <ng-container matColumnDef="Action">
       <th mat-header-cell *matHeaderCellDef> Action</th>
       <td mat-cell *matCellDef="let students">
-        <a mat-raised-button (click)="sendLetter(students)" mat-flat-button matTooltip="Send notification to {{students.email}}" >
+        <a mat-raised-button (click)="sendLetter(students.email)" mat-flat-button matTooltip="Send notification to {{students.email}}" >
           <mat-icon>send</mat-icon>
         </a>
       </td>
