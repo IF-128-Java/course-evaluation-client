@@ -9,7 +9,11 @@
         <mat-card *ngFor="let m of messages" class="message-item" [ngStyle]="{
           margin: m.senderId !== currentUserId? '5px 20px' : '5px 5px 5px 470px'
         }">
-          <div class="message-sender text-start fw-bold">{{m.senderFirstName + ' ' + m.senderLastName}}</div>
+          <div class="photo">
+            <div *ngIf="m.senderProfilePicture == null" class="defaultPersonPhoto">{{m.senderFirstName!.charAt(0) + m.senderLastName!.charAt(0)}}</div>
+            <img *ngIf="m.senderProfilePicture != null" class="personPhoto" src="{{'data:image/jpeg;base64,' + m.senderProfilePicture}}">
+          </div>
+          <div class="message-sender text-center mt-1 fw-bold">{{m.senderFirstName + ' ' + m.senderLastName}}</div>
           {{ m.content }}
           <div class="message-date text-end fst-italic fw-bold">{{m.createdAt | date : 'dd.MM.yyyy HH:mm' : '+0300'}}</div>
         </mat-card>
@@ -18,9 +22,8 @@
 
     <div class="bottom-side">
       <mat-divider></mat-divider>
-      <!--<p style="color:red; margin:5px 0 -20px 0; font-size: 12px">Empty</p>-->
+      <p *ngIf="error" style="color:red; margin:5px 0 -20px 0; font-size: 12px">{{errorMessage}}</p>
       <mat-form-field appearance="standard" class="input-message">
-        <mat-label *ngIf="error"><span style="color:red">{{errorMessage}}</span></mat-label>
         <input matInput [(ngModel)]="message" type="text" placeholder="Enter you message...">
       </mat-form-field>
       <button (click)="sendMessage()" mat-stroked-button class="m-2" style="width:110px">
