@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import {Feedback} from "../../../models/feedback.model";
-import {User} from "../../../models/user.model";
-import {FeedbackService} from "../../../services/feedback.service";
-import {ActivatedRoute, Router} from "@angular/router";
-import {MyGroupService} from "../../../services/student/my-group.service";
-import {UserService} from "../../../admin_project/services/user.service";
-import {NotificationService} from "../../../services/notification.service";
-import {PageEvent} from "@angular/material/paginator";
+import {Feedback} from '../../../models/feedback.model';
+import {User} from '../../../models/user.model';
+import {FeedbackService} from '../../../services/feedback.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {MyGroupService} from '../../../services/student/my-group.service';
+import {UserService} from '../../../admin_project/services/user.service';
+import {NotificationService} from '../../../services/notification.service';
+import {PageEvent} from '@angular/material/paginator';
+import {MatDialog} from '@angular/material/dialog';
+import {NotificationMessageComponent} from '../notification-message/notification-message.component';
 
 @Component({
   selector: 'app-available-students-feedbackrequest',
@@ -22,8 +24,9 @@ export class AvailableStudentsFeedbackrequestComponent implements OnInit {
   pageIndexSt: any;
   pageSizeSt: any;
   courseId?: any;
+  pageEvent?: PageEvent;
 
-  constructor(private feedbackService: FeedbackService, private route: ActivatedRoute, private groupService: MyGroupService, private router: Router, private userService: UserService, private notificationService: NotificationService) {
+  constructor(private feedbackService: FeedbackService, private route: ActivatedRoute, private groupService: MyGroupService, private router: Router, private userService: UserService, private notificationService: NotificationService, public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -32,18 +35,50 @@ export class AvailableStudentsFeedbackrequestComponent implements OnInit {
     var event = new PageEvent();
     event.pageIndex = 0;
     event.pageSize = 10;
-    this.notificationService.getUsersByFeedbackRequest(this.feedbackRequestId).subscribe(userList =>
-      this.students = userList)
+    this.notificationService.getUsersByFeedbackRequest(event, this.feedbackRequestId).subscribe(response=> {
+        this.students = response.content;
+        this.pageIndexSt = response.pageIndex;
+        this.pageSizeSt = response.size;
+        this.lengthSt = response.totalElements;
+      }
+      )
   }
   sendLetter(email: string) {
-    this.notificationService.sendNotificationToUser(this.feedbackRequestId, email).subscribe();
-    alert('Notification send to ' + '|' + email + '|');
+    this.notificationService.sendNotificationToUser(this.feedbackRequestId, email).subscribe(data=>
+      this.alertMessage('Successfully','Notification has been sent to => ' + email))
+    }
+
+
+  sendLetterToAllAvailableStudents() {
+    let e = new PageEvent();
+    e.pageSize = 2000;
+    e.pageIndex = 0;
+    this.notificationService.getUsersByFeedbackRequest(e,this.feedbackRequestId).subscribe(alluser=> {
+        this.notificationService.sendNotificationToAvaliableUsers(this.feedbackRequestId, alluser.content).subscribe(data=>
+          this.alertMessage('Successfully', 'Notification has been sent to all (' + alluser.content.length + ') available users'))
+      }
+    )
+
   }
 
-  sendLetterToAllAvailableStudents(students: User[]) {
-    const emails: string[] = students.map(s=>s.email);
-    alert('Notification send to ' + students.map(u=>'|' + u.firstName + ' ' + u.lastName + '|'));
-    this.notificationService.sendNotificationToAvaliableUsers(this.feedbackRequestId, students).subscribe()
+  getStudents(event: PageEvent) {
+    this.notificationService.getUsersByFeedbackRequest(event, this.feedbackRequestId).subscribe(
+      response => {
+        this.students = response.content;
+        this.pageIndexSt = response.pageIndex;
+        this.pageSizeSt = response.size;
+        this.lengthSt = response.totalElements;
+      }
+    );
+    return event;
   }
-
+  alertMessage(h1:string, text: string) {
+    const dialogRef = this.dialog.open(NotificationMessageComponent, {
+      width: '50%',
+      data: {h1: h1, text: text}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.ngOnInit();
+    });
+  }
 }

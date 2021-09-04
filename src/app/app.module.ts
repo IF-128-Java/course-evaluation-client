@@ -71,6 +71,7 @@ import {GroupChatComponent} from './components/student/Group-Chat/group-chat.com
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { EditGroupComponent } from './admin_project/components/group/edit-group/edit-group.component';
 import {MatBadgeModule} from '@angular/material/badge';
+import { NotificationMessageComponent } from './components/manage-feedback-request/notification-message/notification-message.component';
 
 
 @NgModule({
@@ -114,6 +115,7 @@ import {MatBadgeModule} from '@angular/material/badge';
     GroupChatComponent,
     EditFeedbackrequestComponent,
     AvailableStudentsFeedbackrequestComponent,
+    NotificationMessageComponent,
   ],
     imports: [
         BrowserModule,

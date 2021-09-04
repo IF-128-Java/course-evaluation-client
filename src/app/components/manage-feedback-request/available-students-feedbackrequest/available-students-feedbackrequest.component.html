@@ -1,6 +1,6 @@
 <div class="container">
   <h4>Available students</h4>
-  <a mat-raised-button (click)="sendLetterToAllAvailableStudents(students)" class="button"  matTooltip="Send notification to all students">
+  <a mat-raised-button (click)="sendLetterToAllAvailableStudents()" class="button"  matTooltip="Send notification to all students">
     <mat-icon>send</mat-icon>
     Send all</a>
   <a mat-raised-button routerLink="/admin/courses/{{courseId}}/feedback_requests/" class="back-button-right">
@@ -32,13 +32,13 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumnsStudents;"></tr>
   </table>
   <div *ngIf="students.length === 0" class="admin-empty-records">No records found</div>
-<!--  <mat-paginator *ngIf="students.length != 0"-->
-<!--                 #paginator-->
-<!--                 [length]="lengthSt"-->
-<!--                 [pageIndex]="pageIndexSt"-->
-<!--                 [pageSize]="pageSizeSt"-->
-<!--                 [pageSizeOptions]="[5, 10, 20]"-->
-<!--                 (page)="pageEvent = getFeedbacks($event)"-->
-<!--  ></mat-paginator>-->
+  <mat-paginator *ngIf="students.length != 0"
+                 #paginator
+                 [length]="lengthSt"
+                 [pageIndex]="pageIndexSt"
+                 [pageSize]="pageSizeSt"
+                 [pageSizeOptions]="[5, 10, 20]"
+                 (page)="pageEvent = getStudents($event)"
+  ></mat-paginator>
 </div>
 </div>
