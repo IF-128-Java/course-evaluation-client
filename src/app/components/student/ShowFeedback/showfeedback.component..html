@@ -1,0 +1,42 @@
+<div class="container" *ngIf="curFeedback">
+  <label><strong>Created  on:  </strong></label> {{ curFeedback.date | date : 'MMMM d, y' : '+0000'}}
+  <br>
+  <br>
+  <table mat-table [dataSource]="listData" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="Question">
+      <th mat-header-cell *matHeaderCellDef> Question</th>
+      <td mat-cell *matCellDef="let answers"> {{answers.questionName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Rate">
+      <th mat-header-cell *matHeaderCellDef> Rate</th>
+      <td mat-cell *matCellDef="let answers"> {{answers.rate}} </td>
+    </ng-container>
+
+    <tr id="row" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  </table>
+
+  <mat-paginator #scheduledOrdersPaginator
+                 [pageSize]="10"
+                 [pageSizeOptions]="[5, 10, 25]">
+
+  </mat-paginator>
+
+  <form class="example-form">
+    <br>
+
+    <mat-form-field class="example-full-width" appearance="fill" >
+      <mat-label></mat-label>
+      <textarea matInput placeholder="" name="textmessage"
+                cdkTextareaAutosize #autosize = "cdkTextareaAutosize"
+                cdkAutosizeMinRows = "5"
+                cdkAutosizeMaxRows="10"
+                type="text" [(ngModel)]="curFeedback.comment"  [disabled]="true">
+      </textarea>
+    </mat-form-field>
+
+  </form>
+</div>

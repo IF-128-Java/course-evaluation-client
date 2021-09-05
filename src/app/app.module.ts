@@ -68,7 +68,7 @@ import {GroupChatComponent} from './components/student/Group-Chat/group-chat.com
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { EditGroupComponent } from './admin_project/components/group/edit-group/edit-group.component';
 import {MatBadgeModule} from '@angular/material/badge';
-
+import {ShowfeedbackComponent} from './components/student/ShowFeedback/showfeedback.component';
 
 @NgModule({
   declarations: [
@@ -109,6 +109,7 @@ import {MatBadgeModule} from '@angular/material/badge';
     ResetPasswordComponent,
     EditGroupComponent,
     GroupChatComponent,
+    ShowfeedbackComponent,
   ],
     imports: [
         BrowserModule,

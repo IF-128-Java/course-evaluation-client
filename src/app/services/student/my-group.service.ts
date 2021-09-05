@@ -47,7 +47,7 @@ export class MyGroupService{
   }
 
   getFbRequests(idc: number, ids: number ): Observable<any> {
-    return this.http.get(`${this.usersUrl6}${idc}/${ids}`, {responseType: 'json'});
+    return this.http.get(`${this.usersUrl6}${idc}/student/${ids}`, {responseType: 'json'});
   }
 
   sendMail(mail: Mail) {

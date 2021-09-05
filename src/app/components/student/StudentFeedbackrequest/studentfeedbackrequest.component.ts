@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MyGroupService} from '../../../services/student/my-group.service';
 import {CoursesService} from '../../../services/courses.service';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Feedbackrequestwithstudent} from "../../../models/student/feedbackrequestwithstudent.model";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from '@angular/material/paginator';
@@ -24,6 +24,7 @@ export class StudentFeedbackrequetComponent implements OnInit{
   today= new Date();
 
   constructor(
+    private router: Router,
     private tokenStorage: TokenStorageService,
     private MyGroupService: MyGroupService,
     private route: ActivatedRoute,
@@ -60,7 +61,7 @@ export class StudentFeedbackrequetComponent implements OnInit{
   }
 
   viewFeedback(id: any) {
-    //this.router.navigateByUrl('/feedback_request/course/'+id)
+    this.router.navigateByUrl('/feedback/'+id);
   }
   addFeedback(id: any) {
     //this.router.navigateByUrl('/feedback_request/course/'+id)
