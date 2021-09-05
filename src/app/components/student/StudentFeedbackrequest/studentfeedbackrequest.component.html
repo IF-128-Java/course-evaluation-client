@@ -19,20 +19,15 @@
       <td mat-cell *matCellDef="let studentgroup"> {{studentgroup.endDate | date : 'd MMM, y' : '+0000'}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="Feedback">
+
+    <ng-container matColumnDef="Feedback" >
       <th mat-header-cell *matHeaderCellDef> Feedback</th>
       <td class="pointer" mat-cell *matCellDef="let studentgroup, let i = index" (click)="onSelect(i)">
-        <button mat-button (click)="addFeedback(studentgroup.id)" >
+        <button mat-button  *ngIf="!studentgroup.studentId" (click)="addFeedback(studentgroup.studentid)"  >
           <mat-icon>edit</mat-icon>
         </button>
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="Delete">
-      <th mat-header-cell *matHeaderCellDef> Delete</th>
-      <td class="pointer" mat-cell *matCellDef="let studentgroup, let i = index" (click)="onSelect(i)">
-        <button mat-button (click)="removeFeedback(studentgroup.id)" >
-          <mat-icon>delete</mat-icon>
+        <button mat-button  *ngIf="studentgroup.studentId" (click)="viewFeedback(studentgroup.studentid)"  >
+          <mat-icon>list</mat-icon>
         </button>
       </td>
     </ng-container>

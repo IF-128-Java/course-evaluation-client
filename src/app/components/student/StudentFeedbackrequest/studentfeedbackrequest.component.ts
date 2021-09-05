@@ -2,9 +2,10 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MyGroupService} from '../../../services/student/my-group.service';
 import {CoursesService} from '../../../services/courses.service';
 import {ActivatedRoute} from "@angular/router";
-import {FeedbackRequest} from "../../../models/feedbackrequest.model";
+import {Feedbackrequestwithstudent} from "../../../models/student/feedbackrequestwithstudent.model";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from '@angular/material/paginator';
+import {TokenStorageService} from "../../../auth/token-storage.service";
 
 @Component({
   selector: 'app-my-feedbackrequest-courses',
@@ -13,15 +14,16 @@ import {MatPaginator} from '@angular/material/paginator';
 })
 export class StudentFeedbackrequetComponent implements OnInit{
 
-  public displayedColumns: string[] = ['Description', 'StartDate', 'EndDate', 'Feedback', 'Delete'];
+  public displayedColumns: string[] = ['Description', 'StartDate', 'EndDate', 'Feedback'];
   @ViewChild('scheduledOrdersPaginator') paginator: MatPaginator;
 
-  public feedbackRequest: FeedbackRequest[] = [];
+  public feedbackRequest: Feedbackrequestwithstudent[] = [];
   listData: MatTableDataSource<any> = new MatTableDataSource<any>();
   courseId: number;
   courseName: string;
 
   constructor(
+    private tokenStorage: TokenStorageService,
     private MyGroupService: MyGroupService,
     private route: ActivatedRoute,
     private courseService: CoursesService) {
@@ -34,21 +36,19 @@ export class StudentFeedbackrequetComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    console.log(this.courseId);
     this.courseId = parseInt(<string>this.route.snapshot.paramMap.get('id'));
     this.courseService.get(+this.courseId)
       .subscribe(data =>{
         this.courseName = data.courseName;
         this.courseId = data.courseId;
         this.courseId = parseInt(<string>this.route.snapshot.paramMap.get('id'));
-        this.getFeedbackRequests(+this.courseId);
+        this.getFeedbackRequests(+this.courseId, Number(this.tokenStorage.getId()));
       })
   }
 
-  getFeedbackRequests(id: any): void {
-    this.MyGroupService.getFbRequests(id).subscribe(data => {
+  getFeedbackRequests(idc: any, ids: any): void {
+    this.MyGroupService.getFbRequests(idc, ids).subscribe(data => {
         this.feedbackRequest = data;
-        console.log(this.feedbackRequest);
         this.listData = new MatTableDataSource(this.feedbackRequest);
         setTimeout(() => this.listData.paginator = this.paginator);
       },
@@ -58,10 +58,10 @@ export class StudentFeedbackrequetComponent implements OnInit{
     );
   }
 
-  addFeedback(id: any) {
+  viewFeedback(id: any) {
     //this.router.navigateByUrl('/feedback_request/course/'+id)
   }
-  removeFeedback(id: any) {
+  addFeedback(id: any) {
     //this.router.navigateByUrl('/feedback_request/course/'+id)
   }
 }
