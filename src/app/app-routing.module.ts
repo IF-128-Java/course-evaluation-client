@@ -34,6 +34,7 @@ import {ResetPasswordComponent} from './components/reset-password/reset-password
 import {GroupChatComponent} from './components/student/Group-Chat/group-chat.component';
 import {EditFeedbackrequestComponent} from './components/manage-feedback-request/edit-feedbackrequest/edit-feedbackrequest.component';
 import {AvailableStudentsFeedbackrequestComponent} from './components/manage-feedback-request/available-students-feedbackrequest/available-students-feedbackrequest.component';
+import {FeedbackRequestsArchiveComponent} from './components/manage-feedback-request/feedback-requests-archive/feedback-requests-archive.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -63,6 +64,9 @@ const routes: Routes = [
       expectedRole: 'ROLE_ADMIN'
     }},
   {path: 'admin/courses/:id/feedback_requests', component: FeedbackrequestListComponent, canActivate: [RoleGuardService],data:{
+      expectedRole: 'ROLE_ADMIN'
+    }},
+  {path: 'admin/courses/:id/feedback_requests/archive', component: FeedbackRequestsArchiveComponent, canActivate: [RoleGuardService],data:{
       expectedRole: 'ROLE_ADMIN'
     }},
   {path: 'admin/courses/feedback_request/add/:id', component: AddFeedbackrequestComponent, canActivate: [RoleGuardService],data:{

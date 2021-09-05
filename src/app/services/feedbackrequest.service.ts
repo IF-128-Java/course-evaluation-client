@@ -47,4 +47,7 @@ export class FeedbackrequestService {
    return this.http.put(this.feedbackRequestUrl, feedbackRequest);
   }
 
+  delete(id: number): Observable<any> {
+    return this.http.delete(this.feedbackRequestUrl + id);
+  }
 }
