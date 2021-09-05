@@ -5,4 +5,5 @@ export class Message {
   senderId?: string;
   senderFirstName?: string;
   senderLastName?:string;
+  senderProfilePicture?: any;
 }
