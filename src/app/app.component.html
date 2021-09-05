@@ -15,6 +15,11 @@
       <a routerLink="current-courses" mat-menu-item>Current courses</a>
       <a routerLink="av-courses" mat-menu-item>Available courses</a>
     </mat-menu>
+    <button class="toolbar-content" mat-button [matMenuTriggerFor]="MenuAnalystics">Analytics
+    </button>
+    <mat-menu class="toolbar-content" #MenuAnalystics="matMenu" yPosition="below">
+      <a routerLink="satisfation" mat-menu-item>Satisfaction</a>
+      </mat-menu>
     <span class="spacer"></span>
     <div class="toolbar-content" *ngIf="!username" id="reg-login-links">
       <a routerLink="register" mat-button>
