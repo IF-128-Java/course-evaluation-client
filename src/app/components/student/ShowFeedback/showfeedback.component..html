@@ -1,5 +1,5 @@
 <div class="container" *ngIf="curFeedback">
-  <label><strong>Created  on:  </strong></label> {{ curFeedback.date | date : 'MMMM d, y' : '+0000'}}
+  <label><strong>Created  on:   </strong></label> {{ curFeedback.date | date : 'd MMMM , y'}}
   <br>
   <br>
   <table mat-table [dataSource]="listData" class="mat-elevation-z8">
