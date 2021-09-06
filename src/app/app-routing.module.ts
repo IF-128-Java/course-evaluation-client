@@ -32,7 +32,9 @@ import {StudentFeedbackrequetComponent} from './components/student/StudentFeedba
 import {AdminEditCourseComponent} from './admin_project/components/course/admin-edit-course/admin-edit-course.component';
 import {ResetPasswordComponent} from './components/reset-password/reset-password.component';
 import {GroupChatComponent} from './components/student/Group-Chat/group-chat.component';
+import {ShowfeedbackComponent} from "./components/student/ShowFeedback/showfeedback.component";
 
+ShowfeedbackComponent
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'login', component: LoginComponent},
@@ -93,8 +95,8 @@ const routes: Routes = [
   {path: 'current-courses', component: CurrentCoursesComponent},
   {path: 'av-courses', component: AvCoursesComponent},
   {path: 'feedback_request/course/:id', component: StudentFeedbackrequetComponent},
-  {path: 'my-group/groupChat/:id', component: GroupChatComponent}
-
+  {path: 'my-group/groupChat/:id', component: GroupChatComponent},
+  {path: 'feedback/:id', component: ShowfeedbackComponent},
 ];
 
 @NgModule({
