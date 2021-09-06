@@ -11,7 +11,7 @@ import {MatPaginator} from "@angular/material/paginator";
 
 @Component({
   selector: 'app-show-feedback',
-  templateUrl: 'showfeedback.component..html',
+  templateUrl: 'showfeedback.component.html',
   styleUrls: ['showfeedback.component.css']
 })
 export class ShowfeedbackComponent implements OnInit {

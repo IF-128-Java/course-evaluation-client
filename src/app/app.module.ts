@@ -69,6 +69,7 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
 import { EditGroupComponent } from './admin_project/components/group/edit-group/edit-group.component';
 import {MatBadgeModule} from '@angular/material/badge';
 import {ShowfeedbackComponent} from './components/student/ShowFeedback/showfeedback.component';
+import { RatingModule } from 'ngx-bootstrap/rating';
 
 @NgModule({
   declarations: [
@@ -117,7 +118,7 @@ import {ShowfeedbackComponent} from './components/student/ShowFeedback/showfeedb
         AppRoutingModule, HttpClientModule,
         FormsModule,
         BrowserAnimationsModule, MatDialogModule,
-        MatDividerModule, MatSnackBarModule, MatProgressSpinnerModule, MatButtonModule, MatIconModule, MatInputModule, MatToolbarModule, MatMenuModule, MatTableModule, MatTooltipModule, MatCheckboxModule, ReactiveFormsModule, MatCardModule, MatListModule, MatGridListModule, ScrollingModule, MatPaginatorModule, MatSelectModule, MatAutocompleteModule, MatChipsModule, MatSidenavModule, MatDatepickerModule, MatNativeDateModule, MatRadioModule, MatBadgeModule,
+        MatDividerModule, MatSnackBarModule, MatProgressSpinnerModule, MatButtonModule, MatIconModule, MatInputModule, MatToolbarModule, MatMenuModule, MatTableModule, MatTooltipModule, MatCheckboxModule, ReactiveFormsModule, MatCardModule, MatListModule, MatGridListModule, ScrollingModule, MatPaginatorModule, MatSelectModule, MatAutocompleteModule, MatChipsModule, MatSidenavModule, MatDatepickerModule, MatNativeDateModule, MatRadioModule, MatBadgeModule, RatingModule.forRoot(),
     ],
   providers: [httpInterceptorProviders, {provide: JWT_OPTIONS, useValue: JWT_OPTIONS}, JwtHelperService, {
     provide: MatDialogRef,
