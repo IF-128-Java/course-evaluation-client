@@ -32,7 +32,8 @@ import {StudentFeedbackrequetComponent} from './components/student/StudentFeedba
 import {AdminEditCourseComponent} from './admin_project/components/course/admin-edit-course/admin-edit-course.component';
 import {ResetPasswordComponent} from './components/reset-password/reset-password.component';
 import {GroupChatComponent} from './components/student/Group-Chat/group-chat.component';
-import { CoursesAnalyticsComponent } from './components/courses-analytics/courses-analytics.component';
+import {CoursesAnalyticsComponent} from './components/courses-analytics/courses-analytics.component';
+import {FeedbackAnalyticsComponent} from "./components/feedback-analytics/feedback-analytics/feedback-analytics.component";
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -96,6 +97,7 @@ const routes: Routes = [
   {path: 'feedback_request/course/:id', component: StudentFeedbackrequetComponent},
   {path: 'my-group/groupChat/:id', component: GroupChatComponent},
   {path: 'satisfaction', component: CoursesAnalyticsComponent},
+  {path: 'feedback-satisfaction', component: FeedbackAnalyticsComponent},
 
 ];
 

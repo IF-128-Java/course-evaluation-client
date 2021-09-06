@@ -69,6 +69,7 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
 import { EditGroupComponent } from './admin_project/components/group/edit-group/edit-group.component';
 import {MatBadgeModule} from '@angular/material/badge';
 import { CoursesAnalyticsComponent } from './components/courses-analytics/courses-analytics.component';
+import { FeedbackAnalyticsComponent } from './components/feedback-analytics/feedback-analytics/feedback-analytics.component';
 
 
 @NgModule({
@@ -111,6 +112,7 @@ import { CoursesAnalyticsComponent } from './components/courses-analytics/course
     EditGroupComponent,
     GroupChatComponent,
     CoursesAnalyticsComponent,
+    FeedbackAnalyticsComponent,
   ],
     imports: [
         BrowserModule,
