@@ -32,10 +32,12 @@ import {StudentFeedbackrequetComponent} from './components/student/StudentFeedba
 import {AdminEditCourseComponent} from './admin_project/components/course/admin-edit-course/admin-edit-course.component';
 import {ResetPasswordComponent} from './components/reset-password/reset-password.component';
 import {GroupChatComponent} from './components/student/Group-Chat/group-chat.component';
+import {ShowfeedbackComponent} from "./components/student/ShowFeedback/showfeedback.component";
 import {EditFeedbackrequestComponent} from './components/manage-feedback-request/edit-feedbackrequest/edit-feedbackrequest.component';
 import {AvailableStudentsFeedbackrequestComponent} from './components/manage-feedback-request/available-students-feedbackrequest/available-students-feedbackrequest.component';
 import {FeedbackRequestsArchiveComponent} from './components/manage-feedback-request/feedback-requests-archive/feedback-requests-archive.component';
 
+ShowfeedbackComponent
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'login', component: LoginComponent},
@@ -105,8 +107,8 @@ const routes: Routes = [
   {path: 'current-courses', component: CurrentCoursesComponent},
   {path: 'av-courses', component: AvCoursesComponent},
   {path: 'feedback_request/course/:id', component: StudentFeedbackrequetComponent},
-  {path: 'my-group/groupChat/:id', component: GroupChatComponent}
-
+  {path: 'my-group/groupChat/:id', component: GroupChatComponent},
+  {path: 'feedback/:id', component: ShowfeedbackComponent},
 ];
 
 @NgModule({

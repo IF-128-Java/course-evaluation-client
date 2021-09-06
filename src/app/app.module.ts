@@ -74,6 +74,7 @@ import {MatBadgeModule} from '@angular/material/badge';
 import { NotificationMessageComponent } from './components/manage-feedback-request/notification-message/notification-message.component';
 import { FeedbackRequestsArchiveComponent } from './components/manage-feedback-request/feedback-requests-archive/feedback-requests-archive.component';
 
+import {ShowfeedbackComponent} from './components/student/ShowFeedback/showfeedback.component';
 
 @NgModule({
   declarations: [
@@ -114,6 +115,7 @@ import { FeedbackRequestsArchiveComponent } from './components/manage-feedback-r
     ResetPasswordComponent,
     EditGroupComponent,
     GroupChatComponent,
+    ShowfeedbackComponent,
     EditFeedbackrequestComponent,
     AvailableStudentsFeedbackrequestComponent,
     NotificationMessageComponent,
@@ -125,7 +127,7 @@ import { FeedbackRequestsArchiveComponent } from './components/manage-feedback-r
         AppRoutingModule, HttpClientModule,
         FormsModule,
         BrowserAnimationsModule, MatDialogModule,
-        MatDividerModule, MatSnackBarModule, MatProgressSpinnerModule, MatButtonModule, MatIconModule, MatInputModule, MatToolbarModule, MatMenuModule, MatTableModule, MatTooltipModule, MatCheckboxModule, ReactiveFormsModule, MatCardModule, MatListModule, MatGridListModule, ScrollingModule, MatPaginatorModule, MatSelectModule, MatAutocompleteModule, MatChipsModule, MatSidenavModule, MatDatepickerModule, MatNativeDateModule, MatRadioModule, MatBadgeModule, MatSlideToggleModule
+        MatDividerModule, MatSnackBarModule, MatProgressSpinnerModule, MatButtonModule, MatIconModule, MatInputModule, MatToolbarModule, MatMenuModule, MatTableModule, MatTooltipModule, MatCheckboxModule, ReactiveFormsModule, MatCardModule, MatListModule, MatGridListModule, ScrollingModule, MatPaginatorModule, MatSelectModule, MatAutocompleteModule, MatChipsModule, MatSidenavModule, MatDatepickerModule, MatNativeDateModule, MatRadioModule, MatBadgeModule,
     ],
   providers: [httpInterceptorProviders, {provide: JWT_OPTIONS, useValue: JWT_OPTIONS}, JwtHelperService, {
     provide: MatDialogRef,
