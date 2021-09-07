@@ -1,38 +1,27 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {FeedbackRequest} from '../../../models/feedbackrequest.model';
-import {FeedbackrequestService} from '../../../services/feedbackrequest.service';
-import {CoursesService} from '../../../services/courses.service';
-import {QuestionService} from '../../../services/question.service';
-import {Question} from '../../../models/question.model';
-import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
-import {MatChipInputEvent} from '@angular/material/chips';
-import {FormControl, FormGroup} from '@angular/forms';
-import {CreateQuestionComponent} from '../create-question/create-question.component';
-import {MatDialog} from '@angular/material/dialog';
-import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
-import {ActivatedRoute, Router} from '@angular/router';
-import {DateAdapter} from '@angular/material/core';
-import {FbrStatus} from '../../../models/fbr-status.model';
-
+import {FeedbackRequest} from "../../../models/feedbackrequest.model";
+import {Question} from "../../../models/question.model";
+import {FormControl, FormGroup} from "@angular/forms";
+import {Observable} from "rxjs";
+import {map, startWith} from "rxjs/operators";
+import {FeedbackrequestService} from "../../../services/feedbackrequest.service";
+import {CoursesService} from "../../../services/courses.service";
+import {QuestionService} from "../../../services/question.service";
+import {MatDialog} from "@angular/material/dialog";
+import {ActivatedRoute, Router} from "@angular/router";
+import {DateAdapter} from "@angular/material/core";
+import {MatChipInputEvent} from "@angular/material/chips";
+import {MatAutocompleteSelectedEvent} from "@angular/material/autocomplete";
+import {CreateQuestionComponent} from "../create-question/create-question.component";
 
 @Component({
-  selector: 'app-add-feedbackrequest',
-  templateUrl: './add-feedbackrequest.component.html',
-  styleUrls: ['./add-feedbackrequest.component.css'],
+  selector: 'app-edit-feedbackrequest',
+  templateUrl: './edit-feedbackrequest.component.html',
+  styleUrls: ['./edit-feedbackrequest.component.css']
 })
-
-export class AddFeedbackrequestComponent implements OnInit {
-  feedbackrequest: FeedbackRequest = {
-    id: 0,
-    feedbackDescription: '',
-    startDate: '',
-    endDate: '',
-    course: 0,
-    status: FbrStatus.DRAFT,
-  }
+export class EditFeedbackrequestComponent implements OnInit {
+  feedbackrequest: FeedbackRequest;
   public allQuestions: Question[] = [];
-  public patternQuestion: Question[] = [];
   public selectQuestions: Set<Question> = new Set<Question>();
   public id?: number;
   saved = false;
@@ -46,48 +35,30 @@ export class AddFeedbackrequestComponent implements OnInit {
     end: new FormControl()
   });
   minDate: Date;
-
   @ViewChild('questionInput') questionInput?: ElementRef<HTMLInputElement>;
 
   constructor(private feedbackrequestService: FeedbackrequestService, private courseService: CoursesService, private questionService: QuestionService, public dialog: MatDialog, private route: ActivatedRoute, private dateAdapter: DateAdapter<Date>, private router: Router) {
     this.dateAdapter.setLocale('en-GB');
     this.filteredQuestion = this.questionCtrl.valueChanges.pipe(
-        startWith(null),
-        map((q: string | null) => q ? this._filter(q) : this.allQuestions.map(q=>q.questionText).slice()));
-      const currentTime = new Date().getTime();
-    this.minDate = new Date(currentTime);
-  }
+      startWith(null),
+      map((q: string | null) => q ? this._filter(q) : this.allQuestions.map(q=>q.questionText).slice()));
+    const currentTime = new Date().getTime();
+    this.minDate = new Date(currentTime);}
 
   ngOnInit(): void {
-
-      this.courseService.get(parseInt(<string>this.route.snapshot.paramMap.get('id'))).subscribe(singleData=>{
+    this.getFeedbackRequest(this.route.snapshot.params.feedbackRequestsId);
+    this.courseService.get(parseInt(<string>this.route.snapshot.paramMap.get('id'))).subscribe(singleData=>{
         if(singleData!=null){
           this.courseId = singleData.id;
         }
       },
-        error => {
-          this.router.navigateByUrl('/admin/courses')
-        })
+      error => {
+        this.router.navigateByUrl('/admin/courses')
+      })
     this.questionService.getAll().subscribe(data => {
       this.allQuestions = data;
-      this.patternQuestion = this.allQuestions.filter(q => q.pattern);
-      this.patternQuestion.forEach(item => this.selectQuestions.add(item));
     })
   }
-
-
-  onSubmit(status: number) {
-    this.feedbackrequest = new FeedbackRequest(0,this.feedbackrequest.feedbackDescription, this.range.value.start, this.range.value.end, this.courseId, status);
-    this.feedbackrequestService.create(this.feedbackrequest).subscribe((data: any)  => {
-        this.feedbackrequestService.addQuestionToFeedbackRequest(data.id, Array.from(this.selectQuestions)).subscribe()
-        this.saved = true;
-      },
-      error => {
-        console.log(error);
-      }
-    );
-  }
-
   add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
     if (value) {
@@ -125,10 +96,6 @@ export class AddFeedbackrequestComponent implements OnInit {
     });
   }
 
-  reloadPage() {
-    window.location.reload();
-  }
-
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
     return this.allQuestions.map(q=>q.questionText).filter(option => option.toLowerCase().includes(filterValue));
@@ -139,5 +106,27 @@ export class AddFeedbackrequestComponent implements OnInit {
     if (foundQuestion.length) {
       this.selectQuestions.add(foundQuestion[0]);
     }
+  }
+
+  onSubmit(status: number) {
+    this.feedbackrequest = new FeedbackRequest(this.feedbackrequest.id,this.feedbackrequest.feedbackDescription, this.range.value.start, this.range.value.end, this.courseId, status);
+    this.feedbackrequestService.update(this.feedbackrequest).subscribe((data: any)  => {
+        this.feedbackrequestService.addQuestionToFeedbackRequest(data.id, Array.from(this.selectQuestions)).subscribe()
+        this.saved = true;
+      },
+      error => {
+        console.log(error);
+      })
+  }
+
+  getFeedbackRequest(feedbackRequestsId: number) {
+    this.feedbackrequestService.getFeedbackRequestById(feedbackRequestsId).subscribe( data=>{
+      this.feedbackrequest = data;
+      this.feedbackrequestService.getQuestionsByFeedbackRequestId(data.id).subscribe(data =>{
+          data.forEach( (q:Question) => {
+            this.selectQuestions.add(q)
+      });
+      }
+      )})
   }
 }

@@ -63,11 +63,17 @@ import {FeedbacksListComponent} from './components/manage-feedback-request/feedb
 import {FeedbackAnswerComponent} from './components/manage-feedback-request/feedback-answer/feedback-answer.component';
 import {StudentFeedbackrequetComponent} from './components/student/StudentFeedbackrequest/studentfeedbackrequest.component';
 import {AdminEditCourseComponent } from './admin_project/components/course/admin-edit-course/admin-edit-course.component';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { EditFeedbackrequestComponent } from './components/manage-feedback-request/edit-feedbackrequest/edit-feedbackrequest.component';
+import { AvailableStudentsFeedbackrequestComponent } from './components/manage-feedback-request/available-students-feedbackrequest/available-students-feedbackrequest.component';
 import {MatRadioModule} from '@angular/material/radio';
 import {GroupChatComponent} from './components/student/Group-Chat/group-chat.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { EditGroupComponent } from './admin_project/components/group/edit-group/edit-group.component';
 import {MatBadgeModule} from '@angular/material/badge';
+import { NotificationMessageComponent } from './components/manage-feedback-request/notification-message/notification-message.component';
+import { FeedbackRequestsArchiveComponent } from './components/manage-feedback-request/feedback-requests-archive/feedback-requests-archive.component';
+
 import {ShowfeedbackComponent} from './components/student/ShowFeedback/showfeedback.component';
 import {AddfeedbackComponent} from './components/student/AddFeedback/addfeedback.component';
 import { RatingModule } from 'ngx-bootstrap/rating';
@@ -112,16 +118,20 @@ import { RatingModule } from 'ngx-bootstrap/rating';
     EditGroupComponent,
     GroupChatComponent,
     ShowfeedbackComponent,
-    AddfeedbackComponent
+    AddfeedbackComponent,
+    EditFeedbackrequestComponent,
+    AvailableStudentsFeedbackrequestComponent,
+    NotificationMessageComponent,
+    FeedbackRequestsArchiveComponent,
   ],
-    imports: [
-        BrowserModule,
-        RouterModule,
-        AppRoutingModule, HttpClientModule,
-        FormsModule,
-        BrowserAnimationsModule, MatDialogModule,
-        MatDividerModule, MatSnackBarModule, MatProgressSpinnerModule, MatButtonModule, MatIconModule, MatInputModule, MatToolbarModule, MatMenuModule, MatTableModule, MatTooltipModule, MatCheckboxModule, ReactiveFormsModule, MatCardModule, MatListModule, MatGridListModule, ScrollingModule, MatPaginatorModule, MatSelectModule, MatAutocompleteModule, MatChipsModule, MatSidenavModule, MatDatepickerModule, MatNativeDateModule, MatRadioModule, MatBadgeModule, RatingModule.forRoot(),
-    ],
+  imports: [
+    BrowserModule,
+    RouterModule,
+    AppRoutingModule, HttpClientModule,
+    FormsModule,
+    BrowserAnimationsModule, MatDialogModule,
+    MatDividerModule, MatSnackBarModule, MatProgressSpinnerModule, MatButtonModule, MatIconModule, MatInputModule, MatToolbarModule, MatMenuModule, MatTableModule, MatTooltipModule, MatCheckboxModule, ReactiveFormsModule, MatCardModule, MatListModule, MatGridListModule, ScrollingModule, MatPaginatorModule, MatSelectModule, MatAutocompleteModule, MatChipsModule, MatSidenavModule, MatDatepickerModule, MatNativeDateModule, MatRadioModule, MatBadgeModule, RatingModule.forRoot(),
+  ],
   providers: [httpInterceptorProviders, {provide: JWT_OPTIONS, useValue: JWT_OPTIONS}, JwtHelperService, {
     provide: MatDialogRef,
     useValue: {}
