@@ -30,3 +30,9 @@ mat-form-field.mat-form-field {
   width: 75%;
 }
 
+.mat-column-Rate {
+  width:20% ;
+  color: black;
+  font-size: 22px;
+  font-weight: bold;
+}
