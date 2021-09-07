@@ -22,7 +22,7 @@ import {PassedCoursesComponent} from './components/student/Passed-courses/passed
 import {CurrentCoursesComponent} from './components/student/Current-courses/current-courses.component';
 import {AvCoursesComponent} from './components/student/Av-courses/av-courses.component';
 import {AdminCourseListComponent} from "./admin_project/components/course/admin-course-list/admin-course-list.component";
-import {ConfirmComponent} from './components/confirm/confirm.component';
+import {ConfirmComponent} from "./components/confirm/confirm.component";
 import {AuthGuardService} from "./auth/auth-guard.service";
 
 import {AdminCreateCourseComponent} from './admin_project/components/course/admin-create-course/admin-create-course.component';
@@ -32,7 +32,10 @@ import {StudentFeedbackrequetComponent} from './components/student/StudentFeedba
 import {AdminEditCourseComponent} from './admin_project/components/course/admin-edit-course/admin-edit-course.component';
 import {ResetPasswordComponent} from './components/reset-password/reset-password.component';
 import {GroupChatComponent} from './components/student/Group-Chat/group-chat.component';
-import {ShowfeedbackComponent} from "./components/student/ShowFeedback/showfeedback.component";
+import {ShowfeedbackComponent} from './components/student/ShowFeedback/showfeedback.component';
+import {EditFeedbackrequestComponent} from './components/manage-feedback-request/edit-feedbackrequest/edit-feedbackrequest.component';
+import {AvailableStudentsFeedbackrequestComponent} from './components/manage-feedback-request/available-students-feedbackrequest/available-students-feedbackrequest.component';
+import {FeedbackRequestsArchiveComponent} from './components/manage-feedback-request/feedback-requests-archive/feedback-requests-archive.component';
 
 ShowfeedbackComponent
 const routes: Routes = [
@@ -65,6 +68,9 @@ const routes: Routes = [
   {path: 'admin/courses/:id/feedback_requests', component: FeedbackrequestListComponent, canActivate: [RoleGuardService],data:{
       expectedRole: 'ROLE_ADMIN'
     }},
+  {path: 'admin/courses/:id/feedback_requests/archive', component: FeedbackRequestsArchiveComponent, canActivate: [RoleGuardService],data:{
+      expectedRole: 'ROLE_ADMIN'
+    }},
   {path: 'admin/courses/feedback_request/add/:id', component: AddFeedbackrequestComponent, canActivate: [RoleGuardService],data:{
       expectedRole: 'ROLE_ADMIN'
     }},
@@ -72,6 +78,12 @@ const routes: Routes = [
       expectedRole: 'ROLE_ADMIN'
     }},
   {path: 'admin/courses/:id/feedback_requests/:feedbackRequestsId/feedback/:feedbackId', component: FeedbackAnswerComponent, canActivate: [RoleGuardService],data:{
+      expectedRole: 'ROLE_ADMIN'
+    }},
+  {path: 'admin/courses/:id/feedback_requests/edit/:feedbackRequestsId', component: EditFeedbackrequestComponent, canActivate: [RoleGuardService],data:{
+      expectedRole: 'ROLE_ADMIN'
+    }},
+  {path: 'admin/courses/:id/feedback_requests/:feedbackRequestsId/students', component: AvailableStudentsFeedbackrequestComponent, canActivate: [RoleGuardService],data:{
       expectedRole: 'ROLE_ADMIN'
     }},
   {path: 'admin/courses', component: AdminCourseListComponent, canActivate: [RoleGuardService],data:{

@@ -63,11 +63,17 @@ import {FeedbacksListComponent} from './components/manage-feedback-request/feedb
 import {FeedbackAnswerComponent} from './components/manage-feedback-request/feedback-answer/feedback-answer.component';
 import {StudentFeedbackrequetComponent} from './components/student/StudentFeedbackrequest/studentfeedbackrequest.component';
 import {AdminEditCourseComponent } from './admin_project/components/course/admin-edit-course/admin-edit-course.component';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { EditFeedbackrequestComponent } from './components/manage-feedback-request/edit-feedbackrequest/edit-feedbackrequest.component';
+import { AvailableStudentsFeedbackrequestComponent } from './components/manage-feedback-request/available-students-feedbackrequest/available-students-feedbackrequest.component';
 import {MatRadioModule} from '@angular/material/radio';
 import {GroupChatComponent} from './components/student/Group-Chat/group-chat.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { EditGroupComponent } from './admin_project/components/group/edit-group/edit-group.component';
 import {MatBadgeModule} from '@angular/material/badge';
+import { NotificationMessageComponent } from './components/manage-feedback-request/notification-message/notification-message.component';
+import { FeedbackRequestsArchiveComponent } from './components/manage-feedback-request/feedback-requests-archive/feedback-requests-archive.component';
+
 import {ShowfeedbackComponent} from './components/student/ShowFeedback/showfeedback.component';
 
 @NgModule({
@@ -110,6 +116,10 @@ import {ShowfeedbackComponent} from './components/student/ShowFeedback/showfeedb
     EditGroupComponent,
     GroupChatComponent,
     ShowfeedbackComponent,
+    EditFeedbackrequestComponent,
+    AvailableStudentsFeedbackrequestComponent,
+    NotificationMessageComponent,
+    FeedbackRequestsArchiveComponent,
   ],
     imports: [
         BrowserModule,
