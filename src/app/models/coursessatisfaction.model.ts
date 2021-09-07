@@ -1,9 +1,9 @@
 export class Coursessatisfaction {
-  courseId?: number;
-  feedbackId?: number;
+  courseId?: string;
+  feedbackId?: string;
   satisfaction?: number;
 
-  constructor(courseId: number, feedbackId: number, satisfaction: number) {
+  constructor(courseId: string, feedbackId: string, satisfaction: number) {
 
     this.courseId = courseId
     this.feedbackId = feedbackId;

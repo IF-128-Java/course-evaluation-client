@@ -1,8 +1,9 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-
+import {AnalystService} from "../../../services/analyst.service";
 import {MatTableDataSource} from "@angular/material/table";
 import { MatPaginator } from '@angular/material/paginator';
 import {Coursessatisfaction} from "../../models/coursessatisfaction.model";
+import {TokenStorageService} from "../../auth/token-storage.service";
 
 @Component({
   selector: 'app-courses-analytics',
@@ -12,13 +13,19 @@ import {Coursessatisfaction} from "../../models/coursessatisfaction.model";
 export class CoursesAnalyticsComponent implements OnInit {
 
   listData: MatTableDataSource<any> = new MatTableDataSource<any>();
+  satisfactions: Coursessatisfaction[];
 
   public displayedColumns: string[] = ['CourseId', 'FeedbackRequestId', 'Satisfaction'];
   @ViewChild('scheduledOrdersPaginator') paginator: MatPaginator;
 
-  constructor() { }
 
-   satisfactions: Coursessatisfaction[] = [new Coursessatisfaction(1,1,5)];
+  constructor( private tokenStorage: TokenStorageService,
+               private analystService: AnalystService) { }
+   //constructor() {}
+
+  // satisfactions: Coursessatisfaction[] = [new Coursessatisfaction('sql','equipment',5)];
+
+
   ngOnInit(): void {
     this.getCoursesSatisfaction();
   }
@@ -26,10 +33,17 @@ export class CoursesAnalyticsComponent implements OnInit {
   getCoursesSatisfaction(): void {
 
        // this.satisfactions = new Array();
+        //this.listData = new MatTableDataSource(this.satisfactions);
+        //setTimeout(() => this.listData.paginator = this.paginator);
+    this.analystService.get().subscribe(data => {
+        this.satisfactions = data;
         this.listData = new MatTableDataSource(this.satisfactions);
         setTimeout(() => this.listData.paginator = this.paginator);
       }
+    );
 
 
 
+
+}
 }
