@@ -1,5 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {FeedbackService} from '../../../services/feedback.service';
+import {FeedbackrequestService} from '../../../services/feedbackrequest.service';
 import {TokenStorageService} from '../../../auth/token-storage.service';
 import {ActivatedRoute, Router} from "@angular/router";
 import {Feedback} from "../../../models/feedback.model";
@@ -10,20 +11,22 @@ import {QuestionService} from '../../../services/question.service';
 import {MatPaginator} from "@angular/material/paginator";
 
 @Component({
-  selector: 'app-show-feedback',
-  templateUrl: 'showfeedback.component.html',
-  styleUrls: ['showfeedback.component.css']
+  selector: 'app-add-feedback',
+  templateUrl: 'addfeedback.component.html',
+  styleUrls: ['addfeedback,component.css']
 })
-export class ShowfeedbackComponent implements OnInit {
+export class AddfeedbackComponent implements OnInit {
 
   displayedColumns: string[] = ['Question', 'Rate'];
   @ViewChild('scheduledOrdersPaginator') paginator: MatPaginator;
 
   listData: MatTableDataSource<any> = new MatTableDataSource<any>();
 
-  feedbackId: number;
+  feedbackRequestId: number;
 
+  answer: Answers;
   answers: Answers[] = [];
+  questions: Question[] = [];
 
   curFeedback: Feedback = {
     id: 0,
@@ -45,19 +48,26 @@ export class ShowfeedbackComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.feedbackId = parseInt(<string>this.route.snapshot.paramMap.get('id'));
-
-    this.getFeedback(this.feedbackId);
-    console.log(this.feedbackId);
+    this.feedbackRequestId = parseInt(<string>this.route.snapshot.paramMap.get('id'));
+    this.getQuestionFromFeedbackRequest(this.feedbackRequestId);
   }
 
-  getFeedback(id: number): void {
-    this.feedbackService.getFeedbackById(id).subscribe(data => {
-        this.curFeedback = data;
-        this.answers=data.answers;
-        this.getAllAnswerToFeedback(id);
+  getQuestionFromFeedbackRequest(id: number): void {
+    this.questionService.getQuestionsByFeedbackRequestId(this.feedbackRequestId).subscribe(data => {
+        this.questions = data;
+
+        console.log("length of quest = " + this.questions.length);
+
+        if (this.questions != undefined) {
+            this.questions.forEach(question => {
+              this.answers.push(new Answers(0, 0, question.id, question.questionText, 0));
+          })
+        }
+        console.log("length of ans = " + this.answers.length);
+
         this.listData = new MatTableDataSource(this.answers);
         setTimeout(() => this.listData.paginator = this.paginator);
+
       },
       error => {
         console.log(error);
@@ -65,19 +75,4 @@ export class ShowfeedbackComponent implements OnInit {
     );
   }
 
-  getAllAnswerToFeedback(id: number): void {
-      this.questionService.getAll().subscribe(
-        response => {
-          let questions: Question[] = response;
-          if (questions != undefined) {
-            questions.forEach(question => {
-              let answer = this.answers.find(a => a.questionId == question.id);
-              if (answer != undefined) {
-                answer.questionName = question.questionText;
-              }
-            })
-          }
-        }
-      )
-    }
 }

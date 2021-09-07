@@ -75,6 +75,8 @@ import { NotificationMessageComponent } from './components/manage-feedback-reque
 import { FeedbackRequestsArchiveComponent } from './components/manage-feedback-request/feedback-requests-archive/feedback-requests-archive.component';
 
 import {ShowfeedbackComponent} from './components/student/ShowFeedback/showfeedback.component';
+import {AddfeedbackComponent} from './components/student/AddFeedback/addfeedback.component';
+import { RatingModule } from 'ngx-bootstrap/rating';
 
 @NgModule({
   declarations: [
@@ -116,19 +118,20 @@ import {ShowfeedbackComponent} from './components/student/ShowFeedback/showfeedb
     EditGroupComponent,
     GroupChatComponent,
     ShowfeedbackComponent,
+    AddfeedbackComponent,
     EditFeedbackrequestComponent,
     AvailableStudentsFeedbackrequestComponent,
     NotificationMessageComponent,
     FeedbackRequestsArchiveComponent,
   ],
-    imports: [
-        BrowserModule,
-        RouterModule,
-        AppRoutingModule, HttpClientModule,
-        FormsModule,
-        BrowserAnimationsModule, MatDialogModule,
-        MatDividerModule, MatSnackBarModule, MatProgressSpinnerModule, MatButtonModule, MatIconModule, MatInputModule, MatToolbarModule, MatMenuModule, MatTableModule, MatTooltipModule, MatCheckboxModule, ReactiveFormsModule, MatCardModule, MatListModule, MatGridListModule, ScrollingModule, MatPaginatorModule, MatSelectModule, MatAutocompleteModule, MatChipsModule, MatSidenavModule, MatDatepickerModule, MatNativeDateModule, MatRadioModule, MatBadgeModule,
-    ],
+  imports: [
+    BrowserModule,
+    RouterModule,
+    AppRoutingModule, HttpClientModule,
+    FormsModule,
+    BrowserAnimationsModule, MatDialogModule,
+    MatDividerModule, MatSnackBarModule, MatProgressSpinnerModule, MatButtonModule, MatIconModule, MatInputModule, MatToolbarModule, MatMenuModule, MatTableModule, MatTooltipModule, MatCheckboxModule, ReactiveFormsModule, MatCardModule, MatListModule, MatGridListModule, ScrollingModule, MatPaginatorModule, MatSelectModule, MatAutocompleteModule, MatChipsModule, MatSidenavModule, MatDatepickerModule, MatNativeDateModule, MatRadioModule, MatBadgeModule, RatingModule.forRoot(),
+  ],
   providers: [httpInterceptorProviders, {provide: JWT_OPTIONS, useValue: JWT_OPTIONS}, JwtHelperService, {
     provide: MatDialogRef,
     useValue: {}
