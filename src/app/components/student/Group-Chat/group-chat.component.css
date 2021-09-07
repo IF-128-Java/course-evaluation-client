@@ -1,5 +1,4 @@
 .input-message {
-  width: 700px;
   height: 36px;
 }
 
@@ -8,6 +7,16 @@
   padding: 10px;
   background-color: silver;
   border-radius: 5px;
+}
+
+.message-item-header{
+  display: flex;
+}
+
+.message-update-button{
+  cursor: pointer;
+  font-size: 12px;
+  color: blueviolet;
 }
 
 .spinner {
@@ -26,10 +35,13 @@
 
 .message-sender{
   font-size: 12px;
+  width: 94.72px;
+  padding-top: 16px;
 }
 
 .message-date{
   font-size: 12px;
+  padding-top: 16px;
 }
 
 .bottom-side{
