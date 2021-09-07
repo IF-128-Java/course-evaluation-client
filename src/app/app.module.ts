@@ -69,6 +69,7 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
 import { EditGroupComponent } from './admin_project/components/group/edit-group/edit-group.component';
 import {MatBadgeModule} from '@angular/material/badge';
 import {ShowfeedbackComponent} from './components/student/ShowFeedback/showfeedback.component';
+import {AddfeedbackComponent} from './components/student/AddFeedback/addfeedback.component';
 import { RatingModule } from 'ngx-bootstrap/rating';
 
 @NgModule({
@@ -111,6 +112,7 @@ import { RatingModule } from 'ngx-bootstrap/rating';
     EditGroupComponent,
     GroupChatComponent,
     ShowfeedbackComponent,
+    AddfeedbackComponent
   ],
     imports: [
         BrowserModule,

@@ -23,7 +23,7 @@
     <ng-container matColumnDef="Feedback" >
       <th mat-header-cell *matHeaderCellDef> Feedback</th>
       <td class="pointer" mat-cell *matCellDef="let studentgroup, let i = index" (click)="onSelect(i)">
-        <button mat-button  *ngIf="!studentgroup.studentId" (click)="addFeedback(i)" >
+        <button mat-button  *ngIf="!studentgroup.studentId" (click)="addFeedback(studentgroup.id)" >
           <mat-icon>edit</mat-icon>
         </button>
         <button mat-button  *ngIf="studentgroup.studentId" (click)="viewFeedback(studentgroup.feedbackId)"  >

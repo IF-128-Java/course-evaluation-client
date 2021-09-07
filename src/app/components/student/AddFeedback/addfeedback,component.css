@@ -1,0 +1,36 @@
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  background-color: rgba(228, 228, 228, 0);
+}
+
+table {
+  width: 100%;
+  border-radius: 6px;
+  background-color: rgba(228, 228, 228, .3);
+}
+
+th {
+  color: black;
+}
+
+.mat-cell {
+  color: black;
+  font-size: 20px;
+}
+
+.mat-header-cell {
+  color: black;
+  font-size: 19px;
+  font-weight: bold;
+  background-color: rgba(170, 170, 170, .3);
+}
+
+mat-form-field.mat-form-field {
+  width: 75%;
+}
+
+.mat-column-Rate {
+  color: black;
+  width:20% ;
+}
