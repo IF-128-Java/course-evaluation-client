@@ -1,9 +1,9 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {AnalystService} from "../../../services/analyst.service";
 import {MatTableDataSource} from "@angular/material/table";
 import { MatPaginator } from '@angular/material/paginator';
 import {Coursessatisfaction} from "../../models/coursessatisfaction.model";
 import {TokenStorageService} from "../../auth/token-storage.service";
+import {AnalystService} from '../../services/analyst.service';
 
 @Component({
   selector: 'app-courses-analytics',
@@ -32,9 +32,6 @@ export class CoursesAnalyticsComponent implements OnInit {
 
   getCoursesSatisfaction(): void {
 
-       // this.satisfactions = new Array();
-        //this.listData = new MatTableDataSource(this.satisfactions);
-        //setTimeout(() => this.listData.paginator = this.paginator);
     this.analystService.get().subscribe(data => {
         this.satisfactions = data;
         this.listData = new MatTableDataSource(this.satisfactions);
