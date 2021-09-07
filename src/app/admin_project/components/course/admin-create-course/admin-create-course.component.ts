@@ -1,12 +1,12 @@
 import {Component, NgZone, OnInit, ViewChild} from '@angular/core';
-import {CourseDto} from "../../../models/course-dto.model";
-import {UserDto} from "../../../models/user-dto.model";
-import {CoursesService} from "../../../services/courses.service";
-import {UserService} from "../../../services/user.service";
-import {Teacher} from "../../../../models/teacher.model";
-import {FormControl, NgForm, Validators} from "@angular/forms";
-import {CdkTextareaAutosize} from "@angular/cdk/text-field";
-import {take} from "rxjs/operators";
+import {CourseDto} from '../../../models/course-dto.model';
+import {UserDto} from '../../../models/user-dto.model';
+import {CoursesService} from '../../../services/courses.service';
+import {UserService} from '../../../services/user.service';
+import {Teacher} from '../../../../models/teacher.model';
+import {FormControl, NgForm, Validators} from '@angular/forms';
+import {CdkTextareaAutosize} from '@angular/cdk/text-field';
+import {take} from 'rxjs/operators';
 
 @Component({
   selector: 'app-admin-create-course',

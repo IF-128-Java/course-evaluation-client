@@ -1,35 +1,30 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {Feedback} from '../../../models/feedback.model';
+import {User} from '../../../models/user.model';
 import {FeedbackService} from '../../../services/feedback.service';
-import {PageEvent} from '@angular/material/paginator';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Student} from '../../../models/student/student.model';
 import {MyGroupService} from '../../../services/student/my-group.service';
 import {UserService} from '../../../admin_project/services/user.service';
-import {User} from '../../../models/user.model';
 import {NotificationService} from '../../../services/notification.service';
-import {NotificationMessageComponent} from '../notification-message/notification-message.component';
+import {PageEvent} from '@angular/material/paginator';
 import {MatDialog} from '@angular/material/dialog';
+import {NotificationMessageComponent} from '../notification-message/notification-message.component';
 
 @Component({
-  selector: 'app-feedbacks-list',
-  templateUrl: './feedbacks-list.component.html',
-  styleUrls: ['./feedbacks-list.component.css']
+  selector: 'app-available-students-feedbackrequest',
+  templateUrl: './available-students-feedbackrequest.component.html',
+  styleUrls: ['./available-students-feedbackrequest.component.css']
 })
-export class FeedbacksListComponent implements OnInit {
-  displayedColumns: string[] = ['Date', 'Student', 'Comment', 'Action'];
+export class AvailableStudentsFeedbackrequestComponent implements OnInit {
   displayedColumnsStudents: string[] = ['Student', 'Email', 'Action'];
   public feedbacks: Feedback[] = [];
   public students: User[] = [];
   feedbackRequestId: number;
-  pageEvent?: PageEvent;
-  pageIndex?: number;
-  pageSize?: number;
-  length?: number;
-  courseId?: any;
   lengthSt: any;
   pageIndexSt: any;
   pageSizeSt: any;
+  courseId?: any;
+  pageEvent?: PageEvent;
 
   constructor(private feedbackService: FeedbackService, private route: ActivatedRoute, private groupService: MyGroupService, private router: Router, private userService: UserService, private notificationService: NotificationService, public dialog: MatDialog) {
   }
@@ -40,53 +35,18 @@ export class FeedbacksListComponent implements OnInit {
     var event = new PageEvent();
     event.pageIndex = 0;
     event.pageSize = 10;
-    this.getFeedbacks(event);
-    this.notificationService.getUsersByFeedbackRequest(event,this.feedbackRequestId).subscribe(
-      response => {
+    this.notificationService.getUsersByFeedbackRequest(event, this.feedbackRequestId).subscribe(response=> {
         this.students = response.content;
         this.pageIndexSt = response.pageIndex;
         this.pageSizeSt = response.size;
         this.lengthSt = response.totalElements;
-      })
-  }
-
-  getFeedbacks(event: PageEvent) {
-    this.feedbackService.getFeedbacksByFeedbackRequestId(event, this.feedbackRequestId).subscribe(
-      response => {
-        this.feedbacks = response.content;
-        this.pageIndex = response.pageIndex;
-        this.pageSize = response.size;
-        this.length = response.totalElements;
-        this.getUsers();
       }
-    );
-    return event;
+      )
   }
-
-  getUsers() {
-    this.groupService.getStudentsByCourseId(this.courseId).subscribe(
-      response => {
-        let students: Student[] = response;
-        if (students != undefined) {
-          students.forEach(st => {
-            let feedback = this.feedbacks.find(f => f.studentId == st.id);
-            if (feedback != undefined) {
-              feedback.studentName = st.firstName + ' ' + st.lastName;
-            }
-          })
-        }
-      })
-  }
-
-
-  showAnswer(feedbackId:any) {
-      this.router.navigateByUrl('/admin/courses/'+this.courseId+'/feedback_requests/'+this.feedbackRequestId+'/feedback/'+feedbackId)
-  }
-
   sendLetter(email: string) {
     this.notificationService.sendNotificationToUser(this.feedbackRequestId, email).subscribe(data=>
       this.alertMessage('Successfully','Notification has been sent to => ' + email))
-  }
+    }
 
 
   sendLetterToAllAvailableStudents() {
@@ -96,9 +56,9 @@ export class FeedbacksListComponent implements OnInit {
     this.notificationService.getUsersByFeedbackRequest(e,this.feedbackRequestId).subscribe(alluser=> {
         this.notificationService.sendNotificationToAvaliableUsers(this.feedbackRequestId, alluser.content).subscribe(data=>
           this.alertMessage('Successfully', 'Notification has been sent to all (' + alluser.content.length + ') available users'))
-
       }
     )
+
   }
 
   getStudents(event: PageEvent) {
