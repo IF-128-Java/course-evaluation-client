@@ -47,25 +47,31 @@
         <p>
           <button routerLinkActive="active-link" routerLink="admin/users" mat-button class="sidenav-button">
             <mat-icon svgIcon="users"></mat-icon>
-            <span *ngIf="isExpanded">Users</span>
+            <span *ngIf="isExpanded"><span class="space-between"></span>Users</span>
           </button>
         </p>
         <p>
           <button routerLinkActive="active-link" routerLink="admin/students" mat-button class="sidenav-button">
             <mat-icon svgIcon="students"></mat-icon>
-            <span *ngIf="isExpanded">Students</span>
+            <span *ngIf="isExpanded"><span class="space-between"></span>Students</span>
           </button>
         </p>
         <p>
           <button routerLinkActive="active-link" routerLink="admin/groups" mat-button class="sidenav-button">
             <mat-icon svgIcon="groups"></mat-icon>
-            <span *ngIf="isExpanded">Groups</span>
+            <span *ngIf="isExpanded"><span class="space-between"></span>Groups</span>
           </button>
         </p>
         <p>
           <button routerLinkActive="active-link" routerLink="admin/courses" mat-button class="menu-button">
             <mat-icon svgIcon="courses"></mat-icon>
-            <span *ngIf="isExpanded">Courses</span>
+            <span *ngIf="isExpanded"><span class="space-between"></span>Courses</span>
+          </button>
+        </p>
+        <p>
+          <button routerLinkActive="active-link" routerLink="admin/analytics" mat-button class="menu-button">
+            <mat-icon svgIcon="charts"></mat-icon>
+            <span *ngIf="isExpanded"><span class="space-between"></span>Charts</span>
           </button>
         </p>
       </mat-nav-list>

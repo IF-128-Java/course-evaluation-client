@@ -38,6 +38,7 @@ import {ShowfeedbackComponent} from './components/student/ShowFeedback/showfeedb
 import {EditFeedbackrequestComponent} from './components/manage-feedback-request/edit-feedbackrequest/edit-feedbackrequest.component';
 import {AvailableStudentsFeedbackrequestComponent} from './components/manage-feedback-request/available-students-feedbackrequest/available-students-feedbackrequest.component';
 import {FeedbackRequestsArchiveComponent} from './components/manage-feedback-request/feedback-requests-archive/feedback-requests-archive.component';
+import {PieChartsComponent} from "./admin_project/components/charts/pie-charts/pie-charts.component";
 
 ShowfeedbackComponent
 const routes: Routes = [
@@ -98,6 +99,9 @@ const routes: Routes = [
       expectedRole: 'ROLE_ADMIN'
     }},
   {path: 'admin/courses/:id', component: AdminEditCourseComponent, canActivate: [RoleGuardService],data:{
+      expectedRole: 'ROLE_ADMIN'
+    }},
+  {path: 'admin/analytics', component: PieChartsComponent, canActivate: [RoleGuardService],data:{
       expectedRole: 'ROLE_ADMIN'
     }},
   {path: 'courses', component: CoursesListComponent},
