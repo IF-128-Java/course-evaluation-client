@@ -91,4 +91,9 @@ mat-sidenav[style] {
   padding: 25px 0;
   cursor: pointer;
 }
+.space-between{
+  display: inline-block;
+  width: 10px;
+}
+
 
