@@ -1,16 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {UsersService} from '../../services/users.service';
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {MatDialog} from "@angular/material/dialog";
 import {DialogForUpdateUserProfilePicture} from "./update-profile-picture-dialog/dialog-for-update-user-profile-picture.component";
+import {TokenStorageService} from "../../auth/token-storage.service";
+import {TotpService} from "../../services/totp.service";
+import {TotpInfo} from "../totp/totp-info";
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })
-export class UserComponent implements OnInit{
+export class UserComponent implements OnInit {
 
   currentUser = {
     firstName: '',
@@ -18,10 +21,10 @@ export class UserComponent implements OnInit{
     email: '',
   };
 
-  profilePicture: string  = '';
+  profilePicture: string = '';
 
   defaultProfilePicture: boolean = false;
-  initials: string  = '';
+  initials: string = '';
 
   profileComponent: boolean = true;
   updateComponent: boolean = false;
@@ -47,26 +50,38 @@ export class UserComponent implements OnInit{
   oldPasswordNotMatch: boolean = false;
   newPasswordsNotMatch: boolean = false;
 
+  using2fa: boolean = true;
+  roles: string[];
+  isUsing2FA: boolean = false;
+  qrCodeImage: any = '';
+  totpRequest: TotpInfo;
+  errorMessage: '';
+
   ngOnInit(): void {
     this.getUser(this.route.snapshot.params.id);
+    this.roles = this.tokenStorage.getAuthorities();
   }
 
   constructor(
     private userService: UsersService,
     private route: ActivatedRoute,
     private _snackBar: MatSnackBar,
-    private dialog: MatDialog
-  ) { }
+    private dialog: MatDialog,
+    private tokenStorage: TokenStorageService,
+    private totpService: TotpService
+  ) {
+  }
 
   getUser(id: number): void {
     this.userService.get(id).subscribe(data => {
-        if(data.profilePicture === null){
+        if (data.profilePicture === null) {
           this.initials = data.firstName.charAt(0) + data.lastName.charAt(0);
           this.defaultProfilePicture = true;
-        }else{
+        } else {
           this.profilePicture = 'data:image/jpeg;base64,' + data.profilePicture;
         }
         this.currentUser = data;
+        this.using2fa = data.active2fa;
       },
       error => {
         console.log(error);
@@ -80,9 +95,9 @@ export class UserComponent implements OnInit{
     })
   }
 
-  update(): void{
+  update(): void {
     const data = {
-      firstName : this.firstNameToUpdate,
+      firstName: this.firstNameToUpdate,
       lastName: this.lastNameToUpdate
     }
     this.userService.update(data).subscribe(() => {
@@ -95,13 +110,13 @@ export class UserComponent implements OnInit{
         this.invalidFirstName = false;
         this.invalidLastName = false;
 
-        if(error.error.error === 'MethodArgumentNotValidException'){
-          if (error.error.fields.firstName){
+        if (error.error.error === 'MethodArgumentNotValidException') {
+          if (error.error.fields.firstName) {
             this.firstNameToUpdate = this.currentUser.firstName;
             this.invalidFirstName = true;
           }
 
-          if (error.error.fields.lastName){
+          if (error.error.fields.lastName) {
             this.lastNameToUpdate = this.currentUser.lastName;
             this.invalidLastName = true;
           }
@@ -110,18 +125,18 @@ export class UserComponent implements OnInit{
     );
   }
 
-  updatePassword(): void{
+  updatePassword(): void {
     this.oldPasswordNotMatch = false;
     this.invalidOldPassword = false;
     this.invalidNewPassword = false;
 
-    if(this.newPassword !== this.confirmNewPassword){
+    if (this.newPassword !== this.confirmNewPassword) {
       this.newPasswordsNotMatch = true;
       return;
     }
 
     const data = {
-      oldPassword : this.oldPassword,
+      oldPassword: this.oldPassword,
       newPassword: this.newPassword
     }
     this.userService.updatePassword(data).subscribe(() => {
@@ -135,19 +150,19 @@ export class UserComponent implements OnInit{
         this.confirmNewPassword = '';
         this.newPasswordsNotMatch = false;
 
-        if(error.error.error === 'InvalidOldPasswordException'){
+        if (error.error.error === 'InvalidOldPasswordException') {
           this.oldPasswordNotMatch = true;
           this.oldPassword = '';
         }
 
-        if(error.error.error === 'MethodArgumentNotValidException'){
+        if (error.error.error === 'MethodArgumentNotValidException') {
           this.oldPasswordNotMatch = false;
 
-          if (error.error.fields.oldPassword){
+          if (error.error.fields.oldPassword) {
             this.invalidOldPassword = true;
           }
 
-          if (error.error.fields.newPassword){
+          if (error.error.fields.newPassword) {
             this.invalidNewPassword = true;
           }
         }
@@ -155,7 +170,7 @@ export class UserComponent implements OnInit{
     );
   }
 
-  deletePicture():void{
+  deletePicture(): void {
     this.userService.deletePicture().subscribe(() => {
         this._snackBar.open('Picture was deleted!', 'Close');
         this.reloadPage();
@@ -166,13 +181,15 @@ export class UserComponent implements OnInit{
     )
   }
 
-  showProfileComponent(): void{
+  showProfileComponent(): void {
     this.profileComponent = !this.profileComponent;
     this.updateComponent = false
     this.updatePasswordComponent = false;
+    this.isUsing2FA = false;
+    this.using2fa = !this.using2fa;
   }
 
-  showUpdateComponent(): void{
+  showUpdateComponent(): void {
     this.profileComponent = !this.profileComponent;
     this.updateComponent = !this.updateComponent;
 
@@ -183,7 +200,7 @@ export class UserComponent implements OnInit{
     this.invalidLastName = false;
   }
 
-  showUpdatePasswordComponent(): void{
+  showUpdatePasswordComponent(): void {
     this.profileComponent = !this.profileComponent;
     this.updatePasswordComponent = !this.updatePasswordComponent;
 
@@ -205,5 +222,25 @@ export class UserComponent implements OnInit{
 
   reloadPage() {
     window.location.reload();
+  }
+
+  change2faStatus() {
+    if (!this.using2fa) {
+      this.isUsing2FA = true;
+      this.profileComponent = !this.profileComponent;
+    }
+    this.totpRequest = new TotpInfo(this.currentUser.email, !this.using2fa);
+    this.totpService.update2fa(this.totpRequest).subscribe(
+      data => {
+        if (data.using2FA) {
+          this.qrCodeImage = data.qrCodeImage;
+        }
+      },
+      error => {
+        console.log(error);
+        if (error.error.message) {
+          this.errorMessage = error.error.message;
+        } else this.errorMessage = error.error;
+      })
   }
 }

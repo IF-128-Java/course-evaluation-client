@@ -71,6 +71,7 @@ import {GroupChatComponent} from './components/student/Group-Chat/group-chat.com
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { EditGroupComponent } from './admin_project/components/group/edit-group/edit-group.component';
 import {MatBadgeModule} from '@angular/material/badge';
+import { TotpComponent } from './components/totp/totp.component';
 import { NotificationMessageComponent } from './components/manage-feedback-request/notification-message/notification-message.component';
 import { FeedbackRequestsArchiveComponent } from './components/manage-feedback-request/feedback-requests-archive/feedback-requests-archive.component';
 
@@ -117,6 +118,7 @@ import { RatingModule } from 'ngx-bootstrap/rating';
     ResetPasswordComponent,
     EditGroupComponent,
     GroupChatComponent,
+    TotpComponent,
     ShowfeedbackComponent,
     AddfeedbackComponent,
     EditFeedbackrequestComponent,
@@ -130,6 +132,7 @@ import { RatingModule } from 'ngx-bootstrap/rating';
     AppRoutingModule, HttpClientModule,
     FormsModule,
     BrowserAnimationsModule, MatDialogModule,
+    MatDividerModule, MatSnackBarModule, MatProgressSpinnerModule, MatButtonModule, MatIconModule, MatInputModule, MatToolbarModule, MatMenuModule, MatTableModule, MatTooltipModule, MatCheckboxModule, ReactiveFormsModule, MatCardModule, MatListModule, MatGridListModule, ScrollingModule, MatPaginatorModule, MatSelectModule, MatAutocompleteModule, MatChipsModule, MatSidenavModule, MatDatepickerModule, MatNativeDateModule, MatRadioModule, MatBadgeModule, MatSlideToggleModule,
     MatDividerModule, MatSnackBarModule, MatProgressSpinnerModule, MatButtonModule, MatIconModule, MatInputModule, MatToolbarModule, MatMenuModule, MatTableModule, MatTooltipModule, MatCheckboxModule, ReactiveFormsModule, MatCardModule, MatListModule, MatGridListModule, ScrollingModule, MatPaginatorModule, MatSelectModule, MatAutocompleteModule, MatChipsModule, MatSidenavModule, MatDatepickerModule, MatNativeDateModule, MatRadioModule, MatBadgeModule, RatingModule.forRoot(),
   ],
   providers: [httpInterceptorProviders, {provide: JWT_OPTIONS, useValue: JWT_OPTIONS}, JwtHelperService, {

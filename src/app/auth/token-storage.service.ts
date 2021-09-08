@@ -35,6 +35,14 @@ export class TokenStorageService {
     return <string>localStorage.getItem(AppConfig.USERNAME_KEY);
   }
 
+  public getActive2FA():boolean {
+    if (localStorage.getItem(AppConfig.TOKEN_KEY)) {
+      console.log(JSON.parse(this.decodeToken(this.getToken())));
+      return JSON.parse(this.decodeToken(this.getToken())).authenticated;
+    }
+    return false;
+  }
+
   public saveAuthorities(token: string) {
     window.localStorage.removeItem(AppConfig.AUTHORITIES_KEY);
     window.localStorage.setItem(AppConfig.AUTHORITIES_KEY,JSON.parse(this.decodeToken(token)).role );

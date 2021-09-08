@@ -1,7 +1,7 @@
 <div class="container">
   <div class="text-center" style="margin-right: 55px">
     <mat-spinner *ngIf="currentUser.email === ''" class="spinner"></mat-spinner>
-    <div *ngIf="profileComponent && currentUser.email !== ''">
+    <div *ngIf="profileComponent && currentUser.email !== '' && !roles.includes('ROLE_PRE_VERIFICATION')">
       <h3 class="mt-5 mb-4">User Profile!</h3>
       <div class="photo">
         <div *ngIf="defaultProfilePicture" class="defaultPersonPhoto">{{initials}}</div>
@@ -24,11 +24,13 @@
         <label><strong>Last Name:</strong></label> {{ currentUser.lastName }}
       </div>
       <mat-divider></mat-divider>
-
       <div class="text-center mt-3">
         <button (click)="showUpdateComponent()" mat-stroked-button class="m-2">Update</button>
         <button (click)="showUpdatePasswordComponent()" mat-stroked-button class="m-2">Update Password</button>
       </div>
+      <section class="example-section">
+        <mat-slide-toggle (click)="change2faStatus()" class="example-margin" [(ngModel)]="using2fa">Two-Factor Authentication</mat-slide-toggle>
+      </section>
     </div>
 
     <div *ngIf="updateComponent">
@@ -92,6 +94,12 @@
       <br/>
       <button (click)="updatePassword()" mat-stroked-button class="m-2">Update</button>
       <button (click)="showProfileComponent()" mat-stroked-button class="m-2">Cancel</button>
+    </div>
+    <div *ngIf="isUsing2FA" class="icon-qrcode">
+      <p>Scan this QR code using Google Authenticator app on your phone to use it later to login</p>
+      <img src="{{qrCodeImage}}" class="img-fluid" />
+      <br/>
+      <button (click)="showProfileComponent()" mat-stroked-button class="m-2">Close</button>
     </div>
   </div>
 </div>

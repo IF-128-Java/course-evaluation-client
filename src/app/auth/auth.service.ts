@@ -22,6 +22,7 @@ export class AuthService {
   private confirmUrl = AppConfig.API_ENDPOINT + 'auth/confirm';
   private resetUrl = AppConfig.API_ENDPOINT + 'auth/restorePassword';
   private changePasswordUrl = AppConfig.API_ENDPOINT + 'auth/changePassword';
+  private verify2FaUrl = AppConfig.API_ENDPOINT + 'auth/verify';
 
   constructor(private http: HttpClient, private jwtHelper: JwtHelperService, private tokenStorage: TokenStorageService) {
   }
@@ -49,5 +50,10 @@ export class AuthService {
 
   public changePassword(passwordResetInfo: ResetPasswordInfo): Observable<any> {
     return this.http.post(this.changePasswordUrl, passwordResetInfo,httpOptions)
+  }
+
+  public verify2FaCode(code: number, email: string): Observable<any> {
+    console.log("invoke verify2faCode")
+    return this.http.post(this.verify2FaUrl + "?email="+email+"&code="+code, httpOptions);
   }
 }
