@@ -60,6 +60,7 @@ export class GroupChatComponent implements OnInit, OnDestroy{
           let foundMessage = this.messages.find(message => message.id == retrievedMessage.id)
           if(foundMessage != undefined){
             foundMessage.content = retrievedMessage.content;
+            foundMessage.edited = retrievedMessage.edited;
           }else {
             this.messages.push(retrievedMessage);
           }
