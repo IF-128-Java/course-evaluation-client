@@ -26,6 +26,8 @@ export class AppComponent implements OnInit {
       .bypassSecurityTrustResourceUrl('assets/images/admin-icons/groups.svg'));
     this.matIconRegistry.addSvgIcon('courses',this.domSanitizer
       .bypassSecurityTrustResourceUrl('assets/images/admin-icons/courses.svg'));
+    this.matIconRegistry.addSvgIcon('charts',this.domSanitizer
+      .bypassSecurityTrustResourceUrl('assets/images/admin-icons/pie_chart.svg'));
   }
 
 
