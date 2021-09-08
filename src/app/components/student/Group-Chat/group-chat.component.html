@@ -9,7 +9,7 @@
         <mat-card *ngFor="let m of messages" class="message-item" [ngStyle]="{
           margin: m.senderId !== currentUserId? '5px 20px' : '5px 5px 5px 470px'
         }">
-          <div class="message-item-header">
+          <div class="d-flex">
             <div class="message-sender fw-bold">{{m.senderFirstName + ' ' + m.senderLastName}}</div>
             <div class="photo">
               <div *ngIf="m.senderProfilePicture == null" class="defaultPersonPhoto">{{m.senderFirstName!.charAt(0) + m.senderLastName!.charAt(0)}}</div>
@@ -20,8 +20,13 @@
           <div class="mt-1">
             {{ m.content }}
           </div>
-          <div class="text-end">
-            <a *ngIf="m.senderId == currentUserId" (click)="selectMessageToUpdate(m)" class="message-update-button">update</a>
+          <div class="d-flex">
+            <div class="text-start fst-italic w-50">
+              <p *ngIf="m.edited" class="status-edited">edited</p>
+            </div>
+            <div class="text-end w-50">
+              <a *ngIf="m.senderId == currentUserId" (click)="selectMessageToUpdate(m)" class="message-update-button">update</a>
+            </div>
           </div>
         </mat-card>
       </div>

@@ -9,10 +9,6 @@
   border-radius: 5px;
 }
 
-.message-item-header{
-  display: flex;
-}
-
 .message-update-button{
   cursor: pointer;
   font-size: 12px;
@@ -74,4 +70,10 @@
   color: #adb3b6;
   text-align: center;
   line-height: 50px;
+}
+
+.status-edited {
+  font-size: 12px;
+  color: blueviolet;
+  margin: 4px 0 0 0;
 }
