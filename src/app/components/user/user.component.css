@@ -31,3 +31,11 @@
 .error-message{
   color: #f44336;
 }
+
+.icon-qrcode {
+  background-color: transparent;
+}
+
+.container {
+  height: 650px;
+}

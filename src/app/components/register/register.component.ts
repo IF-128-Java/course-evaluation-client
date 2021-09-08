@@ -17,6 +17,8 @@ export class RegisterComponent implements OnInit {
 
   hidePassword: boolean = true;
   hideConfirmPassword: boolean = true;
+  isUsing2FA = false;
+  qrCodeImage: any = '';
 
   constructor(private authService: AuthService) {
   }
@@ -25,16 +27,22 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
+    if (this.form.using2FA){
+      this.isUsing2FA = true;
+    }
 
     this.signupInfo = new SignUpInfo(
       this.form.firstName,
       this.form.lastName,
       this.form.email,
       this.form.password,
-      this.form.confirmPassword);
+      this.form.confirmPassword,
+      this.isUsing2FA);
     this.authService.signUp(this.signupInfo).subscribe(
       data => {
-        console.log(data);
+        if(data.using2FA){
+          this.qrCodeImage = data.qrCodeImage;
+        }
         this.isSignedUp = true;
         this.isSignUpFailed = false;
       },

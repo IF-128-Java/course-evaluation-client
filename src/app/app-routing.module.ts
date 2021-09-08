@@ -32,6 +32,7 @@ import {StudentFeedbackrequetComponent} from './components/student/StudentFeedba
 import {AdminEditCourseComponent} from './admin_project/components/course/admin-edit-course/admin-edit-course.component';
 import {ResetPasswordComponent} from './components/reset-password/reset-password.component';
 import {GroupChatComponent} from './components/student/Group-Chat/group-chat.component';
+import {TotpComponent} from "./components/totp/totp.component";
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -42,6 +43,9 @@ const routes: Routes = [
     }},
   {path: 'confirm', component: ConfirmComponent},
   {path: 'password_reset', component: ResetPasswordComponent},
+  {path: 'totp', component: TotpComponent, canActivate: [RoleGuardService], data: {
+    expectedRole: 'ROLE_PRE_VERIFICATION'
+    }},
 
   {path: 'changePassword', component: ResetPasswordComponent},
 
