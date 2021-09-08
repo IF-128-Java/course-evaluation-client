@@ -72,7 +72,6 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
 import { EditGroupComponent } from './admin_project/components/group/edit-group/edit-group.component';
 import {MatBadgeModule} from '@angular/material/badge';
 import { TotpComponent } from './components/totp/totp.component';
-import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import { NotificationMessageComponent } from './components/manage-feedback-request/notification-message/notification-message.component';
 import { FeedbackRequestsArchiveComponent } from './components/manage-feedback-request/feedback-requests-archive/feedback-requests-archive.component';
 
