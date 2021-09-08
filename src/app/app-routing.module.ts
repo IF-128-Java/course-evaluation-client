@@ -32,6 +32,8 @@ import {StudentFeedbackrequetComponent} from './components/student/StudentFeedba
 import {AdminEditCourseComponent} from './admin_project/components/course/admin-edit-course/admin-edit-course.component';
 import {ResetPasswordComponent} from './components/reset-password/reset-password.component';
 import {GroupChatComponent} from './components/student/Group-Chat/group-chat.component';
+import {TotpComponent} from "./components/totp/totp.component";
+import {AddfeedbackComponent} from "./components/student/AddFeedback/addfeedback.component";
 import {ShowfeedbackComponent} from './components/student/ShowFeedback/showfeedback.component';
 import {EditFeedbackrequestComponent} from './components/manage-feedback-request/edit-feedbackrequest/edit-feedbackrequest.component';
 import {AvailableStudentsFeedbackrequestComponent} from './components/manage-feedback-request/available-students-feedbackrequest/available-students-feedbackrequest.component';
@@ -48,6 +50,9 @@ const routes: Routes = [
     }},
   {path: 'confirm', component: ConfirmComponent},
   {path: 'password_reset', component: ResetPasswordComponent},
+  {path: 'totp', component: TotpComponent, canActivate: [RoleGuardService], data: {
+    expectedRole: 'ROLE_PRE_VERIFICATION'
+    }},
 
   {path: 'changePassword', component: ResetPasswordComponent},
 
@@ -113,6 +118,7 @@ const routes: Routes = [
   {path: 'feedback_request/course/:id', component: StudentFeedbackrequetComponent},
   {path: 'my-group/groupChat/:id', component: GroupChatComponent},
   {path: 'feedback/:id', component: ShowfeedbackComponent},
+  {path: 'addfeedback/feedbackrequest/:id', component: AddfeedbackComponent},
 ];
 
 @NgModule({

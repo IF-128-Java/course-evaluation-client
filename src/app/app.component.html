@@ -25,7 +25,7 @@
         Login</a>
     </div>
     <div class="toolbar-content" id="profile-logout-links">
-      <a *ngIf="roles" routerLink="users/{{id}}" mat-button>
+      <a *ngIf="roles && !roles.includes('ROLE_PRE_VERIFICATION')" routerLink="users/{{id}}" mat-button>
         <mat-icon>account_box</mat-icon>
         {{username}}</a>
       <a *ngIf="roles" mat-button (click)="logout()">

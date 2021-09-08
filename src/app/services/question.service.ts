@@ -9,6 +9,7 @@ import {Question} from '../models/question.model';
 })
 export class QuestionService {
   private questionUrl = AppConfig.API_ENDPOINT + 'questions/';
+  private questionByRequestIdUrl = AppConfig.API_ENDPOINT + 'feedback_request/';
 
   constructor(private http: HttpClient) {
 
@@ -24,6 +25,10 @@ export class QuestionService {
 
   deleteById(id: any) {
     return this.http.delete(this.questionUrl+`${id}`)
+  }
+
+  getQuestionsByFeedbackRequestId(Id: any): Observable<any> {
+    return this.http.get(this.questionByRequestIdUrl+`${Id}`+'/questions');
   }
 
 }

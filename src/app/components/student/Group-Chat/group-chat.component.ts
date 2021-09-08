@@ -24,14 +24,17 @@ export class GroupChatComponent implements OnInit, OnDestroy{
   connected: boolean = false;
   message: string = '';
 
+  selectedMessageId: number;
+  readyToUpdate: boolean = false;
+
   error: boolean = false;
   errorMessage: string = '';
 
   ngOnInit(): void {
     this.groupChatRoomId = this.route.snapshot.params.id;
     this.connectUrl = AppConfig.API_ENDPOINT + 'connect-ws';
-    this.subscribeUrl = '/api/v1/event/chat/' + this.groupChatRoomId;
-    this.sendMessageUrl = '/api/v1/chat/' + this.groupChatRoomId;
+    this.subscribeUrl = '/api/v1/event/chats/' + this.groupChatRoomId;
+    this.sendMessageUrl = '/api/v1/chats/' + this.groupChatRoomId;
     this.currentUserId = this.tokenStorage.getId();
 
     this.getMessages();
@@ -53,27 +56,66 @@ export class GroupChatComponent implements OnInit, OnDestroy{
       this.connected = true;
       this.stompClient.subscribe(subscribeUrl, (message: any) => {
         if(message.body) {
-          this.messages.push(JSON.parse(message.body));
+          let retrievedMessage = JSON.parse(message.body);
+          let foundMessage = this.messages.find(message => message.id == retrievedMessage.id)
+          if(foundMessage != undefined){
+            foundMessage.content = retrievedMessage.content;
+            foundMessage.edited = retrievedMessage.edited;
+          }else {
+            this.messages.push(retrievedMessage);
+          }
         }
       });
     });
   }
 
-  sendMessage(){
+  checkIfValid() : boolean{
     if(this.message.trim().length < 1){
       this.error = true;
       this.errorMessage = "Message can't be empty!";
       this.message = '';
-      return;
+      return false;
     }else if(this.message.length > 255){
       this.error = true;
-      this.errorMessage = "Maximum message size 255!";
+      this.errorMessage = "Maximum message size is 255!";
+      return false;
+    }
+
+    return true;
+  }
+
+  sendMessage(){
+    if(!this.checkIfValid()){
       return;
     }
 
     this.stompClient.send(this.sendMessageUrl , {}, JSON.stringify({content: this.message}));
     this.error = false;
     this.message = '';
+  }
+
+  sendUpdatedMessage(){
+    if(!this.checkIfValid()){
+      return;
+    }
+
+    this.stompClient.send(this.sendMessageUrl + "/messages/" + this.selectedMessageId , {}, JSON.stringify({content: this.message}));
+    this.readyToUpdate = false;
+    this.error = false;
+    this.message = '';
+  }
+
+  selectMessageToUpdate(selectedMessageToUpdate: Message){
+    this.error = false;
+    this.readyToUpdate = true;
+    this.selectedMessageId = selectedMessageToUpdate.id!;
+    this.message = selectedMessageToUpdate.content!;
+  }
+
+  cancelUpdate(){
+    this.error = false;
+    this.message = '';
+    this.readyToUpdate = false;
   }
 
   getMessages(){

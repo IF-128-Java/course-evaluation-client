@@ -54,12 +54,18 @@ export class LoginComponent implements OnInit {
     this.authService.attemptAuth(this.loginInfo).subscribe(
       data => {
         console.log(data.token)
+
         this.tokenStorage.saveToken(data.token);
         this.tokenStorage.saveUsername(data.token);
         this.tokenStorage.saveAuthorities(data.token);
         this.tokenStorage.saveId(data.token);
         this.isLoginFailed = false;
         this.isLoggedIn = true;
+        if (!this.tokenStorage.getActive2FA()) {
+          this.router.navigate(['/totp']).then(()=>{
+            window.location.reload()
+          });
+        }
         this.roles = this.tokenStorage.getAuthorities();
         if (this.roles.includes('ROLE_ADMIN')) {
           this.router.navigate(['/admin/users']).then(() => {
