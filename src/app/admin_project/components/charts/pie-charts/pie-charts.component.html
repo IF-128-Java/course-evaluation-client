@@ -1,6 +1,15 @@
 <div class="container">
-  <h4>Charts</h4>
+  <h4>Charts </h4>
 
-  <div id="chartContainer" style="height: 370px; width: 100%; margin-left:auto;margin-right:auto;"></div>
+  <div id="chart">
+    <apx-chart
+      [series]="chartOptions.series"
+      [chart]="chartOptions.chart"
+      [labels]="chartOptions.labels"
+      [title]="chartOptions.title"
+      [theme]="chartOptions.theme"
+      [responsive]="chartOptions.responsive"
+    ></apx-chart>
+  </div>
 
 </div>
