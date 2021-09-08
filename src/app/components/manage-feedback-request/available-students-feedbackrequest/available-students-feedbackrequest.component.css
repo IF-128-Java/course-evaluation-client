@@ -1,34 +1,23 @@
 .container {
   margin-left: auto;
   margin-right: auto;
-  display: flex;
   background-color: rgba(228, 228, 228, .6);
+  height: 90%;
+  border-radius: 10px;
+  padding: 16px;
 }
-
-.column-left {
-  float: left;
-  width: 60%;
-  padding: 5px;
-}
-
-.column-right {
-  float: left;
-  width: 40%;
-  padding: 5px;
-}
-
 table {
-  width: 100%;
-  background: rgba(228, 228, 228, .6);
+  background: transparent;
+  width: 90%;
 }
 
 th {
-  color: black;
   font-size: 15px;
   font-weight: bold;
 }
 
 .button {
+  background: transparent;
   margin-bottom: 16px;
   margin-right: 16px;
 }
@@ -38,10 +27,11 @@ th {
   margin-right: auto;
 }
 
-.back-button {
+.back-button-right {
   background: transparent;
   float: right;
 }
+
 .admin-empty-records{
   text-align: center;
 }
@@ -56,13 +46,4 @@ mat-paginator {
 }
 .mat-flat-button{
   background: transparent;
-}
-.back-button {
-  background: transparent;
-  float: right;
-margin-bottom: 10px;
-}
-
-#email{
-  margin-top: 10px;
 }

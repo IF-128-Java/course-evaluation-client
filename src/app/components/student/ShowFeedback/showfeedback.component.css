@@ -26,12 +26,13 @@ th {
   background-color: rgba(170, 170, 170, .3);
 }
 
-.mat-column-StartDate {
-  color: black;
-  width:11% ;
+mat-form-field.mat-form-field {
+  width: 75%;
 }
 
-.mat-column-EndDate {
+.mat-column-Rate {
+  width:20% ;
   color: black;
-  width:11% ;
+  font-size: 22px;
+  font-weight: bold;
 }

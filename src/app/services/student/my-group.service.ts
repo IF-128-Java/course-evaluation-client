@@ -17,7 +17,7 @@ export class MyGroupService{
   private usersUrl3 = AppConfig.API_ENDPOINT + 'courses/current/group/';
   private usersUrl4 = AppConfig.API_ENDPOINT + 'courses/available/';
   private usersUrl5 = AppConfig.API_ENDPOINT + 'students/course/';
-  private usersUrl6 = AppConfig.API_ENDPOINT + 'feedback_request/student/course/';
+  private usersUrl6 = AppConfig.API_ENDPOINT + 'feedback_request/course/';
   private usersUrl7 = AppConfig.API_ENDPOINT + 'students/mail';
 
   constructor(private  http: HttpClient) { }
@@ -46,8 +46,8 @@ export class MyGroupService{
     return this.http.get(`${this.usersUrl4}`, {responseType: 'json'});
   }
 
-  getFbRequests(id: number): Observable<any> {
-    return this.http.get(`${this.usersUrl6}${id}`, {responseType: 'json'});
+  getFbRequests(idc: number, ids: number ): Observable<any> {
+    return this.http.get(`${this.usersUrl6}${idc}/student/${ids}`, {responseType: 'json'});
   }
 
   sendMail(mail: Mail) {
