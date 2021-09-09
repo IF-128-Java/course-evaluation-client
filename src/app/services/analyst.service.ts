@@ -10,7 +10,7 @@ const httpOptions = {headers: new HttpHeaders({'Content-Type': 'application/json
 })
 export class AnalystService {
 
-  private usersUrl = AppConfig.API_ANALYTICS_ENDPOINT + 'coursesatisfaction';
+  private usersUrl = AppConfig.API_ANALYTICS_ENDPOINT_BASE + 'coursesatisfaction';
 
   constructor(private  http: HttpClient) { }
 
