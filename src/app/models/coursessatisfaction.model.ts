@@ -1,12 +1,12 @@
 export class Coursessatisfaction {
-  courseId?: string;
-  feedbackId?: string;
-  satisfaction?: number;
+  courseName: string;
+  feedbackName: string;
+  satisfaction: number;
 
-  constructor(courseId: string, feedbackId: string, satisfaction: number) {
+  constructor(courseName: string, feedbackName: string, satisfaction: number) {
 
-    this.courseId = courseId
-    this.feedbackId = feedbackId;
+    this.courseName = courseName;
+    this.feedbackName = feedbackName;
     this.satisfaction = satisfaction;
 
   }

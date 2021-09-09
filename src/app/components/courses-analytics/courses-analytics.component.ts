@@ -23,7 +23,7 @@ export class CoursesAnalyticsComponent implements OnInit {
                private analystService: AnalystService) { }
    //constructor() {}
 
-  // satisfactions: Coursessatisfaction[] = [new Coursessatisfaction('sql','equipment',5)];
+   //satisfactions: Coursessatisfaction[] = [new Coursessatisfaction('sql','equipment',5)];
 
 
   ngOnInit(): void {
@@ -34,6 +34,7 @@ export class CoursesAnalyticsComponent implements OnInit {
 
     this.analystService.get().subscribe(data => {
         this.satisfactions = data;
+        console.log(this.satisfactions);
         this.listData = new MatTableDataSource(this.satisfactions);
         setTimeout(() => this.listData.paginator = this.paginator);
       }

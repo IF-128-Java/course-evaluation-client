@@ -10,12 +10,12 @@
 
     <ng-container matColumnDef="CourseId">
       <th mat-header-cell *matHeaderCellDef> Course Name</th>
-      <td mat-cell *matCellDef="let coursessatisfaction"> {{coursessatisfaction.courseId}} </td>
+      <td mat-cell *matCellDef="let coursessatisfaction"> {{coursessatisfaction.courseName}} </td>
     </ng-container>
 
     <ng-container matColumnDef="FeedbackRequestId">
       <th mat-header-cell *matHeaderCellDef> FeedbackRequestId</th>
-      <td mat-cell *matCellDef="let coursessatisfaction"> {{coursessatisfaction.feedbackId}} </td>
+      <td mat-cell *matCellDef="let coursessatisfaction"> {{coursessatisfaction.feedbackName}} </td>
     </ng-container>
 
     <ng-container matColumnDef="Satisfaction">
