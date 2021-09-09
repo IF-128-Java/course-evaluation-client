@@ -104,4 +104,10 @@ a{
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
 
+.using2FA {
+  text-align: center;
+  margin-top: 10px;
+  font-size: small;
+}
+
 

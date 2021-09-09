@@ -1,0 +1,24 @@
+  <div class="form-wraper">
+    <div class="form-container card">
+      <div class="form-header">
+        <H3>Enter Verification Code</H3>
+      </div>
+      <form name="form" class="form-body" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+        <mat-form-field class="justifier">
+          <input matInput placeholder="Verification Code" class="form-input" name="verificationCode"
+                 [(ngModel)]="form.verificationCode" #verificationCode="ngModel" required>
+        </mat-form-field>
+        <div class="form-footer">
+          <button mat-stroked-button class="btn custom-btn">
+            Login
+          </button>
+        </div>
+        <div class="alert alert-warning text-center" *ngIf="f.submitted">
+          <mat-error>
+            {{ errorMessage }}
+          </mat-error>
+        </div>
+      </form>
+    </div>
+  </div>
+

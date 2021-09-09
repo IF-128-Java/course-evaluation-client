@@ -1,0 +1,107 @@
+body{
+  font-family: 'Roboto', sans-serif;
+  margin:0px !important;
+  overflow: hidden;
+}
+h3{
+  text-align: center;
+  color: #333333;
+}
+.add-btn{
+  position: fixed;
+  right: 25px;
+  bottom: 20Px;
+}
+
+/** form **/
+.form-wraper{
+  width: 100%;
+  margin-top: 2%;
+  background: transparent;
+}
+.form-container{
+  width: 35%;
+  margin: auto;
+  padding-bottom: 24px !important;
+  display: block;
+  background: transparent;
+}
+.card {
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+/** form header **/
+.form-header{
+  padding: 24px 0;
+}
+.form-title{
+  text-align: center;
+  font-weight: 200;
+  font-size: 2.5em;
+}
+.main-lock-icon{
+  width: 20%;
+  margin: 5px auto;
+  display: block;
+}
+
+/** form body **/
+.form-body{
+  padding: 0 24px;
+}
+.justifier {
+  width: 100%;
+  border-radius: 12px;
+  text-align: center;
+}
+.form-input{
+  margin-top: 24px;
+}
+
+/** form footer **/
+.form-footer{
+  padding: 24px;
+}
+.btn{
+  display: block;
+  width: 100%;
+  padding: 5% !important;
+  font-size: 1.5em;
+  font-weight: 100;
+  margin-top: 18px;
+}
+.custom-btn{
+  margin-bottom: 15px;
+  color: #333333;
+  border-radius: 15px;
+}
+
+.txt{
+  text-align: center;
+  color: #3f51b5;
+  margin: 10px auto !important;
+}
+.additional-link{
+  padding: 10px auto;
+  text-align: center;
+}
+a{
+  text-decoration: none;
+  color: #3f51b5;
+}
+
+.alert-warning{
+  background: transparent;
+}
+
+.reset-msg {
+  text-align: center;
+  background-color: transparent;
+  margin-top: 70px;
+  color: black;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}

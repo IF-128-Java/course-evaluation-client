@@ -1,5 +1,5 @@
 <div class="submit-form">
-  <form name="form" (ngSubmit)="f.form.valid && onSubmit()" *ngIf="!saved" #f="ngForm" novalidate>
+  <form name="form" *ngIf="!saved" #f="ngForm">
     <div class="form-group">
       <label>Description</label>
       <mat-form-field class="form-control">
@@ -60,8 +60,10 @@
     <button mat-stroked-button class="button" (click)="addQuestion()" style="margin-top: 15px">
       <mat-icon>add</mat-icon> Add question</button>
     <div class="form-group">
-      <button mat-stroked-button class="button">
+      <button mat-stroked-button class="button" (click)="f.form.valid && onSubmit(1)">
         <mat-icon>save</mat-icon> Save</button>
+      <button mat-stroked-button class="button" (click)="f.form.valid && onSubmit(0)">
+        <mat-icon>border_color</mat-icon> Draft</button>
       <a *ngIf="courseId" mat-raised-button routerLink="/admin/courses/{{courseId}}/feedback_requests" class="back-button">
         <mat-icon>arrow_back</mat-icon>
         Back</a>
@@ -71,6 +73,9 @@
   <div class="form-group mt-5" >
     <button mat-stroked-button class="button" (click)="reloadPage()">
       <mat-icon>add</mat-icon> Add new feedback request</button>
+    <a *ngIf="courseId" mat-raised-button routerLink="/admin/courses/{{courseId}}/feedback_requests" class="back-button">
+      <mat-icon>arrow_back</mat-icon>
+      Back</a>
   </div>
   </div>
 </div>

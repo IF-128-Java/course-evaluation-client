@@ -13,6 +13,7 @@ import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import {ActivatedRoute, Router} from '@angular/router';
 import {DateAdapter} from '@angular/material/core';
+import {FbrStatus} from '../../../models/fbr-status.model';
 
 
 @Component({
@@ -28,6 +29,7 @@ export class AddFeedbackrequestComponent implements OnInit {
     startDate: '',
     endDate: '',
     course: 0,
+    status: FbrStatus.DRAFT,
   }
   public allQuestions: Question[] = [];
   public patternQuestion: Question[] = [];
@@ -74,8 +76,8 @@ export class AddFeedbackrequestComponent implements OnInit {
   }
 
 
-  onSubmit() {
-    this.feedbackrequest = new FeedbackRequest(0,this.feedbackrequest.feedbackDescription, this.range.value.start, this.range.value.end, this.courseId);
+  onSubmit(status: number) {
+    this.feedbackrequest = new FeedbackRequest(0,this.feedbackrequest.feedbackDescription, this.range.value.start, this.range.value.end, this.courseId, status);
     this.feedbackrequestService.create(this.feedbackrequest).subscribe((data: any)  => {
         this.feedbackrequestService.addQuestionToFeedbackRequest(data.id, Array.from(this.selectQuestions)).subscribe()
         this.saved = true;

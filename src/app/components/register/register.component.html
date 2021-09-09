@@ -2,6 +2,10 @@
   <mat-icon aria-hidden="false" aria-label="Example email icon">email</mat-icon>
   <h1>Verify Your Email Address</h1>
   <p>We just sent a verification email to the address you entered. Please go to your inbox and verify your account to continue.</p>
+  <div *ngIf="isUsing2FA">
+    <p>Scan this QR code using Google Authenticator app on your phone to use it later to login</p>
+    <img src="{{qrCodeImage}}" class="img-fluid" />
+  </div>
 </div>
 <ng-template #signupForm>
   <div class="form-wraper">
@@ -64,6 +68,12 @@
             <mat-icon>{{hideConfirmPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
         </mat-form-field>
+        <section class="using2FA">
+          <mat-checkbox
+            name="using2FA"
+            class="example-margin"
+            [(ngModel)]="form.using2FA" #using2FA="ngModel" >Enable two-factor authentication</mat-checkbox>
+        </section>
         <div class="form-footer">
           <button mat-stroked-button class="btn custom-btn">
             <mat-icon>add</mat-icon>

@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {FeedbackrequestService} from '../../../services/feedbackrequest.service';
 import {CoursesService} from '../../../services/courses.service';
 import {PageEvent} from '@angular/material/paginator';
+import {FbrStatus} from '../../../models/fbr-status.model';
 
 @Component({
   selector: 'app-feedbackrequest-list',
@@ -45,7 +46,7 @@ export class FeedbackrequestListComponent implements OnInit {
   getFeedbackRequests(event: PageEvent) {
     this.feedbackRequestService.getFbRequests(event, this.courseId).subscribe(
       response => {
-        this.feedbackRequest = response.content;
+        this.feedbackRequest = response.content.filter((f:FeedbackRequest)=>f.status!=FbrStatus.ARCHIVE && f.status != FbrStatus.DELETED);
         this.pageIndex = response.pageIndex;
         this.pageSize = response.size;
         this.length = response.totalElements;

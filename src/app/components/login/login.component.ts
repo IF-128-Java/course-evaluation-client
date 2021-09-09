@@ -1,11 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthLoginInfo} from '../../auth/auth-login-info';
 import {AuthService} from '../../auth/auth.service';
 import {TokenStorageService} from '../../auth/token-storage.service';
-import {AppConfig} from "../../common/app-config";
-import {ActivatedRoute} from "@angular/router";
-import {Router} from "@angular/router";
-import {ConfirmComponent} from "../confirm/confirm.component";
+import {AppConfig} from '../../common/app-config';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +21,8 @@ export class LoginComponent implements OnInit {
   facebookURL = AppConfig.FACEBOOK_AUTH_URL;
   githubURL = AppConfig.GITHUB_AUTH_URL;
 
-  constructor(private authService: AuthService, private tokenStorage: TokenStorageService,private router :Router, private route: ActivatedRoute) { }
+  constructor(private authService: AuthService, private tokenStorage: TokenStorageService, private router: Router, private route: ActivatedRoute) {
+  }
 
   ngOnInit() {
     const token: string = <string>this.route.snapshot.queryParamMap.get('token');
@@ -35,12 +34,13 @@ export class LoginComponent implements OnInit {
       this.tokenStorage.saveToken(token);
 
       this.roles = this.tokenStorage.getAuthorities();
-      if(this.roles.includes('ROLE_ADMIN')){
-        this.router.navigate(['/admin/users']).then(()=>{
+      if (this.roles.includes('ROLE_ADMIN')) {
+        this.router.navigate(['/admin/users']).then(() => {
           window.location.reload()
         })
+      } else {
+        window.location.href = "/login"
       }
-      else {window.location.href="/login"}
 
     }
 
@@ -54,20 +54,26 @@ export class LoginComponent implements OnInit {
     this.authService.attemptAuth(this.loginInfo).subscribe(
       data => {
         console.log(data.token)
+
         this.tokenStorage.saveToken(data.token);
         this.tokenStorage.saveUsername(data.token);
         this.tokenStorage.saveAuthorities(data.token);
         this.tokenStorage.saveId(data.token);
         this.isLoginFailed = false;
         this.isLoggedIn = true;
+        if (!this.tokenStorage.getActive2FA()) {
+          this.router.navigate(['/totp']).then(()=>{
+            window.location.reload()
+          });
+        }
         this.roles = this.tokenStorage.getAuthorities();
-        if(this.roles.includes('ROLE_ADMIN')){
-          this.router.navigate(['/admin/users']).then(()=>{
+        if (this.roles.includes('ROLE_ADMIN')) {
+          this.router.navigate(['/admin/users']).then(() => {
             window.location.reload()
           })
         }
-        if(this.roles.includes('ROLE_STUDENT')){
-          this.router.navigate(['/my-group']).then(()=>{
+        if (this.roles.includes('ROLE_STUDENT')) {
+          this.router.navigate(['/my-group']).then(() => {
             window.location.reload()
           })
         }

@@ -11,6 +11,6 @@ export class ChatService{
   constructor(private  http: HttpClient) { }
 
   getMessagesForGroupChat(chatId: number): Observable<any> {
-    return this.http.get(`${AppConfig.API_ENDPOINT}chat/${chatId}/all`, {responseType: 'json'});
+    return this.http.get(`${AppConfig.API_ENDPOINT}chats/${chatId}`, {responseType: 'json'});
   }
 }
