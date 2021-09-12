@@ -80,6 +80,7 @@ import {AddfeedbackComponent} from './components/student/AddFeedback/addfeedback
 import { RatingModule } from 'ngx-bootstrap/rating';
 import { PieChartsComponent } from './admin_project/components/charts/pie-charts/pie-charts.component';
 import {NgApexchartsModule} from "ng-apexcharts";
+import { ColumnChartComponent } from './admin_project/components/charts/column-chart/column-chart.component';
 
 @NgModule({
   declarations: [
@@ -128,6 +129,7 @@ import {NgApexchartsModule} from "ng-apexcharts";
     NotificationMessageComponent,
     FeedbackRequestsArchiveComponent,
     PieChartsComponent,
+    ColumnChartComponent,
   ],
   imports: [
     BrowserModule,
