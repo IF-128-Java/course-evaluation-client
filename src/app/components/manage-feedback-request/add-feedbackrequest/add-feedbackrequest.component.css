@@ -16,3 +16,7 @@
   background: transparent;
   float: right;
 }
+
+.input-field {
+  width: 400px;
+}
