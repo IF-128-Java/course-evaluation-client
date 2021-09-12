@@ -118,7 +118,7 @@ const routes: Routes = [
   {path: 'feedback_request/course/:id', component: StudentFeedbackrequetComponent},
   {path: 'my-group/groupChat/:id', component: GroupChatComponent},
   {path: 'feedback/:id', component: ShowfeedbackComponent},
-  {path: 'addfeedback/feedbackrequest/:id', component: AddfeedbackComponent},
+  {path: 'addfeedback/course/:idc/feedbackrequest/:id', component: AddfeedbackComponent},
 ];
 
 @NgModule({

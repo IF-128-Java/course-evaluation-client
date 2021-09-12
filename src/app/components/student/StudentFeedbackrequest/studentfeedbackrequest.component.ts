@@ -64,8 +64,7 @@ export class StudentFeedbackrequetComponent implements OnInit{
     this.router.navigateByUrl('/feedback/'+id);
   }
   addFeedback(id: any) {
-    console.log(id);
-    this.router.navigateByUrl('/addfeedback/feedbackrequest/'+id);
+    this.router.navigateByUrl('/addfeedback/course/'+this.courseId+'/feedbackrequest/'+id);
   }
 }
 

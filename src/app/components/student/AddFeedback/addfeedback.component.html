@@ -20,7 +20,7 @@
 
     <ng-container matColumnDef="Rate">
       <th mat-header-cell *matHeaderCellDef> Rate</th>
-      <td mat-cell *matCellDef="let answers">
+      <td mat-cell *matCellDef="let answers, let row">
         <br>
         <rating style="align-content: end" [max]="10" [(ngModel)]="answers.rate"  [readonly]="false"></rating><br>
       </td>
@@ -52,4 +52,15 @@
     </mat-form-field>
 
   </form>
+
+  <div class="form-footer">
+    <button mat-stroked-button (click)="SaveFeedback()" class="btn custom-btn" name="savefeedback" >
+      <mat-icon></mat-icon>
+      Save
+    </button>
+    <button mat-stroked-button (click)="CancelFeedback()" class="btn custom-btn" name="cancelfeedback" >
+      <mat-icon></mat-icon>
+      Cancel
+    </button>
+  </div>
 </div>

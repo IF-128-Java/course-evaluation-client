@@ -55,6 +55,7 @@ export class ShowfeedbackComponent implements OnInit {
     this.feedbackService.getFeedbackById(id).subscribe(data => {
         this.curFeedback = data;
         this.answers=data.answers;
+        console.log(this.answers.length);
         this.getAllAnswerToFeedback(id);
         this.listData = new MatTableDataSource(this.answers);
         setTimeout(() => this.listData.paginator = this.paginator);
