@@ -11,6 +11,7 @@ const httpOptions = {headers: new HttpHeaders({'Content-Type': 'application/json
 export class AnalystService {
 
   private usersUrl = AppConfig.API_ANALYTICS_ENDPOINT_BASE + 'coursesatisfaction';
+  private usersUrlFeedback = AppConfig.API_ANALYTICS_ENDPOINT_BASE + 'feedbacksatisfaction';
 
   constructor(private  http: HttpClient) { }
 
@@ -18,4 +19,7 @@ export class AnalystService {
     return this.http.get(`${this.usersUrl}`, {responseType: 'json'});
   }
 
+  getFeedbackSatisfaction(): Observable<any> {
+    return this.http.get(`${this.usersUrlFeedback}`, {responseType: 'json'});
+  }
 }

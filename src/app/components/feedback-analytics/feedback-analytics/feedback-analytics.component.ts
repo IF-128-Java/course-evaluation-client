@@ -1,6 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {MatTableDataSource} from "@angular/material/table";
+import {FeedbackSatisfaction} from "../../../models/feedback-satisfaction.model";
+import {TokenStorageService} from "../../../auth/token-storage.service";
+import {AnalystService} from "../../../services/analyst.service";
+import {MatPaginator} from "@angular/material/paginator";
 
-export interface FeedbackSatisfacton {
+/*export interface FeedbackSatisfacton {
   feedbackname: string
   satisfaction: number
   }
@@ -8,7 +13,7 @@ export interface FeedbackSatisfacton {
 const ELEMENT_DATA: FeedbackSatisfacton[] = [
   {feedbackname: 'genaral', satisfaction: 1.0079},
 
-];
+]; */
 
 @Component({
   selector: 'app-feedback-analytics',
@@ -17,12 +22,29 @@ const ELEMENT_DATA: FeedbackSatisfacton[] = [
 })
 export class FeedbackAnalyticsComponent implements OnInit {
 
-  constructor() { }
+  listData: MatTableDataSource<any> = new MatTableDataSource<any>();
+  feedbackSatisfactions: FeedbackSatisfaction[];
+
+  constructor(private tokenStorage: TokenStorageService,
+              private analystService: AnalystService) { }
 
   ngOnInit(): void {
+    this.getFeedbackSatisfaction();
   }
 
   displayedColumns: string[] = ['feedbackname', 'satisfaction'];
-  dataSource = ELEMENT_DATA;
+  @ViewChild('scheduledOrdersPaginator') paginator: MatPaginator;
+    //dataSource = ELEMENT_DATA;
+
+  getFeedbackSatisfaction(): void {
+
+    this.analystService.getFeedbackSatisfaction().subscribe(data => {
+        this.feedbackSatisfactions = data;
+        this.listData = new MatTableDataSource(this.feedbackSatisfactions);
+        setTimeout(() => this.listData.paginator = this.paginator);
+      }
+    );
+  }
+
 
 }

@@ -1,16 +1,16 @@
 <div class="container"  >
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<table mat-table [dataSource]="listData" class="mat-elevation-z8">
 
 
 
 <ng-container matColumnDef="feedbackname">
   <th mat-header-cell *matHeaderCellDef> feedbackname </th>
-  <td mat-cell *matCellDef="let element"> {{element.feedbackname}} </td>
+  <td mat-cell *matCellDef="let feedbackSatisfactions"> {{feedbackSatisfactions.feedbackName}} </td>
 </ng-container>
 
 <ng-container matColumnDef="satisfaction">
   <th mat-header-cell *matHeaderCellDef> satisfaction </th>
-  <td mat-cell *matCellDef="let element"> {{element.satisfaction}} </td>
+  <td mat-cell *matCellDef="let feedbackSatisfactions"> {{feedbackSatisfactions.satisfaction}} </td>
 </ng-container>
 
 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
