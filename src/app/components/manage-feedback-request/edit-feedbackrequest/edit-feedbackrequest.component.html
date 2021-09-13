@@ -1,8 +1,10 @@
 <div class="submit-form">
-  <form name="form" *ngIf="!saved" #f="ngForm">
-    <div class="form-group">
+  <form name="form" *ngIf="!saved" #f="ngForm" >
+    <div class="form-group" >
+      <div>
       <label>Description</label>
-      <mat-form-field class="form-control">
+      </div>
+      <mat-form-field class="input-field" >
         <mat-label>Enter description</mat-label>
         <input matInput [(ngModel)]="feedbackrequest.feedbackDescription" #description="ngModel" required minlength="5" maxlength="250"/>
         <mat-error *ngIf="description.errors?.required">
@@ -17,7 +19,7 @@
       <label>Date range</label>
     </div>
     <div>
-      <mat-form-field class="form-control">
+      <mat-form-field class="input-field">
         <mat-label>Enter a date range</mat-label>
         <mat-date-range-input [min]="minDate" [formGroup]="range" [rangePicker]="picker" required>
           <input matStartDate formControlName="start" placeholder="Start date" [(ngModel)]="feedbackrequest.startDate" required>
@@ -32,7 +34,7 @@
     <div>
       <label>Questions</label>
     </div>
-    <mat-form-field class="form-control">
+    <mat-form-field class="input-field" >
       <mat-label>Choice question</mat-label>
       <mat-chip-list #chipList aria-label="Question selection">
         <mat-chip
@@ -57,8 +59,10 @@
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
+    <div>
     <button mat-stroked-button class="button" (click)="addQuestion()" style="margin-top: 15px">
       <mat-icon>add</mat-icon> Add question</button>
+    </div>
     <div class="form-group">
       <button mat-stroked-button class="button" (click)="f.form.valid && onSubmit(1)">
         <mat-icon>save</mat-icon> Save</button>

@@ -5,8 +5,8 @@
   <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
       <label>Question text</label>
   <br>
-      <mat-form-field class="form-control">
-        <textarea matInput placeholder="Your question text" required minlength="5" maxlength="250" name="questionText" [(ngModel)]="question.questionText" #questionText="ngModel" >
+      <mat-form-field class="input-field">
+        <textarea matInput placeholder="Your question text" required minlength="5" maxlength="250" name="questionText" [(ngModel)]="question.questionText" #questionText="ngModel" rows="5" >
           </textarea>
           <mat-error *ngIf="questionText.errors?.required">
             Question is required.
