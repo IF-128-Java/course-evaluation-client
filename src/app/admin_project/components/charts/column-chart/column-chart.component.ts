@@ -7,9 +7,9 @@ import {
   ApexDataLabels,
   ApexXAxis,
   ApexPlotOptions
-} from "ng-apexcharts";
-import {ChartUsersInCourseDto} from "../../../models/chart-users-in-course-dto.model";
-import {ChartsService} from "../../../services/charts.service";
+} from 'ng-apexcharts';
+import {ChartUsersInCourseDto} from '../../../models/chart-users-in-course-dto.model';
+import {ChartsService} from '../../../services/charts.service';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries | any;
