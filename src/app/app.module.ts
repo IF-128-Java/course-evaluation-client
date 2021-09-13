@@ -76,11 +76,13 @@ import { NotificationMessageComponent } from './components/manage-feedback-reque
 import { FeedbackRequestsArchiveComponent } from './components/manage-feedback-request/feedback-requests-archive/feedback-requests-archive.component';
 
 import {ShowfeedbackComponent} from './components/student/ShowFeedback/showfeedback.component';
-import { PieChartsComponent } from './admin_project/components/charts/pie-charts/pie-charts.component';
-import {NgApexchartsModule} from "ng-apexcharts";
 import {AddfeedbackComponent} from './components/student/AddFeedback/addfeedback.component';
 import { RatingModule } from 'ngx-bootstrap/rating';
+import { PieChartsComponent } from './admin_project/components/charts/pie-charts/pie-charts.component';
+import {NgApexchartsModule} from 'ng-apexcharts';
 import { ColumnChartComponent } from './admin_project/components/charts/column-chart/column-chart.component';
+import { ChartsComponent } from './admin_project/components/charts/charts.component';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -130,6 +132,7 @@ import { ColumnChartComponent } from './admin_project/components/charts/column-c
     FeedbackRequestsArchiveComponent,
     PieChartsComponent,
     ColumnChartComponent,
+    ChartsComponent,
   ],
   imports: [
     BrowserModule,
@@ -138,7 +141,7 @@ import { ColumnChartComponent } from './admin_project/components/charts/column-c
     FormsModule,
     BrowserAnimationsModule, MatDialogModule,
     MatDividerModule, MatSnackBarModule, MatProgressSpinnerModule, MatButtonModule, MatIconModule, MatInputModule, MatToolbarModule, MatMenuModule, MatTableModule, MatTooltipModule, MatCheckboxModule, ReactiveFormsModule, MatCardModule, MatListModule, MatGridListModule, ScrollingModule, MatPaginatorModule, MatSelectModule, MatAutocompleteModule, MatChipsModule, MatSidenavModule, MatDatepickerModule, MatNativeDateModule, MatRadioModule, MatBadgeModule, MatSlideToggleModule, NgApexchartsModule,
-    MatDividerModule, MatSnackBarModule, MatProgressSpinnerModule, MatButtonModule, MatIconModule, MatInputModule, MatToolbarModule, MatMenuModule, MatTableModule, MatTooltipModule, MatCheckboxModule, ReactiveFormsModule, MatCardModule, MatListModule, MatGridListModule, ScrollingModule, MatPaginatorModule, MatSelectModule, MatAutocompleteModule, MatChipsModule, MatSidenavModule, MatDatepickerModule, MatNativeDateModule, MatRadioModule, MatBadgeModule, RatingModule.forRoot(),
+    MatDividerModule, MatSnackBarModule, MatProgressSpinnerModule, MatButtonModule, MatIconModule, MatInputModule, MatToolbarModule, MatMenuModule, MatTableModule, MatTooltipModule, MatCheckboxModule, ReactiveFormsModule, MatCardModule, MatListModule, MatGridListModule, ScrollingModule, MatPaginatorModule, MatSelectModule, MatAutocompleteModule, MatChipsModule, MatSidenavModule, MatDatepickerModule, MatNativeDateModule, MatRadioModule, MatBadgeModule, RatingModule.forRoot(), MatTabsModule,
   ],
   providers: [httpInterceptorProviders, {provide: JWT_OPTIONS, useValue: JWT_OPTIONS}, JwtHelperService, {
     provide: MatDialogRef,
