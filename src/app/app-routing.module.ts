@@ -22,8 +22,8 @@ import {PassedCoursesComponent} from './components/student/Passed-courses/passed
 import {CurrentCoursesComponent} from './components/student/Current-courses/current-courses.component';
 import {AvCoursesComponent} from './components/student/Av-courses/av-courses.component';
 import {AdminCourseListComponent} from "./admin_project/components/course/admin-course-list/admin-course-list.component";
-import {ConfirmComponent} from "./components/confirm/confirm.component";
-import {AuthGuardService} from "./auth/auth-guard.service";
+import {ConfirmComponent} from './components/confirm/confirm.component';
+import {AuthGuardService} from './auth/auth-guard.service';
 
 import {AdminCreateCourseComponent} from './admin_project/components/course/admin-create-course/admin-create-course.component';
 import {FeedbacksListComponent} from './components/manage-feedback-request/feedbacks-list/feedbacks-list.component';
@@ -32,13 +32,15 @@ import {StudentFeedbackrequetComponent} from './components/student/StudentFeedba
 import {AdminEditCourseComponent} from './admin_project/components/course/admin-edit-course/admin-edit-course.component';
 import {ResetPasswordComponent} from './components/reset-password/reset-password.component';
 import {GroupChatComponent} from './components/student/Group-Chat/group-chat.component';
-import {TotpComponent} from "./components/totp/totp.component";
-import {AddfeedbackComponent} from "./components/student/AddFeedback/addfeedback.component";
+import {TotpComponent} from './components/totp/totp.component';
+import {AddfeedbackComponent} from './components/student/AddFeedback/addfeedback.component';
 import {ShowfeedbackComponent} from './components/student/ShowFeedback/showfeedback.component';
 import {EditFeedbackrequestComponent} from './components/manage-feedback-request/edit-feedbackrequest/edit-feedbackrequest.component';
 import {AvailableStudentsFeedbackrequestComponent} from './components/manage-feedback-request/available-students-feedbackrequest/available-students-feedbackrequest.component';
 import {FeedbackRequestsArchiveComponent} from './components/manage-feedback-request/feedback-requests-archive/feedback-requests-archive.component';
-import {PieChartsComponent} from "./admin_project/components/charts/pie-charts/pie-charts.component";
+import {PieChartsComponent} from './admin_project/components/charts/pie-charts/pie-charts.component';
+import {ColumnChartComponent} from './admin_project/components/charts/column-chart/column-chart.component';
+import {ChartsComponent} from './admin_project/components/charts/charts.component';
 
 ShowfeedbackComponent
 const routes: Routes = [
@@ -101,7 +103,13 @@ const routes: Routes = [
   {path: 'admin/courses/:id', component: AdminEditCourseComponent, canActivate: [RoleGuardService],data:{
       expectedRole: 'ROLE_ADMIN'
     }},
-  {path: 'admin/analytics', component: PieChartsComponent, canActivate: [RoleGuardService],data:{
+  {path: 'admin/analytics/pie', component: PieChartsComponent, canActivate: [RoleGuardService],data:{
+      expectedRole: 'ROLE_ADMIN'
+    }},
+  {path: 'admin/analytics/column', component: ColumnChartComponent, canActivate: [RoleGuardService],data:{
+      expectedRole: 'ROLE_ADMIN'
+    }},
+  {path: 'admin/analytics/charts', component: ChartsComponent, canActivate: [RoleGuardService],data:{
       expectedRole: 'ROLE_ADMIN'
     }},
   {path: 'courses', component: CoursesListComponent},

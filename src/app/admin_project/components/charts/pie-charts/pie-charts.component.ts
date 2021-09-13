@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild} from '@angular/core';
 
 import {ChartsService} from '../../../services/charts.service';
-import {Router} from '@angular/router';
 import {ChartUsersRolesDto} from '../../../models/chart-users-roles-dto.model';
 import {
   ApexNonAxisChartSeries,
@@ -9,7 +8,7 @@ import {
   ApexChart,
   ApexTheme,
   ApexTitleSubtitle, ChartComponent
-} from "ng-apexcharts";
+} from 'ng-apexcharts';
 
 export type ChartOptions = {
   series: ApexNonAxisChartSeries | any;
@@ -31,7 +30,7 @@ export class PieChartsComponent implements OnInit {
   chartData: ChartUsersRolesDto;
   public chartOptions: Partial<ChartOptions>;
 
-  constructor(private chartService: ChartsService, private router: Router) {
+  constructor(private chartService: ChartsService) {
   }
 
   ngOnInit(): void {
@@ -52,7 +51,7 @@ export class PieChartsComponent implements OnInit {
       this.chartOptions = {
         series: [adminRoles, teacherRoles, studentsRoles, noRoles],
         chart: {
-          width: "130%",
+          width: "150%",
           type: "pie"
         },
         labels: [
