@@ -41,6 +41,7 @@ import {FeedbackRequestsArchiveComponent} from './components/manage-feedback-req
 import {PieChartsComponent} from './admin_project/components/charts/pie-charts/pie-charts.component';
 import {ColumnChartComponent} from './admin_project/components/charts/column-chart/column-chart.component';
 import {ChartsComponent} from './admin_project/components/charts/charts.component';
+import {TeacherChatComponent} from './components/teacher/teacher-chat/teacher-chat.component';
 
 ShowfeedbackComponent
 const routes: Routes = [
@@ -116,6 +117,9 @@ const routes: Routes = [
   {path: 'courses/:id', component: CourseDetailsComponent, canActivate: [RoleGuardService],data:{
       expectedRole: 'ROLE_ADMIN'
     }},
+  {path: 'teacher-chat', component: TeacherChatComponent, canActivate: [RoleGuardService],data:{
+      expectedRole: 'ROLE_TEACHER'
+    }},
   {path: 'add', component: AddCourseComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'users/:id', component: UserComponent},
@@ -124,7 +128,7 @@ const routes: Routes = [
   {path: 'current-courses', component: CurrentCoursesComponent},
   {path: 'av-courses', component: AvCoursesComponent},
   {path: 'feedback_request/course/:id', component: StudentFeedbackrequetComponent},
-  {path: 'my-group/groupChat/:id', component: GroupChatComponent},
+  {path: 'my-group/group-chat/:id', component: GroupChatComponent},
   {path: 'feedback/:id', component: ShowfeedbackComponent},
   {path: 'addfeedback/feedbackrequest/:id', component: AddfeedbackComponent},
 ];

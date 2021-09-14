@@ -74,7 +74,6 @@ import {MatBadgeModule} from '@angular/material/badge';
 import { TotpComponent } from './components/totp/totp.component';
 import { NotificationMessageComponent } from './components/manage-feedback-request/notification-message/notification-message.component';
 import { FeedbackRequestsArchiveComponent } from './components/manage-feedback-request/feedback-requests-archive/feedback-requests-archive.component';
-
 import {ShowfeedbackComponent} from './components/student/ShowFeedback/showfeedback.component';
 import {AddfeedbackComponent} from './components/student/AddFeedback/addfeedback.component';
 import { RatingModule } from 'ngx-bootstrap/rating';
@@ -83,6 +82,7 @@ import {NgApexchartsModule} from 'ng-apexcharts';
 import { ColumnChartComponent } from './admin_project/components/charts/column-chart/column-chart.component';
 import { ChartsComponent } from './admin_project/components/charts/charts.component';
 import {MatTabsModule} from '@angular/material/tabs';
+import {TeacherChatComponent} from './components/teacher/teacher-chat/teacher-chat.component';
 
 @NgModule({
   declarations: [
@@ -133,6 +133,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     PieChartsComponent,
     ColumnChartComponent,
     ChartsComponent,
+    TeacherChatComponent,
   ],
   imports: [
     BrowserModule,

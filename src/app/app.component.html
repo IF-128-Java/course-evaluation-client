@@ -15,6 +15,10 @@
       <a routerLink="current-courses" mat-menu-item>Current courses</a>
       <a routerLink="av-courses" mat-menu-item>Available courses</a>
     </mat-menu>
+    <button *ngIf="roles && roles.includes('ROLE_TEACHER')" class="toolbar-content" mat-button routerLink="teacher-chat">
+      <mat-icon> chat</mat-icon>
+      Teacher Chat
+    </button>
     <span class="spacer"></span>
     <div class="toolbar-content" *ngIf="!username" id="reg-login-links">
       <a routerLink="register" mat-button>

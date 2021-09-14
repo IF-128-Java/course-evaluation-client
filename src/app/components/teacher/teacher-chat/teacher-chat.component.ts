@@ -9,12 +9,12 @@ import {ChatService} from '../../../services/chat.service';
 import {Location} from '@angular/common';
 
 @Component({
-  selector: 'app-group-chat',
-  templateUrl: './group-chat.component.html',
-  styleUrls: ['./group-chat.component.css']
+  selector: 'app-teacher-chat',
+  templateUrl: './teacher-chat.component.html',
+  styleUrls: ['./teacher-chat.component.css']
 })
-export class GroupChatComponent implements OnInit, OnDestroy{
-  private groupChatRoomId: string = '';
+export class TeacherChatComponent implements OnInit, OnDestroy{
+  private teacherChatRoomId: string = '';
   private connectUrl: string = '';
   private subscribeUrl: string = '';
   private sendMessageUrl: string = '';
@@ -31,15 +31,20 @@ export class GroupChatComponent implements OnInit, OnDestroy{
   errorMessage: string = '';
 
   ngOnInit(): void {
-    this.groupChatRoomId = this.route.snapshot.params.id;
-    this.connectUrl = AppConfig.API_ENDPOINT + 'connect-ws';
-    this.subscribeUrl = '/api/v1/event/chats/' + this.groupChatRoomId;
-    this.sendMessageUrl = '/api/v1/chats/' + this.groupChatRoomId;
-    this.currentUserId = this.tokenStorage.getId();
+    this.chatService.getTeacherChatRoomId().subscribe(data => {
+        this.teacherChatRoomId = data;
+        this.connectUrl = AppConfig.API_ENDPOINT + 'connect-ws';
+        this.subscribeUrl = '/api/v1/event/chats/' + this.teacherChatRoomId;
+        this.sendMessageUrl = '/api/v1/chats/' + this.teacherChatRoomId;
+        this.currentUserId = this.tokenStorage.getId();
 
-    this.getMessages();
+        this.getMessages();
 
-    this.initializeWebSocketConnection(this.connectUrl, this.subscribeUrl);
+        this.initializeWebSocketConnection(this.connectUrl, this.subscribeUrl);
+      }, error => {
+        console.log(error);
+      }
+    );
   }
 
   constructor(
@@ -119,7 +124,7 @@ export class GroupChatComponent implements OnInit, OnDestroy{
   }
 
   getMessages(){
-    this.chatService.getMessagesForChat(+this.groupChatRoomId).subscribe(data => {
+    this.chatService.getMessagesForChat(+this.teacherChatRoomId).subscribe(data => {
         this.messages = data;
       },
       error => {
