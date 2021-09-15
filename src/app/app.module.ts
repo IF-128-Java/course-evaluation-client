@@ -76,12 +76,15 @@ import { FeedbackAnalyticsComponent } from './components/feedback-analytics/feed
 import { TotpComponent } from './components/totp/totp.component';
 import { NotificationMessageComponent } from './components/manage-feedback-request/notification-message/notification-message.component';
 import { FeedbackRequestsArchiveComponent } from './components/manage-feedback-request/feedback-requests-archive/feedback-requests-archive.component';
-
 import {ShowfeedbackComponent} from './components/student/ShowFeedback/showfeedback.component';
 import {AddfeedbackComponent} from './components/student/AddFeedback/addfeedback.component';
 import { RatingModule } from 'ngx-bootstrap/rating';
 import { PieChartsComponent } from './admin_project/components/charts/pie-charts/pie-charts.component';
-import {NgApexchartsModule} from "ng-apexcharts";
+import {NgApexchartsModule} from 'ng-apexcharts';
+import { ColumnChartComponent } from './admin_project/components/charts/column-chart/column-chart.component';
+import { ChartsComponent } from './admin_project/components/charts/charts.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import {TeacherChatComponent} from './components/teacher/teacher-chat/teacher-chat.component';
 
 @NgModule({
   declarations: [
@@ -132,6 +135,9 @@ import {NgApexchartsModule} from "ng-apexcharts";
     NotificationMessageComponent,
     FeedbackRequestsArchiveComponent,
     PieChartsComponent,
+    ColumnChartComponent,
+    ChartsComponent,
+    TeacherChatComponent,
   ],
   imports: [
     BrowserModule,
@@ -139,8 +145,35 @@ import {NgApexchartsModule} from "ng-apexcharts";
     AppRoutingModule, HttpClientModule,
     FormsModule,
     BrowserAnimationsModule, MatDialogModule,
-    MatDividerModule, MatSnackBarModule, MatProgressSpinnerModule, MatButtonModule, MatIconModule, MatInputModule, MatToolbarModule, MatMenuModule, MatTableModule, MatTooltipModule, MatCheckboxModule, ReactiveFormsModule, MatCardModule, MatListModule, MatGridListModule, ScrollingModule, MatPaginatorModule, MatSelectModule, MatAutocompleteModule, MatChipsModule, MatSidenavModule, MatDatepickerModule, MatNativeDateModule, MatRadioModule, MatBadgeModule, MatSlideToggleModule, NgApexchartsModule,
-    MatDividerModule, MatSnackBarModule, MatProgressSpinnerModule, MatButtonModule, MatIconModule, MatInputModule, MatToolbarModule, MatMenuModule, MatTableModule, MatTooltipModule, MatCheckboxModule, ReactiveFormsModule, MatCardModule, MatListModule, MatGridListModule, ScrollingModule, MatPaginatorModule, MatSelectModule, MatAutocompleteModule, MatChipsModule, MatSidenavModule, MatDatepickerModule, MatNativeDateModule, MatRadioModule, MatBadgeModule, RatingModule.forRoot(),
+    MatDividerModule,
+    MatSnackBarModule,
+    MatProgressSpinnerModule,
+    MatButtonModule,
+    MatIconModule,
+    MatInputModule,
+    MatToolbarModule,
+    MatMenuModule,
+    MatTableModule,
+    MatTooltipModule,
+    MatCheckboxModule,
+    ReactiveFormsModule,
+    MatCardModule,
+    MatListModule,
+    MatGridListModule,
+    ScrollingModule,
+    MatPaginatorModule,
+    MatSelectModule,
+    MatAutocompleteModule,
+    MatChipsModule,
+    MatSidenavModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatRadioModule,
+    MatBadgeModule,
+    MatSlideToggleModule,
+    NgApexchartsModule,
+    RatingModule.forRoot(),
+    MatTabsModule,
   ],
   providers: [httpInterceptorProviders, {provide: JWT_OPTIONS, useValue: JWT_OPTIONS}, JwtHelperService, {
     provide: MatDialogRef,

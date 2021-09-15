@@ -6,6 +6,9 @@ import {TokenStorageService} from '../../../auth/token-storage.service';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 import {SelectionModel} from '@angular/cdk/collections';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {duration} from "@material-ui/core";
+
 
 @Component({
   selector: 'app-my-group',
@@ -46,6 +49,7 @@ export class MyGroupComponent implements OnInit{
   }
 
   constructor(
+    private snackBar: MatSnackBar,
     private tokenStorage: TokenStorageService,
     private MyGroupService: MyGroupService,
   ) { }
@@ -97,10 +101,12 @@ export class MyGroupComponent implements OnInit{
 
   sendMail(): void {
     if (this.selection.selected.length == 0 ) {
-      window.alert("No one selected !!! ")
+      this.snackBar.open("No one student selected. Make selection first. ", '',  {
+        duration:  3000 });
     }
     else if (this.mess == ""){
-      window.alert("No message entered !!! ")
+      this.snackBar.open("No message entered. Please write message. ", '',  {
+        duration:  3000});
     } else {
 
       this.mail.subject = "You have message from " + this.curStudent.firstName + " " + this.curStudent.lastName;
@@ -113,6 +119,10 @@ export class MyGroupComponent implements OnInit{
 
       this.MyGroupService.sendMail(this.mail).subscribe(data => {
         this.selection.clear();
+
+        this.snackBar.open("Mail sent successfully ", '',  {
+         duration:  3000 });
+
         },
         error => {
           console.log(error);

@@ -10,7 +10,11 @@ export class ChatService{
 
   constructor(private  http: HttpClient) { }
 
-  getMessagesForGroupChat(chatId: number): Observable<any> {
+  getMessagesForChat(chatId: number): Observable<any> {
     return this.http.get(`${AppConfig.API_ENDPOINT}chats/${chatId}`, {responseType: 'json'});
+  }
+
+  getTeacherChatRoomId(): Observable<any> {
+    return this.http.get(`${AppConfig.API_ENDPOINT}chats/teacher`, {responseType: 'json'});
   }
 }

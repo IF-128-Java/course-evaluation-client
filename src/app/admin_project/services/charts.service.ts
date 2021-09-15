@@ -10,11 +10,16 @@ const httpOptions = {headers: new HttpHeaders({'Content-Type': 'application/json
 })
 export class ChartsService {
 
-  private url = AppConfig.API_ANALYTICS_ENDPOINT + 'users-roles';
+  private urlUsersRoles = AppConfig.API_ANALYTICS_ENDPOINT + 'users-roles';
+  private urlCoursesUsers = AppConfig.API_ANALYTICS_ENDPOINT + 'users-in-course';
 
   constructor(private http: HttpClient) { }
 
   getUsersRolesChart(): Observable<any>{
-    return this.http.get(this.url, httpOptions);
+    return this.http.get(this.urlUsersRoles, httpOptions);
+  }
+
+  getUsersInCourseChart(): Observable<any>{
+    return this.http.get(this.urlCoursesUsers, httpOptions);
   }
 }

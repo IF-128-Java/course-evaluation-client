@@ -54,8 +54,6 @@ export class AddFeedbackrequestComponent implements OnInit {
     this.filteredQuestion = this.questionCtrl.valueChanges.pipe(
         startWith(null),
         map((q: string | null) => q ? this._filter(q) : this.allQuestions.map(q=>q.questionText).slice()));
-      const currentTime = new Date().getTime();
-    this.minDate = new Date(currentTime);
   }
 
   ngOnInit(): void {
@@ -63,6 +61,10 @@ export class AddFeedbackrequestComponent implements OnInit {
       this.courseService.get(parseInt(<string>this.route.snapshot.paramMap.get('id'))).subscribe(singleData=>{
         if(singleData!=null){
           this.courseId = singleData.id;
+          const currentTime = new Date().getTime();
+          let date = new Date(currentTime);
+          let startDate = new Date(singleData.startDate);
+          this.minDate = date < startDate ? startDate: date;
         }
       },
         error => {
