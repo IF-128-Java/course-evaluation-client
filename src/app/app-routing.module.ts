@@ -32,6 +32,10 @@ import {StudentFeedbackrequetComponent} from './components/student/StudentFeedba
 import {AdminEditCourseComponent} from './admin_project/components/course/admin-edit-course/admin-edit-course.component';
 import {ResetPasswordComponent} from './components/reset-password/reset-password.component';
 import {GroupChatComponent} from './components/student/Group-Chat/group-chat.component';
+import {CoursesAnalyticsComponent} from './components/courses-analytics/courses-analytics.component';
+import {FeedbackAnalyticsComponent} from "./components/feedback-analytics/feedback-analytics/feedback-analytics.component";
+import {TotpComponent} from "./components/totp/totp.component";
+import {AddfeedbackComponent} from "./components/student/AddFeedback/addfeedback.component";
 import {TotpComponent} from './components/totp/totp.component';
 import {AddfeedbackComponent} from './components/student/AddFeedback/addfeedback.component';
 import {ShowfeedbackComponent} from './components/student/ShowFeedback/showfeedback.component';
@@ -130,6 +134,11 @@ const routes: Routes = [
   {path: 'feedback_request/course/:id', component: StudentFeedbackrequetComponent},
   {path: 'my-group/group-chat/:id', component: GroupChatComponent},
   {path: 'feedback/:id', component: ShowfeedbackComponent},
+  {path: 'addfeedback/feedbackrequest/:id', component: AddfeedbackComponent},
+  {path: 'my-group/groupChat/:id', component: GroupChatComponent},
+  {path: 'satisfaction', component: CoursesAnalyticsComponent},
+  {path: 'feedback-satisfaction', component: FeedbackAnalyticsComponent},
+
   {path: 'addfeedback/course/:idc/feedbackrequest/:id', component: AddfeedbackComponent},
 ];
 

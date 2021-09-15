@@ -71,6 +71,8 @@ import {GroupChatComponent} from './components/student/Group-Chat/group-chat.com
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { EditGroupComponent } from './admin_project/components/group/edit-group/edit-group.component';
 import {MatBadgeModule} from '@angular/material/badge';
+import { CoursesAnalyticsComponent } from './components/courses-analytics/courses-analytics.component';
+import { FeedbackAnalyticsComponent } from './components/feedback-analytics/feedback-analytics/feedback-analytics.component';
 import { TotpComponent } from './components/totp/totp.component';
 import { NotificationMessageComponent } from './components/manage-feedback-request/notification-message/notification-message.component';
 import { FeedbackRequestsArchiveComponent } from './components/manage-feedback-request/feedback-requests-archive/feedback-requests-archive.component';
@@ -123,6 +125,8 @@ import {TeacherChatComponent} from './components/teacher/teacher-chat/teacher-ch
     ResetPasswordComponent,
     EditGroupComponent,
     GroupChatComponent,
+    CoursesAnalyticsComponent,
+    FeedbackAnalyticsComponent,
     TotpComponent,
     ShowfeedbackComponent,
     AddfeedbackComponent,
