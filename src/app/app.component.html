@@ -21,6 +21,10 @@
       <a routerLink="satisfaction" mat-menu-item>Satisfaction</a>
       <a routerLink="feedback-satisfaction" mat-menu-item>Feedback Satisfaction</a>
       </mat-menu>
+    <button *ngIf="roles && roles.includes('ROLE_TEACHER')" class="toolbar-content" mat-button routerLink="teacher-chat">
+      <mat-icon> chat</mat-icon>
+      Teacher Chat
+    </button>
     <span class="spacer"></span>
     <div class="toolbar-content" *ngIf="!username" id="reg-login-links">
       <a routerLink="register" mat-button>
@@ -75,7 +79,7 @@
           </button>
         </p>
         <p>
-          <button routerLinkActive="active-link" routerLink="admin/analytics" mat-button class="menu-button">
+          <button routerLinkActive="active-link" routerLink="admin/analytics/charts" mat-button class="menu-button">
             <mat-icon svgIcon="charts"></mat-icon>
             <span *ngIf="isExpanded"><span class="space-between"></span>Charts</span>
           </button>

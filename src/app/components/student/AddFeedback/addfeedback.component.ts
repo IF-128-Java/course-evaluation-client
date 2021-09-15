@@ -23,6 +23,7 @@ export class AddfeedbackComponent implements OnInit {
   listData: MatTableDataSource<any> = new MatTableDataSource<any>();
 
   feedbackRequestId: number;
+  courseId: number;
 
   answer: Answers;
   answers: Answers[] = [];
@@ -48,7 +49,10 @@ export class AddfeedbackComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.curFeedback.studentId = this.tokenStorage.getId();
     this.feedbackRequestId = parseInt(<string>this.route.snapshot.paramMap.get('id'));
+    this.curFeedback.feedbackRequestId = <string>this.route.snapshot.paramMap.get('id');
+    this.courseId = parseInt(<string>this.route.snapshot.paramMap.get('idc'));
     this.getQuestionFromFeedbackRequest(this.feedbackRequestId);
   }
 
@@ -56,16 +60,14 @@ export class AddfeedbackComponent implements OnInit {
     this.questionService.getQuestionsByFeedbackRequestId(this.feedbackRequestId).subscribe(data => {
         this.questions = data;
 
-        console.log("length of quest = " + this.questions.length);
-
         if (this.questions != undefined) {
             this.questions.forEach(question => {
               this.answers.push(new Answers(0, 0, question.id, question.questionText, 0));
           })
+          this.curFeedback.answers = this.answers;
         }
-        console.log("length of ans = " + this.answers.length);
 
-        this.listData = new MatTableDataSource(this.answers);
+        this.listData = new MatTableDataSource(this.curFeedback.answers);
         setTimeout(() => this.listData.paginator = this.paginator);
 
       },
@@ -73,6 +75,20 @@ export class AddfeedbackComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  SaveFeedback(): void {
+    this.feedbackService.create(this.curFeedback).subscribe(data => {
+        this.router.navigateByUrl('/feedback_request/course/'+this.courseId);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+  CancelFeedback(): void {
+    this.router.navigateByUrl('/feedback_request/course/'+this.courseId);
   }
 
 }

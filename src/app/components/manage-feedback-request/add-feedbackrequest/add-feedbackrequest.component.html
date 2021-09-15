@@ -1,30 +1,35 @@
 <div class="submit-form">
   <form name="form" *ngIf="!saved" #f="ngForm">
-    <div class="form-group">
       <label>Description</label>
-      <mat-form-field class="form-control">
+    <div >
+      <mat-form-field class="input-field">
         <mat-label>Enter description</mat-label>
-      <input matInput name="feedbackDescription" [(ngModel)]="feedbackrequest.feedbackDescription" #description="ngModel" required minlength="5" maxlength="250"/>
+        <div >
+      <input matInput  name="feedbackDescription" [(ngModel)]="feedbackrequest.feedbackDescription" #description="ngModel" required minlength="5" maxlength="250"/>
+        </div>
         <mat-error *ngIf="description.errors?.required">
           Description is required.
         </mat-error >
         <mat-error  *ngIf="description.errors?.minlength">
           Description must be between 5 and 250 any symbols.
         </mat-error >
+
       </mat-form-field>
-    </div>
+     </div>
     <div>
       <label>Date range</label>
     </div>
-    <div>
-    <mat-form-field class="form-control">
+    <div  >
+    <mat-form-field class="input-field" >
       <mat-label>Enter a date range</mat-label>
       <mat-date-range-input [min]="minDate" [formGroup]="range" [rangePicker]="picker" required>
         <input matStartDate formControlName="start" placeholder="Start date" required>
         <input matEndDate formControlName="end" placeholder="End date" required>
       </mat-date-range-input>
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-date-range-picker #picker></mat-date-range-picker>
+
+      <mat-date-range-picker  #picker></mat-date-range-picker>
+
       <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
       <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
     </mat-form-field>
@@ -32,7 +37,9 @@
     <div>
       <label>Questions</label>
     </div>
-    <mat-form-field class="form-control">
+    <div >
+    <mat-form-field class="input-field">
+      <div>
       <mat-label>Choice question</mat-label>
       <mat-chip-list #chipList aria-label="Question selection">
         <mat-chip
@@ -56,7 +63,10 @@
           {{question}}
         </mat-option>
       </mat-autocomplete>
+      </div>
     </mat-form-field>
+
+    </div>
     <button mat-stroked-button class="button" (click)="addQuestion()" style="margin-top: 15px">
       <mat-icon>add</mat-icon> Add question</button>
     <div class="form-group">
