@@ -36,8 +36,6 @@ import {CoursesAnalyticsComponent} from './components/courses-analytics/courses-
 import {FeedbackAnalyticsComponent} from "./components/feedback-analytics/feedback-analytics/feedback-analytics.component";
 import {TotpComponent} from "./components/totp/totp.component";
 import {AddfeedbackComponent} from "./components/student/AddFeedback/addfeedback.component";
-import {TotpComponent} from './components/totp/totp.component';
-import {AddfeedbackComponent} from './components/student/AddFeedback/addfeedback.component';
 import {ShowfeedbackComponent} from './components/student/ShowFeedback/showfeedback.component';
 import {EditFeedbackrequestComponent} from './components/manage-feedback-request/edit-feedbackrequest/edit-feedbackrequest.component';
 import {AvailableStudentsFeedbackrequestComponent} from './components/manage-feedback-request/available-students-feedbackrequest/available-students-feedbackrequest.component';
