@@ -125,7 +125,7 @@ export class MyGroupComponent implements OnInit{
 
         },
         error => {
-          console.log(error);
+          console.log(error.message);
         }
     );
 
