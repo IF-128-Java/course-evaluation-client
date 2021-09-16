@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {AppComponent} from './app.component';
 import {RouterModule} from '@angular/router';
 import {AppRoutingModule} from './app-routing.module';
@@ -85,6 +85,10 @@ import { ColumnChartComponent } from './admin_project/components/charts/column-c
 import { ChartsComponent } from './admin_project/components/charts/charts.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import {TeacherChatComponent} from './components/teacher/teacher-chat/teacher-chat.component';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { ConfirmationDialogService } from './confirmation-dialog/confirmation-dialog.service';
+import { CloseDialogComponent } from './close-dialog/close-dialog.component';
+import { CloseDialogService } from './close-dialog/close-dialog.service';
 
 @NgModule({
   declarations: [
@@ -138,6 +142,8 @@ import {TeacherChatComponent} from './components/teacher/teacher-chat/teacher-ch
     ColumnChartComponent,
     ChartsComponent,
     TeacherChatComponent,
+    ConfirmationDialogComponent,
+    CloseDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -175,11 +181,12 @@ import {TeacherChatComponent} from './components/teacher/teacher-chat/teacher-ch
     RatingModule.forRoot(),
     MatTabsModule,
   ],
-  providers: [httpInterceptorProviders, {provide: JWT_OPTIONS, useValue: JWT_OPTIONS}, JwtHelperService, {
+  providers: [ConfirmationDialogService, CloseDialogService, httpInterceptorProviders, {provide: JWT_OPTIONS, useValue: JWT_OPTIONS}, JwtHelperService, {
     provide: MatDialogRef,
     useValue: {}
   }, MatIconRegistry],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ ConfirmationDialogComponent, CloseDialogComponent ],
 })
 export class AppModule {
 }
