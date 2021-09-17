@@ -12,6 +12,7 @@ export class ChartsService {
 
   private urlUsersRoles = AppConfig.API_ANALYTICS_ENDPOINT + 'users-roles';
   private urlCoursesUsers = AppConfig.API_ANALYTICS_ENDPOINT + 'users-in-course';
+  private teacherChart = AppConfig.API_ANALYTICS_ENDPOINT + 'teacher';
 
   constructor(private http: HttpClient) { }
 
@@ -21,5 +22,9 @@ export class ChartsService {
 
   getUsersInCourseChart(): Observable<any>{
     return this.http.get(this.urlCoursesUsers, httpOptions);
+  }
+
+  getTeacherRateChart(): Observable<any>{
+    return this.http.get(this.teacherChart + "/rate", httpOptions);
   }
 }
