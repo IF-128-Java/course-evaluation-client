@@ -89,7 +89,7 @@ export class GroupChatComponent implements OnInit, OnDestroy{
       return;
     }
 
-    this.stompClient.send(this.sendMessageUrl , {}, JSON.stringify({content: this.message}));
+    this.stompClient.send(this.sendMessageUrl , {}, JSON.stringify({content: this.message.trim()}));
     this.error = false;
     this.message = '';
   }
@@ -99,7 +99,7 @@ export class GroupChatComponent implements OnInit, OnDestroy{
       return;
     }
 
-    this.stompClient.send(this.sendMessageUrl + "/messages/" + this.selectedMessageId , {}, JSON.stringify({content: this.message}));
+    this.stompClient.send(this.sendMessageUrl + "/messages/" + this.selectedMessageId , {}, JSON.stringify({content: this.message.trim()}));
     this.readyToUpdate = false;
     this.error = false;
     this.message = '';
