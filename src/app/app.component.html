@@ -42,16 +42,21 @@
         <mat-icon>notification_important</mat-icon>
       </button>
       <mat-menu class="toolbar-content" #MenuNotifications="matMenu" yPosition="below">
-        <div *ngFor="let notification of notifications">
-          <div style="padding: 10px">
-            <h6 class="text-center notification-header">{{notification.header}}</h6>
-            <p class="notification-content">{{notification.content}}</p>
-            <div *ngIf="!notification.reviewed" class="text-end" >
-              <a (click)="setReviewed(notification)" class="notifications-review-button">review</a>
+        <div *ngIf="notifications.length != 0">
+          <div *ngFor="let notification of notifications">
+            <div style="padding: 10px">
+              <h6 class="text-center notification-header">{{notification.header}}</h6>
+              <p class="notification-content">{{notification.content}}</p>
+              <div *ngIf="!notification.reviewed" class="text-end" >
+                <a (click)="setReviewed(notification)" class="notifications-review-button">review</a>
+              </div>
+              <p class="notification-date text-center fst-italic fw-bold">{{notification.createdAt | date : 'dd.MM.yyyy HH:mm' : '+0300'}}</p>
             </div>
-            <p class="notification-date text-center fst-italic fw-bold">{{notification.createdAt | date : 'dd.MM.yyyy HH:mm' : '+0300'}}</p>
+            <mat-divider></mat-divider>
           </div>
-          <mat-divider></mat-divider>
+        </div>
+        <div *ngIf="notifications.length == 0" class="no-notifications-message">
+          <h6>No notifications yet!</h6>
         </div>
       </mat-menu>
       <a *ngIf="roles" mat-button (click)="logout()">
