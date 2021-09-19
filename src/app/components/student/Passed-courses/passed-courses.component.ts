@@ -32,6 +32,7 @@ export class PassedCoursesComponent implements OnInit{
     groupName: '',
     groupChatRoomId: '',
     position: 0,
+    feedbackcouner: "-"
   };
 
   activeItem: number | undefined;

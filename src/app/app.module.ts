@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {AppComponent} from './app.component';
 import {RouterModule} from '@angular/router';
 import {AppRoutingModule} from './app-routing.module';
@@ -71,6 +71,8 @@ import {GroupChatComponent} from './components/student/Group-Chat/group-chat.com
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { EditGroupComponent } from './admin_project/components/group/edit-group/edit-group.component';
 import {MatBadgeModule} from '@angular/material/badge';
+import { CoursesAnalyticsComponent } from './components/courses-analytics/courses-analytics.component';
+import { FeedbackAnalyticsComponent } from './components/feedback-analytics/feedback-analytics/feedback-analytics.component';
 import { TotpComponent } from './components/totp/totp.component';
 import { NotificationMessageComponent } from './components/manage-feedback-request/notification-message/notification-message.component';
 import { FeedbackRequestsArchiveComponent } from './components/manage-feedback-request/feedback-requests-archive/feedback-requests-archive.component';
@@ -85,7 +87,11 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {TeacherChatComponent} from './components/teacher/teacher-chat/teacher-chat.component';
 import { TeacherChartComponent } from './admin_project/components/charts/teacher-chart/teacher-chart.component';
 import { ChartsModule } from 'ng2-charts';
-
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { ConfirmationDialogService } from './confirmation-dialog/confirmation-dialog.service';
+import { CloseDialogComponent } from './close-dialog/close-dialog.component';
+import { CloseDialogService } from './close-dialog/close-dialog.service';
+import { ComplexChartComponent } from './admin_project/components/charts/complex-chart/complex-chart.component';
 
 @NgModule({
   declarations: [
@@ -126,6 +132,8 @@ import { ChartsModule } from 'ng2-charts';
     ResetPasswordComponent,
     EditGroupComponent,
     GroupChatComponent,
+    CoursesAnalyticsComponent,
+    FeedbackAnalyticsComponent,
     TotpComponent,
     ShowfeedbackComponent,
     AddfeedbackComponent,
@@ -137,6 +145,9 @@ import { ChartsModule } from 'ng2-charts';
     ColumnChartComponent,
     ChartsComponent,
     TeacherChatComponent,
+    ConfirmationDialogComponent,
+    CloseDialogComponent,
+    ComplexChartComponent,
     TeacherChartComponent,
   ],
   imports: [
@@ -176,11 +187,12 @@ import { ChartsModule } from 'ng2-charts';
     MatTabsModule,
     ChartsModule,
   ],
-  providers: [httpInterceptorProviders, {provide: JWT_OPTIONS, useValue: JWT_OPTIONS}, JwtHelperService, {
+  providers: [ConfirmationDialogService, CloseDialogService, httpInterceptorProviders, {provide: JWT_OPTIONS, useValue: JWT_OPTIONS}, JwtHelperService, {
     provide: MatDialogRef,
     useValue: {}
   }, MatIconRegistry],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ ConfirmationDialogComponent, CloseDialogComponent ],
 })
 export class AppModule {
 }

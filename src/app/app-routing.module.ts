@@ -32,8 +32,10 @@ import {StudentFeedbackrequetComponent} from './components/student/StudentFeedba
 import {AdminEditCourseComponent} from './admin_project/components/course/admin-edit-course/admin-edit-course.component';
 import {ResetPasswordComponent} from './components/reset-password/reset-password.component';
 import {GroupChatComponent} from './components/student/Group-Chat/group-chat.component';
-import {TotpComponent} from './components/totp/totp.component';
-import {AddfeedbackComponent} from './components/student/AddFeedback/addfeedback.component';
+import {CoursesAnalyticsComponent} from './components/courses-analytics/courses-analytics.component';
+import {FeedbackAnalyticsComponent} from "./components/feedback-analytics/feedback-analytics/feedback-analytics.component";
+import {TotpComponent} from "./components/totp/totp.component";
+import {AddfeedbackComponent} from "./components/student/AddFeedback/addfeedback.component";
 import {ShowfeedbackComponent} from './components/student/ShowFeedback/showfeedback.component';
 import {EditFeedbackrequestComponent} from './components/manage-feedback-request/edit-feedbackrequest/edit-feedbackrequest.component';
 import {AvailableStudentsFeedbackrequestComponent} from './components/manage-feedback-request/available-students-feedbackrequest/available-students-feedbackrequest.component';
@@ -42,6 +44,7 @@ import {PieChartsComponent} from './admin_project/components/charts/pie-charts/p
 import {ColumnChartComponent} from './admin_project/components/charts/column-chart/column-chart.component';
 import {ChartsComponent} from './admin_project/components/charts/charts.component';
 import {TeacherChatComponent} from './components/teacher/teacher-chat/teacher-chat.component';
+import {ComplexChartComponent} from "./admin_project/components/charts/complex-chart/complex-chart.component";
 
 ShowfeedbackComponent
 const routes: Routes = [
@@ -110,6 +113,9 @@ const routes: Routes = [
   {path: 'admin/analytics/column', component: ColumnChartComponent, canActivate: [RoleGuardService],data:{
       expectedRole: 'ROLE_ADMIN'
     }},
+  {path: 'admin/analytics/complex', component: ComplexChartComponent, canActivate: [RoleGuardService],data:{
+      expectedRole: 'ROLE_ADMIN'
+    }},
   {path: 'admin/analytics/charts', component: ChartsComponent, canActivate: [RoleGuardService],data:{
       expectedRole: 'ROLE_ADMIN'
     }},
@@ -130,6 +136,11 @@ const routes: Routes = [
   {path: 'feedback_request/course/:id', component: StudentFeedbackrequetComponent},
   {path: 'my-group/group-chat/:id', component: GroupChatComponent},
   {path: 'feedback/:id', component: ShowfeedbackComponent},
+  {path: 'addfeedback/feedbackrequest/:id', component: AddfeedbackComponent},
+  {path: 'my-group/groupChat/:id', component: GroupChatComponent},
+  {path: 'satisfaction', component: CoursesAnalyticsComponent},
+  {path: 'feedback-satisfaction', component: FeedbackAnalyticsComponent},
+
   {path: 'addfeedback/course/:idc/feedbackrequest/:id', component: AddfeedbackComponent},
 ];
 

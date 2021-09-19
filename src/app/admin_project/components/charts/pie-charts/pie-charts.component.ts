@@ -52,7 +52,11 @@ export class PieChartsComponent implements OnInit {
         series: [adminRoles, teacherRoles, studentsRoles, noRoles],
         chart: {
           width: "150%",
-          type: "pie"
+          type: "pie",
+          toolbar: {
+            show: true,
+          },
+
         },
         labels: [
           "Admins",
