@@ -31,7 +31,7 @@ export class TeacherChartComponent implements OnInit {
         response => {
           this.chartDataList = response;
           for (let i = 0; this.chartDataList.length > i; i++) {
-            this.chartData[i] = this.chartDataList[i].teacherRate;
+            this.chartData[i] = this.chartDataList[i].teacherRate.toFixed(2);
             this.chartLabels[i] = this.chartDataList[i].teacher;
           }
         })
