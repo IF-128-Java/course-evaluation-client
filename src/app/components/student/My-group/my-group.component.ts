@@ -7,8 +7,8 @@ import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 import {SelectionModel} from '@angular/cdk/collections';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {duration} from "@material-ui/core";
-
+import {FeedbackCount} from '../../../models/student/feedbackcount.model';
+import {Question} from "../../../models/question.model";
 
 @Component({
   selector: 'app-my-group',
@@ -17,7 +17,7 @@ import {duration} from "@material-ui/core";
 })
 export class MyGroupComponent implements OnInit{
 
-  public displayedColumns: string[] = ['FirstName', 'LastName', "Email", "Check"];
+  public displayedColumns: string[] = ['FirstName', 'LastName', "Email", "Feedback", "Check"];
   @ViewChild('scheduledOrdersPaginator') paginator: MatPaginator;
 
   listData: MatTableDataSource<any> = new MatTableDataSource<any>();
@@ -25,6 +25,7 @@ export class MyGroupComponent implements OnInit{
   mess: string = '';
 
   allstudents: Student[] = [];
+  allFeedbackCounts: FeedbackCount[] = [];
 
   curStudent: Student = {
     id: '',
@@ -35,7 +36,8 @@ export class MyGroupComponent implements OnInit{
     groupId: '',
     groupName: '',
     groupChatRoomId: '',
-    position: 0
+    position: 0,
+    feedbackcouner: "-"
   };
 
   mail: Mail = {
@@ -79,8 +81,8 @@ export class MyGroupComponent implements OnInit{
   getAllStudentsInGroup(id: number): void {
     this.MyGroupService.getStudentsByGroupId(id).subscribe(data => {
         this.allstudents = data;
-        this.listData = new MatTableDataSource(this.allstudents);
-        setTimeout(() => this.listData.paginator = this.paginator);
+        this.getFeedbacks();
+
       },
       error => {
         console.log(error);
@@ -94,10 +96,41 @@ export class MyGroupComponent implements OnInit{
         this.getAllStudentsInGroup(+this.curStudent.groupId);
       },
       error => {
+
+        console.log("cannot read data student!!!");
         console.log(error);
       }
     );
   }
+
+    getFeedbacks(): void {
+    this.MyGroupService.getFeedback().subscribe(data => {
+        this.allFeedbackCounts = data;
+
+        if (!this.allFeedbackCounts != undefined) {
+          this.allstudents.forEach(student => {
+            let feedback = this.allFeedbackCounts.find(a => a.studentId == student.id );
+
+            if (feedback != undefined) {
+              student.feedbackcouner = feedback.total;
+            } else {
+              student.feedbackcouner = "-";
+            }
+          })
+        }
+
+        this.listData = new MatTableDataSource(this.allstudents);
+        setTimeout(() => this.listData.paginator = this.paginator);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+
+
+
 
   sendMail(): void {
     if (this.selection.selected.length == 0 ) {
