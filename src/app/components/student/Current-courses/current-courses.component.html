@@ -15,14 +15,19 @@
       <td mat-cell *matCellDef="let studentgroup"> {{studentgroup.description}} </td>
     </ng-container>
 
+    <ng-container matColumnDef="Teacher">
+      <th mat-header-cell *matHeaderCellDef> Teacher</th>
+      <td mat-cell *matCellDef="let studentgroup let i = index" (click)="onTeacherInfo(studentgroup.teacherId)"> {{studentgroup.firstName}} {{studentgroup.lastName}} </td>
+    </ng-container>
+
     <ng-container matColumnDef="StartDate">
       <th mat-header-cell *matHeaderCellDef> Start Date</th>
-      <td mat-cell *matCellDef="let studentgroup"> {{studentgroup.startDate | date : 'd MMM, y'}} </td>
+      <td mat-cell *matCellDef="let studentgroup"> {{studentgroup.startDate | date : 'd.MM.y'}} </td>
     </ng-container>
 
     <ng-container matColumnDef="EndDate">
       <th mat-header-cell *matHeaderCellDef> End Date</th>
-      <td mat-cell *matCellDef="let studentgroup"> {{studentgroup.endDate | date : 'd MMM, y'}} </td>
+      <td mat-cell *matCellDef="let studentgroup"> {{studentgroup.endDate | date : 'd.MM.y'}} </td>
     </ng-container>
 
     <ng-container matColumnDef="Requests">
