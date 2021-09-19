@@ -96,4 +96,30 @@ mat-sidenav[style] {
   width: 10px;
 }
 
+.notification-header{
+  font-size: 14px;
+}
 
+.notification-content{
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+.notification-date{
+  font-size: 11px;
+  margin: 0;
+}
+
+.notifications-review-button{
+  cursor: pointer;
+  font-size: 12px;
+  color: blueviolet;
+}
+
+.no-notifications-message{
+  padding : 10px;
+}
+
+.no-notifications-message h6{
+  margin: 5px 0 0 0;
+}
