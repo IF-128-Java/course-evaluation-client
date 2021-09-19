@@ -58,7 +58,11 @@ export class ColumnChartComponent implements OnInit {
             chart: {
               type: "bar",
               height: 500,
-              width: 800
+              width: 800,
+              toolbar: {
+                show: true,
+              },
+
             },
             plotOptions: {
               bar: {
