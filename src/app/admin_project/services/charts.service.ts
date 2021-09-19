@@ -12,6 +12,7 @@ export class ChartsService {
 
   private urlUsersRoles = AppConfig.API_ANALYTICS_ENDPOINT + 'users-roles';
   private urlCoursesUsers = AppConfig.API_ANALYTICS_ENDPOINT + 'users-in-course';
+  private urlComplexChart = AppConfig.API_ANALYTICS_ENDPOINT + 'complex-chart';
 
   constructor(private http: HttpClient) { }
 
@@ -21,5 +22,9 @@ export class ChartsService {
 
   getUsersInCourseChart(): Observable<any>{
     return this.http.get(this.urlCoursesUsers, httpOptions);
+  }
+
+  getComplexChartData(): Observable<any>{
+    return this.http.get(this.urlComplexChart, httpOptions);
   }
 }
