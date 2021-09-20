@@ -97,7 +97,6 @@ export class MyGroupComponent implements OnInit{
       },
       error => {
 
-        console.log("cannot read data student!!!");
         console.log(error);
       }
     );

@@ -14,7 +14,7 @@ import {Router} from "@angular/router";
 })
 export class CurrentCoursesComponent implements OnInit{
 
-  public displayedColumns: string[] = ['CourseName', 'Description', 'StartDate', 'EndDate', 'Requests'];
+  public displayedColumns: string[] = ['CourseName', 'Description', 'Teacher', 'StartDate', 'EndDate', 'Requests'];
   @ViewChild('scheduledOrdersPaginator') paginator: MatPaginator;
 
   listData: MatTableDataSource<any> = new MatTableDataSource<any>();
@@ -75,5 +75,9 @@ export class CurrentCoursesComponent implements OnInit{
 
   showFeedbackRequests(id: any) {
     this.router.navigateByUrl('/feedback_request/course/'+id)
+  }
+
+  onTeacherInfo(id: number): void {
+
   }
 }
