@@ -85,6 +85,9 @@ import { ColumnChartComponent } from './admin_project/components/charts/column-c
 import { ChartsComponent } from './admin_project/components/charts/charts.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import {TeacherChatComponent} from './components/teacher/teacher-chat/teacher-chat.component';
+import { CourseSatisfactionChartComponent } from './components/course-satisfaction-chart/course-satisfaction-chart.component';
+import {ChartsModule} from 'ng2-charts';
+
 
 @NgModule({
   declarations: [
@@ -138,6 +141,8 @@ import {TeacherChatComponent} from './components/teacher/teacher-chat/teacher-ch
     ColumnChartComponent,
     ChartsComponent,
     TeacherChatComponent,
+    CourseSatisfactionChartComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -174,6 +179,7 @@ import {TeacherChatComponent} from './components/teacher/teacher-chat/teacher-ch
     NgApexchartsModule,
     RatingModule.forRoot(),
     MatTabsModule,
+    ChartsModule,
   ],
   providers: [httpInterceptorProviders, {provide: JWT_OPTIONS, useValue: JWT_OPTIONS}, JwtHelperService, {
     provide: MatDialogRef,
