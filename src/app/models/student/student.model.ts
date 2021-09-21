@@ -8,8 +8,9 @@ export class Student {
   groupName: string;
   groupChatRoomId: string;
   position: number;
+  feedbackcouner: string
 
-  constructor(id: string, firstName: string, lastName: string, email: string, roles: string[], groupId: string, groupName: string, groupChatRoomId: string, position: number) {
+  constructor(id: string, firstName: string, lastName: string, email: string, roles: string[], groupId: string, groupName: string, groupChatRoomId: string, position: number, feedbackcouner: string) {
 
     this.id = id
     this.firstName = firstName;
@@ -20,5 +21,6 @@ export class Student {
     this.groupName = groupName;
     this.groupChatRoomId = groupChatRoomId;
     this.position = position;
+    this.feedbackcouner = feedbackcouner
   }
 }

@@ -48,14 +48,12 @@ export class ShowfeedbackComponent implements OnInit {
     this.feedbackId = parseInt(<string>this.route.snapshot.paramMap.get('id'));
 
     this.getFeedback(this.feedbackId);
-    console.log(this.feedbackId);
   }
 
   getFeedback(id: number): void {
     this.feedbackService.getFeedbackById(id).subscribe(data => {
         this.curFeedback = data;
         this.answers=data.answers;
-        console.log(this.answers.length);
         this.getAllAnswerToFeedback(id);
         this.listData = new MatTableDataSource(this.answers);
         setTimeout(() => this.listData.paginator = this.paginator);

@@ -1,8 +1,11 @@
 <div class="container">
 
-  <mat-tab-group [selectedIndex]="1">
+  <mat-tab-group [selectedIndex]="0">
   <mat-tab label="Users Roles" routerLink="userpref">
     <app-pie-charts></app-pie-charts>
+  </mat-tab>
+  <mat-tab label="Complex Chart" routerLink="userpref">
+    <app-complex-chart></app-complex-chart>
   </mat-tab>
   <mat-tab label="Students in course" routerLink="syspref">
   <app-column-chart></app-column-chart>
