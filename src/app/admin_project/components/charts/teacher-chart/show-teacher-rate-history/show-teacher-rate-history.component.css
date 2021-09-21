@@ -18,3 +18,9 @@ table {
 .h4{
   text-align: center;
 }
+
+.close-button{
+  float: right;
+  top:-24px;
+  right:-24px;
+}

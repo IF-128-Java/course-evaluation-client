@@ -12,6 +12,8 @@ export class ShowTeacherRateHistoryComponent implements OnInit {
 
   public displayedColumns: string[] = ['Question', 'Rate'];
   chartDataList: ChartTeacherQuestionRateDtoModel[] = [];
+  avarageRateArr : number[]=[];
+  avarageRate: string;
 
   constructor(private chartService: ChartsService, @Inject(MAT_DIALOG_DATA) public data: {teacherId: any}) {
   }
@@ -21,8 +23,14 @@ export class ShowTeacherRateHistoryComponent implements OnInit {
       .subscribe(
         response => {
           this.chartDataList = response;
-          console.log(response)
+          this.chartDataList.map((r:any)=> this.avarageRateArr.push(r.rate));
+          this.avarageRate = this.average(this.avarageRateArr, this.avarageRateArr.length).toFixed(2);
         })
   }
-
+   average(a: number[], n:number)
+  {
+    let sum = 0;
+    for (let i = 0; i < n; i++) sum += a[i];
+    return parseFloat(String(sum / n));
+  }
 }

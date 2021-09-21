@@ -1,3 +1,6 @@
+<button mat-icon-button class="close-button" [mat-dialog-close]="true">
+  <mat-icon class="close-icon" color="warn">close</mat-icon>
+</button>
 <h4>Pattern Question Rate</h4>
 <table mat-table [dataSource]="chartDataList" >
   <ng-container matColumnDef="Question" id="#question_text-column">
@@ -13,5 +16,9 @@
   </ng-container>
   <tr id="row" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"
-  ></tr>
+  >
+  </tr>
+
 </table>
+<br>
+<p style="text-align: revert;">Average rate : {{avarageRate}} </p>
