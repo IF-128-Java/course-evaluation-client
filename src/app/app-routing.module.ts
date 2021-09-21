@@ -45,6 +45,7 @@ import {ColumnChartComponent} from './admin_project/components/charts/column-cha
 import {ChartsComponent} from './admin_project/components/charts/charts.component';
 import {TeacherChatComponent} from './components/teacher/teacher-chat/teacher-chat.component';
 import {ComplexChartComponent} from "./admin_project/components/charts/complex-chart/complex-chart.component";
+import {SplineChartComponent} from "./admin_project/components/charts/spline-chart/spline-chart.component";
 
 ShowfeedbackComponent
 const routes: Routes = [
@@ -114,6 +115,9 @@ const routes: Routes = [
       expectedRole: 'ROLE_ADMIN'
     }},
   {path: 'admin/analytics/complex', component: ComplexChartComponent, canActivate: [RoleGuardService],data:{
+      expectedRole: 'ROLE_ADMIN'
+    }},
+  {path: 'admin/analytics/spline', component: SplineChartComponent, canActivate: [RoleGuardService],data:{
       expectedRole: 'ROLE_ADMIN'
     }},
   {path: 'admin/analytics/charts', component: ChartsComponent, canActivate: [RoleGuardService],data:{

@@ -93,6 +93,7 @@ import { CloseDialogComponent } from './close-dialog/close-dialog.component';
 import { CloseDialogService } from './close-dialog/close-dialog.service';
 import { ComplexChartComponent } from './admin_project/components/charts/complex-chart/complex-chart.component';
 import { ShowTeacherRateHistoryComponent } from './admin_project/components/charts/teacher-chart/show-teacher-rate-history/show-teacher-rate-history.component';
+import { SplineChartComponent } from './admin_project/components/charts/spline-chart/spline-chart.component';
 
 @NgModule({
   declarations: [
@@ -149,6 +150,7 @@ import { ShowTeacherRateHistoryComponent } from './admin_project/components/char
     ConfirmationDialogComponent,
     CloseDialogComponent,
     ComplexChartComponent,
+    SplineChartComponent,
     TeacherChartComponent,
     ShowTeacherRateHistoryComponent,
   ],
