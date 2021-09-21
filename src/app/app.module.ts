@@ -90,6 +90,7 @@ import { ConfirmationDialogService } from './confirmation-dialog/confirmation-di
 import { CloseDialogComponent } from './close-dialog/close-dialog.component';
 import { CloseDialogService } from './close-dialog/close-dialog.service';
 import { ComplexChartComponent } from './admin_project/components/charts/complex-chart/complex-chart.component';
+import {TeachersListComponent} from "./components/student/Teaches-list/teachers-list.component";
 
 @NgModule({
   declarations: [
@@ -145,7 +146,8 @@ import { ComplexChartComponent } from './admin_project/components/charts/complex
     TeacherChatComponent,
     ConfirmationDialogComponent,
     CloseDialogComponent,
-    ComplexChartComponent
+    ComplexChartComponent,
+    TeachersListComponent
   ],
   imports: [
     BrowserModule,
