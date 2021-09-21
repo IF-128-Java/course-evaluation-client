@@ -1,0 +1,32 @@
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  background-color: rgba(228, 228, 228, .6);
+}
+
+table {
+  background: transparent;
+  width: 100%;
+}
+
+th {
+  color: black;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.button {
+  margin-bottom: 16px;
+  margin-right: 16px;
+}
+
+.id-column{
+  min-width: 50px
+}
+.name-column{
+  min-width: 150px
+}
+.action-column{
+  width: 230px;
+}
+
