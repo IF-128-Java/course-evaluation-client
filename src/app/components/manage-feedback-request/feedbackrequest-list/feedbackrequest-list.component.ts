@@ -76,7 +76,6 @@ export class FeedbackrequestListComponent implements OnInit {
 
     this.courseId = parseInt(<string>this.route.snapshot.paramMap.get('id'));
 
-    const filePath = "C:/Users/*/Downloads/";
     this.feedbackRequestService.getFeedbackInfoByCourseId(this.courseId)
       .subscribe((success) => {
           const blob = new Blob([success], {type: 'application/vnd.ms-excel'});
