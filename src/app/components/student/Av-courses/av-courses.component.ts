@@ -17,7 +17,7 @@ export class AvCoursesComponent implements OnInit {
 
   courses: Course[] = [];
 
-  public displayedColumns: string[] = ['CourseName', 'Description', 'StartDate', 'EndDate'];
+  public displayedColumns: string[] = ['CourseName', 'Description', 'Teacher', 'StartDate', 'EndDate'];
   @ViewChild('scheduledOrdersPaginator') paginator: MatPaginator;
 
   curStudent: Student = {
@@ -65,4 +65,9 @@ export class AvCoursesComponent implements OnInit {
       }
     );
   }
+
+  onTeacherInfo(id: number): void {
+
+  }
+
 }

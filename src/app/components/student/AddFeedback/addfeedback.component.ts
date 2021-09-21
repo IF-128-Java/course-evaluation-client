@@ -53,6 +53,9 @@ export class AddfeedbackComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+
+
     this.curFeedback.studentId = this.tokenStorage.getId();
     this.feedbackRequestId = parseInt(<string>this.route.snapshot.paramMap.get('id'));
     this.curFeedback.feedbackRequestId = <string>this.route.snapshot.paramMap.get('id');
