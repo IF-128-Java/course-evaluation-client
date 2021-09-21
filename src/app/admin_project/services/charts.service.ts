@@ -13,6 +13,7 @@ export class ChartsService {
   private urlUsersRoles = AppConfig.API_ANALYTICS_ENDPOINT + 'users-roles';
   private urlCoursesUsers = AppConfig.API_ANALYTICS_ENDPOINT + 'users-in-course';
   private urlComplexChart = AppConfig.API_ANALYTICS_ENDPOINT + 'complex-chart';
+  private teacherChart = AppConfig.API_ANALYTICS_ENDPOINT + 'teacher';
   private urlSplineChart = AppConfig.API_ANALYTICS_ENDPOINT + 'spline-chart';
 
   constructor(private http: HttpClient) { }
@@ -31,5 +32,17 @@ export class ChartsService {
 
   getSplineChartData(): Observable<any>{
     return this.http.get(this.urlSplineChart, httpOptions);
+  }
+
+  getTeachersRateData(): Observable<any>{
+    return this.http.get(this.teacherChart + "/rate", httpOptions);
+  }
+
+  getTeacherRateData(teacherId: number): Observable<any>{
+    return this.http.get(this.teacherChart + "/rate/" + teacherId, httpOptions);
+  }
+
+  getTeacherQuestionRateData(teacherId: number): Observable<any>{
+    return this.http.get(this.teacherChart + "/rate/" + teacherId + "/questions", httpOptions);
   }
 }

@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Question} from '../../../models/question.model';
 import {QuestionService} from '../../../services/question.service';
+import {NotificationMessageComponent} from '../notification-message/notification-message.component';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-create-question',
@@ -15,20 +17,35 @@ export class CreateQuestionComponent implements OnInit {
     pattern: false,
   }
 
-  constructor(private questionService: QuestionService) {
+  constructor(private questionService: QuestionService, public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
   }
 
   onSubmit() {
-    console.log(this.question);
     this.question = new Question(0, this.question.questionText, this.question.pattern);
-    this.questionService.create(this.question).subscribe(data => data);
-    console.log(this.question)
+    this.questionService.create(this.question).subscribe(data => {
+      let question: Question = <Question>data;
+      this.alertMessage('Success add!', 'Question : ' + question.questionText + '. Pattern : ' + question.pattern)
+      this.question.id = 0;
+      this.question.questionText = '';
+    }
+    );
+
   }
 
   OnChange($event: any){
     this.question.pattern=$event.checked;
+  }
+
+  alertMessage(h1:string, text: string) {
+    const dialogRef = this.dialog.open(NotificationMessageComponent, {
+      width: '50%',
+      data: {h1: h1, text: text}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.ngOnInit();
+    });
   }
 }

@@ -85,11 +85,14 @@ import { ColumnChartComponent } from './admin_project/components/charts/column-c
 import { ChartsComponent } from './admin_project/components/charts/charts.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import {TeacherChatComponent} from './components/teacher/teacher-chat/teacher-chat.component';
+import { TeacherChartComponent } from './admin_project/components/charts/teacher-chart/teacher-chart.component';
+import { ChartsModule } from 'ng2-charts';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { ConfirmationDialogService } from './confirmation-dialog/confirmation-dialog.service';
 import { CloseDialogComponent } from './close-dialog/close-dialog.component';
 import { CloseDialogService } from './close-dialog/close-dialog.service';
 import { ComplexChartComponent } from './admin_project/components/charts/complex-chart/complex-chart.component';
+import { ShowTeacherRateHistoryComponent } from './admin_project/components/charts/teacher-chart/show-teacher-rate-history/show-teacher-rate-history.component';
 import { SplineChartComponent } from './admin_project/components/charts/spline-chart/spline-chart.component';
 
 @NgModule({
@@ -147,7 +150,9 @@ import { SplineChartComponent } from './admin_project/components/charts/spline-c
     ConfirmationDialogComponent,
     CloseDialogComponent,
     ComplexChartComponent,
-    SplineChartComponent
+    SplineChartComponent,
+    TeacherChartComponent,
+    ShowTeacherRateHistoryComponent,
   ],
   imports: [
     BrowserModule,
@@ -184,6 +189,7 @@ import { SplineChartComponent } from './admin_project/components/charts/spline-c
     NgApexchartsModule,
     RatingModule.forRoot(),
     MatTabsModule,
+    ChartsModule,
   ],
   providers: [ConfirmationDialogService, CloseDialogService, httpInterceptorProviders, {provide: JWT_OPTIONS, useValue: JWT_OPTIONS}, JwtHelperService, {
     provide: MatDialogRef,
