@@ -49,8 +49,8 @@ export class CourseSatisfactionChartComponent implements OnInit{
           this.monthlycoursesatisfaction = data;
           console.log(this.monthlycoursesatisfaction);
           for (let i = 0; this.monthlycoursesatisfaction.length > i; i++) {
-            this.chartData[i] = this.monthlycoursesatisfaction[i].monthName;
-            this.chartLabels[i] = this.monthlycoursesatisfaction[i].rate;
+            this.chartData[i] = this.monthlycoursesatisfaction[i].rate;
+            this.chartLabels[i] = this.monthlycoursesatisfaction[i].monthName;
           }
           console.log(this.chartData);
           console.log(this.chartLabels);
@@ -58,7 +58,7 @@ export class CourseSatisfactionChartComponent implements OnInit{
           this.chartOptions = {
             series: [
               {
-                name: "users-in-course",
+                name: "monthly-satisfaction",
                 data: this.chartData
               }
             ],
