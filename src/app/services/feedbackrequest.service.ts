@@ -52,7 +52,11 @@ export class FeedbackrequestService {
     return this.http.delete(this.feedbackRequestUrl + id);
   }
 
-  getFeedbackInfoByCourseId(id: number, filePath: string): Observable<any> {
-    return this.http.get(this.feedbackInfoUrl + id + '/export/excel?filePath='+filePath,{responseType: 'blob'})
+  getFeedbackInfoByCourseId(id: number): Observable<any> {
+    return this.http.get(this.feedbackInfoUrl + id + '/export/excel',{responseType: 'blob'})
+  }
+
+  getFeedbackInfoByCourseId2(id: number, filePath: string): Observable<any> {
+    return this.http.get(this.feedbackInfoUrl + id + '/export/excel2?courseName='+filePath,{responseType: 'blob'})
   }
 }

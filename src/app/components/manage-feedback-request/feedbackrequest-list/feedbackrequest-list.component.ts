@@ -20,8 +20,7 @@ export class FeedbackrequestListComponent implements OnInit {
   pageSize?: number;
   length?: number;
   courseId?: number;
-  private blockedDocument: boolean;
-  private d: Date;
+  private date: Date;
   private year: number;
   private month: number;
   private day: number;
@@ -68,37 +67,33 @@ export class FeedbackrequestListComponent implements OnInit {
     console.log($event)
     $event.stopPropagation();
     $event.preventDefault();
-    this.blockedDocument = true;
-    this.d = new Date();
-    this.year = this.d.getFullYear();
-    this.month = this.d.getMonth() + 1;
-    this.day = this.d.getDate();
-    this.d.getUTCFullYear();
-    let fileName="Feedback-info_"+this.day + "_" + this.month + "_" + this.year +".xlsx";
+    this.date = new Date();
+    this.year = this.date.getFullYear();
+    this.month = this.date.getMonth() + 1;
+    this.day = this.date.getDate();
+    this.date.getUTCFullYear();
+    let fileName="Feedback-info("+ this.courseName + ")_"+this.day + "_" + this.month + "_" + this.year +".xlsx";
 
     this.courseId = parseInt(<string>this.route.snapshot.paramMap.get('id'));
-    this.feedbackRequestService.getFeedbackInfoByCourseId(this.courseId, "C:\\Users\\Feden\\Downloads")
-      .subscribe((success) => {
-          console.log(success)
-          const blob = new Blob([success.body], {type: 'application/vnd.ms-excel'});
 
+    const filePath = "C:/Users/*/Downloads/";
+    this.feedbackRequestService.getFeedbackInfoByCourseId(this.courseId)
+      .subscribe((success) => {
+          const blob = new Blob([success], {type: 'application/vnd.ms-excel'});
           if (window.navigator && window.navigator.msSaveOrOpenBlob) {
-            window.navigator.msSaveOrOpenBlob(blob, fileName);
-            this.blockedDocument = false;
+            window.navigator.msSaveOrOpenBlob(blob,fileName);
           } else {
-            var a = document.createElement('a');
+            const a = document.createElement('a');
             a.href = URL.createObjectURL(blob);
             a.download = fileName;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
-            this.blockedDocument = false;
           }
         }
         ,
         err => {
           alert("Error while downloading. File Not Found on the Server");
-          this.blockedDocument = false;
         }
         );
   }
