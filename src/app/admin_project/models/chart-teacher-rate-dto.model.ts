@@ -1,4 +1,6 @@
 export class ChartTeacherRateDtoModel {
-  teacher: string;
+  teacherId: number;
+  teacherName: string;
   teacherRate: number;
+  coursesRate:any;
 }

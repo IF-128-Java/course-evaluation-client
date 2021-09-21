@@ -29,7 +29,11 @@ export class ChartsService {
     return this.http.get(this.urlComplexChart, httpOptions);
   }
 
-  getTeacherRateChart(): Observable<any>{
+  getTeachersRateData(): Observable<any>{
     return this.http.get(this.teacherChart + "/rate", httpOptions);
+  }
+
+  getTeacherRateData(teacherId: number): Observable<any>{
+    return this.http.get(this.teacherChart + "/rate/" + teacherId, httpOptions);
   }
 }
