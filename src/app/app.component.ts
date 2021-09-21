@@ -98,4 +98,15 @@ export class AppComponent implements OnInit {
       }
     );
   }
+
+  delete(notification: SiteNotification) {
+    this.siteNotificationService.delete(notification.id!).subscribe(() => {
+        this.notifications = this.notifications.filter(el => el.id != notification.id);
+        this.countUnreviewedNotifications = this.notifications.filter((el) => !el.reviewed).length;
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
 }
