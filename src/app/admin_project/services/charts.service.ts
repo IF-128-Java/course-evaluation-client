@@ -36,4 +36,8 @@ export class ChartsService {
   getTeacherRateData(teacherId: number): Observable<any>{
     return this.http.get(this.teacherChart + "/rate/" + teacherId, httpOptions);
   }
+
+  getTeacherQuestionRateData(teacherId: number): Observable<any>{
+    return this.http.get(this.teacherChart + "/rate/" + teacherId + "/questions", httpOptions);
+  }
 }

@@ -24,8 +24,7 @@ export class TeacherChartComponent implements OnInit {
   chartData: any = [];
   chartLabels: any = [];
 
-  activeItem: number | undefined;
-  public displayedColumns: string[] = ['Teacher', 'Rate', 'Actions'];
+   public displayedColumns: string[] = ['Teacher', 'Rate', 'Actions'];
 
   constructor(private chartService: ChartsService, public dialog: MatDialog) {
   }
@@ -43,14 +42,10 @@ export class TeacherChartComponent implements OnInit {
         })
   }
 
-  onSelect(item: number): void {
-    this.activeItem = item;
-  }
-
-  showHistory(teacher: any) {
+  showHistory(teacherId: any) {
     this.dialog.open(ShowTeacherRateHistoryComponent, {
       width: '800px',
-      data: {teacher: teacher}
+      data: {teacherId: teacherId}
     });
   }
 }

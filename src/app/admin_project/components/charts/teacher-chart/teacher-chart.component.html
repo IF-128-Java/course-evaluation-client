@@ -16,24 +16,20 @@
 
     <ng-container matColumnDef="Teacher">
       <th mat-header-cell *matHeaderCellDef>Teacher</th>
-      <td class="pointer name-column" mat-cell *matCellDef="let chartDataList, let i = index" (click)="onSelect(i)"> {{ chartDataList.teacherName }}<br>
+      <td class="pointer name-column" mat-cell *matCellDef="let chartDataList" > {{ chartDataList.teacherName }}<br>
       </td>
     </ng-container>
 
     <ng-container matColumnDef="Rate">
       <th mat-header-cell *matHeaderCellDef>Rate</th>
-      <td class="pointer" mat-cell *matCellDef="let chartDataList, let i = index" (click)="onSelect(i)"> {{ chartDataList.teacherRate.toFixed(2)}}
-        <div *ngIf="activeItem == i">
-          <hr>
-          <span>{{chartDataList.teacherId}}</span>
-        </div>
+      <td class="pointer" mat-cell *matCellDef="let chartDataList" > {{ chartDataList.teacherRate.toFixed(2)}}
       </td>
     </ng-container>
 
     <ng-container matColumnDef="Actions">
       <th mat-header-cell *matHeaderCellDef> Actions</th>
-      <td class="pointer action-column" mat-cell *matCellDef="let chartDataList, let i = index">
-        <button mat-stroked-button (click)="showHistory(chartDataList.teacher)" class="button">
+      <td class="pointer action-column" mat-cell *matCellDef="let chartDataList">
+        <button mat-stroked-button (click)="showHistory(chartDataList.teacherId)" class="button">
           <mat-icon>remove_red_eye</mat-icon>
         </button>
       </td>

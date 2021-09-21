@@ -1,1 +1,17 @@
-<p>show-teacher-rate-history works!</p>
+<h4>Pattern Question Rate</h4>
+<table mat-table [dataSource]="chartDataList" >
+  <ng-container matColumnDef="Question" id="#question_text-column">
+    <th mat-header-cell *matHeaderCellDef>Question</th>
+    <td class="pointer name-column" mat-cell *matCellDef="let chartDataList " > {{ chartDataList.questionText }}<br>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Rate" id="#rate">
+    <th mat-header-cell *matHeaderCellDef>Rate</th>
+    <td class="pointer" mat-cell *matCellDef="let chartDataList" > {{ chartDataList.rate.toFixed(2)}}
+    </td>
+  </ng-container>
+  <tr id="row" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+  ></tr>
+</table>

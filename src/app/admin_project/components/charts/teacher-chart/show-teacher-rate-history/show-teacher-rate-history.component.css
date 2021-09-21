@@ -1,0 +1,20 @@
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  background-color: rgba(228, 228, 228, .6);
+}
+
+table {
+  background: transparent;
+  width: 100%;
+}
+.rate{
+  min-width: 15%
+}
+.question_text-column{
+  min-width: 85%;
+}
+
+.h4{
+  text-align: center;
+}
