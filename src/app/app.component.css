@@ -110,7 +110,7 @@ mat-sidenav[style] {
   margin: 0;
 }
 
-.notifications-review-button{
+.notifications-button{
   cursor: pointer;
   font-size: 12px;
   color: blueviolet;

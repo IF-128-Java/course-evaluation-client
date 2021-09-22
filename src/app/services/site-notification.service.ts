@@ -8,13 +8,19 @@ import {AppConfig} from '../common/app-config';
 })
 export class SiteNotificationService{
 
+  private site_notifications_url = AppConfig.API_ENDPOINT + 'site_notifications';
+
   constructor(private  http: HttpClient) { }
 
   setReviewedSiteNotification(id: number){
-    return this.http.patch(`${AppConfig.API_ENDPOINT}site_notifications/${id}`, {});
+    return this.http.patch(`${this.site_notifications_url}/${id}`, {});
+  }
+
+  delete(id: number){
+    return this.http.delete(`${this.site_notifications_url}/${id}`);
   }
 
   getSiteNotifications(): Observable<any> {
-    return this.http.get(`${AppConfig.API_ENDPOINT}site_notifications`, {responseType: 'json'});
+    return this.http.get(this.site_notifications_url, {responseType: 'json'});
   }
 }
