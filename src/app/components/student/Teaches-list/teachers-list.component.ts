@@ -17,7 +17,7 @@ import {Mail} from "../../../models/student/mail.model";
 })
 export class TeachersListComponent implements OnInit{
 
-  public displayedColumns: string[] = ['FirstName', 'LastName', 'Courses', 'Email', "Check"];
+  public displayedColumns: string[] = ['FirstName', 'LastName', 'Courses', 'Groups', 'Email', "Check"];
   @ViewChild('scheduledOrdersPaginator') paginator: MatPaginator;
 
   listData: MatTableDataSource<any> = new MatTableDataSource<any>();
@@ -87,6 +87,7 @@ export class TeachersListComponent implements OnInit{
 
             if (stat != undefined) {
               teacher.totalCourses = stat.totalCourses;
+              teacher.totalGroups = stat.totalGroups;
               teacher.email = stat.email;
             } else {
               teacher.totalCourses = "-";
