@@ -14,6 +14,7 @@
       <a routerLink="passed-courses" mat-menu-item>Passed courses</a>
       <a routerLink="current-courses" mat-menu-item>Current courses</a>
       <a routerLink="av-courses" mat-menu-item>Available courses</a>
+      <a routerLink="teachers-list" mat-menu-item>Teachers list</a>
     </mat-menu>
     <button class="toolbar-content" mat-button [matMenuTriggerFor]="MenuAnalystics">Analytics
     </button>
@@ -47,8 +48,13 @@
             <div style="padding: 10px">
               <h6 class="text-center notification-header">{{notification.header}}</h6>
               <p class="notification-content">{{notification.content}}</p>
-              <div *ngIf="!notification.reviewed" class="text-end" >
-                <a (click)="setReviewed(notification)" class="notifications-review-button">review</a>
+              <div class="d-flex">
+                <div class="text-start w-50">
+                  <a (click)="delete(notification)" class="notifications-button">delete</a>
+                </div>
+                <div *ngIf="!notification.reviewed" class="text-end w-50">
+                  <a (click)="setReviewed(notification)" class="notifications-button">review</a>
+                </div>
               </div>
               <p class="notification-date text-center fst-italic fw-bold">{{notification.createdAt | date : 'dd.MM.yyyy HH:mm' : '+0300'}}</p>
             </div>
