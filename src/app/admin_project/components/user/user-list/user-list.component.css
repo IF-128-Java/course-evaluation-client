@@ -54,3 +54,7 @@ mat-paginator {
 .sorting-label, .filtering-label {
   margin-right: 10px;
 }
+
+.icon-download {
+  margin-bottom: 10px;
+}

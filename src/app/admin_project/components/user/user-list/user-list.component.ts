@@ -28,6 +28,10 @@ export class UserListComponent implements AfterViewInit {
     filter: number[] = [0, 1, 2];
 
     filtering: FormGroup;
+    private date: Date;
+    private year: number;
+    private month: number;
+    private day: number;
 
     constructor(private userService: UserService, public dialog: MatDialog, public dialModRef: MatDialogRef<any>, private fb: FormBuilder) {
         this.filtering = fb.group({
@@ -128,4 +132,36 @@ export class UserListComponent implements AfterViewInit {
         this.setFilter(roleId, event.checked)
         this.ngAfterViewInit()
     }
+
+  exportUserInfo($event: MouseEvent) {
+    console.log($event)
+    $event.stopPropagation();
+    $event.preventDefault();
+    this.date = new Date();
+    this.year = this.date.getFullYear();
+    this.month = this.date.getMonth() + 1;
+    this.day = this.date.getDate();
+    this.date.getUTCFullYear();
+    let fileName="User-info_"+this.day + "_" + this.month + "_" + this.year +".xlsx";
+
+    this.userService.getUserInfoByRoleId()
+      .subscribe(data => {
+          const blob = new Blob([data], {type: 'application/vnd.ms-excel'});
+          if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+            window.navigator.msSaveOrOpenBlob(blob,fileName);
+          } else {
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = fileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+          }
+        }
+        ,
+        err => {
+          alert("Error while downloading. File Not Found on the Server");
+        }
+      );
+  }
 }

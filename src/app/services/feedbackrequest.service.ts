@@ -56,7 +56,4 @@ export class FeedbackrequestService {
     return this.http.get(this.feedbackInfoUrl + id + '/export/excel',{responseType: 'blob'})
   }
 
-  getFeedbackInfoByCourseId2(id: number, filePath: string): Observable<any> {
-    return this.http.get(this.feedbackInfoUrl + id + '/export/excel2?courseName='+filePath,{responseType: 'blob'})
-  }
 }
