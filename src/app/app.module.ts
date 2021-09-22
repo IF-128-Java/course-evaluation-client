@@ -92,6 +92,7 @@ import { ConfirmationDialogService } from './confirmation-dialog/confirmation-di
 import { CloseDialogComponent } from './close-dialog/close-dialog.component';
 import { CloseDialogService } from './close-dialog/close-dialog.service';
 import { ComplexChartComponent } from './admin_project/components/charts/complex-chart/complex-chart.component';
+import {TeachersListComponent} from "./components/student/Teaches-list/teachers-list.component";
 import { ShowTeacherRateHistoryComponent } from './admin_project/components/charts/teacher-chart/show-teacher-rate-history/show-teacher-rate-history.component';
 import { SplineChartComponent } from './admin_project/components/charts/spline-chart/spline-chart.component';
 
@@ -150,6 +151,7 @@ import { SplineChartComponent } from './admin_project/components/charts/spline-c
     ConfirmationDialogComponent,
     CloseDialogComponent,
     ComplexChartComponent,
+    TeachersListComponent,
     SplineChartComponent,
     TeacherChartComponent,
     ShowTeacherRateHistoryComponent,
