@@ -50,7 +50,7 @@ import {CourseSatisfactionChartComponent} from './components/course-satisfaction
 import {ComplexChartComponent} from "./admin_project/components/charts/complex-chart/complex-chart.component";
 import {TeachersListComponent} from './components/student/Teaches-list/teachers-list.component';
 import {SplineChartComponent} from "./admin_project/components/charts/spline-chart/spline-chart.component";
-
+import {CoursesTeacherComponent,} from "./components/student/Courses-teacher/courses-teacher.component";
 
 ShowfeedbackComponent
 const routes: Routes = [
@@ -152,6 +152,7 @@ const routes: Routes = [
   {path: 'coursesatisfactionchart/:id', component: CourseSatisfactionChartComponent},
   {path: 'addfeedback/course/:idc/feedbackrequest/:id', component: AddfeedbackComponent},
   {path: 'teachers-list', component: TeachersListComponent},
+  {path: 'teacher-courses/:id', component: CoursesTeacherComponent},
 ];
 
 @NgModule({

@@ -96,7 +96,7 @@ import { ComplexChartComponent } from './admin_project/components/charts/complex
 import {TeachersListComponent} from "./components/student/Teaches-list/teachers-list.component";
 import { ShowTeacherRateHistoryComponent } from './admin_project/components/charts/teacher-chart/show-teacher-rate-history/show-teacher-rate-history.component';
 import { SplineChartComponent } from './admin_project/components/charts/spline-chart/spline-chart.component';
-
+import {CoursesTeacherComponent} from "./components/student/Courses-teacher/courses-teacher.component";
 
 @NgModule({
   declarations: [
@@ -158,6 +158,7 @@ import { SplineChartComponent } from './admin_project/components/charts/spline-c
     SplineChartComponent,
     TeacherChartComponent,
     ShowTeacherRateHistoryComponent,
+    CoursesTeacherComponent,
 
   ],
   imports: [

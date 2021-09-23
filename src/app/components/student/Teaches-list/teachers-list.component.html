@@ -17,7 +17,13 @@
 
     <ng-container matColumnDef="Courses">
       <th mat-header-cell *matHeaderCellDef> Courses</th>
-      <td mat-cell *matCellDef="let teachers"> {{teachers.totalCourses}} </td>
+      <td mat-cell *matCellDef="let teachers" (click)=onCourseInfo(teachers.id)> {{teachers.totalCourses}} </td>
+
+    </ng-container>
+
+    <ng-container matColumnDef="Groups">
+      <th mat-header-cell *matHeaderCellDef> Groups</th>
+      <td mat-cell *matCellDef="let teachers"> {{teachers.totalGroups}} </td>
     </ng-container>
 
     <ng-container matColumnDef="Email">

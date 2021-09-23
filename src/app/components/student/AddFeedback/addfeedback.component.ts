@@ -105,6 +105,10 @@ export class AddfeedbackComponent implements OnInit {
             },
             error => {
               console.log(error);
+              this.closeDialogService.confirm('Wrong action !!! ', 'Feedback saved before. You cannot change it !!!')
+                .then((confirmed) => {} )
+                .catch(() => {});
+
             })
         }
       })

@@ -5,4 +5,5 @@ export class TeacherStat {
   email?: string;
   roles?: string[];
   totalCourses?: string;
+  totalGroups?: string;
 }

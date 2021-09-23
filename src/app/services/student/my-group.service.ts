@@ -21,6 +21,7 @@ export class MyGroupService{
   private usersUrl7 = AppConfig.API_ENDPOINT + 'students/mail';
   private usersUrl8 = AppConfig.API_ENDPOINT + 'feedback/count';
   private usersUrlTeachers = AppConfig.API_ENDPOINT + 'teachers';
+  private usersUrCoursesTeacher = AppConfig.API_ENDPOINT + 'courses/teacher/';
 
   constructor(private  http: HttpClient) { }
 
@@ -66,6 +67,10 @@ export class MyGroupService{
 
   getTeacherStat(): Observable<any> {
     return this.http.get(`${this.usersUrlTeachers + '/count'}`, {responseType: 'json'});
+  }
+
+  getCoursesByTeacherId(id: number): Observable<any> {
+    return this.http.get(`${this.usersUrCoursesTeacher}${id}`, {responseType: 'json'});
   }
 
 }

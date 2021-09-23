@@ -80,7 +80,7 @@ export class PassedCoursesComponent implements OnInit{
   }
 
   onTeacherInfo(id: number): void {
-
+    this.router.navigateByUrl('/teacher-courses/'+id)
   }
 
 

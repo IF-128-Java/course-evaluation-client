@@ -9,6 +9,7 @@ import {coursescountModel} from "../../../models/student/coursescount.model.";
 import {SelectionModel} from "@angular/cdk/collections";
 import {Student} from "../../../models/student/student.model";
 import {Mail} from "../../../models/student/mail.model";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-teachers-list',
@@ -17,7 +18,7 @@ import {Mail} from "../../../models/student/mail.model";
 })
 export class TeachersListComponent implements OnInit{
 
-  public displayedColumns: string[] = ['FirstName', 'LastName', 'Courses', 'Email', "Check"];
+  public displayedColumns: string[] = ['FirstName', 'LastName', 'Courses', 'Groups', 'Email', "Check"];
   @ViewChild('scheduledOrdersPaginator') paginator: MatPaginator;
 
   listData: MatTableDataSource<any> = new MatTableDataSource<any>();
@@ -38,6 +39,7 @@ export class TeachersListComponent implements OnInit{
   }
 
   constructor(
+    private router: Router,
     private snackBar: MatSnackBar,
     private tokenStorage: TokenStorageService,
     private MyGroupService: MyGroupService,
@@ -87,6 +89,7 @@ export class TeachersListComponent implements OnInit{
 
             if (stat != undefined) {
               teacher.totalCourses = stat.totalCourses;
+              teacher.totalGroups = stat.totalGroups;
               teacher.email = stat.email;
             } else {
               teacher.totalCourses = "-";
@@ -137,5 +140,10 @@ export class TeachersListComponent implements OnInit{
     }
     return;
   }
+
+  onCourseInfo(id: number): void {
+    this.router.navigateByUrl('/teacher-courses/'+id)
+  }
+
 
 }

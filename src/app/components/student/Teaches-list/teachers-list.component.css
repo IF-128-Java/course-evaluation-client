@@ -47,3 +47,33 @@ mat-form-field.mat-form-field {
   width: 55%;
   background-color: #FFFFFF!important;
 }
+
+.mat-column-FirstName {
+  color: black;
+  width:20% ;
+}
+
+.mat-column-LastName {
+  color: black;
+  width:20% ;
+}
+
+.mat-column-Courses {
+  color: black;
+  width:15% ;
+}
+
+.mat-column-Courses {
+  color: black;
+  width:15% ;
+}
+
+.mat-column-Email {
+  color: black;
+  width:25% ;
+}
+
+.mat-column-Check {
+  color: black;
+  width:5% ;
+}
