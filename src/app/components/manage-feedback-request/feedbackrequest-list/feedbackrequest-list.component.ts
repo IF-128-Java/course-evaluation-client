@@ -20,6 +20,10 @@ export class FeedbackrequestListComponent implements OnInit {
   pageSize?: number;
   length?: number;
   courseId?: number;
+  private date: Date;
+  private year: number;
+  private month: number;
+  private day: number;
 
   constructor(private feedbackRequestService: FeedbackrequestService, private route: ActivatedRoute, private courseService: CoursesService, private router: Router) {
   }
@@ -57,5 +61,39 @@ export class FeedbackrequestListComponent implements OnInit {
 
   showFeedbacks(feedbackRequestId: any) {
     this.router.navigateByUrl('/admin/courses/'+this.courseId+'/feedback_requests/' + feedbackRequestId)
+  }
+
+  exportFeedbackInfo($event: MouseEvent) {
+    console.log($event)
+    $event.stopPropagation();
+    $event.preventDefault();
+    this.date = new Date();
+    this.year = this.date.getFullYear();
+    this.month = this.date.getMonth() + 1;
+    this.day = this.date.getDate();
+    this.date.getUTCFullYear();
+    let fileName="Feedback-info("+ this.courseName + ")_"+this.day + "_" + this.month + "_" + this.year +".xlsx";
+
+    this.courseId = parseInt(<string>this.route.snapshot.paramMap.get('id'));
+
+    this.feedbackRequestService.getFeedbackInfoByCourseId(this.courseId)
+      .subscribe((success) => {
+          const blob = new Blob([success], {type: 'application/vnd.ms-excel'});
+          if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+            window.navigator.msSaveOrOpenBlob(blob,fileName);
+          } else {
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = fileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+          }
+        }
+        ,
+        err => {
+          alert("Error while downloading. File Not Found on the Server");
+        }
+        );
   }
 }

@@ -16,6 +16,8 @@ export class UserService {
 
   private url = AppConfig.API_ADMIN_ENDPOINT + 'users';
   private teachersUrl = AppConfig.API_ENDPOINT + 'teachers';
+  private userInfoUrl = AppConfig.API_ANALYTICS_ENDPOINT + 'user-info/export/excel';
+
 
 
   constructor(private http: HttpClient) {
@@ -41,5 +43,9 @@ export class UserService {
   }
   getTeachers(): Observable<any> {
     return this.http.get(this.teachersUrl)
+  }
+
+  getUserInfoByRoleId() {
+    return this.http.get(this.userInfoUrl, {responseType: 'blob'})
   }
 }

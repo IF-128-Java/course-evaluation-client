@@ -36,6 +36,11 @@
       <mat-checkbox class="example-margin" (change)="filterChange($event,0)" formControlName="studentRole">Student</mat-checkbox>
     </div>
 
+    <button mat-stroked-button (click)="exportUserInfo($event)" class="btn custom-btn icon-download">
+      <mat-icon>download</mat-icon>
+      Download Users Info
+    </button>
+
   </div>
   <table mat-table [dataSource]="users" class="mat-elevation-z8">
 
