@@ -15,7 +15,7 @@ import {Router} from "@angular/router";
 })
 export class PassedCoursesComponent implements OnInit{
 
-  public displayedColumns: string[] = ['CourseName', 'Description', 'StartDate', 'EndDate', 'Requests'];
+  public displayedColumns: string[] = ['CourseName', 'Description', 'Teacher', 'StartDate', 'EndDate', 'Requests'];
   @ViewChild('scheduledOrdersPaginator') paginator: MatPaginator;
 
   listData: MatTableDataSource<any> = new MatTableDataSource<any>();
@@ -32,6 +32,7 @@ export class PassedCoursesComponent implements OnInit{
     groupName: '',
     groupChatRoomId: '',
     position: 0,
+    feedbackcouner: "-"
   };
 
   activeItem: number | undefined;
@@ -77,4 +78,10 @@ export class PassedCoursesComponent implements OnInit{
   showFeedbackRequests(id: any) {
     this.router.navigateByUrl('/feedback_request/course/'+id)
   }
+
+  onTeacherInfo(id: number): void {
+
+  }
+
+
 }

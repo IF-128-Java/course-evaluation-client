@@ -44,7 +44,13 @@ import {PieChartsComponent} from './admin_project/components/charts/pie-charts/p
 import {ColumnChartComponent} from './admin_project/components/charts/column-chart/column-chart.component';
 import {ChartsComponent} from './admin_project/components/charts/charts.component';
 import {TeacherChatComponent} from './components/teacher/teacher-chat/teacher-chat.component';
+
 import {CourseSatisfactionChartComponent} from './components/course-satisfaction-chart/course-satisfaction-chart.component';
+
+import {ComplexChartComponent} from "./admin_project/components/charts/complex-chart/complex-chart.component";
+import {TeachersListComponent} from './components/student/Teaches-list/teachers-list.component';
+import {SplineChartComponent} from "./admin_project/components/charts/spline-chart/spline-chart.component";
+
 
 ShowfeedbackComponent
 const routes: Routes = [
@@ -113,6 +119,12 @@ const routes: Routes = [
   {path: 'admin/analytics/column', component: ColumnChartComponent, canActivate: [RoleGuardService],data:{
       expectedRole: 'ROLE_ADMIN'
     }},
+  {path: 'admin/analytics/complex', component: ComplexChartComponent, canActivate: [RoleGuardService],data:{
+      expectedRole: 'ROLE_ADMIN'
+    }},
+  {path: 'admin/analytics/spline', component: SplineChartComponent, canActivate: [RoleGuardService],data:{
+      expectedRole: 'ROLE_ADMIN'
+    }},
   {path: 'admin/analytics/charts', component: ChartsComponent, canActivate: [RoleGuardService],data:{
       expectedRole: 'ROLE_ADMIN'
     }},
@@ -139,6 +151,7 @@ const routes: Routes = [
   {path: 'feedback-satisfaction', component: FeedbackAnalyticsComponent},
   {path: 'coursesatisfactionchart/:id', component: CourseSatisfactionChartComponent},
   {path: 'addfeedback/course/:idc/feedbackrequest/:id', component: AddfeedbackComponent},
+  {path: 'teachers-list', component: TeachersListComponent},
 ];
 
 @NgModule({

@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {AppComponent} from './app.component';
 import {RouterModule} from '@angular/router';
 import {AppRoutingModule} from './app-routing.module';
@@ -86,7 +86,16 @@ import { ChartsComponent } from './admin_project/components/charts/charts.compon
 import {MatTabsModule} from '@angular/material/tabs';
 import {TeacherChatComponent} from './components/teacher/teacher-chat/teacher-chat.component';
 import { CourseSatisfactionChartComponent } from './components/course-satisfaction-chart/course-satisfaction-chart.component';
-import {ChartsModule} from 'ng2-charts';
+import { TeacherChartComponent } from './admin_project/components/charts/teacher-chart/teacher-chart.component';
+import { ChartsModule } from 'ng2-charts';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { ConfirmationDialogService } from './confirmation-dialog/confirmation-dialog.service';
+import { CloseDialogComponent } from './close-dialog/close-dialog.component';
+import { CloseDialogService } from './close-dialog/close-dialog.service';
+import { ComplexChartComponent } from './admin_project/components/charts/complex-chart/complex-chart.component';
+import {TeachersListComponent} from "./components/student/Teaches-list/teachers-list.component";
+import { ShowTeacherRateHistoryComponent } from './admin_project/components/charts/teacher-chart/show-teacher-rate-history/show-teacher-rate-history.component';
+import { SplineChartComponent } from './admin_project/components/charts/spline-chart/spline-chart.component';
 
 
 @NgModule({
@@ -142,6 +151,13 @@ import {ChartsModule} from 'ng2-charts';
     ChartsComponent,
     TeacherChatComponent,
     CourseSatisfactionChartComponent,
+    ConfirmationDialogComponent,
+    CloseDialogComponent,
+    ComplexChartComponent,
+    TeachersListComponent,
+    SplineChartComponent,
+    TeacherChartComponent,
+    ShowTeacherRateHistoryComponent,
 
   ],
   imports: [
@@ -181,11 +197,12 @@ import {ChartsModule} from 'ng2-charts';
     MatTabsModule,
     ChartsModule,
   ],
-  providers: [httpInterceptorProviders, {provide: JWT_OPTIONS, useValue: JWT_OPTIONS}, JwtHelperService, {
+  providers: [ConfirmationDialogService, CloseDialogService, httpInterceptorProviders, {provide: JWT_OPTIONS, useValue: JWT_OPTIONS}, JwtHelperService, {
     provide: MatDialogRef,
     useValue: {}
   }, MatIconRegistry],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ ConfirmationDialogComponent, CloseDialogComponent ],
 })
 export class AppModule {
 }

@@ -9,6 +9,8 @@ import {MatTableDataSource} from "@angular/material/table";
 import {Question} from "../../../models/question.model";
 import {QuestionService} from '../../../services/question.service';
 import {MatPaginator} from "@angular/material/paginator";
+import { ConfirmationDialogService } from './../../../confirmation-dialog/confirmation-dialog.service';
+import { CloseDialogService } from './../../../close-dialog/close-dialog.service';
 
 @Component({
   selector: 'app-add-feedback',
@@ -41,6 +43,8 @@ export class AddfeedbackComponent implements OnInit {
 
 
   constructor(
+    private confirmationDialogService: ConfirmationDialogService,
+    private closeDialogService: CloseDialogService,
     private router: Router,
     private tokenStorage: TokenStorageService,
     private feedbackService: FeedbackService,
@@ -49,6 +53,9 @@ export class AddfeedbackComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+
+
     this.curFeedback.studentId = this.tokenStorage.getId();
     this.feedbackRequestId = parseInt(<string>this.route.snapshot.paramMap.get('id'));
     this.curFeedback.feedbackRequestId = <string>this.route.snapshot.paramMap.get('id');
@@ -78,17 +85,37 @@ export class AddfeedbackComponent implements OnInit {
   }
 
   SaveFeedback(): void {
-    this.feedbackService.create(this.curFeedback).subscribe(data => {
-        this.router.navigateByUrl('/feedback_request/course/'+this.courseId);
-      },
-      error => {
-        console.log(error);
-      }
-    );
+    if (this.curFeedback.answers?.length ) {
+      this.openConfirmationDialog();
+    } else {
+      this.openCloseDialog();
+    }
   }
 
   CancelFeedback(): void {
     this.router.navigateByUrl('/feedback_request/course/'+this.courseId);
+  }
+
+  public openConfirmationDialog() {
+    this.confirmationDialogService.confirm('Please confirm saving ', 'You cannot modify your answers after saving. Do you really want to continue ?')
+      .then((confirmed) => {
+        if (confirmed) {
+          this.feedbackService.create(this.curFeedback).subscribe(data => {
+              this.router.navigateByUrl('/feedback_request/course/' + this.courseId);
+            },
+            error => {
+              console.log(error);
+            })
+        }
+      })
+      .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
+    return;
+  }
+
+  public openCloseDialog() {
+    this.closeDialogService.confirm('You cannot save empty feedback ', 'There are no answers in your feedback ')
+      .then((confirmed) => {} )
+      .catch(() => {});
   }
 
 }

@@ -1,0 +1,41 @@
+<div class="container">
+  <h4 style="text-align: center"> Teacher Rating </h4>
+
+  <div class="chart-wrapper" style="margin-left: 100px;max-width: 800px">
+  <canvas baseChart
+          [data]="chartData"
+          [labels]="chartLabels"
+          [options]="barChartOptions"
+          [plugins]="barChartPlugins"
+          [legend]="barChartLegend"
+          [chartType]="barChartType">
+  </canvas>
+</div>
+
+  <table mat-table [dataSource]="chartDataList" class="mat-elevation-z8 " style="margin-left: 100px;max-width: 800px">
+
+    <ng-container matColumnDef="Teacher">
+      <th mat-header-cell *matHeaderCellDef>Teacher</th>
+      <td class="pointer name-column" mat-cell *matCellDef="let chartDataList" > {{ chartDataList.teacherName }}<br>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Rate">
+      <th mat-header-cell *matHeaderCellDef>Rate</th>
+      <td class="pointer" mat-cell *matCellDef="let chartDataList" > {{ chartDataList.teacherRate.toFixed(2)}}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Actions">
+      <th mat-header-cell *matHeaderCellDef> Actions</th>
+      <td class="pointer action-column" mat-cell *matCellDef="let chartDataList">
+        <button mat-stroked-button (click)="showHistory(chartDataList.teacherId)" class="button">
+          <mat-icon>remove_red_eye</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    <tr id="row" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+    ></tr>
+  </table>
+</div>
