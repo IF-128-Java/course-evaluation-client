@@ -12,8 +12,10 @@ export class AnalystService {
 
   private usersUrl = AppConfig.API_ANALYTICS_ENDPOINT_BASE + 'coursesatisfaction';
   private usersUrlFeedback = AppConfig.API_ANALYTICS_ENDPOINT_BASE + 'feedbacksatisfaction';
+  private usersUrlMonthlyCourseSatisfaction = AppConfig.API_ANALYTICS_ENDPOINT_BASE + 'monthlycoursesatisfaction';
 
-  constructor(private  http: HttpClient) { }
+  constructor(private  http: HttpClient) {
+  }
 
   get(): Observable<any> {
     return this.http.get(`${this.usersUrl}`, {responseType: 'json'});
@@ -21,5 +23,9 @@ export class AnalystService {
 
   getFeedbackSatisfaction(): Observable<any> {
     return this.http.get(`${this.usersUrlFeedback}`, {responseType: 'json'});
+  }
+
+  getMonthlyCourseSatisfaction(id: number): Observable<any> {
+    return this.http.get(this.usersUrlMonthlyCourseSatisfaction + '/' + id, {responseType: 'json'});
   }
 }

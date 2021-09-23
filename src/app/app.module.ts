@@ -85,6 +85,7 @@ import { ColumnChartComponent } from './admin_project/components/charts/column-c
 import { ChartsComponent } from './admin_project/components/charts/charts.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import {TeacherChatComponent} from './components/teacher/teacher-chat/teacher-chat.component';
+import { CourseSatisfactionChartComponent } from './components/course-satisfaction-chart/course-satisfaction-chart.component';
 import { TeacherChartComponent } from './admin_project/components/charts/teacher-chart/teacher-chart.component';
 import { ChartsModule } from 'ng2-charts';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
@@ -95,6 +96,7 @@ import { ComplexChartComponent } from './admin_project/components/charts/complex
 import {TeachersListComponent} from "./components/student/Teaches-list/teachers-list.component";
 import { ShowTeacherRateHistoryComponent } from './admin_project/components/charts/teacher-chart/show-teacher-rate-history/show-teacher-rate-history.component';
 import { SplineChartComponent } from './admin_project/components/charts/spline-chart/spline-chart.component';
+
 
 @NgModule({
   declarations: [
@@ -148,6 +150,7 @@ import { SplineChartComponent } from './admin_project/components/charts/spline-c
     ColumnChartComponent,
     ChartsComponent,
     TeacherChatComponent,
+    CourseSatisfactionChartComponent,
     ConfirmationDialogComponent,
     CloseDialogComponent,
     ComplexChartComponent,
@@ -155,6 +158,7 @@ import { SplineChartComponent } from './admin_project/components/charts/spline-c
     SplineChartComponent,
     TeacherChartComponent,
     ShowTeacherRateHistoryComponent,
+
   ],
   imports: [
     BrowserModule,

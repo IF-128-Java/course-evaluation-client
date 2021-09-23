@@ -23,6 +23,15 @@
       <td mat-cell *matCellDef="let coursessatisfaction"> {{coursessatisfaction.satisfaction}} </td>
     </ng-container>
 
+    <ng-container matColumnDef="Chart">
+      <th mat-header-cell *matHeaderCellDef> Chart</th>
+      <td mat-cell *matCellDef="let coursessatisfaction">
+        <button *ngIf="coursessatisfaction" mat-flat-button (click)="openCourseSatisfactionChart(coursessatisfaction.id)" class="delete-button"
+              matTooltip="History satisfactions">
+        <mat-icon>view_headline</mat-icon>
+      </button>
+      </td>
+    </ng-container>
 
 
     <tr id="row" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
