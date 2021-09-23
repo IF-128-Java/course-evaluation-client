@@ -11,6 +11,7 @@ import {PageEvent} from '@angular/material/paginator';
 })
 export class FeedbackrequestService {
   private feedbackRequestUrl = AppConfig.API_ENDPOINT + 'feedback_request/';
+  private feedbackInfoUrl = AppConfig.API_ANALYTICS_ENDPOINT + 'feedback-info/';
 
   constructor(private http: HttpClient) {
 
@@ -50,4 +51,9 @@ export class FeedbackrequestService {
   delete(id: number): Observable<any> {
     return this.http.delete(this.feedbackRequestUrl + id);
   }
+
+  getFeedbackInfoByCourseId(id: number): Observable<any> {
+    return this.http.get(this.feedbackInfoUrl + id + '/export/excel',{responseType: 'blob'})
+  }
+
 }

@@ -7,6 +7,10 @@
   <a mat-stroked-button routerLink="/admin/courses/{{courseId}}/feedback_requests/archive" class="button">
     <mat-icon>archive</mat-icon>
     Archive</a>
+  <button mat-stroked-button (click)="exportFeedbackInfo($event)" class="btn custom-btn">
+    <mat-icon>download</mat-icon>
+    Download feedback Info
+  </button>
   <a mat-raised-button routerLink="/admin/courses" class="back-button">
     <mat-icon>arrow_back</mat-icon>
     Back</a>
