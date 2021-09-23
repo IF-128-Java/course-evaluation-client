@@ -1,0 +1,42 @@
+<div class="container" *ngIf="teacherCourses && teacherCourses.length">
+  <label><strong>Teacher:</strong></label> {{ teacherCourses[0].firstName }} {{ teacherCourses[0].lastName }}
+  <br>
+  <br>
+
+  <div class="container" >
+
+  <table mat-table [dataSource]="listData" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="CourseName">
+      <th mat-header-cell *matHeaderCellDef> Course name</th>
+      <td mat-cell *matCellDef="let coursegroup"> {{coursegroup.courseName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Description">
+      <th mat-header-cell *matHeaderCellDef> Description</th>
+      <td mat-cell *matCellDef="let coursegroup"> {{coursegroup.description}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="StartDate">
+      <th mat-header-cell *matHeaderCellDef> Start Date</th>
+      <td mat-cell *matCellDef="let coursegroup"> {{coursegroup.startDate | date : 'd.MM.y'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="EndDate">
+      <th mat-header-cell *matHeaderCellDef> End Date</th>
+      <td mat-cell *matCellDef="let coursegroup"> {{coursegroup.endDate | date : 'd.MM.y'}} </td>
+    </ng-container>
+
+    <tr id="row" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  </table>
+
+  <mat-paginator #scheduledOrdersPaginator
+                 [pageSize]="10"
+                 [pageSizeOptions]="[5, 10, 25]">
+
+  </mat-paginator>
+
+</div>
+</div>

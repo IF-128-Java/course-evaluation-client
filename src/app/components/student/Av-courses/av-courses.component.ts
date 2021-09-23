@@ -5,6 +5,7 @@ import {Course} from '../../../models/student/course.model';
 import {TokenStorageService} from '../../../auth/token-storage.service';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-av-courses',
@@ -38,6 +39,7 @@ export class AvCoursesComponent implements OnInit {
   }
 
   constructor(
+    private router: Router,
     private tokenStorage: TokenStorageService,
     private MyGroupService: MyGroupService,
 
@@ -67,7 +69,7 @@ export class AvCoursesComponent implements OnInit {
   }
 
   onTeacherInfo(id: number): void {
-
+    this.router.navigateByUrl('/teacher-courses/'+id)
   }
 
 }
